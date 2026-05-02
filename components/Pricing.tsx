@@ -5,7 +5,7 @@ export function Pricing() {
     <section className="chapter" id="preise">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">03</span>
+          <span className="num">04</span>
           <span className="slash">/</span>
           <span>Preise</span>
         </div>

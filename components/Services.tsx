@@ -5,7 +5,7 @@ export function Services() {
     <section className="chapter" id="leistungen">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">02</span>
+          <span className="num">03</span>
           <span className="slash">/</span>
           <span>Leistungen</span>
         </div>
@@ -18,20 +18,24 @@ export function Services() {
         </p>
       </div>
 
-      <div className="services-grid">
+      <div className="rows rows-services">
         {SERVICES.map((service) => (
-          <div key={service.num} className="service-card">
-            <div className="service-num">{service.num}</div>
-            <h3 className="service-title">{service.title}</h3>
-            <p className="service-desc">{service.desc}</p>
-            <ul className="service-list">
-              {service.items.map((item, i) => (
-                <li key={i}>
-                  <span className="bullet">›</span> {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <article key={service.num} className="row">
+            <div className="row-side">
+              <div className="row-num">{service.num}</div>
+            </div>
+            <div className="row-body">
+              <h3 className="row-title row-title-lg">{service.title}</h3>
+              <p className="row-desc">{service.desc}</p>
+              <ul className="row-list">
+                {service.items.map((item, i) => (
+                  <li key={i}>
+                    <span className="bullet">›</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
         ))}
       </div>
     </section>

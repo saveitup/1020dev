@@ -174,7 +174,7 @@ nav {
   z-index: 5;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 7rem 2.5rem 9rem;
+  padding: 9rem 2.5rem 13rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -319,15 +319,15 @@ h1 em, .hero-title em {
   z-index: 5;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 8rem 2.5rem;
+  padding: 11rem 2.5rem;
 }
 
 .chapter-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1.8rem;
-  margin-bottom: 5rem;
-  max-width: 56rem;
+  gap: 2.2rem;
+  margin-bottom: 7rem;
+  max-width: 60rem;
 }
 
 .chapter-marker {
@@ -384,7 +384,7 @@ h1 em, .hero-title em {
 .projects {
   position: relative;
   z-index: 5;
-  padding: 6rem 0 7rem;
+  padding: 9rem 0 10rem;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(255,255,255,0.012) 0%, rgba(255,255,255,0) 100%);
@@ -392,7 +392,7 @@ h1 em, .hero-title em {
 
 .projects-head {
   max-width: var(--max);
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 5rem;
   padding: 0 2.5rem;
   display: flex;
   align-items: flex-end;
@@ -823,126 +823,96 @@ h1 em, .hero-title em {
   border-bottom-color: var(--accent);
 }
 
-/* ============== METHODE ============== */
-.methode-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+/* ============== ROWS — vertical editorial rows used by Methode + Services ============== */
+.rows {
   border-top: 1px solid var(--line);
 }
-.methode-step {
-  padding: 2.4rem 1.6rem 2.4rem 0;
+.row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 3fr);
+  gap: 4rem;
+  padding: 3.5rem 0;
   border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  position: relative;
-  transition: background 0.3s;
+  align-items: start;
+  transition: padding 0.3s ease;
 }
-.methode-step:last-child { border-right: none; }
-.methode-step:hover {
-  background: rgba(129, 140, 248, 0.025);
+.row:hover {
+  padding-left: 1rem;
 }
-.methode-step:hover .methode-num {
+.row:hover .row-num {
   color: var(--accent);
 }
-.methode-num {
+
+.row-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-top: 0.4rem;
+}
+.row-num {
   font-family: var(--font-dm-mono), monospace;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--dim);
-  margin-bottom: 0.6rem;
   transition: color 0.3s;
 }
-.methode-title {
-  font-family: var(--font-dm-sans), sans-serif;
-  font-size: 1.45rem;
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  color: var(--text);
-}
-.methode-duration {
+.row-meta {
   font-family: var(--font-dm-mono), monospace;
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
 }
-.methode-desc {
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--muted);
-  margin-top: 0.4rem;
-}
 
-/* ============== SERVICES ============== */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--line);
-}
-.service-card {
-  padding: 3rem 2rem 3rem 0;
-  border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
+.row-body {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: background 0.3s;
+  gap: 1.2rem;
+  max-width: 56ch;
 }
-.service-card:last-child { border-right: none; }
-.service-card:hover {
-  background: rgba(129, 140, 248, 0.025);
-}
-.service-card:hover .service-num {
-  color: var(--accent);
-}
-.service-num {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
-  margin-bottom: 0.4rem;
-  transition: color 0.3s;
-}
-.service-title {
+.row-title {
   font-family: var(--font-dm-sans), sans-serif;
-  font-size: 1.6rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
   font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--text);
-  max-width: 18ch;
 }
-.service-desc {
-  font-size: 0.96rem;
-  line-height: 1.55;
+.row-title-lg {
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+}
+.row-desc {
+  font-size: 1.02rem;
+  line-height: 1.6;
   color: var(--muted);
-  margin-bottom: 0.4rem;
 }
-.service-list {
+.row-list {
   list-style: none;
-  margin-top: auto;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.7rem;
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--line);
 }
-.service-list li {
+.row-list li {
   font-family: var(--font-dm-mono), monospace;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--muted);
   line-height: 1.5;
   display: flex;
-  gap: 0.55rem;
+  gap: 0.65rem;
+  padding-top: 0.7rem;
 }
-.service-list li .bullet {
+.row-list li .bullet {
   color: var(--accent);
   flex-shrink: 0;
+}
+
+/* Services rows have a bit more breathing room */
+.rows-services .row {
+  padding: 4.5rem 0;
 }
 
 /* ============== PREISE — editorial table ============== */
@@ -950,7 +920,7 @@ h1 em, .hero-title em {
   border-top: 1px solid var(--line);
 }
 .pricing-group + .pricing-group {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 .pricing-group-label {
   font-family: var(--font-dm-mono), monospace;
@@ -974,7 +944,7 @@ h1 em, .hero-title em {
   grid-template-columns: 1fr auto;
   align-items: baseline;
   gap: 2rem;
-  padding: 1.4rem 0;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--line);
   transition: padding 0.25s, color 0.2s;
 }
@@ -1095,16 +1065,16 @@ h1 em, .hero-title em {
   border: none;
   color: var(--text);
   text-align: left;
-  padding: 1.8rem 0;
+  padding: 2.4rem 0;
   cursor: pointer;
   font-family: var(--font-dm-sans), sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 400;
   letter-spacing: -0.015em;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 1.6rem;
+  gap: 2rem;
   transition: color 0.2s;
 }
 .faq-q:hover { color: var(--accent); }
@@ -1384,12 +1354,14 @@ html.splash-skip body .hero-signature {
   .projects-head { padding: 0 1.4rem; margin-bottom: 2.4rem; }
   .projects-rail { padding: 0 1.4rem 1.5rem; }
 
-  .methode-grid { grid-template-columns: 1fr 1fr; }
-  .methode-step { padding: 1.8rem 1.2rem 1.8rem 0; }
-  .methode-step:nth-child(2) { border-right: none; }
-
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card { padding: 2.4rem 0 2.4rem; border-right: none; }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding: 2.4rem 0;
+  }
+  .rows-services .row { padding: 2.8rem 0; }
+  .row:hover { padding-left: 0; }
+  .row-side { flex-direction: row; gap: 1.2rem; align-items: center; padding-top: 0; }
 
   .audit-form { flex-direction: column; }
   .audit-btn { padding: 1.05rem 1.5rem; justify-content: center; }
@@ -1408,6 +1380,5 @@ html.splash-skip body .hero-signature {
 }
 
 @media (max-width: 540px) {
-  .methode-grid { grid-template-columns: 1fr; }
-  .methode-step { border-right: none; }
+  .row-side { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
 }

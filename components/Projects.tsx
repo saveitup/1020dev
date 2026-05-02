@@ -7,7 +7,7 @@ export function Projects() {
       <div className="projects-head">
         <div className="left">
           <div className="chapter-marker">
-            <span className="num">00</span>
+            <span className="num">01</span>
             <span className="slash">/</span>
             <span>Projekte</span>
           </div>

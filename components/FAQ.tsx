@@ -10,7 +10,7 @@ export function FAQ() {
     <section className="chapter" id="faq">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">04</span>
+          <span className="num">05</span>
           <span className="slash">/</span>
           <span>FAQ</span>
         </div>

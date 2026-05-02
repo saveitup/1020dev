@@ -5,7 +5,7 @@ export function Methode() {
     <section className="chapter" id="methode">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">01</span>
+          <span className="num">02</span>
           <span className="slash">/</span>
           <span>Methode</span>
         </div>
@@ -18,14 +18,18 @@ export function Methode() {
         </p>
       </div>
 
-      <div className="methode-grid">
+      <div className="rows">
         {METHODE.map((step) => (
-          <div key={step.num} className="methode-step">
-            <div className="methode-num">{step.num}</div>
-            <div className="methode-title">{step.title}</div>
-            <div className="methode-duration">{step.duration}</div>
-            <div className="methode-desc">{step.desc}</div>
-          </div>
+          <article key={step.num} className="row">
+            <div className="row-side">
+              <div className="row-num">{step.num}</div>
+              <div className="row-meta">{step.duration}</div>
+            </div>
+            <div className="row-body">
+              <h3 className="row-title">{step.title}</h3>
+              <p className="row-desc">{step.desc}</p>
+            </div>
+          </article>
         ))}
       </div>
     </section>
