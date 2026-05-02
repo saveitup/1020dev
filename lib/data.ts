@@ -32,6 +32,62 @@ export const REFS = [
       { src: '/refs/alpenbroker-2.jpg', alt: 'alpenbroker.com · Lernen' },
     ],
   },
+  {
+    id: 'brng',
+    domain: 'brng.app',
+    href: null,
+    tag: 'Logistik · App',
+    images: [],
+  },
+  {
+    id: 'yaniv',
+    domain: 'yaniv-clash',
+    href: null,
+    tag: 'Kartenspiel · Web',
+    images: [],
+  },
+  {
+    id: 'clausl',
+    domain: 'Clausl KI',
+    href: null,
+    tag: 'Arbeitsrecht · KI',
+    images: [],
+  },
+  {
+    id: 'nicht-warten',
+    domain: 'nicht-warten',
+    href: null,
+    tag: 'Wiener Linien · API',
+    images: [],
+  },
+  {
+    id: 'immotrag',
+    domain: 'Immotrag',
+    href: null,
+    tag: 'Immobilien · Automation',
+    images: [],
+  },
+  {
+    id: 'asaoffice',
+    domain: 'AsaOffice',
+    href: null,
+    tag: 'Office · Tool',
+    images: [],
+  },
+  {
+    id: 'kontur',
+    domain: 'Kontur',
+    href: null,
+    tag: 'Firmenbuch · API',
+    images: [],
+  },
+  {
+    id: 'gui-io',
+    domain: 'gui.io',
+    href: null,
+    tag: 'Wien · AI Guide',
+    images: [],
+  },
 ] as const;
 
 // ============================================

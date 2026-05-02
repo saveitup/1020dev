@@ -23,7 +23,11 @@ Beide sollten dieselbe Aussage treffen, nur Format unterscheidet sich.
 Ändere `REFS` in `data.ts` und lege Bilder in `public/refs/` ab. Konvention:
 - 2 Bilder pro Projekt: `<id>-1.jpg` (Hero) und `<id>-2.jpg` (zweite Page)
 - Format: 1200×750 JPEG, q85, progressive
-- Slideshow erwartet **genau 2 Bilder pro Ref** und **genau 3 Refs** total — wenn das geändert wird, müssen die CSS-Animationen in `app/globals.css` angepasst werden (siehe `@keyframes refSlideshow`)
+- Aktuell **11 Refs × ~4s = 44s Cycle**. Wenn die Anzahl geändert wird, müssen in `app/globals.css` angepasst werden:
+  - `.refs > .ref` und `.refs-dots .dot` Animation-Duration
+  - Alle `nth-child` Animation-Delays (Formel: `-(N-k+1) * cycle/N`)
+  - Keyframes `@refSlideshow` und `@dotActive` Prozentwerte (visible: 0%–(90/N)%, hidden: (100/N)%–((100·(N-1)+10)/N)%)
+- Refs ohne Live-URL: `href: null` und `images: []` setzen — `Hero.tsx` rendert dann ein `<div>` mit Placeholder statt Link
 
 ### Site-Config
 `SITE` enthält Domain, E-Mail, Cal.com-URL, Standort. Wird in Layout-Metadata, llms.txt, Footer, AuditWidget verwendet. **Ändere hier zentral**.

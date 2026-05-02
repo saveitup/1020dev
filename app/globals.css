@@ -316,16 +316,25 @@
   .refs > .ref {
     grid-row: 1;
     grid-column: 1;
-    animation: refSlideshow 12s infinite;
+    animation: refSlideshow 44s infinite;
     pointer-events: none;
   }
-  .refs > .ref:nth-child(1) { animation-delay: 0s; }
-  .refs > .ref:nth-child(2) { animation-delay: -8s; }
-  .refs > .ref:nth-child(3) { animation-delay: -4s; }
+  .refs > .ref:nth-child(1)  { animation-delay: 0s; }
+  .refs > .ref:nth-child(2)  { animation-delay: -40s; }
+  .refs > .ref:nth-child(3)  { animation-delay: -36s; }
+  .refs > .ref:nth-child(4)  { animation-delay: -32s; }
+  .refs > .ref:nth-child(5)  { animation-delay: -28s; }
+  .refs > .ref:nth-child(6)  { animation-delay: -24s; }
+  .refs > .ref:nth-child(7)  { animation-delay: -20s; }
+  .refs > .ref:nth-child(8)  { animation-delay: -16s; }
+  .refs > .ref:nth-child(9)  { animation-delay: -12s; }
+  .refs > .ref:nth-child(10) { animation-delay: -8s; }
+  .refs > .ref:nth-child(11) { animation-delay: -4s; }
 
+  /* 11 slides × 4s = 44s. Each slide visible 0–8.2% (≈3.6s), crossfade ≈0.4s. */
   @keyframes refSlideshow {
-    0%, 30% { opacity: 1; pointer-events: auto; }
-    33.3%, 96.7% { opacity: 0; pointer-events: none; }
+    0%, 8.2% { opacity: 1; pointer-events: auto; }
+    9.1%, 99.1% { opacity: 0; pointer-events: none; }
     100% { opacity: 1; pointer-events: auto; }
   }
 
@@ -396,16 +405,24 @@
     height: 6px;
     border-radius: 50%;
     background: rgba(255,255,255,0.18);
-    animation: dotActive 12s infinite;
+    animation: dotActive 44s infinite;
     transition: background 0.3s;
   }
-  .refs-dots .dot:nth-child(1) { animation-delay: 0s; }
-  .refs-dots .dot:nth-child(2) { animation-delay: -8s; }
-  .refs-dots .dot:nth-child(3) { animation-delay: -4s; }
+  .refs-dots .dot:nth-child(1)  { animation-delay: 0s; }
+  .refs-dots .dot:nth-child(2)  { animation-delay: -40s; }
+  .refs-dots .dot:nth-child(3)  { animation-delay: -36s; }
+  .refs-dots .dot:nth-child(4)  { animation-delay: -32s; }
+  .refs-dots .dot:nth-child(5)  { animation-delay: -28s; }
+  .refs-dots .dot:nth-child(6)  { animation-delay: -24s; }
+  .refs-dots .dot:nth-child(7)  { animation-delay: -20s; }
+  .refs-dots .dot:nth-child(8)  { animation-delay: -16s; }
+  .refs-dots .dot:nth-child(9)  { animation-delay: -12s; }
+  .refs-dots .dot:nth-child(10) { animation-delay: -8s; }
+  .refs-dots .dot:nth-child(11) { animation-delay: -4s; }
 
   @keyframes dotActive {
-    0%, 30% { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); width: 18px; border-radius: 3px; }
-    33.3%, 100% { background: rgba(255,255,255,0.18); box-shadow: none; width: 6px; border-radius: 50%; }
+    0%, 8.2% { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); width: 18px; border-radius: 3px; }
+    9.1%, 100% { background: rgba(255,255,255,0.18); box-shadow: none; width: 6px; border-radius: 50%; }
   }
   .refs-dots .dot {
     cursor: pointer;
@@ -453,12 +470,42 @@
     background: rgba(129, 140, 248, 0.06);
     box-shadow: 0 12px 40px -10px rgba(129, 140, 248, 0.25);
   }
+  .ref-static {
+    cursor: default;
+  }
+  .ref-static:hover {
+    transform: none;
+  }
   .ref-thumb {
     aspect-ratio: 16 / 10;
     overflow: hidden;
     position: relative;
     background: #0a0a0a;
     border-bottom: 1px solid var(--line);
+  }
+  .ref-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(129, 140, 248, 0.08), transparent 60%),
+      linear-gradient(135deg, #0a0e1f 0%, #131836 100%);
+    color: var(--muted);
+    font-family: var(--font-dm-mono), monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 1rem;
+  }
+  .ref-thumb-placeholder-note {
+    font-size: 0.7rem;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
   .ref-thumb img {
     position: absolute;

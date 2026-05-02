@@ -88,9 +88,10 @@ Alle Preise netto, exkl. 20% USt. Audit & Erstgespräch immer kostenlos.
 
 ## Slideshow-Tempo (falls jemand fragt)
 
-- Total-Cycle: 12 Sekunden (3 Projekte × 4 Sekunden)
-- Pro Projekt: 2 Bilder × 2 Sekunden mit Crossfade
-- Synchronisation: `@keyframes refSlideshow` (12s) ineinander mit `@keyframes refFadeA/B` (4s) — passt 3× rein
+- Total-Cycle: 44 Sekunden (11 Projekte × 4 Sekunden)
+- Pro Projekt: 2 Bilder × 2 Sekunden mit Crossfade (refFadeA/B bleibt 4s, passt N× rein)
+- Synchronisation: `@keyframes refSlideshow` (44s) ineinander mit `@keyframes refFadeA/B` (4s)
+- Refs ohne Live-URL/Screenshot: `href: null` + `images: []` → Hero rendert `<div class="ref-static">` mit Domain-Text-Placeholder
 - Klick auf Dot → manueller Modus, 3 Sekunden nach mouseleave → Auto-Resume
 
 ## Was du NICHT tun sollst

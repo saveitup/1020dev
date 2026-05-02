@@ -120,35 +120,55 @@ export function Hero() {
         <div className="strip strip-refs" ref={stripRef}>
           <div className="strip-label">Aktuelle Arbeiten</div>
           <div className="refs">
-            {REFS.map((ref, idx) => (
-              <a
-                key={ref.id}
-                href={ref.href}
-                target="_blank"
-                rel="noopener"
-                className="ref"
-              >
+            {REFS.map((ref, idx) => {
+              const thumb = (
                 <div className="ref-thumb">
-                  {ref.images.map((img, i) => (
-                    <Image
-                      key={i}
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      sizes="(max-width: 820px) 100vw, 600px"
-                      priority={idx === 0 && i === 0}
-                      style={{ objectFit: 'cover' }}
-                    />
-                  ))}
+                  {ref.images.length > 0 ? (
+                    ref.images.map((img, i) => (
+                      <Image
+                        key={i}
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 820px) 100vw, 600px"
+                        priority={idx === 0 && i === 0}
+                        style={{ objectFit: 'cover' }}
+                      />
+                    ))
+                  ) : (
+                    <div className="ref-thumb-placeholder">
+                      <span>{ref.domain}</span>
+                      <span className="ref-thumb-placeholder-note">Screenshot folgt</span>
+                    </div>
+                  )}
                 </div>
+              );
+              const meta = (
                 <div className="ref-meta">
                   <span className="ref-domain">
-                    {ref.domain} <span className="ext">↗</span>
+                    {ref.domain} {ref.href && <span className="ext">↗</span>}
                   </span>
                   <span className="ref-tag">{ref.tag}</span>
                 </div>
-              </a>
-            ))}
+              );
+              return ref.href ? (
+                <a
+                  key={ref.id}
+                  href={ref.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="ref"
+                >
+                  {thumb}
+                  {meta}
+                </a>
+              ) : (
+                <div key={ref.id} className="ref ref-static">
+                  {thumb}
+                  {meta}
+                </div>
+              );
+            })}
           </div>
           <div className="refs-footer">
             <div className="refs-dots" aria-hidden="true">
