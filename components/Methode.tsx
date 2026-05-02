@@ -2,13 +2,19 @@ import { METHODE } from '@/lib/data';
 
 export function Methode() {
   return (
-    <section className="section" id="methode">
-      <div className="section-head">
-        <div className="section-tag">Methode</div>
-        <h2 className="section-title">Vier Schritte. Kein Black Box.</h2>
-        <p className="section-sub">
-          Vom ersten Audit zur laufenden Optimierung — jeder Schritt mit klarem Ergebnis und
-          definierter Dauer.
+    <section className="chapter" id="methode">
+      <div className="chapter-head">
+        <div className="chapter-marker">
+          <span className="num">01</span>
+          <span className="slash">/</span>
+          <span>Methode</span>
+        </div>
+        <h2 className="chapter-title">
+          Vier Schritte. <em>Keine Black Box.</em>
+        </h2>
+        <p className="chapter-lede">
+          Vom ersten Audit zur laufenden Optimierung — jeder Schritt mit klarem
+          Ergebnis und definierter Dauer. Wöchentliche Reviews, ehrliches Reporting.
         </p>
       </div>
 

@@ -91,11 +91,17 @@ export function AuditWidget() {
   };
 
   return (
-    <section className="section" id="audit">
-      <div className="section-head">
-        <div className="section-tag">Live · echte Analyse</div>
-        <h2 className="section-title">Wie sichtbar ist Ihre Website in KI-Antworten?</h2>
-        <p className="section-sub">
+    <section className="chapter" id="audit">
+      <div className="chapter-head">
+        <div className="chapter-marker">
+          <span className="num">05</span>
+          <span className="slash">/</span>
+          <span>Live-Analyse</span>
+        </div>
+        <h2 className="chapter-title">
+          Wie sichtbar ist Ihre Website in <em>KI-Antworten?</em>
+        </h2>
+        <p className="chapter-lede">
           Geben Sie eine Domain ein. Wir prüfen in Echtzeit, wie ChatGPT, Perplexity und
           Claude Ihre Inhalte sehen — und geben drei konkrete Hebel zurück, die Sie ab
           morgen umsetzen können.

@@ -2,17 +2,23 @@ import { PRICING, SITE } from '@/lib/data';
 
 export function Pricing() {
   return (
-    <section className="section" id="preise">
-      <div className="section-head">
-        <div className="section-tag">Preise</div>
-        <h2 className="section-title">Modular und transparent.</h2>
-        <p className="section-sub">
-          Sie zahlen nur für das, was Sie brauchen. Jeder Baustein ist einzeln buchbar oder
-          kombinierbar — keine Pakete, keine versteckten Kosten.
+    <section className="chapter" id="preise">
+      <div className="chapter-head">
+        <div className="chapter-marker">
+          <span className="num">03</span>
+          <span className="slash">/</span>
+          <span>Preise</span>
+        </div>
+        <h2 className="chapter-title">
+          Modular und <em>transparent.</em>
+        </h2>
+        <p className="chapter-lede">
+          Sie zahlen nur für das, was Sie brauchen. Jeder Baustein ist einzeln buchbar
+          oder kombinierbar — keine Pakete, keine versteckten Kosten.
         </p>
       </div>
 
-      <div className="pricing-card">
+      <div className="pricing-table">
         <div className="pricing-group">
           <div className="pricing-group-label">Einmalig</div>
 
