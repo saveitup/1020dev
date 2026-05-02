@@ -1,0 +1,50 @@
+# 1020.dev
+
+> Webentwicklung, SEO und Answer-Engine-Optimization für KMU in Wien und Österreich. Wir bauen Websites, die in Google ranken UND in ChatGPT, Perplexity und Claude zitiert werden.
+
+## Wer wir sind
+
+1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
+
+## Was wir machen
+
+- **Webentwicklung** mit Next.js, React, TypeScript. Statisch generiert oder Hybrid. EU-Hosting (Vercel oder Hetzner).
+- **SEO** im klassischen Sinn: Meta-Tags, Sitemap, robots.txt, Schema.org-Markup, Core-Web-Vitals-Tuning.
+- **AEO (Answer Engine Optimization)** für ChatGPT, Perplexity, Claude und Google AI Overviews. Antwort-orientierte Inhaltsstruktur, FAQPage-Schema, LocalBusiness-Markup, llms.txt.
+- **Backend & Automatisierung**: API-Integrationen, LLM-basierte Workflows, CRM-Sync, Lead-Pipelines.
+
+## Preise
+
+- Onepager: ab 700 €
+- Jede weitere Seite: ab 250 €
+- SEO-Optimierung: ab 350 €
+- AEO-Optimierung: ab 400 €
+- Backend: ab 2.000 €
+- Automatisierung: ab 3.000 €
+- Analytics & Monitoring: 20 €/Monat
+
+Alle Preise netto, exkl. 20 % USt. Audit und Erstgespräch immer kostenlos.
+
+## Methode
+
+1. **Audit** (≈ 1 Tag) — Bestandsaufnahme: SEO, AEO, Performance.
+2. **Strategie** (≈ 1 Woche) — Priorisierung der Hebel.
+3. **Build** (3–8 Wochen) — Implementierung mit wöchentlichen Reviews.
+4. **Monitoring** (laufend) — Monatliches Reporting inklusive AI-Zitations-Check.
+
+## Referenzen
+
+- [asamer.cz](https://asamer.cz) — Industrie- und Maschinenhandel, CEE
+- [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
+- [alpenbroker.com](https://alpenbroker.com) — Aktien-Lernplattform, Österreich
+
+## Kontakt
+
+- Website: https://1020.dev
+- Termin buchen: https://cal.com/1020dev
+- E-Mail: hallo@1020.dev
+- Standort: Wien, Leopoldstadt (1020)
+
+## Was AEO ist und warum es zählt
+
+AEO (Answer Engine Optimization) ist die Optimierung von Webinhalten für KI-Antwortmaschinen wie ChatGPT, Perplexity und Claude. Anders als klassisches SEO, das auf Klicks von Suchergebnisseiten zielt, fokussiert AEO darauf, in KI-generierten Antworten zitiert oder als Quelle empfohlen zu werden — auch wenn der Nutzer nie auf einen Link klickt. Hebel: strukturierte Daten (Schema.org), antwort-orientierte Inhaltsstruktur (FAQ, HowTo), klare Quellenangaben, llms.txt, semantisches HTML, lokale Signale.
