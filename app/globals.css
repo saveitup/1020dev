@@ -4,21 +4,21 @@
    ========================================================================== */
 
 :root {
-  /* Background — warm cream paper */
-  --bg-0:   #f5f3ec;
-  --bg-1:   #ecebe4;
-  --bg-2:   #e2dfd6;
+  /* Background — clean white */
+  --bg-0:   #ffffff;
+  --bg-1:   #f6f6f7;
+  --bg-2:   #ececee;
 
-  /* Accent — deeper Indigo for contrast on cream */
+  /* Accent — deeper Indigo for contrast on white */
   --accent:       #4F46E5;
   --accent-soft:  rgba(79, 70, 229, 0.45);
   --accent-glow:  rgba(79, 70, 229, 0.30);
 
-  /* Text — warm near-black */
-  --text:   #18171a;
-  --muted:  rgba(24, 23, 26, 0.64);
-  --dim:    rgba(24, 23, 26, 0.42);
-  --faint:  rgba(24, 23, 26, 0.20);
+  /* Text — neutral near-black */
+  --text:   #0a0a0c;
+  --muted:  rgba(10, 10, 12, 0.62);
+  --dim:    rgba(10, 10, 12, 0.40);
+  --faint:  rgba(10, 10, 12, 0.18);
 
   /* Lines */
   --line:   rgba(0, 0, 0, 0.08);
@@ -64,7 +64,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.045;
+  opacity: 0.025;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -85,7 +85,7 @@ nav {
   padding: 1.6rem 2.5rem;
   max-width: var(--max);
   margin: 0 auto;
-  background: linear-gradient(180deg, rgba(245,243,236,0.92) 0%, rgba(245,243,236,0.0) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.0) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -475,7 +475,7 @@ h1 em, .hero-title em {
   justify-content: flex-end;
   gap: 0.3rem;
   padding: 1.4rem;
-  background: linear-gradient(135deg, #ecebe4 0%, #d8d3c5 100%);
+  background: linear-gradient(135deg, #f6f6f7 0%, #dcdce0 100%);
   color: var(--muted);
 }
 .project-thumb-placeholder .name {
@@ -583,7 +583,7 @@ h1 em, .hero-title em {
 }
 .spinner {
   width: 12px; height: 12px;
-  border: 1.5px solid rgba(245,243,236,0.25);
+  border: 1.5px solid rgba(255,255,255,0.25);
   border-top-color: var(--bg-0);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
