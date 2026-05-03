@@ -61,7 +61,7 @@ Korrektes hreflang-Setup ist die zentrale technische Pflicht für Multi-Language
 
 Wichtig: Selbstreferenzielle hreflang-Tags (jede Sprachversion verweist auch auf sich selbst) und konsistente x-default-Angabe für unbekannte Sprachen.
 
-`Sitemap.xml` mit allen drei Sprachversionen plus xhtml-Namespace für hreflang-Annotation. Search Console pro Sprachversion separat eingerichtet (technisch eine Property, aber manuelles Monitoring pro Sprache).
+`Sitemap.xml` mit allen drei Sprachversionen plus xhtml-Namespace für hreflang-Annotation. In Search Console wird die Site als eine Property eingerichtet, das Monitoring der Sprachen erfolgt über die Path-Filter (`/de/`, `/cs/`, `/en/`).
 
 `Schema.org` mit `inLanguage`-Attribut auf jeder Sprachversion. `LocalBusiness` mit `areaServed` als Liste der Zielländer (Czech Republic, Slovakia, Austria, Germany).
 

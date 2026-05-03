@@ -134,7 +134,7 @@ Selten. Vercel oder Hetzner-Server in Frankfurt oder Wien liefern bessere Latenz
 
 ### Wann lohnt sich eine Custom-Website gegenüber WordPress?
 
-Faustregel: ab einem realistischen Site-Wert von etwa 4.000 € Investitionssumme oder bei spezifischen Performance-Anforderungen (Lighthouse 100, Sub-Sekunden-LCP). Darunter ist WordPress mit gutem Theme oft die pragmatischere Lösung. Mehr zur Abwägung im kommenden Vergleichsartikel zu WordPress vs. Next.js.
+Faustregel: ab einem realistischen Site-Wert von etwa 4.000 € Investitionssumme oder bei spezifischen Performance-Anforderungen (Lighthouse 100, Sub-Sekunden-LCP). Darunter ist WordPress mit gutem Theme oft die pragmatischere Lösung. Mehr zur Abwägung im [Vergleich WordPress vs. Next.js](/journal/wordpress-vs-nextjs-kmu).
 
 ---
 

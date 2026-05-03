@@ -48,7 +48,7 @@ Stand Mitte 2026, Konditionen ändern sich:
 
 **Google (Gemini).** Über Vertex AI in europäischen Regions verfügbar (Frankfurt, Belgien). DSGVO-konform mit AVV.
 
-**Mistral (französisches Open-Source-Lab).** EU-basierter Anbieter mit La Plateforme. DSGVO-Compliance ist Kern-Pitch. Modelle teilweise auch on-premise lizenzierbar.
+**Mistral (französischer KI-Anbieter).** EU-basiertes Unternehmen mit eigener Inference-Plattform (La Plateforme) und einer Mischung aus offenen und kommerziellen Modellen. DSGVO-Compliance ist zentrales Pitch-Element. Einige Modelle on-premise lizenzierbar.
 
 **Open Source (Llama, Mixtral, Qwen).** Können auf eigenen Servern in der EU betrieben werden — maximale Datensouveränität, aber höhere Infrastruktur-Anforderungen.
 

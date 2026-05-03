@@ -13,7 +13,7 @@ keywords:
 draft: false
 ---
 
-Bis Mitte 2025 endeten laut [SimilarWeb](https://www.similarweb.com/blog/research/market-research/zero-click-google-search/) rund **34 % aller Google-Suchen ohne Klick** — der Nutzer las die KI-Antwort direkt in den Suchergebnissen und ging weiter. Parallel verarbeitet [ChatGPT über 200 Millionen Prompts pro Woche](https://openai.com/index/200-million-weekly-active-users/), Perplexity meldet rund 15 Millionen monatliche Nutzer, und Google rollt AI Overviews flächendeckend in Europa aus. Wenn Ihre Website in diesen Systemen nicht zitiert wird, sind Sie für einen wachsenden Anteil aller Anfragen schlicht unsichtbar — auch bei Position 1 in der klassischen Google-Liste. Genau hier setzt AEO an.
+Bis Mitte 2025 endeten laut [SimilarWeb](https://www.similarweb.com/blog/research/market-research/zero-click-google-search/) rund **34 % aller Google-Suchen ohne Klick** — der Nutzer las die KI-Antwort direkt in den Suchergebnissen und ging weiter. Parallel meldet OpenAI [über 200 Millionen wöchentlich aktive ChatGPT-Nutzer](https://openai.com/index/200-million-weekly-active-users/), Perplexity rund 15 Millionen monatliche Nutzer, und Google rollt AI Overviews flächendeckend in Europa aus. Wenn Ihre Website in diesen Systemen nicht zitiert wird, sind Sie für einen wachsenden Anteil aller Anfragen schlicht unsichtbar — auch bei Position 1 in der klassischen Google-Liste. Genau hier setzt AEO an.
 
 ## Was AEO ist — und warum es 2026 nicht mehr optional ist
 
@@ -75,7 +75,7 @@ Ein minimaler `LocalBusiness`-Block sieht so aus:
 }
 ```
 
-Wir gehen in einem [eigenen Tutorial zu FAQPage und LocalBusiness Schema](/journal) auf die konkrete Implementierung in Next.js und WordPress ein.
+Wie sich FAQPage konkret in Next.js und WordPress umsetzen lässt, zeigt das [FAQPage-Tutorial](/journal/faqpage-schema-tutorial) Schritt für Schritt.
 
 ### Hebel 2 — Antwort-orientierte Inhaltsstruktur
 
@@ -84,7 +84,7 @@ Ein KI-Modell, das eine Frage beantworten soll, sucht nach Passagen, die diese F
 - W-Fragen als H2- oder H3-Headings („Was kostet…", „Wie funktioniert…", „Wann lohnt sich…")
 - Direkte Antwort in 40–55 Wörtern unmittelbar unter der Frage — Featured-Snippet-tauglich
 - Erst kurz antworten, dann begründen (umgekehrte Pyramide)
-- Pro Hauptfrage ein eigenes self-contained Passage-Block von 134–167 Wörtern, was laut Princeton-GEO der Sweet Spot für Citations ist
+- Pro Hauptfrage ein eigenes self-contained Passage-Block — typisch 130–170 Wörter, in dem die Frage isoliert beantwortet wird (das Princeton-GEO-Paper dokumentiert empirisch, dass kompakt-eigenständige Passagen häufiger zitiert werden als verschachtelte)
 
 ### Hebel 3 — Lokale Signale (LocalBusiness, Google Business Profile)
 
@@ -196,7 +196,7 @@ Bei einer Site mit ausreichender SEO-Basis 2–8 Wochen — Perplexity und Googl
 
 ### Brauche ich AEO, wenn ich schon SEO mache?
 
-Beides ergänzt sich. Strukturierte Daten und sauberes HTML sind gemeinsame Hebel. AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und neue Schema-Typen. Wer SEO seit fünf Jahren pflegt, hat 30–40 % der AEO-Arbeit bereits unbewusst erledigt.
+Beides ergänzt sich. Strukturierte Daten und sauberes HTML sind gemeinsame Hebel. AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und neue Schema-Typen. Wer SEO seit Jahren pflegt, hat einen Teil der AEO-Vorarbeit oft schon unbewusst geleistet — die fehlenden Schichten lassen sich entsprechend gezielt nachrüsten.
 
 ### Funktioniert AEO ohne neue Website?
 

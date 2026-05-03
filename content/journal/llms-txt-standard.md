@@ -152,4 +152,4 @@ Wenn sich die Site-Struktur signifikant ändert (neue Hauptseiten, größere Umo
 
 ---
 
-`llms.txt` ist kein Game-Changer, sondern ein Detail-Hebel mit minimaler Implementierungs-Schwelle. Wer FAQPage-Schema und LocalBusiness-Schema bereits hat, sollte `llms.txt` als nächsten Schritt setzen. Wer beides noch nicht hat, fängt dort an — Schema.org-Markup hat höhere Wirkungs-Priorität. Mehr zur Reihenfolge im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden) und zur konkreten Schema-Implementierung im [FAQPage-Tutorial](/journal/faqpage-schema-tutorial).
+`llms.txt` ist kein Hauptpfeiler, sondern ein Detail-Hebel mit minimaler Implementierungs-Schwelle. Wer FAQPage-Schema und LocalBusiness-Schema bereits hat, sollte `llms.txt` als nächsten Schritt setzen. Wer beides noch nicht hat, fängt dort an — Schema.org-Markup hat höhere Wirkungs-Priorität. Mehr zur Reihenfolge im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden) und zur konkreten Schema-Implementierung im [FAQPage-Tutorial](/journal/faqpage-schema-tutorial).

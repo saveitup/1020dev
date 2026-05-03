@@ -22,7 +22,7 @@ Wirkung ist mehrschichtig:
 
 - **Google AI Overviews** ziehen FAQPage-Inhalte sehr direkt — sie sind „pre-strukturiert" und brauchen keine Inferenz
 - **Featured Snippets** in klassischen Google-Ergebnissen zeigen FAQPage-Antworten häufiger als Fließtext
-- **ChatGPT, Perplexity, Claude** parsen das JSON beim Crawl, was die Citation-Wahrscheinlichkeit erhöht — nicht garantiert, aber statistisch belegt im [Princeton GEO Paper](https://arxiv.org/abs/2311.09735)
+- **ChatGPT, Perplexity, Claude** parsen das JSON beim Crawl — strukturierte Frage-Antwort-Paare sind für Sprachmodelle deutlich leichter verwertbar als reiner Fließtext. Das [Princeton-GEO-Paper](https://arxiv.org/abs/2311.09735) zeigt empirisch, dass strukturierte und zitations-freundliche Inhalte häufiger in generierten Antworten landen
 
 Mehr zur Mechanik im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden).
 

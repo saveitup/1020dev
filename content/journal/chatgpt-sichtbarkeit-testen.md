@@ -114,7 +114,7 @@ Bonus (wenn Zeit):
 - Konkurrenz-Mentions (welche Mitbewerber werden genannt?)
 - AI-Overview-Sichtbarkeit in Search Console (zeigt Impressionen mit AI-Trigger)
 
-In Search Console gibt es seit Mitte 2025 einen Filter „Search Appearance: AI Overviews" — der zeigt, wie oft Ihre Site bei AI-Overview-aktivierten Suchen Impressionen erhalten hat. Useful as Reference.
+Google Search Console zeigt seit 2024/25 zunehmend AI-Overview-relevante Daten in den Berichten zur Search Appearance — Filter-Bezeichnungen und Verfügbarkeit ändern sich allerdings laufend. Wenn die Daten erscheinen, lassen sie sich gut neben dem manuellen Tracking als Referenz nutzen.
 
 ## Häufige Fehler
 

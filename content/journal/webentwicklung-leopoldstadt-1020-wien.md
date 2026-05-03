@@ -36,7 +36,7 @@ Wir sind kein klassisches Mehr-Personen-Studio mit Account-Managern, kein hierar
 
 ### Standort und Reichweite
 
-Die meisten Auftraggeber sitzen in Wien — vom 1. bis zum 23. Bezirk, mit Schwerpunkt auf 2., 3., 9., 19., 20. Wir arbeiten remote für Kunden in ganz Österreich, vor allem Niederösterreich, Oberösterreich, Steiermark, Tirol. Persönliche Treffen in der Leopoldstadt oder bei Ihnen vor Ort, sobald es sinnvoll ist.
+Wir arbeiten primär für Wiener KMU, mit Schwerpunkt auf den zentralen Bezirken (1., 2., 3., 9., 19., 20.). Daneben Projekte in ganz Österreich — Niederösterreich, Oberösterreich, Steiermark, Tirol — remote über die üblichen Tools (Linear, Notion, Slack, Cal.com), mit persönlichen Treffen in der Leopoldstadt oder bei Ihnen vor Ort, wo es sinnvoll ist.
 
 ## Was wir machen
 
@@ -52,7 +52,7 @@ Pricing transparent: [Preisliste auf der Service-Seite](/web#preise). Audit und 
 
 ### Single-Operator-Modell
 
-In einer 30-köpfigen Agentur kümmert sich ein Account-Manager um Ihre Anfrage, ein Project-Manager um die Koordination, ein Designer um den Entwurf, drei Developer um den Build, ein QA-Tester um die Endabnahme. Das hat Skalierungsvorteile, kostet aber 30–50 % Aufschlag durch Overhead. Bei 1020.dev fließt der Aufschlag in die eigentliche Arbeit.
+In einer 30-köpfigen Agentur kümmert sich ein Account-Manager um Ihre Anfrage, ein Project-Manager um die Koordination, ein Designer um den Entwurf, drei Developer um den Build, ein QA-Tester um die Endabnahme. Das hat Skalierungsvorteile, kostet aber spürbaren Overhead. Bei 1020.dev fließt das Budget direkter in die eigentliche Arbeit.
 
 Trade-off: Wir können keine 20 Projekte gleichzeitig stemmen. Wenn Sie einen 6-stelligen Relaunch in 4 Wochen brauchen, sind wir nicht der richtige Partner — dafür gibt es Wiener Agenturen mit der nötigen Kapazität, und das ist auch in Ordnung.
 
@@ -76,7 +76,7 @@ Beratungsintensive Branchen profitieren am stärksten — überall dort, wo Kund
 
 ### Aus Wien, für Österreich
 
-Etwa 70 % unserer Kunden sitzen in Wien, der Rest verteilt über Österreich. Wir arbeiten remote effizient — Tools, Workflow und Kommunikation sind darauf ausgerichtet — sind aber persönliche Treffen gewohnt und buchen sie gerne ein, wo es Sinn macht.
+Schwerpunkt der Auftraggeber liegt in Wien, dazu kommen Projekte aus dem restlichen Österreich. Wir arbeiten remote effizient — Tools, Workflow und Kommunikation sind darauf ausgerichtet — sind aber persönliche Treffen gewohnt und buchen sie gerne ein, wo es Sinn macht.
 
 ## Anfahrt und Erstgespräch
 

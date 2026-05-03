@@ -92,7 +92,7 @@ Worauf positiv achten:
 | Kategorie | Bereich (netto) | Wartung/Jahr |
 |---|---|---|
 | Plattform-Onepager (Wix, Squarespace) | 300–1.500 € | 200–600 € |
-| Custom-Onepager (Next.js, kleine Studios) | 700–1.800 € | 100–300 € |
+| Custom-Onepager (Next.js, kleine Studios) | 700–1.500 € | 100–300 € |
 | WordPress-Standard-Site (5–10 Pages) | 2.500–5.500 € | 600–1.200 € |
 | Custom-Site Next.js (5–15 Pages) | 3.500–8.000 € | 200–500 € |
 | Komplexe Site mit Backend | 8.000–25.000 € | 500–1.500 € |

@@ -70,21 +70,21 @@ Das ist die Grundlage dafür, dass Sprachmodelle die Site nicht als generische H
 
 Mobile-first, AVIF-Bilder, statisch generiert via Next.js, EU-Hosting. Lighthouse-Score 100 in allen vier Kategorien — Performance, Accessibility, Best Practices, SEO. Wichtig nicht aus Eitelkeit, sondern weil Performance ein direktes Ranking-Signal ist und im B2B die Geduld bei langsamen Sites geringer ist als im B2C.
 
-## Was funktioniert hat
+## Was zu erwarten ist
 
-Die Site läuft seit ihrer Veröffentlichung; messbare Effekte zeigen sich auf drei Ebenen.
+Die Site läuft seit ihrer Veröffentlichung. Was wir an einer solchen Konfiguration typischerweise beobachten, lässt sich auf drei Ebenen festmachen.
 
 ### Direkt-Anfragen
 
-Der Anteil der Erst-Anfragen, die explizit auf die Website verweisen, ist deutlich gestiegen. Architekten und Bauträger schreiben nicht mehr „ich habe Sie empfohlen bekommen", sondern „ich habe Ihre Referenzen für Stahlkonstruktion gesehen". Das ist ein Quality-Indicator, kein Vanity-Metric — diese Anfragen konvertieren erfahrungsgemäß höher.
+Der Anteil der Erst-Anfragen, die sich konkret auf Inhalte der Website beziehen, steigt — Architekten und Bauträger schreiben weniger „ich habe Sie empfohlen bekommen" und häufiger „ich habe Ihre Referenzen für Stahlkonstruktion gesehen". Das ist ein Quality-Indikator, kein Vanity-Metric: solche Anfragen konvertieren erfahrungsgemäß höher als rein empfehlungsgetriebene.
 
 ### Suchsichtbarkeit
 
-Lokale Sichtbarkeit für Anker wie „Metallbau Wien", „Geländer Wien", „Stahlkonstruktion Wien" hat sich messbar verbessert. Die Site rankt für die Long-Tails (z.B. „Metallbau Vordach Wien") in den oberen Positionen — ein Bereich, der durch Empfehlungs-Traffic vorher nicht abgedeckt war.
+Lokale Sichtbarkeit für Anker wie „Metallbau Wien", „Geländer Wien" oder „Stahlkonstruktion Wien" baut sich über Wochen auf — Long-Tails wie „Metallbau Vordach Wien" sind in dieser Konfiguration realistisch erreichbar und decken einen Bereich ab, den Empfehlungs-Traffic strukturell nicht trifft.
 
 ### AEO-Effekte
 
-In Spotchecks bei ChatGPT und Perplexity zu Fragen wie „Wer macht Stahlkonstruktion in Wien?" wird der Betrieb seit kurzem genannt — nicht in jeder Antwort, aber häufiger als vor dem Relaunch. Das ist messbar, aber qualitativ; eindeutige Citation-Häufigkeit braucht weiteres Monitoring.
+In Spotchecks bei ChatGPT und Perplexity zu Fragen wie „Wer macht Stahlkonstruktion in Wien?" tauchen Betriebe mit sauberem `LocalBusiness`-Schema und Branchen-Anker zunehmend auf — nicht garantiert in jeder Antwort, aber häufiger als ohne diese Bausteine. Eindeutige Citation-Häufigkeit lässt sich erst über mehrere Monate Monitoring belastbar festhalten.
 
 ## Fünf Lehren für andere Metallbau-Betriebe
 

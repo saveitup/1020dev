@@ -28,16 +28,18 @@ Marketing-Phrasen wie „Ihre Zukunft in besten Händen" sind in dieser Branche 
 
 ## Pflicht-Angaben (Kammer, Berufsrecht)
 
-Steuerberater in Österreich unterliegen dem WTBG (Wirtschaftstreuhandberufsgesetz) und den Richtlinien der KSW (Kammer der Steuerberater und Wirtschaftsprüfer). Auf der Website verpflichtend:
+Steuerberater in Österreich unterliegen dem WTBG (Wirtschaftstreuhandberufsgesetz) und den Standesregeln der Kammer der Steuerberater:innen und Wirtschaftsprüfer:innen (KSW). Auf der Website typisch verpflichtend:
 
 - **Vollständige Anschrift** und Erreichbarkeit
 - **Berufsbezeichnung** („Steuerberater" oder „Steuerberater & Wirtschaftsprüfer")
-- **Berufskammer** (KSW Wien Niederösterreich Burgenland — Adresse und Web)
-- **Berufsrechtliche Regelungen** mit Verweis auf WTBG (§ 96 ff.) und Richtlinien-Datenbank der KSW
+- **Berufskammer** (KSW, Landesstelle Wien) mit Verlinkung
+- **Berufsrechtliche Regelungen** mit Verweis auf WTBG und KSW-Standesregeln (Richtlinien-Datenbank)
 - **Berufshaftpflicht** mit räumlichem Geltungsbereich
-- **UID-Nummer** und Firmenbuchnummer
+- **UID-Nummer** und ggf. Firmenbuchnummer
 - **Standardimpressum** nach § 5 ECG, § 14 UGB, § 24 MedienG, plus Offenlegung nach § 25 MedienG
-- **Datenschutzerklärung** mit besonderem Fokus auf Verschwiegenheitspflicht (§ 91 WTBG)
+- **Datenschutzerklärung** mit besonderem Fokus auf die berufliche Verschwiegenheit (WTBG)
+
+Die exakten Paragraphenverweise und Pflicht-Inhalte ändern sich bei Novellierungen — vor Veröffentlichung empfiehlt sich eine letzte Abstimmung mit Standesvertretung oder Anwalt.
 
 Werbeeinschränkungen: Sie dürfen Leistungen darstellen, müssen aber Honorare nicht öffentlich listen. Vergleichende Werbung gegenüber anderen Kanzleien ist standesrechtlich problematisch — Vorsicht mit „besser als" Formulierungen.
 
