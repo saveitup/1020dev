@@ -176,12 +176,9 @@ export function Hero() {
                 >
                   <span className="selector-shadow" aria-hidden="true" />
                   <span className="selector-label">
-                    <span className="selector-info">
-                      <span className="selector-tag">{ref.tag}</span>
-                      <span className="selector-domain">
-                        {ref.domain}
-                        {ref.href && <span className="selector-ext" aria-hidden="true">↗</span>}
-                      </span>
+                    <span className="selector-domain">
+                      {ref.domain}
+                      {ref.href && <span className="selector-ext" aria-hidden="true">↗</span>}
                     </span>
                   </span>
                 </button>

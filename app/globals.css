@@ -529,35 +529,14 @@ h1 em, .hero-title em {
   pointer-events: none;
   color: #fff;
 }
-.selector-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  white-space: nowrap;
-  overflow: hidden;
-  min-width: 0;
-}
-.selector-tag,
 .selector-domain {
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.55s cubic-bezier(.2, .8, .2, 1), transform 0.55s cubic-bezier(.2, .8, .2, 1);
 }
-.selector-panel.is-active .selector-tag,
 .selector-panel.is-active .selector-domain {
   opacity: 1;
   transform: translateX(0);
-}
-.selector-panel.is-active .selector-domain {
-  transition-delay: 0.06s;
-}
-.selector-tag {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-shadow: 0 0 12px rgba(79, 70, 229, 0.4);
 }
 .selector-domain {
   font-family: var(--font-dm-sans), sans-serif;
@@ -1945,7 +1924,6 @@ html.splash-skip body .hero-stage {
     flex: 0 0 86%;
   }
   .selector-shadow { opacity: 1; bottom: 0; }
-  .selector-tag,
   .selector-domain {
     opacity: 1 !important;
     transform: none !important;
