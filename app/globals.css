@@ -533,6 +533,18 @@ h1 em, .hero-title em {
 
 .hero-audit .audit-form {
   margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.hero-audit .audit-input {
+  font-size: 1.05rem;
+  padding: 1.05rem 1.1rem;
+}
+
+.hero-audit .audit-btn {
+  padding: 1.05rem 1.6rem;
+  white-space: nowrap;
 }
 
 .hero-audit .audit-result,
