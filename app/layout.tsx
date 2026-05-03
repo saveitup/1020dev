@@ -3,6 +3,7 @@ import { DM_Sans, DM_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
+import { WebsiteSchema } from '@/components/WebsiteSchema';
 import { SITE } from '@/lib/data';
 import './globals.css';
 
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LocalBusinessSchema />
+        <WebsiteSchema />
         <Splash />
         <Nav />
         {children}

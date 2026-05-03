@@ -7,6 +7,7 @@ import { Pricing } from '@/components/Pricing';
 import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { FaqStructuredData } from '@/components/FaqStructuredData';
+import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
@@ -19,6 +20,12 @@ export default function WebPage() {
   return (
     <>
       <FaqStructuredData />
+      <BreadcrumbSchema
+        trail={[
+          { name: 'Start', path: '/' },
+          { name: 'Web', path: '/web' },
+        ]}
+      />
       <Hero />
       <Methode />
       <Services />

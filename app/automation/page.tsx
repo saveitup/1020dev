@@ -6,6 +6,7 @@ import { Pricing } from '@/components/Pricing';
 import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { FaqStructuredData } from '@/components/FaqStructuredData';
+import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import {
   AUTOMATION_FAQS,
   AUTOMATION_METHODE,
@@ -25,6 +26,12 @@ export default function AutomationPage() {
   return (
     <>
       <FaqStructuredData faqs={AUTOMATION_FAQS} />
+      <BreadcrumbSchema
+        trail={[
+          { name: 'Start', path: '/' },
+          { name: 'Automation', path: '/automation' },
+        ]}
+      />
       <AutomationHero />
       <Methode
         steps={AUTOMATION_METHODE}
