@@ -338,11 +338,10 @@ export const SITE = {
     country: 'AT',
     countryName: 'Österreich',
   },
-  // Approximative Koordinaten für 1020 Wien, Lichtenauergasse 4
-  // (kann mit exakter Geolokalisierung verfeinert werden)
+  // Exakte Koordinaten Lichtenauergasse 4/8, 1020 Wien
   geo: {
-    lat: 48.2196,
-    lng: 16.4039,
+    lat: 48.214616,
+    lng: 16.388210,
   },
   legal: {
     owner: 'Maximilian Asamer',
