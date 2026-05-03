@@ -13,6 +13,7 @@ const WEB_LINKS: NavLink[] = [
   { href: '#leistungen', label: 'Leistungen' },
   { href: '#preise', label: 'Preise' },
   { href: '#faq', label: 'FAQ' },
+  { href: '/journal', label: 'Journal' },
 ];
 
 const AUTOMATION_LINKS: NavLink[] = [
@@ -20,11 +21,13 @@ const AUTOMATION_LINKS: NavLink[] = [
   { href: '#leistungen', label: 'Leistungen' },
   { href: '#preise', label: 'Preise' },
   { href: '#faq', label: 'FAQ' },
+  { href: '/journal', label: 'Journal' },
 ];
 
 const TRACK_LINKS: NavLink[] = [
   { href: '/web', label: 'Web' },
   { href: '/automation', label: 'Automation' },
+  { href: '/journal', label: 'Journal' },
 ];
 
 export function Nav() {
