@@ -32,12 +32,19 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [result, setResult] = useState<AuditResult | null>(null);
   const [error, setError] = useState('');
   const tickerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     return () => {
       if (tickerRef.current) clearInterval(tickerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (result && resultRef.current) {
+      resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [result]);
 
   const cleanUrl = (raw: string) =>
     raw
@@ -168,7 +175,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
 
       {result && (
         <>
-          <div className="audit-result">
+          <div className="audit-result" ref={resultRef}>
             <div className="audit-result-head">
               <div className="audit-result-domain">
                 <span className="label">Analyse für</span>

@@ -2,7 +2,7 @@ import { SERVICES } from '@/lib/data';
 
 export function Services() {
   return (
-    <section className="chapter" id="leistungen">
+    <section className="chapter chapter-tinted" id="leistungen">
       <div className="chapter-head">
         <div className="chapter-marker">
           <span className="num">02</span>

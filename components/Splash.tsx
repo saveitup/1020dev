@@ -1,12 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export function Splash() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [out, setOut] = useState(false);
   const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
+    if (!isHome) {
+      setOut(true);
+      setMounted(false);
+      document.body.classList.add('ready');
+      return;
+    }
+
     // Already seen this session? skip immediately
     let alreadySeen = false;
     try {
@@ -41,7 +51,7 @@ export function Splash() {
       clearTimeout(timer);
       document.removeEventListener('keydown', handleEsc);
     };
-  }, []);
+  }, [isHome]);
 
   // Unmount after fade-out completes (700ms)
   useEffect(() => {

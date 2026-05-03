@@ -7,7 +7,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="chapter" id="faq">
+    <section className="chapter chapter-tinted" id="faq">
       <div className="chapter-head">
         <div className="chapter-marker">
           <span className="num">05</span>

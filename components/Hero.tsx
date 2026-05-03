@@ -15,6 +15,53 @@ export function Hero() {
   const [revealed, setRevealed] = useState<number[]>([]);
   const [paused, setPaused] = useState(false);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const selectorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = selectorRef.current;
+    if (!container) return;
+    const panel = container.children[activeIndex] as HTMLElement | undefined;
+    if (panel && 'scrollIntoView' in panel) {
+      panel.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [activeIndex]);
+
+  // Cursor-follow glow: track mouse position over the selector and
+  // expose it as CSS variables so a pseudo-element can follow.
+  useEffect(() => {
+    const container = selectorRef.current;
+    if (!container) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let raf: number | null = null;
+    let x = 0;
+    let y = 0;
+
+    const apply = () => {
+      raf = null;
+      container.style.setProperty('--cursor-x', `${x}px`);
+      container.style.setProperty('--cursor-y', `${y}px`);
+    };
+
+    const onMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+      if (raf == null) raf = requestAnimationFrame(apply);
+    };
+    const onLeave = () => {
+      container.style.removeProperty('--cursor-x');
+      container.style.removeProperty('--cursor-y');
+    };
+
+    container.addEventListener('mousemove', onMove);
+    container.addEventListener('mouseleave', onLeave);
+    return () => {
+      container.removeEventListener('mousemove', onMove);
+      container.removeEventListener('mouseleave', onLeave);
+      if (raf != null) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -87,8 +134,11 @@ export function Hero() {
         <div className="hero-stage">
           <div
             className="hero-selector"
+            ref={selectorRef}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
+            onTouchStart={handleEnter}
+            onTouchEnd={handleLeave}
             role="tablist"
             aria-label="Aktuelle Arbeiten"
           >

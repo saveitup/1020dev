@@ -167,12 +167,12 @@ export const METHODE = [
 // ============================================
 export const PRICING = {
   einmalig: [
-    { name: 'Onepager', desc: 'Schlanke One-Page-Site mit Hosting, SSL und Performance-Optimierung. Lighthouse 100 als Standard.', price: '700', prefix: 'ab', isBase: true, plus: false },
-    { name: 'Jede weitere Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', prefix: 'ab', isBase: false, plus: true },
-    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', prefix: 'ab', isBase: false, plus: true },
-    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness, antwort-orientierte Struktur, llms.txt — sichtbar in ChatGPT, Perplexity, Claude.', price: '400', prefix: 'ab', isBase: false, plus: true },
-    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, individuelle Server-Logik, Datenbank-Integration.', price: '2.000', prefix: 'ab', isBase: false, plus: true },
-    { name: 'Automatisierung', desc: 'Workflows, LLM-Anbindung, CRM-Sync, Lead-Pipelines, Dokumenten-Verarbeitung.', price: '3.000', prefix: 'ab', isBase: false, plus: true },
+    { name: 'Onepager', desc: 'Schlanke One-Page-Site mit Hosting, SSL und Performance-Optimierung. Lighthouse 100 als Standard.', price: '700', prefix: 'ab', isBase: true, plus: false, bundle: true },
+    { name: 'Jede weitere Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', prefix: 'ab', isBase: false, plus: true, bundle: false },
+    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', prefix: 'ab', isBase: false, plus: true, bundle: true },
+    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness, antwort-orientierte Struktur, llms.txt — sichtbar in ChatGPT, Perplexity, Claude.', price: '400', prefix: 'ab', isBase: false, plus: true, bundle: true },
+    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, individuelle Server-Logik, Datenbank-Integration.', price: '2.000', prefix: 'ab', isBase: false, plus: true, bundle: false },
+    { name: 'Automatisierung', desc: 'Workflows, LLM-Anbindung, CRM-Sync, Lead-Pipelines, Dokumenten-Verarbeitung.', price: '3.000', prefix: 'ab', isBase: false, plus: true, bundle: false },
   ],
   laufend: [
     { name: 'Analytics & Monitoring', desc: 'DSGVO-konformes Tracking (Plausible/Umami) plus monatlicher Sichtbarkeits-Report inklusive AEO-Zitations-Check.', price: '20', period: '/Monat' },

@@ -18,7 +18,7 @@ export function Methode() {
         </p>
       </div>
 
-      <div className="rows">
+      <div className="rows rows-methode">
         {METHODE.map((step) => (
           <article key={step.num} className="row">
             <div className="row-side">

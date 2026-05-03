@@ -20,17 +20,30 @@ export function Pricing() {
 
       <div className="pricing-table">
         <div className="pricing-group">
-          <div className="pricing-group-label">Einmalig</div>
+          <div className="pricing-group-label">
+            <span>Einmalig</span>
+            <span className="pricing-bundle-hint">
+              <span className="dot" aria-hidden="true"></span>
+              Bundle „Sichtbar" empfohlen
+            </span>
+          </div>
 
           {PRICING.einmalig.map((item, i) => (
             <div
               key={i}
-              className={`pricing-row ${item.isBase ? 'pricing-base' : ''}`}
+              className={[
+                'pricing-row',
+                item.isBase ? 'pricing-base' : '',
+                item.bundle ? 'pricing-bundle' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
             >
               <div className="pricing-text">
                 <div className="pricing-name">
                   {item.plus && <span className="plus">+</span>}
                   {item.name}
+                  {item.bundle && <span className="pricing-tag">Bundle</span>}
                 </div>
                 <div className="pricing-desc">{item.desc}</div>
               </div>

@@ -76,6 +76,26 @@ body::after {
   color: var(--bg-0);
 }
 
+/* Keyboard focus only — opt-out of focus rings on mouse click */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+  transition: outline-offset 0.12s ease;
+}
+.selector-panel:focus-visible {
+  outline-offset: -3px;
+}
+.cta-primary:focus-visible,
+.cta-primary--accent:focus-visible,
+.row-cta:focus-visible,
+.audit-btn:focus-visible,
+.pricing-cta-btn:focus-visible,
+.nav-cta:focus-visible {
+  outline-offset: 4px;
+}
+
 /* ============== NAV ============== */
 nav {
   position: sticky;
@@ -404,6 +424,26 @@ h1 em, .hero-title em {
   background: var(--bg-1);
   border: 1px solid var(--line);
   overflow: hidden;
+  isolation: isolate;
+}
+.hero-selector::after {
+  content: '';
+  position: absolute;
+  left: var(--cursor-x, 50%);
+  top: var(--cursor-y, 50%);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.32) 0%, rgba(79, 70, 229, 0.12) 35%, rgba(79, 70, 229, 0) 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: screen;
+  z-index: 6;
+}
+.hero-selector:hover::after {
+  opacity: 1;
 }
 
 
@@ -622,6 +662,22 @@ h1 em, .hero-title em {
   max-width: var(--max);
   margin: 0 auto;
   padding: 7rem 2.5rem;
+}
+
+.chapter-tinted::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 0;
+  bottom: 0;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .chapter-head {
@@ -1246,6 +1302,69 @@ h1 em, .hero-title em {
   padding: 4.5rem 0;
 }
 
+/* Methode: dramatic editorial step numbers + accent timeline */
+.rows-methode {
+  position: relative;
+  border-top: 0;
+}
+.rows-methode .row {
+  padding: 3.2rem 0 3.2rem 2.6rem;
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--accent-soft);
+  align-items: start;
+  position: relative;
+  grid-template-columns: minmax(140px, 1fr) minmax(0, 3fr);
+  gap: 3rem;
+}
+.rows-methode .row:first-of-type {
+  border-top: 1px solid var(--line);
+}
+.rows-methode .row::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 3.4rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-0);
+  border: 1px solid var(--accent);
+  transition: background 0.3s, transform 0.3s;
+}
+.rows-methode .row:hover {
+  padding-left: 3rem;
+}
+.rows-methode .row:hover::before {
+  background: var(--accent);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.chapter-tinted .rows-methode .row::before {
+  background: var(--bg-1);
+}
+.chapter-tinted .rows-methode .row:hover::before {
+  background: var(--accent);
+}
+
+.rows-methode .row-num {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: clamp(3.6rem, 6.5vw, 6rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.rows-methode .row:hover .row-num {
+  color: var(--accent);
+}
+.rows-methode .row-meta {
+  margin-top: 0.6rem;
+}
+.rows-methode .row-side {
+  padding-top: 0.4rem;
+}
+
 /* ============== PREISE — editorial table ============== */
 .pricing-table {
   border-top: 1px solid var(--line);
@@ -1263,6 +1382,7 @@ h1 em, .hero-title em {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .pricing-group-label::before {
   content: '';
@@ -1270,18 +1390,56 @@ h1 em, .hero-title em {
   height: 1px;
   background: var(--accent);
 }
+.pricing-bundle-hint {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: none;
+}
+.pricing-bundle-hint .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
 .pricing-row {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: baseline;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 2rem 1.4rem 2rem 1.4rem;
   border-bottom: 1px solid var(--line);
-  transition: padding 0.25s, color 0.2s;
+  transition: padding 0.25s, background 0.25s, color 0.2s;
 }
 .pricing-row:first-of-type { border-top: 1px solid var(--line); }
 .pricing-row:hover {
-  padding-left: 0.8rem;
+  padding-left: 2rem;
+}
+
+.pricing-bundle {
+  background: var(--bg-1);
+  box-shadow: inset 3px 0 0 0 var(--accent);
+}
+.pricing-bundle:hover {
+  background: rgba(79, 70, 229, 0.05);
+}
+.pricing-tag {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(79, 70, 229, 0.08);
+  padding: 0.25rem 0.55rem;
+  border: 1px solid rgba(79, 70, 229, 0.22);
+  margin-left: 0.6rem;
+  align-self: center;
 }
 .pricing-text { display: flex; flex-direction: column; gap: 0.4rem; }
 .pricing-name {
@@ -1762,14 +1920,42 @@ html.splash-skip body .hero-stage {
   .hero-ctas { gap: 1.2rem; }
   .hero-signature { margin-top: 3rem; }
 
-  .hero-selector { aspect-ratio: 16 / 11; }
-  .selector-panel { min-width: 38px; }
+  /* Mobile: turn the expandable selector into a scroll-snap carousel. */
+  .hero-selector {
+    aspect-ratio: auto;
+    height: clamp(220px, 56vw, 320px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hero-selector::-webkit-scrollbar { display: none; }
+  .selector-panel {
+    flex: 0 0 86%;
+    min-width: 0;
+    scroll-snap-align: center;
+    background-size: cover !important;
+    background-position: left top !important;
+    transform: none !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .selector-panel.is-active {
+    flex: 0 0 86%;
+  }
+  .selector-shadow { opacity: 1; bottom: 0; }
+  .selector-tag,
+  .selector-domain {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .selector-domain { font-size: 0.95rem; }
+  .selector-label { padding: 0 1rem; bottom: 1rem; }
 
   .legal { padding: 4rem 1.4rem; }
   .legal-dl { grid-template-columns: 1fr; gap: 0.2rem 0; }
   .legal-dl dt { padding-top: 1rem; }
-  .selector-domain { font-size: 0.95rem; }
-  .selector-label { padding: 0 0.85rem; }
 
   .chapter { padding: 5rem 1.4rem; }
   .chapter-head { margin-bottom: 3rem; }

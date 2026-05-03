@@ -74,10 +74,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// Inline script that runs in <head> BEFORE paint — avoids splash flash for returning visitors
+// Inline script that runs in <head> BEFORE paint — avoids splash flash for
+// returning visitors. Only relevant on the home route; on sub-routes the
+// Splash component renders null anyway.
 const splashSkipScript = `
 try {
-  if (sessionStorage.getItem('1020-splash-seen')) {
+  if (location.pathname !== '/' || sessionStorage.getItem('1020-splash-seen')) {
     document.documentElement.classList.add('splash-skip');
   }
 } catch(e) {}
