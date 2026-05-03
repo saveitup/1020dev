@@ -18,6 +18,16 @@ const STATUS_MESSAGES = [
   () => `Sende Bericht per E-Mail`,
 ];
 
+const PRELUDE_MESSAGES = [
+  (url: string) => `Verbinde mit ${url}`,
+  () => `Crawle öffentliche Inhalte`,
+  () => `Prüfe Schema.org-Markup`,
+  () => `Suche Erwähnungen in KI-Antworten`,
+];
+
+const PRELUDE_DURATION_MS = 3000;
+const PRELUDE_TICK_MS = 720;
+
 export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [url, setUrl] = useState('');
   const [email, setEmail] = useState('');
@@ -26,14 +36,17 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [success, setSuccess] = useState<AuditSuccess | null>(null);
   const [error, setError] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [prelude, setPrelude] = useState(false);
   const [pendingDomain, setPendingDomain] = useState('');
   const tickerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const preludeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return () => {
       if (tickerRef.current) clearInterval(tickerRef.current);
+      if (preludeTimerRef.current) clearTimeout(preludeTimerRef.current);
     };
   }, []);
 
@@ -77,9 +90,18 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const onDomainSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const target = cleanUrl(url);
-    if (!target) return;
+    if (!target || prelude) return;
     setPendingDomain(target);
     setError('');
+    setPrelude(true);
+    setStatus(PRELUDE_MESSAGES[0](target));
+
+    let i = 0;
+    if (tickerRef.current) clearInterval(tickerRef.current);
+    tickerRef.current = setInterval(() => {
+      i = (i + 1) % PRELUDE_MESSAGES.length;
+      setStatus(PRELUDE_MESSAGES[i](target));
+    }, PRELUDE_TICK_MS);
 
     fetch('/api/audit/track', {
       method: 'POST',
@@ -88,7 +110,16 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       keepalive: true,
     }).catch(() => {});
 
-    setModalOpen(true);
+    if (preludeTimerRef.current) clearTimeout(preludeTimerRef.current);
+    preludeTimerRef.current = setTimeout(() => {
+      if (tickerRef.current) {
+        clearInterval(tickerRef.current);
+        tickerRef.current = null;
+      }
+      setStatus('');
+      setPrelude(false);
+      setModalOpen(true);
+    }, PRELUDE_DURATION_MS);
   };
 
   const onEmailSubmit = async (e: React.FormEvent) => {
@@ -171,24 +202,44 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       )}
 
       {!success && (
-        <form className="audit-form" onSubmit={onDomainSubmit}>
-          <div className="audit-input-wrap">
-            <span className="audit-prefix">https://</span>
-            <input
-              type="text"
-              className="audit-input"
-              placeholder="ihre-domain.at"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              autoComplete="off"
-              spellCheck={false}
-              aria-label="Domain"
-            />
-          </div>
-          <button type="submit" className="audit-btn" disabled={!url.trim()}>
-            Analyse starten <span className="arrow">→</span>
-          </button>
-        </form>
+        <>
+          <form className="audit-form" onSubmit={onDomainSubmit}>
+            <div className="audit-input-wrap">
+              <span className="audit-prefix">https://</span>
+              <input
+                type="text"
+                className="audit-input"
+                placeholder="ihre-domain.at"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                disabled={prelude}
+                autoComplete="off"
+                spellCheck={false}
+                aria-label="Domain"
+              />
+            </div>
+            <button type="submit" className="audit-btn" disabled={prelude || !url.trim()}>
+              {prelude ? (
+                <>
+                  <span className="spinner"></span>
+                  <span>Analysiere…</span>
+                </>
+              ) : (
+                <>
+                  Analyse starten <span className="arrow">→</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {prelude && status && (
+            <div className="audit-status">
+              <span className="status-dot"></span>
+              {status}
+              <span className="cursor">_</span>
+            </div>
+          )}
+        </>
       )}
 
       {success && (

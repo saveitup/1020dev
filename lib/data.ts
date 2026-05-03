@@ -8,8 +8,14 @@ export const REFS = [
     href: 'https://asamer.cz',
     tag: 'Industrie · CEE',
     images: [
-      { src: '/refs/asamer-1.jpg', alt: 'asamer.cz · Hero' },
-      { src: '/refs/asamer-2.jpg', alt: 'asamer.cz · Lösungen' },
+      {
+        src: '/refs/asamer-1.jpg',
+        alt: 'asamer.cz — Industriedienstleister und Maschinenhandel für den CEE-Raum, Hero-Section der Website',
+      },
+      {
+        src: '/refs/asamer-2.jpg',
+        alt: 'asamer.cz — Lösungs- und Branchenübersicht des Industriedienstleisters für Tschechien und Mitteleuropa',
+      },
     ],
   },
   {
@@ -18,8 +24,14 @@ export const REFS = [
     href: 'https://zeilinger-metallbau.at',
     tag: 'Metallbau · Wien',
     images: [
-      { src: '/refs/zeilinger-1.jpg', alt: 'zeilinger-metallbau.at · Hero' },
-      { src: '/refs/zeilinger-2.jpg', alt: 'zeilinger-metallbau.at · Referenzen' },
+      {
+        src: '/refs/zeilinger-1.jpg',
+        alt: 'zeilinger-metallbau.at — Metallbau-Betrieb in Wien, Hero-Section mit Werkstattaufnahme',
+      },
+      {
+        src: '/refs/zeilinger-2.jpg',
+        alt: 'zeilinger-metallbau.at — Referenzprojekte aus dem Wiener Metallbau, Galerie-Section',
+      },
     ],
   },
   {
@@ -28,8 +40,14 @@ export const REFS = [
     href: 'https://alpenbroker.com',
     tag: 'Aktien · AT',
     images: [
-      { src: '/refs/alpenbroker-1.jpg', alt: 'alpenbroker.com · Hero' },
-      { src: '/refs/alpenbroker-2.jpg', alt: 'alpenbroker.com · Lernen' },
+      {
+        src: '/refs/alpenbroker-1.jpg',
+        alt: 'alpenbroker.com — Aktien- und Börsen-Lernplattform aus Österreich, Hero-Section mit Modulvorschau',
+      },
+      {
+        src: '/refs/alpenbroker-2.jpg',
+        alt: 'alpenbroker.com — Lernmodule für Aktien- und Investment-Wissen, deutschsprachige Übersicht',
+      },
     ],
   },
   {
@@ -38,8 +56,14 @@ export const REFS = [
     href: null,
     tag: 'Arbeitsrecht · KI',
     images: [
-      { src: '/refs/clausl-1.png', alt: 'Clausl KI · Dashboard mit Arbeitsverhältnissen' },
-      { src: '/refs/clausl-2.png', alt: 'Clausl KI · Chat-Startseite' },
+      {
+        src: '/refs/clausl-1.png',
+        alt: 'Clausl KI — KI-Tool für österreichisches Arbeitsrecht, Dashboard mit Übersicht der Arbeitsverhältnisse',
+      },
+      {
+        src: '/refs/clausl-2.png',
+        alt: 'Clausl KI — Chat-Interface für arbeitsrechtliche Fragen, Startseite mit Eingabefeld',
+      },
     ],
   },
 ] as const;

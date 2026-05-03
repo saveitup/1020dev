@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import { REFS, SITE } from '@/lib/data';
 import { AuditWidget } from '@/components/AuditWidget';
 
@@ -164,16 +165,24 @@ export function Hero() {
                   ]
                     .filter(Boolean)
                     .join(' ')}
-                  style={
-                    cover
-                      ? ({ '--panel-bg': `url('${cover.src}')` } as CSSProperties)
-                      : undefined
-                  }
                   onClick={() => handleSelect(i)}
                   role="tab"
                   aria-selected={isActive}
                   aria-label={`${ref.domain} — ${ref.tag}`}
                 >
+                  {cover && (
+                    <Image
+                      src={cover.src}
+                      // Decorative: button has aria-label, screen readers
+                      // ignore img alt inside labelled buttons. Empty alt
+                      // prevents double announcement.
+                      alt=""
+                      fill
+                      sizes="(max-width: 920px) 86vw, 25vw"
+                      priority={i === 0}
+                      className="selector-image"
+                    />
+                  )}
                   <span className="selector-shadow" aria-hidden="true" />
                   <span className="selector-label">
                     <span className="selector-domain">
