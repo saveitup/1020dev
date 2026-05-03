@@ -52,8 +52,8 @@ export const REFS = [
     href: null,
     tag: 'Arbeitsrecht · KI',
     images: [
-      { src: '/refs/clausl-1.jpg', alt: 'Clausl KI · Dashboard mit Arbeitsverhältnissen' },
-      { src: '/refs/clausl-2.jpg', alt: 'Clausl KI · Chat-Startseite' },
+      { src: '/refs/clausl-1.png', alt: 'Clausl KI · Dashboard mit Arbeitsverhältnissen' },
+      { src: '/refs/clausl-2.png', alt: 'Clausl KI · Chat-Startseite' },
     ],
   },
   {

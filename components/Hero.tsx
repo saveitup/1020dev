@@ -1,131 +1,141 @@
 'use client';
 
-import { useEffect, useRef, type CSSProperties } from 'react';
-import Image from 'next/image';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { REFS, SITE } from '@/lib/data';
 import { AuditWidget } from '@/components/AuditWidget';
 
+const ENTER_STAGGER = 110;
+const AUTO_INTERVAL = 3800;
+const RESUME_DELAY = 2500;
+
 export function Hero() {
-  const deckRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [revealed, setRevealed] = useState<number[]>([]);
+  const [paused, setPaused] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
-
-    let mx = 0;
-    let my = 0;
-    let sy = 0;
-    let raf: number | null = null;
-
-    const apply = () => {
-      raf = null;
-      const el = deckRef.current;
-      if (!el) return;
-      el.style.setProperty('--mx', mx.toFixed(3));
-      el.style.setProperty('--my', my.toFixed(3));
-      el.style.setProperty('--sy', sy.toFixed(0));
-    };
-
-    const schedule = () => {
-      if (raf == null) raf = requestAnimationFrame(apply);
-    };
-
-    const onMove = (e: MouseEvent) => {
-      mx = (e.clientX / window.innerWidth) * 2 - 1;
-      my = (e.clientY / window.innerHeight) * 2 - 1;
-      schedule();
-    };
-    const onScroll = () => {
-      sy = window.scrollY;
-      schedule();
-    };
-
-    window.addEventListener('mousemove', onMove, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('scroll', onScroll);
-      if (raf != null) cancelAnimationFrame(raf);
-    };
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    REFS.forEach((_, i) => {
+      timers.push(setTimeout(() => setRevealed((prev) => [...prev, i]), ENTER_STAGGER * i));
+    });
+    return () => timers.forEach(clearTimeout);
   }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % REFS.length);
+    }, AUTO_INTERVAL);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  const handleSelect = (index: number) => {
+    setActiveIndex(index);
+    setPaused(true);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setPaused(false), RESUME_DELAY);
+  };
+
+  const handleEnter = () => {
+    setPaused(true);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+  };
+
+  const handleLeave = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setPaused(false), RESUME_DELAY);
+  };
 
   return (
     <section className="hero" id="hero">
       <div className="hero-grid">
-      <div className="hero-text">
-        <h1 className="hero-title">
-          Wir bauen, was Ihre Idee <em>verlangt.</em>
-        </h1>
+        <div className="hero-text">
+          <h1 className="hero-title">
+            Wir bauen, was Ihre Idee <em>verlangt.</em>
+          </h1>
 
-        <p className="hero-lede">
-          Webentwicklung, SEO und Answer-Engine-Optimierung für KMU in Wien und ganz
-          Österreich. Manchmal ist das eine Website, die in <strong>Google rankt</strong>.
-          Manchmal ein Backend, das Ihnen die Arbeit abnimmt. Was im Vordergrund steht —{' '}
-          <strong>Design oder Funktion</strong> — entscheiden Sie. Wir bauen es.
-        </p>
+          <p className="hero-lede">
+            Webentwicklung, SEO und Answer-Engine-Optimierung für KMU in Wien und ganz
+            Österreich. Manchmal ist das eine Website, die in <strong>Google rankt</strong>.
+            Manchmal ein Backend, das Ihnen die Arbeit abnimmt. Was im Vordergrund steht —{' '}
+            <strong>Design oder Funktion</strong> — entscheiden Sie. Wir bauen es.
+          </p>
 
-        <div className="hero-ctas">
-          <a href={`mailto:${SITE.email}`} className="cta-primary">
-            E-Mail schreiben <span className="arrow">→</span>
-          </a>
-          <a href="#methode" className="cta-ghost">
-            Wie wir arbeiten
-          </a>
+          <div className="hero-ctas">
+            <a href={`mailto:${SITE.email}`} className="cta-primary">
+              E-Mail schreiben <span className="arrow">→</span>
+            </a>
+            <a href="#methode" className="cta-ghost">
+              Wie wir arbeiten
+            </a>
+          </div>
+
+          <div className="hero-signature">
+            <span className="line" aria-hidden="true"></span>
+            <span>Studio 1020.dev — Wien, Leopoldstadt</span>
+          </div>
         </div>
 
-        <div className="hero-signature">
-          <span className="line" aria-hidden="true"></span>
-          <span>Studio 1020.dev — Wien, Leopoldstadt</span>
-        </div>
-      </div>
-
-      <div className="hero-stage" aria-hidden="true">
-        <div className="hero-stage-frame">
-          <div className="hero-deck" ref={deckRef}>
-            <div className="deck-shadow deck-shadow--3"></div>
-            <div className="deck-shadow deck-shadow--2"></div>
-            <div className="deck-shadow deck-shadow--1"></div>
-
+        <div className="hero-stage">
+          <div
+            className="hero-selector"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+            role="tablist"
+            aria-label="Aktuelle Arbeiten"
+          >
             {REFS.map((ref, i) => {
               const cover = ref.images[0];
+              const isActive = activeIndex === i;
+              const isRevealed = revealed.includes(i);
+              const num = (i + 1).toString().padStart(2, '0');
+
               return (
-              <article
-                key={ref.id}
-                className="deck-card"
-                style={{ '--i': i } as CSSProperties}
-              >
-                <div className="deck-thumb">
-                  {cover ? (
-                    <Image
-                      src={cover.src}
-                      alt={cover.alt}
-                      fill
-                      sizes="(max-width: 920px) 88vw, 460px"
-                      style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                      priority={i === 0}
-                    />
-                  ) : (
-                    <div className="deck-thumb-placeholder">
-                      <span className="note">Screenshot folgt</span>
-                      <span className="name">{ref.domain}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="deck-meta">
-                  <span className="deck-tag">{ref.tag}</span>
-                  <span className="deck-domain">{ref.domain}</span>
-                </div>
-              </article>
+                <button
+                  key={ref.id}
+                  type="button"
+                  className={[
+                    'selector-panel',
+                    isActive ? 'is-active' : '',
+                    !cover ? 'is-placeholder' : '',
+                    isRevealed ? 'is-in' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  style={
+                    cover
+                      ? ({ '--panel-bg': `url('${cover.src}')` } as CSSProperties)
+                      : undefined
+                  }
+                  onClick={() => handleSelect(i)}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={`${ref.domain} — ${ref.tag}`}
+                >
+                  <span className="selector-shadow" aria-hidden="true" />
+                  <span className="selector-label">
+                    <span className="selector-num">{num}</span>
+                    <span className="selector-info">
+                      <span className="selector-tag">{ref.tag}</span>
+                      <span className="selector-domain">
+                        {ref.domain}
+                        {ref.href && <span className="selector-ext" aria-hidden="true">↗</span>}
+                      </span>
+                    </span>
+                  </span>
+                </button>
               );
             })}
           </div>
 
           <div className="hero-stage-label">
             <span className="dot" aria-hidden="true"></span>
-            <span>Aktuelle Arbeiten · {REFS.length} Projekte</span>
+            <span>
+              Aktuelle Arbeiten · {REFS.length} Projekte · {activeIndex + 1}/{REFS.length}
+            </span>
           </div>
         </div>
-      </div>
       </div>
 
       <AuditWidget compact />
