@@ -3,6 +3,7 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import Image from 'next/image';
 import { REFS, SITE } from '@/lib/data';
+import { AuditWidget } from '@/components/AuditWidget';
 
 export function Hero() {
   const deckRef = useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="hero">
+      <div className="hero-grid">
       <div className="hero-text">
         <h1 className="hero-title">
           Wir bauen, was Ihre Idee <em>verlangt.</em>
@@ -124,6 +126,9 @@ export function Hero() {
           </div>
         </div>
       </div>
+      </div>
+
+      <AuditWidget compact />
     </section>
   );
 }

@@ -25,7 +25,7 @@ const STATUS_MESSAGES = [
   () => `Formuliere Empfehlungen`,
 ];
 
-export function AuditWidget() {
+export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [url, setUrl] = useState('');
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState('');
@@ -90,23 +90,39 @@ export function AuditWidget() {
     }
   };
 
+  const Wrapper = compact ? 'div' : 'section';
+
   return (
-    <section className="chapter" id="audit">
-      <div className="chapter-head">
-        <div className="chapter-marker">
-          <span className="num">00</span>
-          <span className="slash">/</span>
-          <span>Live-Analyse</span>
+    <Wrapper className={compact ? 'hero-audit' : 'chapter'} id="audit">
+      {!compact && (
+        <div className="chapter-head">
+          <div className="chapter-marker">
+            <span className="num">00</span>
+            <span className="slash">/</span>
+            <span>Live-Analyse</span>
+          </div>
+          <h2 className="chapter-title">
+            Wie sichtbar ist Ihre Website in <em>KI-Antworten?</em>
+          </h2>
+          <p className="chapter-lede">
+            Geben Sie eine Domain ein. Wir prüfen in Echtzeit, wie ChatGPT, Perplexity und
+            Claude Ihre Inhalte sehen — und geben drei konkrete Hebel zurück, die Sie ab
+            morgen umsetzen können.
+          </p>
         </div>
-        <h2 className="chapter-title">
-          Wie sichtbar ist Ihre Website in <em>KI-Antworten?</em>
-        </h2>
-        <p className="chapter-lede">
-          Geben Sie eine Domain ein. Wir prüfen in Echtzeit, wie ChatGPT, Perplexity und
-          Claude Ihre Inhalte sehen — und geben drei konkrete Hebel zurück, die Sie ab
-          morgen umsetzen können.
-        </p>
-      </div>
+      )}
+
+      {compact && (
+        <div className="hero-audit-head">
+          <span className="hero-audit-tag">
+            <span className="dot" aria-hidden="true"></span>
+            Live-Analyse
+          </span>
+          <span className="hero-audit-hint">
+            Domain eingeben. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
+          </span>
+        </div>
+      )}
 
       <form className="audit-form" onSubmit={onSubmit}>
         <div className="audit-input-wrap">
@@ -225,6 +241,6 @@ export function AuditWidget() {
           </div>
         </>
       )}
-    </section>
+    </Wrapper>
   );
 }
