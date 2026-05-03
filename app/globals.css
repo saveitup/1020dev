@@ -182,9 +182,27 @@ nav {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
   align-items: start;
+  position: relative;
+}
+.hero-grid > .hero-text,
+.hero-grid > .hero-stage {
+  grid-column: 1;
+  grid-row: 1;
+}
+.hero-grid > .hero-text {
+  z-index: 2;
+  position: relative;
+  max-width: 52%;
+  padding-right: 3rem;
+  align-self: center;
+}
+.hero-grid > .hero-stage {
+  z-index: 1;
+  width: 100%;
+  align-self: stretch;
 }
 
 .hero-text {
@@ -341,12 +359,27 @@ h1 em, .hero-title em {
 }
 
 .hero-selector {
+  position: relative;
   display: flex;
   width: 100%;
   height: clamp(360px, 36vw, 480px);
   background: var(--bg-1);
   border: 1px solid var(--line);
   overflow: hidden;
+}
+
+.selector-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    var(--bg-0) 0%,
+    rgba(255, 255, 255, 0.92) 18%,
+    rgba(255, 255, 255, 0.4) 38%,
+    rgba(255, 255, 255, 0) 55%
+  );
 }
 
 .selector-panel {
@@ -1634,9 +1667,18 @@ html.splash-skip body .hero-stage {
 
   .hero {
     padding: 4rem 1.4rem 4rem;
-    grid-template-columns: 1fr;
     gap: 3rem;
   }
+  .hero-grid > .hero-text,
+  .hero-grid > .hero-stage {
+    grid-row: auto;
+  }
+  .hero-grid > .hero-text {
+    max-width: none;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .selector-veil { display: none; }
   .hero-meta { margin-bottom: 2.4rem; }
   h1, .hero-title { margin-bottom: 2rem; }
   .hero-lede { margin-bottom: 2.4rem; }

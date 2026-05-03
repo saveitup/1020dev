@@ -87,6 +87,7 @@ export function Hero() {
             role="tablist"
             aria-label="Aktuelle Arbeiten"
           >
+            <span className="selector-veil" aria-hidden="true" />
             {HERO_REFS.map((ref, i) => {
               const cover = ref.images[0];
               const isActive = activeIndex === i;
