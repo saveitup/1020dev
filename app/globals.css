@@ -1372,15 +1372,15 @@ h1 em, .hero-title em {
 .audit-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3, 6, 21, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(3, 6, 21, 0.94);
+  backdrop-filter: blur(20px) saturate(0.5);
+  -webkit-backdrop-filter: blur(20px) saturate(0.5);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  animation: modalFadeIn 0.18s ease-out;
+  animation: modalFadeIn 0.22s ease-out;
 }
 @keyframes modalFadeIn {
   from { opacity: 0; }
