@@ -85,7 +85,7 @@ try {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${dmSans.variable} ${dmMono.variable}`}>
+    <html lang="de" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
         <FaqStructuredData />
