@@ -30,24 +30,23 @@ export default async function Image() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px',
-          // Match site background gradient (globals.css :root)
-          background:
-            'radial-gradient(ellipse at 30% 20%, #0e1a44 0%, #07112e 45%, #030615 100%)',
-          color: '#E8ECFF',
+          background: '#FFFFFF',
+          color: '#0B1020',
           fontFamily: '"DM Sans", system-ui, -apple-system, sans-serif',
           position: 'relative',
         }}
       >
-        {/* Subtile Akzent-Glow oben-rechts */}
+        {/* Subtiler Indigo-Akzent oben-rechts */}
         <div
           style={{
             position: 'absolute',
-            top: -200,
-            right: -200,
-            width: 600,
-            height: 600,
+            top: -240,
+            right: -240,
+            width: 640,
+            height: 640,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(129,140,248,0.18) 0%, transparent 70%)',
+            background:
+              'radial-gradient(circle, rgba(129,140,248,0.18) 0%, rgba(129,140,248,0.05) 50%, transparent 75%)',
             display: 'flex',
           }}
         />
@@ -63,17 +62,17 @@ export default async function Image() {
             lineHeight: 1,
           }}
         >
-          <span style={{ color: '#FFFFFF' }}>1020</span>
+          <span style={{ color: '#0B1020' }}>1020</span>
           <span
             style={{
               color: '#818CF8',
               textShadow:
-                '0 0 30px rgba(129,140,248,0.9), 0 0 60px rgba(129,140,248,0.5)',
+                '0 0 24px rgba(129,140,248,0.55), 0 0 48px rgba(129,140,248,0.3)',
             }}
           >
             .
           </span>
-          <span style={{ color: '#9DA8D4', fontWeight: 500 }}>dev</span>
+          <span style={{ color: '#6B7494', fontWeight: 500 }}>dev</span>
         </div>
 
         {/* Middle: Tagline */}
@@ -91,7 +90,7 @@ export default async function Image() {
               lineHeight: 1.1,
               letterSpacing: -1.5,
               maxWidth: 1000,
-              color: '#FFFFFF',
+              color: '#0B1020',
             }}
           >
             {SITE.tagline}
@@ -108,11 +107,11 @@ export default async function Image() {
             }}
           >
             <span>Webentwicklung</span>
-            <span style={{ color: '#3a4366' }}>·</span>
+            <span style={{ color: '#C7CCE0' }}>·</span>
             <span>SEO</span>
-            <span style={{ color: '#3a4366' }}>·</span>
+            <span style={{ color: '#C7CCE0' }}>·</span>
             <span>AEO</span>
-            <span style={{ color: '#3a4366' }}>·</span>
+            <span style={{ color: '#C7CCE0' }}>·</span>
             <span>Automation</span>
           </div>
         </div>
@@ -124,13 +123,13 @@ export default async function Image() {
             justifyContent: 'space-between',
             alignItems: 'center',
             fontSize: 22,
-            color: '#6b7494',
-            borderTop: '1px solid rgba(129,140,248,0.18)',
+            color: '#6B7494',
+            borderTop: '1px solid #E5E7F0',
             paddingTop: 28,
           }}
         >
           <span>Studio · Wien · Leopoldstadt</span>
-          <span style={{ color: '#9DA8D4', fontWeight: 500 }}>1020.dev</span>
+          <span style={{ color: '#0B1020', fontWeight: 500 }}>1020.dev</span>
         </div>
       </div>
     ),
