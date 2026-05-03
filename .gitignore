@@ -11,3 +11,9 @@ npm-debug.log*
 .vscode/
 .idea/
 next-env.d.ts
+
+# Claude Code
+.claude/
+
+# TypeScript incremental
+tsconfig.tsbuildinfo
