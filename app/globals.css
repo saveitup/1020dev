@@ -449,7 +449,7 @@ h1 em, .hero-title em {
 
 .selector-panel.is-active {
   flex: 9 1 0;
-  background-size: contain;
+  background-size: cover;
   background-position: center top;
   z-index: 2;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
