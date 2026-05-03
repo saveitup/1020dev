@@ -15,8 +15,18 @@ export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState<number[]>([]);
   const [paused, setPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const selectorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     const container = selectorRef.current;
@@ -78,12 +88,12 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || userPaused || reduceMotion) return;
     const id = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_REFS.length);
     }, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, userPaused, reduceMotion]);
 
   const handleSelect = (index: number) => {
     setActiveIndex(index);
@@ -145,7 +155,7 @@ export function Hero() {
             onMouseLeave={handleLeave}
             onTouchStart={handleEnter}
             onTouchEnd={handleLeave}
-            role="tablist"
+            role="group"
             aria-label="Aktuelle Arbeiten"
           >
             {HERO_REFS.map((ref, i) => {
@@ -166,8 +176,7 @@ export function Hero() {
                     .filter(Boolean)
                     .join(' ')}
                   onClick={() => handleSelect(i)}
-                  role="tab"
-                  aria-selected={isActive}
+                  aria-pressed={isActive}
                   aria-label={`${ref.domain} — ${ref.tag}`}
                 >
                   {cover && (
@@ -200,6 +209,15 @@ export function Hero() {
             <span>
               Aktuelle Arbeiten · {HERO_REFS.length} Projekte · {activeIndex + 1}/{HERO_REFS.length}
             </span>
+            <button
+              type="button"
+              className="hero-stage-toggle"
+              onClick={() => setUserPaused((p) => !p)}
+              aria-pressed={userPaused}
+              aria-label={userPaused ? 'Slideshow fortsetzen' : 'Slideshow pausieren'}
+            >
+              {userPaused ? 'Play' : 'Pause'}
+            </button>
           </div>
         </div>
       </div>

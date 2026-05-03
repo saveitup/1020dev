@@ -49,6 +49,8 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const preludeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerOriginRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     return () => {
@@ -65,11 +67,13 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
 
   useEffect(() => {
     if (modalOpen) {
+      triggerOriginRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = 'hidden';
       const t = setTimeout(() => emailInputRef.current?.focus(), 80);
       return () => {
         document.body.style.overflow = '';
         clearTimeout(t);
+        triggerOriginRef.current?.focus?.();
       };
     }
   }, [modalOpen]);
@@ -77,7 +81,27 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   useEffect(() => {
     if (!modalOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !busy) closeModal();
+      if (e.key === 'Escape' && !busy) {
+        closeModal();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const root = modalRef.current;
+      if (!root) return;
+      const focusables = root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -201,7 +225,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             <span className="dot" aria-hidden="true"></span>
             Live-Analyse
           </span>
-          <span className="hero-audit-hint">
+          <span className="hero-audit-hint" id="audit-domain-hint">
             Domain eingeben. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
           </span>
         </div>
@@ -222,6 +246,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
                 autoComplete="off"
                 spellCheck={false}
                 aria-label="Domain"
+                aria-describedby={compact ? 'audit-domain-hint' : undefined}
               />
             </div>
             <button type="submit" className="audit-btn" disabled={prelude || !url.trim()}>
@@ -297,7 +322,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
           aria-modal="true"
           aria-labelledby="audit-modal-title"
         >
-          <div className="audit-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="audit-modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               className="audit-modal-close"
@@ -332,6 +357,8 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
                   spellCheck={false}
                   required
                   aria-label="E-Mail-Adresse"
+                  aria-invalid={!!error}
+                  aria-describedby={error ? 'audit-email-error' : undefined}
                 />
               </div>
               <button
@@ -361,7 +388,11 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             )}
 
             {error && (
-              <div className="audit-error audit-modal-error">
+              <div
+                className="audit-error audit-modal-error"
+                id="audit-email-error"
+                role="alert"
+              >
                 <strong>Hoppla.</strong> {error}
               </div>
             )}

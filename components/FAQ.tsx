@@ -58,7 +58,7 @@ export function FAQ({
               </button>
               <div className="faq-a">
                 <div className="faq-a-inner">
-                  <p dangerouslySetInnerHTML={{ __html: q.htmlAnswer }} />
+                  <div className="faq-a-text" dangerouslySetInnerHTML={{ __html: q.htmlAnswer }} />
                 </div>
               </div>
             </div>
