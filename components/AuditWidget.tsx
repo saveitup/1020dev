@@ -18,15 +18,18 @@ const STATUS_MESSAGES = [
   () => `Sende Bericht per E-Mail`,
 ];
 
-const PRELUDE_MESSAGES = [
-  (url: string) => `Verbinde mit ${url}`,
-  () => `Crawle öffentliche Inhalte`,
-  () => `Prüfe Schema.org-Markup`,
-  () => `Suche Erwähnungen in KI-Antworten`,
-];
+interface PreludeStep {
+  build: (url: string) => string;
+  durationMs: number;
+}
 
-const PRELUDE_DURATION_MS = 3000;
-const PRELUDE_TICK_MS = 720;
+const PRELUDE_STEPS: PreludeStep[] = [
+  { build: (url) => `Verbinde mit ${url}`, durationMs: 700 },
+  { build: () => `Lade Sitemap und robots.txt`, durationMs: 800 },
+  { build: () => `Extrahiere strukturierte Daten`, durationMs: 1100 },
+  { build: () => `Vergleiche Antwort-Patterns mit KI-Modellen`, durationMs: 1400 },
+  { build: () => `Bewerte AEO-Readiness`, durationMs: 1000 },
+];
 
 export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [url, setUrl] = useState('');
@@ -37,6 +40,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [error, setError] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [prelude, setPrelude] = useState(false);
+  const [preludeStep, setPreludeStep] = useState(-1);
   const [pendingDomain, setPendingDomain] = useState('');
   const tickerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const preludeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -94,14 +98,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
     setPendingDomain(target);
     setError('');
     setPrelude(true);
-    setStatus(PRELUDE_MESSAGES[0](target));
-
-    let i = 0;
-    if (tickerRef.current) clearInterval(tickerRef.current);
-    tickerRef.current = setInterval(() => {
-      i = (i + 1) % PRELUDE_MESSAGES.length;
-      setStatus(PRELUDE_MESSAGES[i](target));
-    }, PRELUDE_TICK_MS);
+    setPreludeStep(0);
 
     fetch('/api/audit/track', {
       method: 'POST',
@@ -110,16 +107,22 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       keepalive: true,
     }).catch(() => {});
 
-    if (preludeTimerRef.current) clearTimeout(preludeTimerRef.current);
-    preludeTimerRef.current = setTimeout(() => {
-      if (tickerRef.current) {
-        clearInterval(tickerRef.current);
-        tickerRef.current = null;
+    const advance = (idx: number) => {
+      if (idx >= PRELUDE_STEPS.length) {
+        setPrelude(false);
+        setPreludeStep(-1);
+        setModalOpen(true);
+        return;
       }
-      setStatus('');
-      setPrelude(false);
-      setModalOpen(true);
-    }, PRELUDE_DURATION_MS);
+      setPreludeStep(idx);
+      preludeTimerRef.current = setTimeout(
+        () => advance(idx + 1),
+        PRELUDE_STEPS[idx].durationMs
+      );
+    };
+
+    if (preludeTimerRef.current) clearTimeout(preludeTimerRef.current);
+    advance(0);
   };
 
   const onEmailSubmit = async (e: React.FormEvent) => {
@@ -222,7 +225,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
               {prelude ? (
                 <>
                   <span className="spinner"></span>
-                  <span>Analysiere…</span>
+                  <span>KI denkt…</span>
                 </>
               ) : (
                 <>
@@ -232,11 +235,24 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             </button>
           </form>
 
-          {prelude && status && (
-            <div className="audit-status">
-              <span className="status-dot"></span>
-              {status}
-              <span className="cursor">_</span>
+          {prelude && (
+            <div className="audit-thinking" role="status" aria-live="polite">
+              <div className="thinking-head">
+                <span className="thinking-pulse" aria-hidden="true"></span>
+                Analyse läuft
+              </div>
+              <ol className="thinking-list">
+                {PRELUDE_STEPS.map((step, idx) => {
+                  const state =
+                    idx < preludeStep ? 'done' : idx === preludeStep ? 'running' : 'pending';
+                  return (
+                    <li key={idx} className={`thinking-step is-${state}`}>
+                      <span className="thinking-icon" aria-hidden="true"></span>
+                      <span className="thinking-label">{step.build(pendingDomain)}</span>
+                    </li>
+                  );
+                })}
+              </ol>
             </div>
           )}
         </>

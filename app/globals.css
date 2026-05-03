@@ -1245,6 +1245,129 @@ h1 em, .hero-title em {
   align-items: center;
 }
 
+/* ============== AUDIT THINKING (fake AI prelude) ============== */
+.audit-thinking {
+  margin-top: 1.4rem;
+  padding: 1.2rem 1.4rem 1.3rem;
+  max-width: 640px;
+  background:
+    linear-gradient(180deg, rgba(129, 140, 248, 0.05) 0%, rgba(129, 140, 248, 0.01) 100%);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: 4px;
+  font-family: var(--font-dm-mono), monospace;
+  animation: fadeUp 0.3s ease-out;
+}
+.thinking-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.95rem;
+  font-weight: 500;
+}
+.thinking-pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: thinkingPulse 1.3s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.7);
+}
+@keyframes thinkingPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.thinking-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.thinking-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  transition: opacity 0.35s ease, color 0.35s ease;
+}
+.thinking-step.is-pending {
+  opacity: 0.32;
+  color: var(--muted);
+}
+.thinking-step.is-running {
+  color: var(--text);
+  animation: stepIn 0.35s ease-out;
+}
+.thinking-step.is-done {
+  opacity: 0.65;
+  color: var(--muted);
+}
+@keyframes stepIn {
+  from { transform: translateX(-4px); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.thinking-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.thinking-step.is-pending .thinking-icon::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+}
+.thinking-step.is-running .thinking-icon::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(129, 140, 248, 0.22);
+  border-top-color: var(--accent);
+  border-right-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+.thinking-step.is-done .thinking-icon::before {
+  content: '✓';
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.thinking-label {
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+}
+.thinking-step.is-running .thinking-label::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 0.9em;
+  background: var(--accent);
+  margin-left: 4px;
+  animation: blink 1s steps(1) infinite;
+}
+
+/* Hero compact variant — tighter spacing */
+.hero-audit .audit-thinking {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem 1.1rem;
+  max-width: none;
+}
+
 /* ============== AUDIT MODAL ============== */
 .audit-modal-backdrop {
   position: fixed;
