@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { validateEmail } from './_lib/email';
+import { renderAuditEmail, type AuditResult } from './_lib/template';
+import { SITE } from '@/lib/data';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6';
+const RESEND_FROM = process.env.RESEND_FROM || '1020.dev <onboarding@resend.dev>';
+const RESEND_BCC = process.env.RESEND_BCC || SITE.email;
 
 // In-memory rate limit. Best-effort: serverless cold starts reset state and
 // each warm instance has its own bucket. Acceptable for the expected
@@ -28,7 +34,6 @@ function checkRateLimit(ip: string): { ok: boolean; retryAfter: number } {
   }
   stamps.push(now);
   RATE_BUCKETS.set(ip, stamps);
-  // Opportunistic GC: prune cold IPs every ~100 requests
   if (RATE_BUCKETS.size > 500) {
     for (const [k, v] of RATE_BUCKETS) {
       if (v.length === 0 || now - v[v.length - 1] > RATE_WINDOW_MS) RATE_BUCKETS.delete(k);
@@ -80,27 +85,30 @@ Antworte AUSSCHLIESSLICH als gültiges JSON in genau diesem Format (keine Erklä
 }
 
 function extractJsonFromContent(content: AnthropicContentBlock[]): unknown | null {
-  // Search text blocks from last to first (final response is usually at the end)
-  const textBlocks = content
-    .filter((b) => b.type === 'text')
-    .map((b) => b.text || '');
-
+  const textBlocks = content.filter((b) => b.type === 'text').map((b) => b.text || '');
   for (let i = textBlocks.length - 1; i >= 0; i--) {
-    const cleaned = textBlocks[i]
-      .replace(/```json/gi, '')
-      .replace(/```/g, '')
-      .trim();
-
+    const cleaned = textBlocks[i].replace(/```json/gi, '').replace(/```/g, '').trim();
     const match = cleaned.match(/\{[\s\S]*\}/);
     if (!match) continue;
-
     try {
       return JSON.parse(match[0]);
     } catch {
-      // Try next block
+      // try next
     }
   }
   return null;
+}
+
+function isAuditResult(x: unknown): x is AuditResult {
+  if (!x || typeof x !== 'object') return false;
+  const o = x as Record<string, unknown>;
+  return (
+    typeof o.domain === 'string' &&
+    typeof o.score === 'number' &&
+    typeof o.verdict === 'string' &&
+    Array.isArray(o.checks) &&
+    Array.isArray(o.recommendations)
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -110,22 +118,23 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { error: 'Server is not configured. RESEND_API_KEY is missing.' },
+      { status: 500 }
+    );
+  }
 
   const ip = clientIp(req);
   const limit = checkRateLimit(ip);
   if (!limit.ok) {
     return NextResponse.json(
-      {
-        error: `Zu viele Anfragen. Bitte in ${limit.retryAfter} Sekunden erneut versuchen.`,
-      },
-      {
-        status: 429,
-        headers: { 'Retry-After': String(limit.retryAfter) },
-      }
+      { error: `Zu viele Anfragen. Bitte in ${limit.retryAfter} Sekunden erneut versuchen.` },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfter) } }
     );
   }
 
-  let body: { url?: unknown };
+  let body: { url?: unknown; email?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -133,15 +142,13 @@ export async function POST(req: NextRequest) {
   }
 
   if (typeof body.url !== 'string' || !body.url.trim()) {
-    return NextResponse.json({ error: 'URL is required.' }, { status: 400 });
+    return NextResponse.json({ error: 'Domain ist erforderlich.' }, { status: 400 });
+  }
+  if (typeof body.email !== 'string' || !body.email.trim()) {
+    return NextResponse.json({ error: 'E-Mail ist erforderlich.' }, { status: 400 });
   }
 
-  const domain = body.url
-    .trim()
-    .toLowerCase()
-    .replace(/^https?:\/\//, '')
-    .replace(/\/$/, '');
-
+  const domain = body.url.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
   if (!/^[a-z0-9.-]+\.[a-z]{2,}/i.test(domain)) {
     return NextResponse.json(
       { error: 'Bitte eine gültige Domain eingeben (z. B. ihre-domain.at).' },
@@ -149,6 +156,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const emailCheck = await validateEmail(body.email);
+  if (!emailCheck.ok) {
+    return NextResponse.json({ error: emailCheck.reason }, { status: 400 });
+  }
+
+  let parsed: unknown;
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -160,13 +173,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 2000,
-        tools: [
-          {
-            type: 'web_search_20250305',
-            name: 'web_search',
-            max_uses: 3,
-          },
-        ],
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
         messages: [{ role: 'user', content: buildPrompt(domain) }],
       }),
     });
@@ -178,18 +185,46 @@ export async function POST(req: NextRequest) {
     }
 
     const data = (await response.json()) as AnthropicResponse;
-    const parsed = extractJsonFromContent(data.content || []);
-
-    if (!parsed) {
-      return NextResponse.json(
-        { error: 'Konnte die Antwort nicht parsen. Versuchen Sie es erneut.' },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json(parsed);
+    parsed = extractJsonFromContent(data.content || []);
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Unbekannter Fehler.';
     return NextResponse.json({ error: msg }, { status: 500 });
   }
+
+  if (!isAuditResult(parsed)) {
+    return NextResponse.json(
+      { error: 'Konnte die Antwort nicht parsen. Versuchen Sie es erneut.' },
+      { status: 500 }
+    );
+  }
+
+  const { subject, html, text } = renderAuditEmail(parsed);
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const result = await resend.emails.send({
+      from: RESEND_FROM,
+      to: emailCheck.email,
+      bcc: RESEND_BCC,
+      replyTo: SITE.email,
+      subject,
+      html,
+      text,
+    });
+    if (result.error) {
+      console.error('Resend error:', result.error);
+      return NextResponse.json(
+        { error: 'Bericht konnte nicht versendet werden. Bitte später erneut versuchen.' },
+        { status: 502 }
+      );
+    }
+  } catch (err) {
+    console.error('Resend exception:', err);
+    return NextResponse.json(
+      { error: 'Bericht konnte nicht versendet werden. Bitte später erneut versuchen.' },
+      { status: 502 }
+    );
+  }
+
+  return NextResponse.json({ ok: true, email: emailCheck.email, domain: parsed.domain });
 }

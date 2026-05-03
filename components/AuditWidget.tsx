@@ -3,36 +3,31 @@
 import { useEffect, useRef, useState } from 'react';
 import { SITE } from '@/lib/data';
 
-interface AuditCheck {
-  label: string;
-  status: 'ok' | 'warn' | 'fail' | string;
-  note?: string;
-}
-
-interface AuditResult {
+interface AuditSuccess {
+  ok: true;
+  email: string;
   domain: string;
-  score: number;
-  verdict: string;
-  checks: AuditCheck[];
-  recommendations: string[];
 }
 
 const STATUS_MESSAGES = [
+  (url: string) => `Prüfe E-Mail-Adresse`,
   (url: string) => `Lade ${url}`,
   () => `Suche nach Erwähnungen im Web`,
   () => `Prüfe Schema.org-Markup`,
   () => `Bewerte AEO-Readiness`,
   () => `Formuliere Empfehlungen`,
+  () => `Sende Bericht per E-Mail`,
 ];
 
 export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [url, setUrl] = useState('');
+  const [email, setEmail] = useState('');
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState('');
-  const [result, setResult] = useState<AuditResult | null>(null);
+  const [success, setSuccess] = useState<AuditSuccess | null>(null);
   const [error, setError] = useState('');
   const tickerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const resultRef = useRef<HTMLDivElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     return () => {
@@ -41,25 +36,22 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   }, []);
 
   useEffect(() => {
-    if (result && resultRef.current) {
-      resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (success && successRef.current) {
+      successRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, [result]);
+  }, [success]);
 
   const cleanUrl = (raw: string) =>
-    raw
-      .trim()
-      .toLowerCase()
-      .replace(/^https?:\/\//, '')
-      .replace(/\/$/, '');
+    raw.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const target = cleanUrl(url);
-    if (!target) return;
+    const mail = email.trim().toLowerCase();
+    if (!target || !mail) return;
 
     setBusy(true);
-    setResult(null);
+    setSuccess(null);
     setError('');
     setStatus(STATUS_MESSAGES[0](target));
 
@@ -74,7 +66,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: target }),
+        body: JSON.stringify({ url: target, email: mail }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -83,7 +75,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
         throw new Error(data.error || `Status ${res.status}`);
       }
 
-      setResult(data as AuditResult);
+      setSuccess(data as AuditSuccess);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Es ist ein Fehler aufgetreten.';
       setError(msg);
@@ -112,9 +104,9 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             Wie sichtbar ist Ihre Website in <em>KI-Antworten?</em>
           </h2>
           <p className="chapter-lede">
-            Geben Sie eine Domain ein. Wir prüfen in Echtzeit, wie ChatGPT, Perplexity und
-            Claude Ihre Inhalte sehen — und geben drei konkrete Hebel zurück, die Sie ab
-            morgen umsetzen können.
+            Geben Sie Ihre Domain und E-Mail ein. Wir prüfen in Echtzeit, wie ChatGPT,
+            Perplexity und Claude Ihre Inhalte sehen — und senden Ihnen den Bericht mit drei
+            konkreten Hebeln direkt in den Posteingang.
           </p>
         </div>
       )}
@@ -126,38 +118,60 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             Live-Analyse
           </span>
           <span className="hero-audit-hint">
-            Domain eingeben. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
+            Bericht direkt per E-Mail. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
           </span>
         </div>
       )}
 
-      <form className="audit-form" onSubmit={onSubmit}>
-        <div className="audit-input-wrap">
-          <span className="audit-prefix">https://</span>
-          <input
-            type="text"
-            className="audit-input"
-            placeholder="ihre-domain.at"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            disabled={busy}
-            autoComplete="off"
-            spellCheck={false}
-          />
-        </div>
-        <button type="submit" className="audit-btn" disabled={busy || !url.trim()}>
-          {busy ? (
-            <>
-              <span className="spinner"></span>
-              <span>Analysiere…</span>
-            </>
-          ) : (
-            <>
-              Analyse starten <span className="arrow">→</span>
-            </>
-          )}
-        </button>
-      </form>
+      {!success && (
+        <form className="audit-form" onSubmit={onSubmit}>
+          <div className="audit-input-wrap">
+            <span className="audit-prefix">https://</span>
+            <input
+              type="text"
+              className="audit-input"
+              placeholder="ihre-domain.at"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              disabled={busy}
+              autoComplete="off"
+              spellCheck={false}
+              aria-label="Domain"
+            />
+          </div>
+          <div className="audit-input-wrap">
+            <span className="audit-prefix audit-prefix-mail" aria-hidden="true">@</span>
+            <input
+              type="email"
+              className="audit-input"
+              placeholder="ihre@e-mail.at"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={busy}
+              autoComplete="email"
+              spellCheck={false}
+              required
+              aria-label="E-Mail-Adresse"
+            />
+          </div>
+          <button type="submit" className="audit-btn" disabled={busy || !url.trim() || !email.trim()}>
+            {busy ? (
+              <>
+                <span className="spinner"></span>
+                <span>Analysiere…</span>
+              </>
+            ) : (
+              <>
+                Bericht anfordern <span className="arrow">→</span>
+              </>
+            )}
+          </button>
+          <p className="audit-hint">
+            Der Bericht wird an die angegebene Adresse gesendet. Keine Newsletter, keine
+            Weitergabe an Dritte.
+          </p>
+        </form>
+      )}
 
       {busy && status && (
         <div className="audit-status">
@@ -173,80 +187,32 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
         </div>
       )}
 
-      {result && (
-        <>
-          <div className="audit-result" ref={resultRef}>
-            <div className="audit-result-head">
-              <div className="audit-result-domain">
-                <span className="label">Analyse für</span>
-                <span className="domain">{result.domain}</span>
-              </div>
-              <div
-                className="score-circle"
-                style={
-                  {
-                    '--score': result.score,
-                  } as React.CSSProperties
-                }
-              >
-                <div className="score-circle-inner">
-                  <span className="score-num">{result.score}</span>
-                  <span className="score-of">/100</span>
-                </div>
-              </div>
-            </div>
-
-            <p className="audit-verdict">{result.verdict}</p>
-
-            {result.checks?.length > 0 && (
-              <div className="audit-checks">
-                {result.checks.map((c, i) => (
-                  <div key={i} className={`check check-${c.status}`}>
-                    <span className="check-icon">
-                      {c.status === 'ok' ? '✓' : c.status === 'warn' ? '!' : '×'}
-                    </span>
-                    <div className="check-body">
-                      <div className="check-label">{c.label}</div>
-                      {c.note && <div className="check-note">{c.note}</div>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {result.recommendations?.length > 0 && (
-              <div className="audit-recos">
-                <div className="recos-label">Drei Hebel, die Sie ab morgen umsetzen können</div>
-                <ol className="recos-list">
-                  {result.recommendations.map((r, i) => (
-                    <li key={i}>{r}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
+      {success && (
+        <div className="audit-success" ref={successRef}>
+          <div className="audit-success-icon" aria-hidden="true">✓</div>
+          <h3 className="audit-success-title">Bericht ist unterwegs.</h3>
+          <p className="audit-success-sub">
+            Wir haben den AEO-Bericht für <strong>{success.domain}</strong> an{' '}
+            <strong>{success.email}</strong> gesendet. Der Eingang sollte in den nächsten ein
+            bis zwei Minuten erfolgen — falls nicht, bitte auch im Spam-Ordner nachsehen.
+          </p>
+          <div className="audit-cta-actions">
+            <a href={SITE.bookingUrl} target="_blank" rel="noopener" className="cta-primary">
+              Direkt Termin buchen <span className="arrow">→</span>
+            </a>
+            <button
+              type="button"
+              className="cta-secondary"
+              onClick={() => {
+                setSuccess(null);
+                setUrl('');
+                setEmail('');
+              }}
+            >
+              Weitere Domain prüfen
+            </button>
           </div>
-
-          <div className="audit-cta">
-            <h3 className="audit-cta-title">Diese Findings in eine Strategie übersetzen?</h3>
-            <p className="audit-cta-sub">
-              Ein 30-Minuten-Erstgespräch klärt, welche Hebel sich für Ihren Fall am meisten
-              lohnen — und ob wir die Richtigen sind, um sie umzusetzen.
-            </p>
-            <div className="audit-cta-actions">
-              <a
-                href={SITE.bookingUrl}
-                target="_blank"
-                rel="noopener"
-                className="cta-primary"
-              >
-                Termin buchen <span className="arrow">→</span>
-              </a>
-              <a href={`mailto:${SITE.email}`} className="cta-secondary">
-                E-Mail schreiben
-              </a>
-            </div>
-          </div>
-        </>
+        </div>
       )}
     </Wrapper>
   );
