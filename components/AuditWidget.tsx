@@ -29,7 +29,10 @@ const PRELUDE_STEPS: PreludeStep[] = [
   { build: () => `Extrahiere strukturierte Daten`, durationMs: 1100 },
   { build: () => `Vergleiche Antwort-Patterns mit KI-Modellen`, durationMs: 1400 },
   { build: () => `Bewerte AEO-Readiness`, durationMs: 1000 },
+  { build: () => `Bericht erstellen`, durationMs: 2000 },
 ];
+
+const REPORT_STEP_INDEX = PRELUDE_STEPS.length - 1;
 
 export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [url, setUrl] = useState('');
@@ -225,7 +228,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
               {prelude ? (
                 <>
                   <span className="spinner"></span>
-                  <span>KI denkt…</span>
+                  <span>{preludeStep >= REPORT_STEP_INDEX ? 'Bericht erstellen…' : 'KI denkt…'}</span>
                 </>
               ) : (
                 <>
@@ -239,7 +242,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             <div className="audit-thinking" role="status" aria-live="polite">
               <div className="thinking-head">
                 <span className="thinking-pulse" aria-hidden="true"></span>
-                Analyse läuft
+                {preludeStep >= REPORT_STEP_INDEX ? 'Bericht erstellen' : 'Analyse läuft'}
               </div>
               <ol className="thinking-list">
                 {PRELUDE_STEPS.map((step, idx) => {
