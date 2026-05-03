@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { REFS, SITE } from '@/lib/data';
 import { AuditWidget } from '@/components/AuditWidget';
 
+const HERO_REFS = REFS.filter((ref) => ref.images.length > 0);
+
 const ENTER_STAGGER = 110;
 const AUTO_INTERVAL = 3800;
 const RESUME_DELAY = 2500;
@@ -16,7 +18,7 @@ export function Hero() {
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
-    REFS.forEach((_, i) => {
+    HERO_REFS.forEach((_, i) => {
       timers.push(setTimeout(() => setRevealed((prev) => [...prev, i]), ENTER_STAGGER * i));
     });
     return () => timers.forEach(clearTimeout);
@@ -25,7 +27,7 @@ export function Hero() {
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % REFS.length);
+      setActiveIndex((prev) => (prev + 1) % HERO_REFS.length);
     }, AUTO_INTERVAL);
     return () => clearInterval(id);
   }, [paused]);
@@ -85,7 +87,7 @@ export function Hero() {
             role="tablist"
             aria-label="Aktuelle Arbeiten"
           >
-            {REFS.map((ref, i) => {
+            {HERO_REFS.map((ref, i) => {
               const cover = ref.images[0];
               const isActive = activeIndex === i;
               const isRevealed = revealed.includes(i);
@@ -132,7 +134,7 @@ export function Hero() {
           <div className="hero-stage-label">
             <span className="dot" aria-hidden="true"></span>
             <span>
-              Aktuelle Arbeiten · {REFS.length} Projekte · {activeIndex + 1}/{REFS.length}
+              Aktuelle Arbeiten · {HERO_REFS.length} Projekte · {activeIndex + 1}/{HERO_REFS.length}
             </span>
           </div>
         </div>
