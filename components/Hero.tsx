@@ -20,10 +20,15 @@ export function Hero() {
   useEffect(() => {
     const container = selectorRef.current;
     if (!container) return;
+    // Only act when the container itself is scrollable (mobile carousel).
+    // Using scrollIntoView would scroll the whole page on desktop where
+    // overflow is hidden — the browser walks up to find a scrollable
+    // ancestor. scrollTo on the container is scoped.
+    if (container.scrollWidth <= container.clientWidth) return;
     const panel = container.children[activeIndex] as HTMLElement | undefined;
-    if (panel && 'scrollIntoView' in panel) {
-      panel.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
+    if (!panel) return;
+    const target = panel.offsetLeft - (container.clientWidth - panel.clientWidth) / 2;
+    container.scrollTo({ left: target, behavior: 'smooth' });
   }, [activeIndex]);
 
   // Cursor-follow glow: track mouse position over the selector and
