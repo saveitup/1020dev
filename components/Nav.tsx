@@ -42,12 +42,14 @@ export function Nav() {
   const isWeb = pathname === '/web';
   const isAutomation = pathname === '/automation';
 
-  // On the chooser landing: minimal nav (no inner anchors). On track pages:
-  // anchor links to that page's sections plus a quick switch to the other track.
+  // The chooser landing renders its own prominent logo and footer CTAs, so
+  // the sticky nav is suppressed entirely there.
+  if (isChooser) return null;
+
   let links: NavLink[] = [];
   if (isWeb) links = WEB_LINKS;
   else if (isAutomation) links = AUTOMATION_LINKS;
-  else if (!isChooser) links = TRACK_LINKS;
+  else links = TRACK_LINKS;
 
   return (
     <nav className={scrolled ? 'is-scrolled' : ''}>

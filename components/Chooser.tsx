@@ -24,9 +24,13 @@ export function Chooser() {
   return (
     <main className="chooser">
       <header className="chooser-head">
+        <div className="chooser-logo" aria-label={SITE.name}>
+          <span className="num">1020</span>
+          <span className="dot">.</span>
+          <span className="tld">dev</span>
+        </div>
         <div className="chooser-eyebrow">
-          <span className="dot" aria-hidden="true"></span>
-          <span>Studio 1020.dev · Wien · Leopoldstadt</span>
+          <span>Studio · Wien · Leopoldstadt</span>
         </div>
         <h1 className="chooser-title">
           Was brauchen <em>Sie</em>?
