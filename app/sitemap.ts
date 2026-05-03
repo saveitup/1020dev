@@ -1,8 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/data';
+import { getAllArticles } from '@/lib/journal';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getAllArticles();
+
+  const staticEntries: MetadataRoute.Sitemap = [
     {
       url: SITE.url,
       lastModified: new Date(),
@@ -22,10 +25,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE.url}/journal`,
+      lastModified: articles[0]?.updatedAt
+        ? new Date(articles[0].updatedAt)
+        : articles[0]?.publishedAt
+          ? new Date(articles[0].publishedAt)
+          : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${SITE.url}/impressum`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
   ];
+
+  const articleEntries: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${SITE.url}/journal/${a.slug}`,
+    lastModified: new Date(a.updatedAt || a.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...articleEntries];
 }
