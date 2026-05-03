@@ -29,17 +29,19 @@ export default function ImpressumPage() {
       <section className="legal-section">
         <h2 className="legal-h2">Medieninhaber, Diensteanbieter &amp; Herausgeber</h2>
         <p>
-          <strong>Maximilian Asamer</strong>
+          <strong>{SITE.legal.owner}</strong>
           <br />
-          Einzelunternehmer
+          {SITE.legal.legalForm}
           <br />
-          [Straße und Hausnummer]
+          {SITE.address.street}
           <br />
-          [PLZ] Wien, Österreich
+          {SITE.address.postalCode} {SITE.address.city}, {SITE.address.countryName}
         </p>
         <dl className="legal-dl">
           <dt>Telefon</dt>
-          <dd>[Telefonnummer]</dd>
+          <dd>
+            <a href={`tel:${SITE.contact.phone}`}>{SITE.contact.phoneDisplay}</a>
+          </dd>
           <dt>E-Mail</dt>
           <dd>
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>

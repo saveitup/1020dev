@@ -325,4 +325,27 @@ export const SITE = {
   bookingUrl: 'https://cal.com/1020dev',
   email: 'hallo@1020.dev',
   location: 'Wien · Leopoldstadt',
+  // ----- Kontakt & Adresse (für Impressum + LocalBusiness-Schema) -----
+  contact: {
+    phone: '+4369911209087',         // E.164 für tel:-Links und Schema
+    phoneDisplay: '+43 699 11209087', // Anzeige-Format Impressum
+  },
+  address: {
+    street: 'Lichtenauergasse 4/8',
+    postalCode: '1020',
+    city: 'Wien',
+    region: 'Wien',
+    country: 'AT',
+    countryName: 'Österreich',
+  },
+  // Approximative Koordinaten für 1020 Wien, Lichtenauergasse 4
+  // (kann mit exakter Geolokalisierung verfeinert werden)
+  geo: {
+    lat: 48.2196,
+    lng: 16.4039,
+  },
+  legal: {
+    owner: 'Maximilian Asamer',
+    legalForm: 'Einzelunternehmen',
+  },
 } as const;

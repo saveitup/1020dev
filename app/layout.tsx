@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { DM_Sans, DM_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
+import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
 import { SITE } from '@/lib/data';
 import './globals.css';
 
@@ -86,11 +87,12 @@ try {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
+    <html lang="de-AT" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
       </head>
       <body>
+        <LocalBusinessSchema />
         <Splash />
         <Nav />
         {children}
