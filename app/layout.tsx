@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { DM_Sans, DM_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
-import { FaqStructuredData } from '@/components/FaqStructuredData';
 import { SITE } from '@/lib/data';
 import './globals.css';
 
@@ -90,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
-        <FaqStructuredData />
       </head>
       <body>
         <Splash />

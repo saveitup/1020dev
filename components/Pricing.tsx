@@ -1,34 +1,65 @@
 import { PRICING, SITE } from '@/lib/data';
 
-export function Pricing() {
+type PricingItem = {
+  name: string;
+  desc: string;
+  price: string;
+  prefix?: string;
+  period?: string;
+  isBase?: boolean;
+  plus?: boolean;
+  bundle?: boolean;
+};
+
+type PricingData = {
+  einmalig: readonly PricingItem[];
+  laufend: readonly PricingItem[];
+};
+
+type PricingProps = {
+  data?: PricingData;
+  marker?: string;
+  title?: React.ReactNode;
+  lede?: string;
+  bundleHint?: string;
+};
+
+export function Pricing({
+  data = PRICING,
+  marker = '04',
+  title = (
+    <>
+      Modular und <em>transparent.</em>
+    </>
+  ),
+  lede = 'Sie zahlen nur für das, was Sie brauchen. Jeder Baustein ist einzeln buchbar oder kombinierbar — keine Pakete, keine versteckten Kosten.',
+  bundleHint = 'Bundle „Sichtbar" empfohlen',
+}: PricingProps = {}) {
   return (
     <section className="chapter" id="preise">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">04</span>
+          <span className="num">{marker}</span>
           <span className="slash">/</span>
           <span>Preise</span>
         </div>
-        <h2 className="chapter-title">
-          Modular und <em>transparent.</em>
-        </h2>
-        <p className="chapter-lede">
-          Sie zahlen nur für das, was Sie brauchen. Jeder Baustein ist einzeln buchbar
-          oder kombinierbar — keine Pakete, keine versteckten Kosten.
-        </p>
+        <h2 className="chapter-title">{title}</h2>
+        <p className="chapter-lede">{lede}</p>
       </div>
 
       <div className="pricing-table">
         <div className="pricing-group">
           <div className="pricing-group-label">
             <span>Einmalig</span>
-            <span className="pricing-bundle-hint">
-              <span className="dot" aria-hidden="true"></span>
-              Bundle „Sichtbar" empfohlen
-            </span>
+            {bundleHint && (
+              <span className="pricing-bundle-hint">
+                <span className="dot" aria-hidden="true"></span>
+                {bundleHint}
+              </span>
+            )}
           </div>
 
-          {PRICING.einmalig.map((item, i) => (
+          {data.einmalig.map((item, i) => (
             <div
               key={i}
               className={[
@@ -59,7 +90,7 @@ export function Pricing() {
         <div className="pricing-group">
           <div className="pricing-group-label">Laufend</div>
 
-          {PRICING.laufend.map((item, i) => (
+          {data.laufend.map((item, i) => (
             <div key={i} className="pricing-row">
               <div className="pricing-text">
                 <div className="pricing-name">{item.name}</div>

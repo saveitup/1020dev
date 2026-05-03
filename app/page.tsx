@@ -1,21 +1,5 @@
-import { Hero } from '@/components/Hero';
-import { Projects } from '@/components/Projects';
-import { Methode } from '@/components/Methode';
-import { Services } from '@/components/Services';
-import { Pricing } from '@/components/Pricing';
-import { FAQ } from '@/components/FAQ';
-import { Footer } from '@/components/Footer';
+import { Chooser } from '@/components/Chooser';
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Methode />
-      <Services />
-      <Projects />
-      <Pricing />
-      <FAQ />
-      <Footer />
-    </>
-  );
+  return <Chooser />;
 }

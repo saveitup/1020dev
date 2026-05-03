@@ -3,28 +3,45 @@
 import { useState } from 'react';
 import { FAQS } from '@/lib/data';
 
-export function FAQ() {
+type FaqItem = {
+  question: string;
+  plainAnswer: string;
+  htmlAnswer: string;
+};
+
+type FAQProps = {
+  faqs?: readonly FaqItem[];
+  marker?: string;
+  title?: React.ReactNode;
+  lede?: string;
+};
+
+export function FAQ({
+  faqs = FAQS,
+  marker = '05',
+  title = (
+    <>
+      Häufig gestellte <em>Fragen.</em>
+    </>
+  ),
+  lede = 'Was Kunden vor dem Erstgespräch wissen wollen — und die Antworten, die wir auch in Calls geben würden. Knapp, ehrlich, ohne Marketing-Filter.',
+}: FAQProps = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="chapter chapter-tinted" id="faq">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">05</span>
+          <span className="num">{marker}</span>
           <span className="slash">/</span>
           <span>FAQ</span>
         </div>
-        <h2 className="chapter-title">
-          Häufig gestellte <em>Fragen.</em>
-        </h2>
-        <p className="chapter-lede">
-          Was Kunden vor dem Erstgespräch wissen wollen — und die Antworten, die wir
-          auch in Calls geben würden. Knapp, ehrlich, ohne Marketing-Filter.
-        </p>
+        <h2 className="chapter-title">{title}</h2>
+        <p className="chapter-lede">{lede}</p>
       </div>
 
       <div className="faq-list">
-        {FAQS.map((q, i) => {
+        {faqs.map((q, i) => {
           const isOpen = openIndex === i;
           const num = String(i + 1).padStart(2, '0');
           return (
