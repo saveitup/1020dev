@@ -44,8 +44,10 @@ html, body {
   font-family: var(--font-dm-sans), -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
   font-feature-settings: "ss01", "cv11";
+}
+body {
+  overflow-x: clip;
 }
 
 body {
@@ -80,10 +82,10 @@ nav {
   top: 0;
   z-index: 50;
   width: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
   transition:
     background 0.35s ease,
     border-color 0.35s ease,
@@ -223,27 +225,10 @@ nav.is-scrolled .nav-cta:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 3rem;
   align-items: start;
   position: relative;
-}
-.hero-grid > .hero-text,
-.hero-grid > .hero-stage {
-  grid-column: 1;
-  grid-row: 1;
-}
-.hero-grid > .hero-text {
-  z-index: 2;
-  position: relative;
-  max-width: 52%;
-  padding-right: 3rem;
-  align-self: center;
-}
-.hero-grid > .hero-stage {
-  z-index: 1;
-  width: 100%;
-  align-self: stretch;
 }
 
 .hero-text {
@@ -421,19 +406,6 @@ h1 em, .hero-title em {
   overflow: hidden;
 }
 
-.selector-veil {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  background: linear-gradient(
-    to right,
-    var(--bg-0) 0%,
-    rgba(255, 255, 255, 0.95) 8%,
-    rgba(255, 255, 255, 0.55) 14%,
-    rgba(255, 255, 255, 0) 20%
-  );
-}
 
 .selector-panel {
   position: relative;
@@ -1723,16 +1695,10 @@ html.splash-skip body .hero-stage {
     padding: 4rem 1.4rem 4rem;
     gap: 3rem;
   }
-  .hero-grid > .hero-text,
-  .hero-grid > .hero-stage {
-    grid-row: auto;
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  .hero-grid > .hero-text {
-    max-width: none;
-    padding-right: 0;
-    margin-bottom: 2rem;
-  }
-  .selector-veil { display: none; }
   .hero-meta { margin-bottom: 2.4rem; }
   h1, .hero-title { margin-bottom: 2rem; }
   .hero-lede { margin-bottom: 2.4rem; }
