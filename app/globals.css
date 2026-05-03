@@ -245,17 +245,21 @@ nav.is-scrolled .nav-cta:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   position: relative;
 }
 
 .hero-text {
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   min-width: 0;
+  max-width: 560px;
+  position: relative;
+  z-index: 3;
 }
 
 .hero-meta {
@@ -405,13 +409,15 @@ h1 em, .hero-title em {
 
 /* ============== HERO INTERACTIVE SELECTOR ============== */
 .hero-stage {
-  position: relative;
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: end;
+  width: 72%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   min-width: 0;
-  align-self: center;
-  margin-top: 0;
+  z-index: 1;
   opacity: 0;
   animation: fadeUp 1s 0.5s forwards;
 }
@@ -420,11 +426,29 @@ h1 em, .hero-title em {
   position: relative;
   display: flex;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   background: var(--bg-1);
   border: 1px solid var(--line);
   overflow: hidden;
   isolation: isolate;
+}
+.hero-selector::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    var(--bg-0) 0%,
+    var(--bg-0) 35%,
+    rgba(255, 255, 255, 0.92) 48%,
+    rgba(255, 255, 255, 0) 65%
+  );
+}
+
+@media (max-width: 1200px) and (min-width: 921px) {
+  .hero-stage { width: 64%; }
 }
 .hero-selector::after {
   content: '';
@@ -454,9 +478,9 @@ h1 em, .hero-title em {
   margin: 0;
   padding: 0;
   cursor: pointer;
-  background-color: var(--bg-1);
+  background-color: #1a1626;
   border: 0;
-  border-right: 1px solid var(--line);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   outline: 0;
   font: inherit;
   color: inherit;
@@ -490,22 +514,17 @@ h1 em, .hero-title em {
 }
 
 .selector-image {
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.06);
+  transition: transform 0.7s cubic-bezier(.4, 0, .2, 1), object-position 0.7s cubic-bezier(.4, 0, .2, 1);
   z-index: 0;
   pointer-events: none;
   user-select: none;
 }
-
-.selector-panel:not(.is-active)::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.88);
-  z-index: 2;
-  pointer-events: none;
-  transition: background 0.5s ease;
-  backdrop-filter: blur(2px);
+.selector-panel.is-active .selector-image {
+  transform: scale(1);
+  object-position: left top;
 }
 
 .selector-panel.is-placeholder {
