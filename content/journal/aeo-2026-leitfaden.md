@@ -188,7 +188,7 @@ Im Zweifel: kostenloser [Audit](/web#audit) klärt in unter einer Stunde, ob die
 
 ### Was kostet AEO 2026?
 
-Reine AEO-Optimierung beginnt im DACH-Raum bei rund 400 € einmalig (FAQPage- und LocalBusiness-Schema, antwort-orientierte Inhaltsanpassung) und skaliert je nach Site-Komplexität auf 1.500–3.000 €. Plus laufendes Monitoring zwischen 20 € und 60 € pro Monat. Die [komplette Preisliste finden Sie hier](/web#preise).
+Reine AEO-Optimierung beginnt im DACH-Raum bei rund 400 € einmalig (FAQPage- und LocalBusiness-Schema, antwort-orientierte Inhaltsanpassung) und skaliert je nach Site-Komplexität auf 1.500–3.000 €. Plus laufendes Monitoring zwischen 20 € und 60 € pro Monat. Die [komplette Preisliste finden Sie hier](/web#preise). Wer Angebote mit vierstelligen Monatspauschalen vergleicht, sollte vorab den [Artikel zu AEO-Pricing-Modellen](/journal/aeo-leistbar-machen) lesen — die meisten Abo-Pakete passen für KMU strukturell nicht.
 
 ### Wie lange dauert es, bis ich Ergebnisse sehe?
 

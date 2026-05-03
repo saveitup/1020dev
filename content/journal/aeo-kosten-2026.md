@@ -115,6 +115,10 @@ Drei Dinge, die manchmal als „AEO" verkauft werden, aber nicht dazugehören:
 
 Bei Pricing-Vergleichen achten Sie darauf, dass diese drei Posten klar getrennt von echtem AEO-Aufwand verrechnet werden.
 
+## Vorsicht bei monatlichen Vierstellig-Pauschalen
+
+Im DACH-Markt sehen wir regelmäßig „AEO-/SEO-Pakete" mit 1.000–2.500 € pro Monat plus 12-Monats-Mindestlaufzeit. Im ersten Jahr 14.000–32.000 € — bei oft schwer spezifizierbarer monatlicher Leistung. Da der Großteil echter AEO-Arbeit einmaliges Setup ist (Schema, FAQPage, llms.txt, Inhalts-Refactoring) und laufende Optimierung sich auf 1–4 Stunden pro Monat reduziert, passt das Pricing-Modell für die meisten KMU strukturell nicht. Wir haben das Thema in einem [eigenen Artikel](/journal/aeo-leistbar-machen) aufgearbeitet — inklusive der drei Konstellationen, in denen ein Abo-Modell trotzdem Sinn ergibt.
+
 ## FAQ
 
 ### Lohnt sich AEO bei einem Marketing-Budget unter 5.000 € pro Jahr?
