@@ -412,7 +412,7 @@ h1 em, .hero-title em {
   grid-area: 1 / 1;
   align-self: center;
   justify-self: end;
-  width: 72%;
+  width: 82%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -426,7 +426,7 @@ h1 em, .hero-title em {
   position: relative;
   display: flex;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 17 / 8;
   background: var(--bg-1);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -441,14 +441,14 @@ h1 em, .hero-title em {
   background: linear-gradient(
     to right,
     var(--bg-0) 0%,
-    var(--bg-0) 35%,
-    rgba(255, 255, 255, 0.92) 48%,
-    rgba(255, 255, 255, 0) 65%
+    var(--bg-0) 32%,
+    rgba(255, 255, 255, 0.9) 46%,
+    rgba(255, 255, 255, 0) 62%
   );
 }
 
 @media (max-width: 1200px) and (min-width: 921px) {
-  .hero-stage { width: 64%; }
+  .hero-stage { width: 74%; }
 }
 .hero-selector::after {
   content: '';
