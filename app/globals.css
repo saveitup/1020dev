@@ -1538,6 +1538,80 @@ h1 em, .hero-title em {
   margin-top: 1.5rem;
 }
 
+/* ============== LEGAL (Impressum etc.) ============== */
+.legal {
+  position: relative;
+  z-index: 5;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 7rem 2.5rem;
+}
+.legal-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 4rem;
+}
+.legal-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.legal-h2 {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.legal p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(10, 10, 12, 0.82);
+  max-width: 65ch;
+}
+.legal a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+  transition: border-color 0.15s ease;
+}
+.legal a:hover { border-bottom-color: var(--accent); }
+.legal-dl {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 3fr);
+  gap: 0.6rem 2rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.legal-dl dt {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding-top: 0.25rem;
+}
+.legal-dl dd {
+  margin: 0;
+  color: rgba(10, 10, 12, 0.82);
+}
+.legal-back {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.84rem;
+}
+.legal-back a {
+  color: var(--muted);
+  border: none;
+}
+.legal-back a:hover { color: var(--accent); }
+
 /* ============== ANIMATIONS ============== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -1708,6 +1782,10 @@ html.splash-skip body .hero-stage {
 
   .hero-selector { aspect-ratio: 16 / 11; }
   .selector-panel { min-width: 38px; }
+
+  .legal { padding: 4rem 1.4rem; }
+  .legal-dl { grid-template-columns: 1fr; gap: 0.2rem 0; }
+  .legal-dl dt { padding-top: 1rem; }
   .selector-num { width: 34px; height: 34px; font-size: 0.7rem; }
   .selector-domain { font-size: 0.95rem; }
   .selector-label { padding: 0 0.85rem; gap: 0.7rem; }

@@ -54,14 +54,14 @@ export function Hero() {
       <div className="hero-grid">
         <div className="hero-text">
           <h1 className="hero-title">
-            Wir bauen, was Ihre Idee <em>verlangt.</em>
+            Sichtbar in Google. Zitiert von <em>KI.</em>
           </h1>
 
           <p className="hero-lede">
             Webentwicklung, SEO und Answer-Engine-Optimierung für KMU in Wien und ganz
-            Österreich. Manchmal ist das eine Website, die in <strong>Google rankt</strong>.
-            Manchmal ein Backend, das Ihnen die Arbeit abnimmt. Was im Vordergrund steht —{' '}
-            <strong>Design oder Funktion</strong> — entscheiden Sie. Wir bauen es.
+            Österreich. Wir bauen Websites, die in <strong>Google ranken</strong> und in{' '}
+            <strong>ChatGPT, Perplexity und Claude</strong> zitiert werden — plus Backends
+            und Automatisierungen, die Ihnen die Arbeit abnehmen.
           </p>
 
           <div className="hero-ctas">

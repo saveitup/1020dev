@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { SITE } from '@/lib/data';
 
 export function Footer() {
@@ -20,6 +21,7 @@ export function Footer() {
         <a href={SITE.bookingUrl} target="_blank" rel="noopener">
           cal.com/1020dev ↗
         </a>
+        <Link href="/impressum">Impressum</Link>
         <div className="footer-meta">© 2026 · {SITE.location}</div>
       </div>
     </footer>

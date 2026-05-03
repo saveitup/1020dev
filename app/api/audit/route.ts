@@ -5,6 +5,38 @@ export const dynamic = 'force-dynamic';
 
 const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6';
 
+// In-memory rate limit. Best-effort: serverless cold starts reset state and
+// each warm instance has its own bucket. Acceptable for the expected
+// traffic; switch to Upstash Ratelimit if abuse becomes real.
+const RATE_MAX = 5;
+const RATE_WINDOW_MS = 60_000;
+const RATE_BUCKETS = new Map<string, number[]>();
+
+function clientIp(req: NextRequest): string {
+  const fwd = req.headers.get('x-forwarded-for');
+  if (fwd) return fwd.split(',')[0].trim();
+  return req.headers.get('x-real-ip') || 'unknown';
+}
+
+function checkRateLimit(ip: string): { ok: boolean; retryAfter: number } {
+  const now = Date.now();
+  const stamps = (RATE_BUCKETS.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (stamps.length >= RATE_MAX) {
+    const retryAfter = Math.ceil((RATE_WINDOW_MS - (now - stamps[0])) / 1000);
+    RATE_BUCKETS.set(ip, stamps);
+    return { ok: false, retryAfter };
+  }
+  stamps.push(now);
+  RATE_BUCKETS.set(ip, stamps);
+  // Opportunistic GC: prune cold IPs every ~100 requests
+  if (RATE_BUCKETS.size > 500) {
+    for (const [k, v] of RATE_BUCKETS) {
+      if (v.length === 0 || now - v[v.length - 1] > RATE_WINDOW_MS) RATE_BUCKETS.delete(k);
+    }
+  }
+  return { ok: true, retryAfter: 0 };
+}
+
 interface AnthropicContentBlock {
   type: string;
   text?: string;
@@ -76,6 +108,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       { error: 'Server is not configured. ANTHROPIC_API_KEY is missing.' },
       { status: 500 }
+    );
+  }
+
+  const ip = clientIp(req);
+  const limit = checkRateLimit(ip);
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        error: `Zu viele Anfragen. Bitte in ${limit.retryAfter} Sekunden erneut versuchen.`,
+      },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(limit.retryAfter) },
+      }
     );
   }
 
