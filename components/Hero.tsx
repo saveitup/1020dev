@@ -96,7 +96,6 @@ export function Hero() {
               const cover = ref.images[0];
               const isActive = activeIndex === i;
               const isRevealed = revealed.includes(i);
-              const num = (i + 1).toString().padStart(2, '0');
 
               return (
                 <button
@@ -122,7 +121,6 @@ export function Hero() {
                 >
                   <span className="selector-shadow" aria-hidden="true" />
                   <span className="selector-label">
-                    <span className="selector-num">{num}</span>
                     <span className="selector-info">
                       <span className="selector-tag">{ref.tag}</span>
                       <span className="selector-domain">
