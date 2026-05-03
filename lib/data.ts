@@ -51,7 +51,10 @@ export const REFS = [
     domain: 'Clausl KI',
     href: null,
     tag: 'Arbeitsrecht · KI',
-    images: [],
+    images: [
+      { src: '/refs/clausl-1.jpg', alt: 'Clausl KI · Dashboard mit Arbeitsverhältnissen' },
+      { src: '/refs/clausl-2.jpg', alt: 'Clausl KI · Chat-Startseite' },
+    ],
   },
   {
     id: 'nicht-warten',
@@ -186,6 +189,7 @@ export const METHODE = [
     title: 'Anfrage & Audit',
     duration: 'Tag 1',
     desc: 'Schreiben Sie uns eine E-Mail oder vereinbaren Sie einen Termin. Sie schildern, was Sie brauchen und welche Beispiele Ihnen gefallen. Wir antworten zeitnah und legen, wenn möglich, mit der ersten Antwort gleich ein konkretes Angebot bei.',
+    cta: { label: 'E-Mail schreiben', href: 'mailto:hallo@1020.dev' },
   },
   {
     num: '02',

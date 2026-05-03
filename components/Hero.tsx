@@ -65,8 +65,8 @@ export function Hero() {
         </p>
 
         <div className="hero-ctas">
-          <a href="#audit" className="cta-primary">
-            Kostenlose Analyse starten <span className="arrow">→</span>
+          <a href={`mailto:${SITE.email}`} className="cta-primary">
+            E-Mail schreiben <span className="arrow">→</span>
           </a>
           <a href="#methode" className="cta-ghost">
             Wie wir arbeiten

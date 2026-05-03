@@ -5,7 +5,7 @@ export function Methode() {
     <section className="chapter" id="methode">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">02</span>
+          <span className="num">01</span>
           <span className="slash">/</span>
           <span>Methode</span>
         </div>
@@ -28,6 +28,11 @@ export function Methode() {
             <div className="row-body">
               <h3 className="row-title">{step.title}</h3>
               <p className="row-desc">{step.desc}</p>
+              {'cta' in step && step.cta && (
+                <a href={step.cta.href} className="row-cta">
+                  {step.cta.label} <span className="arrow">→</span>
+                </a>
+              )}
             </div>
           </article>
         ))}

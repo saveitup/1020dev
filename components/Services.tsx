@@ -5,7 +5,7 @@ export function Services() {
     <section className="chapter" id="leistungen">
       <div className="chapter-head">
         <div className="chapter-marker">
-          <span className="num">03</span>
+          <span className="num">02</span>
           <span className="slash">/</span>
           <span>Leistungen</span>
         </div>
