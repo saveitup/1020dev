@@ -180,6 +180,35 @@ export const PRICING = {
 } as const;
 
 // ============================================
+// Automation track — hero terminal demo
+// ============================================
+export const AUTOMATION_TERMINAL = {
+  title: 'workflow.lead-pipeline',
+  command: '$ 1020 run lead-pipeline',
+  lines: [
+    { tag: 'trigger',  value: 'inbound.email · sales@…' },
+    { tag: 'parse',    value: 'extract → name, company, intent' },
+    { tag: 'enrich',   value: 'claude-sonnet · classify priority' },
+    { tag: 'sync',     value: 'hubspot.contact.upsert' },
+    { tag: 'notify',   value: 'slack #sales · @account-owner' },
+  ],
+  status: 'done in 1.2s · 247 runs heute · Ø 1.4s',
+} as const;
+
+export const AUTOMATION_INTEGRATIONS = [
+  'Microsoft 365',
+  'Google Workspace',
+  'Slack',
+  'Notion',
+  'HubSpot',
+  'Stripe',
+  'Claude',
+  'OpenAI',
+  'Postgres',
+  'Supabase',
+] as const;
+
+// ============================================
 // Automation track — services
 // ============================================
 export const AUTOMATION_SERVICES = [

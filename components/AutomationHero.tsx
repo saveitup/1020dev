@@ -1,17 +1,18 @@
 import type { CSSProperties } from 'react';
-import { SITE } from '@/lib/data';
-
-const FLOW_STEPS = [
-  { tag: 'Trigger', label: 'Neue E-Mail · CRM-Update · Webhook · Cron' },
-  { tag: 'Logik', label: 'LLM-Analyse · Klassifikation · Datenanreicherung' },
-  { tag: 'Aktion', label: 'CRM-Eintrag · Slack-Nachricht · Dokument · Report' },
-] as const;
+import { AUTOMATION_INTEGRATIONS, AUTOMATION_TERMINAL, SITE } from '@/lib/data';
 
 export function AutomationHero() {
+  const t = AUTOMATION_TERMINAL;
+
   return (
-    <section className="hero" id="hero">
+    <section className="hero hero--automation" id="hero">
       <div className="hero-grid">
         <div className="hero-text">
+          <div className="hero-eyebrow">
+            <span className="dot" aria-hidden="true"></span>
+            <span>Automation · Custom Dev · AI-Integration</span>
+          </div>
+
           <h1 className="hero-title">
             Software, die <em>für Sie</em> arbeitet
           </h1>
@@ -44,30 +45,60 @@ export function AutomationHero() {
         </div>
 
         <div className="hero-stage">
-          <div className="flow-card" role="presentation">
-            <div className="flow-card-head">
-              <span className="flow-dot" aria-hidden="true"></span>
-              <span>Beispiel-Workflow</span>
+          <div className="terminal" role="presentation" aria-label="Beispiel-Workflow">
+            <div className="terminal-bar">
+              <span className="terminal-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span className="terminal-title">{t.title}</span>
+              <span className="terminal-status">
+                <span className="terminal-status-dot" aria-hidden="true"></span>
+                live
+              </span>
             </div>
-            <ol className="flow-list">
-              {FLOW_STEPS.map((step, i) => (
-                <li key={step.tag} className="flow-step" style={{ '--i': i } as CSSProperties}>
-                  <span className="flow-step-num">{String(i + 1).padStart(2, '0')}</span>
-                  <div className="flow-step-body">
-                    <span className="flow-step-tag">{step.tag}</span>
-                    <span className="flow-step-label">{step.label}</span>
-                  </div>
-                </li>
+
+            <div className="terminal-body">
+              <div
+                className="terminal-line terminal-prompt"
+                style={{ '--i': 0 } as CSSProperties}
+              >
+                <span className="terminal-cmd">{t.command}</span>
+              </div>
+
+              {t.lines.map((line, i) => (
+                <div
+                  key={line.tag}
+                  className="terminal-line"
+                  style={{ '--i': i + 1 } as CSSProperties}
+                >
+                  <span className="terminal-check" aria-hidden="true">✓</span>
+                  <span className="terminal-tag">{line.tag.padEnd(8, ' ')}</span>
+                  <span className="terminal-value">{line.value}</span>
+                </div>
               ))}
-            </ol>
-            <div className="flow-card-foot">
-              <span>End-to-End in 1–8 Wochen · EU-Hosting · DSGVO-konform</span>
+
+              <div
+                className="terminal-line terminal-status-line"
+                style={{ '--i': t.lines.length + 1 } as CSSProperties}
+              >
+                <span className="terminal-arrow" aria-hidden="true">▸</span>
+                <span>{t.status}</span>
+                <span className="terminal-cursor" aria-hidden="true"></span>
+              </div>
             </div>
           </div>
 
-          <div className="hero-stage-label">
-            <span className="dot" aria-hidden="true"></span>
-            <span>Automation · Custom Dev · AI-Integration</span>
+          <div className="integrations">
+            <span className="integrations-label">Integriert mit</span>
+            <ul className="integrations-list">
+              {AUTOMATION_INTEGRATIONS.map((name) => (
+                <li key={name} className="integration-chip">
+                  {name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
