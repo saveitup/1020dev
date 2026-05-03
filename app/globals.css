@@ -1235,6 +1235,127 @@ h1 em, .hero-title em {
   align-items: center;
 }
 
+/* ============== AUDIT MODAL ============== */
+.audit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 6, 21, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: modalFadeIn 0.18s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.audit-modal {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(180deg, #0a1230 0%, #07112e 100%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 2.4rem 2rem 2rem;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(129, 140, 248, 0.1),
+    0 0 80px rgba(129, 140, 248, 0.08);
+  animation: modalSlideUp 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.audit-modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+.audit-modal-close:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+.audit-modal-close:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.audit-modal-tag {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.audit-modal-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 0.6rem;
+  line-height: 1.25;
+}
+.audit-modal-sub {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 1.6rem;
+}
+.audit-modal-sub strong {
+  color: var(--text);
+  font-weight: 500;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.92rem;
+}
+.audit-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.audit-modal-btn {
+  justify-content: center;
+  padding: 1.05rem 1.5rem;
+}
+.audit-modal-status {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+}
+.audit-modal-error {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+}
+.audit-modal-hint {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--dim);
+  margin: 1rem 0 0;
+  line-height: 1.5;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .audit-modal {
+    padding: 2rem 1.4rem 1.6rem;
+  }
+  .audit-modal-title {
+    font-size: 1.3rem;
+  }
+}
+
 /* ============== ROWS — vertical editorial rows used by Methode + Services ============== */
 .rows {
   border-top: 1px solid var(--line);

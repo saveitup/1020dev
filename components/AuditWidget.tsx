@@ -10,7 +10,6 @@ interface AuditSuccess {
 }
 
 const STATUS_MESSAGES = [
-  (url: string) => `Prüfe E-Mail-Adresse`,
   (url: string) => `Lade ${url}`,
   () => `Suche nach Erwähnungen im Web`,
   () => `Prüfe Schema.org-Markup`,
@@ -26,8 +25,11 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
   const [status, setStatus] = useState('');
   const [success, setSuccess] = useState<AuditSuccess | null>(null);
   const [error, setError] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [pendingDomain, setPendingDomain] = useState('');
   const tickerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     return () => {
@@ -41,32 +43,75 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
     }
   }, [success]);
 
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+      const t = setTimeout(() => emailInputRef.current?.focus(), 80);
+      return () => {
+        document.body.style.overflow = '';
+        clearTimeout(t);
+      };
+    }
+  }, [modalOpen]);
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !busy) closeModal();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalOpen, busy]);
+
   const cleanUrl = (raw: string) =>
     raw.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const closeModal = () => {
+    if (busy) return;
+    setModalOpen(false);
+    setError('');
+    setEmail('');
+  };
+
+  const onDomainSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const target = cleanUrl(url);
+    if (!target) return;
+    setPendingDomain(target);
+    setError('');
+
+    fetch('/api/audit/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: target }),
+      keepalive: true,
+    }).catch(() => {});
+
+    setModalOpen(true);
+  };
+
+  const onEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const mail = email.trim().toLowerCase();
-    if (!target || !mail) return;
+    if (!mail || !pendingDomain) return;
 
     setBusy(true);
-    setSuccess(null);
     setError('');
-    setStatus(STATUS_MESSAGES[0](target));
+    setStatus(STATUS_MESSAGES[0](pendingDomain));
 
     let i = 0;
     if (tickerRef.current) clearInterval(tickerRef.current);
     tickerRef.current = setInterval(() => {
       i = (i + 1) % STATUS_MESSAGES.length;
-      setStatus(STATUS_MESSAGES[i](target));
+      setStatus(STATUS_MESSAGES[i](pendingDomain));
     }, 4500);
 
     try {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: target, email: mail }),
+        body: JSON.stringify({ url: pendingDomain, email: mail }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -76,6 +121,8 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       }
 
       setSuccess(data as AuditSuccess);
+      setModalOpen(false);
+      setEmail('');
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Es ist ein Fehler aufgetreten.';
       setError(msg);
@@ -104,9 +151,9 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             Wie sichtbar ist Ihre Website in <em>KI-Antworten?</em>
           </h2>
           <p className="chapter-lede">
-            Geben Sie Ihre Domain und E-Mail ein. Wir prüfen in Echtzeit, wie ChatGPT,
-            Perplexity und Claude Ihre Inhalte sehen — und senden Ihnen den Bericht mit drei
-            konkreten Hebeln direkt in den Posteingang.
+            Geben Sie eine Domain ein. Wir prüfen in Echtzeit, wie ChatGPT, Perplexity und
+            Claude Ihre Inhalte sehen — und liefern drei konkrete Hebel, die Sie ab morgen
+            umsetzen können.
           </p>
         </div>
       )}
@@ -118,13 +165,13 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             Live-Analyse
           </span>
           <span className="hero-audit-hint">
-            Bericht direkt per E-Mail. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
+            Domain eingeben. KI prüft Sichtbarkeit in ChatGPT, Perplexity, Claude.
           </span>
         </div>
       )}
 
       {!success && (
-        <form className="audit-form" onSubmit={onSubmit}>
+        <form className="audit-form" onSubmit={onDomainSubmit}>
           <div className="audit-input-wrap">
             <span className="audit-prefix">https://</span>
             <input
@@ -133,58 +180,15 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
               placeholder="ihre-domain.at"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              disabled={busy}
               autoComplete="off"
               spellCheck={false}
               aria-label="Domain"
             />
           </div>
-          <div className="audit-input-wrap">
-            <span className="audit-prefix audit-prefix-mail" aria-hidden="true">@</span>
-            <input
-              type="email"
-              className="audit-input"
-              placeholder="ihre@e-mail.at"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={busy}
-              autoComplete="email"
-              spellCheck={false}
-              required
-              aria-label="E-Mail-Adresse"
-            />
-          </div>
-          <button type="submit" className="audit-btn" disabled={busy || !url.trim() || !email.trim()}>
-            {busy ? (
-              <>
-                <span className="spinner"></span>
-                <span>Analysiere…</span>
-              </>
-            ) : (
-              <>
-                Bericht anfordern <span className="arrow">→</span>
-              </>
-            )}
+          <button type="submit" className="audit-btn" disabled={!url.trim()}>
+            Analyse starten <span className="arrow">→</span>
           </button>
-          <p className="audit-hint">
-            Der Bericht wird an die angegebene Adresse gesendet. Keine Newsletter, keine
-            Weitergabe an Dritte.
-          </p>
         </form>
-      )}
-
-      {busy && status && (
-        <div className="audit-status">
-          <span className="status-dot"></span>
-          {status}
-          <span className="cursor">_</span>
-        </div>
-      )}
-
-      {error && (
-        <div className="audit-error">
-          <strong>Hoppla.</strong> {error}
-        </div>
       )}
 
       {success && (
@@ -211,6 +215,92 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
             >
               Weitere Domain prüfen
             </button>
+          </div>
+        </div>
+      )}
+
+      {modalOpen && (
+        <div
+          className="audit-modal-backdrop"
+          onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="audit-modal-title"
+        >
+          <div className="audit-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="audit-modal-close"
+              onClick={closeModal}
+              disabled={busy}
+              aria-label="Schließen"
+            >
+              ×
+            </button>
+
+            <div className="audit-modal-tag">Schritt 2 / 2</div>
+            <h3 id="audit-modal-title" className="audit-modal-title">
+              Wohin senden wir den Bericht?
+            </h3>
+            <p className="audit-modal-sub">
+              Wir prüfen <strong>{pendingDomain}</strong> und schicken Ihnen die vollständige
+              Analyse — Score, Findings und drei konkrete Hebel — direkt in den Posteingang.
+            </p>
+
+            <form className="audit-modal-form" onSubmit={onEmailSubmit}>
+              <div className="audit-input-wrap">
+                <span className="audit-prefix audit-prefix-mail" aria-hidden="true">@</span>
+                <input
+                  ref={emailInputRef}
+                  type="email"
+                  className="audit-input"
+                  placeholder="ihre@e-mail.at"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={busy}
+                  autoComplete="email"
+                  spellCheck={false}
+                  required
+                  aria-label="E-Mail-Adresse"
+                />
+              </div>
+              <button
+                type="submit"
+                className="audit-btn audit-modal-btn"
+                disabled={busy || !email.trim()}
+              >
+                {busy ? (
+                  <>
+                    <span className="spinner"></span>
+                    <span>Analysiere…</span>
+                  </>
+                ) : (
+                  <>
+                    Bericht senden <span className="arrow">→</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {busy && status && (
+              <div className="audit-status audit-modal-status">
+                <span className="status-dot"></span>
+                {status}
+                <span className="cursor">_</span>
+              </div>
+            )}
+
+            {error && (
+              <div className="audit-error audit-modal-error">
+                <strong>Hoppla.</strong> {error}
+              </div>
+            )}
+
+            {!busy && (
+              <p className="audit-modal-hint">
+                Keine Newsletter, keine Weitergabe an Dritte. Audit dauert ca. 30 Sekunden.
+              </p>
+            )}
           </div>
         </div>
       )}
