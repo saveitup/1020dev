@@ -51,15 +51,6 @@ export function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-text">
-        <div className="hero-meta">
-          <span className="pulse" aria-hidden="true"></span>
-          <span className="available">Verfügbar · Q4 2026</span>
-          <span className="sep" aria-hidden="true"></span>
-          <span>{SITE.location}</span>
-          <span className="sep" aria-hidden="true"></span>
-          <span>Studio · Web · AEO</span>
-        </div>
-
         <h1 className="hero-title">
           Wir bauen, was Ihre Idee <em>verlangt.</em>
         </h1>
