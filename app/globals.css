@@ -79,15 +79,56 @@ nav {
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+nav.is-scrolled {
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(79, 70, 229, 0.96) 100%);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(79, 70, 229, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.6rem 2.5rem;
   max-width: var(--max);
   margin: 0 auto;
-  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.0) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  transition: padding 0.35s ease;
+}
+nav.is-scrolled .nav-inner {
+  padding: 0.95rem 2.5rem;
+}
+
+/* Scrolled state — invert wordmark + links to white */
+nav.is-scrolled .wordmark .num { color: #fff; }
+nav.is-scrolled .wordmark .dot {
+  color: #fff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+nav.is-scrolled .wordmark .tld { color: rgba(255, 255, 255, 0.7); }
+nav.is-scrolled .nav-links a { color: rgba(255, 255, 255, 0.78); }
+nav.is-scrolled .nav-links a:hover { color: #fff; }
+nav.is-scrolled .nav-links a::after { background: #fff; }
+nav.is-scrolled .nav-cta {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+nav.is-scrolled .nav-cta:hover {
+  background: #fff;
+  color: var(--accent);
+  border-color: #fff;
 }
 
 .wordmark {
@@ -309,6 +350,18 @@ h1 em, .hero-title em {
 .cta-primary .arrow { transition: transform 0.2s; }
 .cta-primary:hover .arrow { transform: translateX(3px); }
 
+.cta-primary--accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-0);
+  box-shadow: 0 0 0 1px var(--accent), 0 6px 20px var(--accent-glow);
+}
+.cta-primary--accent:hover {
+  background: var(--text);
+  border-color: var(--text);
+  box-shadow: 0 0 0 1px var(--text), 0 6px 20px rgba(10, 10, 12, 0.18);
+}
+
 .cta-ghost {
   font-family: var(--font-dm-mono), monospace;
   font-size: 0.78rem;
@@ -376,9 +429,9 @@ h1 em, .hero-title em {
   background: linear-gradient(
     to right,
     var(--bg-0) 0%,
-    rgba(255, 255, 255, 0.92) 18%,
-    rgba(255, 255, 255, 0.4) 38%,
-    rgba(255, 255, 255, 0) 55%
+    rgba(255, 255, 255, 0.95) 8%,
+    rgba(255, 255, 255, 0.55) 14%,
+    rgba(255, 255, 255, 0) 20%
   );
 }
 
@@ -1661,7 +1714,8 @@ html.splash-skip body .hero-stage {
 
 /* ============== MOBILE ============== */
 @media (max-width: 920px) {
-  nav { padding: 1.2rem 1.4rem; }
+  .nav-inner { padding: 1.2rem 1.4rem; }
+  nav.is-scrolled .nav-inner { padding: 0.85rem 1.4rem; }
   .nav-links { display: none; }
   .wordmark { font-size: 1.2rem; }
 

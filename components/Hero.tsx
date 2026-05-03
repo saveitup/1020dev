@@ -68,8 +68,13 @@ export function Hero() {
             <a href={`mailto:${SITE.email}`} className="cta-primary">
               E-Mail schreiben <span className="arrow">→</span>
             </a>
-            <a href="#methode" className="cta-ghost">
-              Wie wir arbeiten
+            <a
+              href={SITE.bookingUrl}
+              target="_blank"
+              rel="noopener"
+              className="cta-primary cta-primary--accent"
+            >
+              Termin vereinbaren <span className="arrow">→</span>
             </a>
           </div>
 
