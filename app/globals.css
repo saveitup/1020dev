@@ -441,9 +441,9 @@ h1 em, .hero-title em {
   background: linear-gradient(
     to right,
     var(--bg-0) 0%,
-    var(--bg-0) 24%,
-    rgba(255, 255, 255, 0.78) 42%,
-    rgba(255, 255, 255, 0) 60%
+    rgba(255, 255, 255, 0.92) 18%,
+    rgba(255, 255, 255, 0.55) 38%,
+    rgba(255, 255, 255, 0) 56%
   );
 }
 
@@ -552,9 +552,10 @@ h1 em, .hero-title em {
   left: 0;
   right: 0;
   bottom: 1.1rem;
-  padding: 0 1rem 0 2.2rem;
+  padding: 0 1.6rem;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.85rem;
   z-index: 3;
   pointer-events: none;
@@ -2790,7 +2791,7 @@ html.splash-skip body .hero-stage {
     transform: none !important;
   }
   .selector-domain { font-size: 0.95rem; }
-  .selector-label { padding: 0 1rem; bottom: 1rem; }
+  .selector-label { padding: 0 1rem; bottom: 1rem; justify-content: flex-start; }
 
   .legal { padding: 4rem 1.4rem; }
   .legal-dl { grid-template-columns: 1fr; gap: 0.2rem 0; }
