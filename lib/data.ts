@@ -181,10 +181,30 @@ export const SERVICES = [
 // Methode
 // ============================================
 export const METHODE = [
-  { num: '01', title: 'Audit', duration: '≈ 1 Tag', desc: 'Bestandsaufnahme Ihrer Website auf SEO-, AEO- und Performance-Ebene. Konkrete Findings, keine Allgemeinplätze.' },
-  { num: '02', title: 'Strategie', duration: '≈ 1 Woche', desc: 'Gemeinsam priorisieren wir, welche Hebel am meisten bewegen — Web-Relaunch, AEO-Layer oder Automation-Workflows.' },
-  { num: '03', title: 'Build', duration: '3–8 Wochen', desc: 'Implementierung mit Next.js, strukturierten Daten und Automation-Stack. Wöchentliche Reviews, kein Black Box.' },
-  { num: '04', title: 'Monitoring', duration: 'Laufend', desc: 'Monatliches Reporting: Google-Rankings, AEO-Zitationen in ChatGPT/Perplexity, Performance. Iterativ.' },
+  {
+    num: '01',
+    title: 'Anfrage & Audit',
+    duration: 'Tag 1',
+    desc: 'Schreiben Sie uns eine E-Mail oder vereinbaren Sie einen Termin. Sie schildern, was Sie brauchen und welche Beispiele Ihnen gefallen. Wir antworten zeitnah und legen, wenn möglich, mit der ersten Antwort gleich ein konkretes Angebot bei.',
+  },
+  {
+    num: '02',
+    title: 'Strategie',
+    duration: 'Erste Woche',
+    desc: 'Nehmen Sie das Angebot an, erhalten Sie innerhalb der ersten Woche drei Entwürfe — Layout, Tonalität, Struktur. Sie wählen die Richtung, wir verfeinern sie gemeinsam.',
+  },
+  {
+    num: '03',
+    title: 'Build',
+    duration: 'Folgende Wochen',
+    desc: 'Implementierung mit Next.js, strukturierten Daten und Automation-Stack. Wir bleiben mit Ihnen im regelmäßigen Kontakt, damit das Ergebnis Ihren Erwartungen bestmöglich entspricht — keine Überraschungen am Ende.',
+  },
+  {
+    num: '04',
+    title: 'Monitoring',
+    duration: 'Ab Übergabe',
+    desc: 'Tag für Tag wird die Performance Ihrer Site gemessen — Google-Rankings, AEO-Zitationen in ChatGPT, Perplexity und Claude, Core Web Vitals. So sehen Sie den tatsächlichen Output, nicht bloß Versprechen.',
+  },
 ] as const;
 
 // ============================================
