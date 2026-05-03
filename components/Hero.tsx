@@ -54,7 +54,7 @@ export function Hero() {
       <div className="hero-grid">
         <div className="hero-text">
           <h1 className="hero-title">
-            Sichtbar in Google. Zitiert von <em>KI.</em>
+            Sichtbar in <em>Google</em> &amp; zitiert von <em>KI</em>
           </h1>
 
           <p className="hero-lede">
