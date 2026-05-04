@@ -1,0 +1,18 @@
+Field,Value
+Campaign,1020.dev | Search | Wien
+Campaign type,Search
+Status,Paused
+Daily budget,20.00
+Currency,EUR
+Bid strategy type,Maximize clicks
+Maximum CPC limit,2.00
+Networks,Search Network only (Google.com)
+Search Partners,No
+Display Network,No
+Languages,German
+Locations,"Wien, Austria + 30km radius"
+Location targeting,Presence
+Ad rotation,Optimize
+Ad schedule,"Mon-Fri 07:00-21:00; Sat 09:00-18:00"
+Device bid adjustment (Mobile),-10%
+Conversion goal,Account-default (Erstgespräch + Audit)

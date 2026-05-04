@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { DM_Sans, DM_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
+import { GoogleTag } from '@/components/GoogleTag';
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
 import { WebsiteSchema } from '@/components/WebsiteSchema';
 import { SITE } from '@/lib/data';
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
       </head>
       <body>
+        <GoogleTag />
         <LocalBusinessSchema />
         <WebsiteSchema />
         <Splash />

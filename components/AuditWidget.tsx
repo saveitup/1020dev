@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SITE } from '@/lib/data';
+import { trackAuditCompleted } from '@/lib/analytics';
 
 interface AuditSuccess {
   ok: true;
@@ -184,6 +185,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       setSuccess(data as AuditSuccess);
       setModalOpen(false);
       setEmail('');
+      trackAuditCompleted(pendingDomain);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Es ist ein Fehler aufgetreten.';
       setError(msg);
