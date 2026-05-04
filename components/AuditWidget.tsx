@@ -234,7 +234,7 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
       {!success && (
         <>
           <form className="audit-form" onSubmit={onDomainSubmit}>
-            <div className="audit-input-wrap">
+            <div className="audit-input-wrap audit-input-wrap--inline">
               <span className="audit-prefix">https://</span>
               <input
                 type="text"
@@ -248,19 +248,23 @@ export function AuditWidget({ compact = false }: { compact?: boolean } = {}) {
                 aria-label="Domain"
                 aria-describedby={compact ? 'audit-domain-hint' : undefined}
               />
+              <button
+                type="submit"
+                className="audit-btn audit-btn--inline"
+                disabled={prelude || !url.trim()}
+              >
+                {prelude ? (
+                  <>
+                    <span className="spinner"></span>
+                    <span>{preludeStep >= REPORT_STEP_INDEX ? 'Bericht erstellen…' : 'KI denkt…'}</span>
+                  </>
+                ) : (
+                  <>
+                    Analyse starten <span className="arrow">→</span>
+                  </>
+                )}
+              </button>
             </div>
-            <button type="submit" className="audit-btn" disabled={prelude || !url.trim()}>
-              {prelude ? (
-                <>
-                  <span className="spinner"></span>
-                  <span>{preludeStep >= REPORT_STEP_INDEX ? 'Bericht erstellen…' : 'KI denkt…'}</span>
-                </>
-              ) : (
-                <>
-                  Analyse starten <span className="arrow">→</span>
-                </>
-              )}
-            </button>
           </form>
 
           {prelude && (

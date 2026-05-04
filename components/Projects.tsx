@@ -27,23 +27,16 @@ export function Projects() {
           const inner = (
             <>
               <div className="project-thumb">
-                {ref.images.length > 0 ? (
-                  ref.images.map((img, i) => (
-                    <Image
-                      key={i}
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      sizes="(max-width: 920px) 80vw, 460px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  ))
-                ) : (
-                  <div className="project-thumb-placeholder">
-                    <span className="note">Screenshot folgt</span>
-                    <span className="name">{ref.domain}</span>
-                  </div>
-                )}
+                {ref.screenshots.map((img, i) => (
+                  <Image
+                    key={i}
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 920px) 80vw, 460px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                ))}
               </div>
               <div className="project-meta">
                 <span className="project-tag">{ref.tag}</span>

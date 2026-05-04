@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="1020.dev">
+  <title>1020.dev</title>
+  <defs>
+    <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g font-family="'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-weight="600" letter-spacing="-1.7">
+    <text x="0" y="46" font-size="44" fill="#0A0A0C">1020</text>
+    <circle cx="103" cy="42" r="4.4" fill="#4F46E5" filter="url(#dotGlow)"/>
+    <text x="112" y="46" font-size="37" font-weight="400" letter-spacing="-0.7" fill="rgba(10,10,12,0.62)">dev</text>
+  </g>
+</svg>

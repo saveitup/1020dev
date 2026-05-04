@@ -5,20 +5,18 @@ import { useEffect, useRef, useState } from 'react';
 import { REFS, SITE } from '@/lib/data';
 import { AuditWidget } from '@/components/AuditWidget';
 
-const HERO_REFS = REFS.filter((ref) => ref.images.length > 0);
+const HERO_REFS = REFS;
 
-const ENTER_STAGGER = 110;
-const AUTO_INTERVAL = 3800;
+const AUTO_INTERVAL = 3000;
 const RESUME_DELAY = 2500;
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [revealed, setRevealed] = useState<number[]>([]);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
-  const [userPaused, setUserPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const selectorRef = useRef<HTMLDivElement>(null);
+  const prevTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -28,79 +26,27 @@ export function Hero() {
     return () => mq.removeEventListener('change', update);
   }, []);
 
-  useEffect(() => {
-    const container = selectorRef.current;
-    if (!container) return;
-    // Only act when the container itself is scrollable (mobile carousel).
-    // Using scrollIntoView would scroll the whole page on desktop where
-    // overflow is hidden — the browser walks up to find a scrollable
-    // ancestor. scrollTo on the container is scoped.
-    if (container.scrollWidth <= container.clientWidth) return;
-    const panel = container.children[activeIndex] as HTMLElement | undefined;
-    if (!panel) return;
-    const target = panel.offsetLeft - (container.clientWidth - panel.clientWidth) / 2;
-    container.scrollTo({ left: target, behavior: 'smooth' });
-  }, [activeIndex]);
-
-  // Cursor-follow glow: track mouse position over the selector and
-  // expose it as CSS variables so a pseudo-element can follow.
-  useEffect(() => {
-    const container = selectorRef.current;
-    if (!container) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let raf: number | null = null;
-    let x = 0;
-    let y = 0;
-
-    const apply = () => {
-      raf = null;
-      container.style.setProperty('--cursor-x', `${x}px`);
-      container.style.setProperty('--cursor-y', `${y}px`);
-    };
-
-    const onMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      x = e.clientX - rect.left;
-      y = e.clientY - rect.top;
-      if (raf == null) raf = requestAnimationFrame(apply);
-    };
-    const onLeave = () => {
-      container.style.removeProperty('--cursor-x');
-      container.style.removeProperty('--cursor-y');
-    };
-
-    container.addEventListener('mousemove', onMove);
-    container.addEventListener('mouseleave', onLeave);
-    return () => {
-      container.removeEventListener('mousemove', onMove);
-      container.removeEventListener('mouseleave', onLeave);
-      if (raf != null) cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    HERO_REFS.forEach((_, i) => {
-      timers.push(setTimeout(() => setRevealed((prev) => [...prev, i]), ENTER_STAGGER * i));
+  const advance = () => {
+    setActiveIndex((cur) => {
+      setPrevIndex(cur);
+      return (cur + 1) % HERO_REFS.length;
     });
-    return () => timers.forEach(clearTimeout);
-  }, []);
+  };
 
   useEffect(() => {
-    if (paused || userPaused || reduceMotion) return;
-    const id = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % HERO_REFS.length);
-    }, AUTO_INTERVAL);
+    if (paused || reduceMotion) return;
+    const id = setInterval(advance, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [paused, userPaused, reduceMotion]);
+  }, [paused, reduceMotion]);
 
-  const handleSelect = (index: number) => {
-    setActiveIndex(index);
-    setPaused(true);
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setPaused(false), RESUME_DELAY);
-  };
+  useEffect(() => {
+    if (prevIndex === null) return;
+    if (prevTimer.current) clearTimeout(prevTimer.current);
+    prevTimer.current = setTimeout(() => setPrevIndex(null), 1100);
+    return () => {
+      if (prevTimer.current) clearTimeout(prevTimer.current);
+    };
+  }, [prevIndex, activeIndex]);
 
   const handleEnter = () => {
     setPaused(true);
@@ -111,6 +57,8 @@ export function Hero() {
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     resumeTimer.current = setTimeout(() => setPaused(false), RESUME_DELAY);
   };
+
+  const active = HERO_REFS[activeIndex];
 
   return (
     <section className="hero" id="hero">
@@ -148,77 +96,63 @@ export function Hero() {
         </div>
 
         <div className="hero-stage">
-          <div
-            className="hero-selector"
-            ref={selectorRef}
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-            onTouchStart={handleEnter}
-            onTouchEnd={handleLeave}
-            role="group"
-            aria-label="Aktuelle Arbeiten"
+          <a
+            href={active.href ?? undefined}
+            target={active.href ? '_blank' : undefined}
+            rel={active.href ? 'noopener' : undefined}
+            className="hero-slideshow-link"
+            aria-label={
+              active.href ? `${active.domain} öffnen (neuer Tab)` : undefined
+            }
+            aria-disabled={active.href ? undefined : true}
+            tabIndex={active.href ? undefined : -1}
           >
-            {HERO_REFS.map((ref, i) => {
-              const cover = ref.images[0];
-              const isActive = activeIndex === i;
-              const isRevealed = revealed.includes(i);
-
-              return (
-                <button
-                  key={ref.id}
-                  type="button"
-                  className={[
-                    'selector-panel',
-                    isActive ? 'is-active' : '',
-                    !cover ? 'is-placeholder' : '',
-                    isRevealed ? 'is-in' : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                  onClick={() => handleSelect(i)}
-                  aria-pressed={isActive}
-                  aria-label={`${ref.domain} — ${ref.tag}`}
-                >
-                  {cover && (
-                    <Image
-                      src={cover.src}
-                      // Decorative: button has aria-label, screen readers
-                      // ignore img alt inside labelled buttons. Empty alt
-                      // prevents double announcement.
-                      alt=""
-                      fill
-                      sizes="(max-width: 920px) 86vw, 25vw"
-                      priority={i === 0}
-                      className="selector-image"
-                    />
-                  )}
-                  <span className="selector-shadow" aria-hidden="true" />
-                  <span className="selector-label">
-                    <span className="selector-domain">
-                      {ref.domain}
-                      {ref.href && <span className="selector-ext" aria-hidden="true">↗</span>}
+            <div
+              className="hero-slideshow"
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+              onTouchStart={handleEnter}
+              onTouchEnd={handleLeave}
+              role="group"
+              aria-label={`Aktuelle Arbeiten — ${active.domain}, ${active.tag}`}
+              aria-live="polite"
+            >
+              {HERO_REFS.map((ref, i) => {
+                const cls = [
+                  'slideshow-slide',
+                  activeIndex === i ? 'is-active' : '',
+                  prevIndex === i ? 'is-leaving' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ');
+                return (
+                  <span
+                    key={ref.id}
+                    className={cls}
+                    aria-hidden={activeIndex !== i}
+                  >
+                    <span className={`slideshow-card slideshow-card--${ref.id}`}>
+                      <Image
+                        src={ref.logo.src}
+                        alt={ref.logo.alt}
+                        fill
+                        sizes="(max-width: 920px) 70vw, 25vw"
+                        priority={i === 0}
+                        className="slideshow-logo"
+                      />
+                    </span>
+                    <span className="slideshow-meta" aria-hidden="true">
+                      <span className="slideshow-tag">{ref.tag}</span>
+                      <span className="slideshow-domain">
+                        {ref.domain}
+                        {ref.href && <span className="slideshow-ext">↗</span>}
+                      </span>
                     </span>
                   </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="hero-stage-label">
-            <span className="dot" aria-hidden="true"></span>
-            <span>
-              Aktuelle Arbeiten · {HERO_REFS.length} Projekte · {activeIndex + 1}/{HERO_REFS.length}
-            </span>
-            <button
-              type="button"
-              className="hero-stage-toggle"
-              onClick={() => setUserPaused((p) => !p)}
-              aria-pressed={userPaused}
-              aria-label={userPaused ? 'Slideshow fortsetzen' : 'Slideshow pausieren'}
-            >
-              {userPaused ? 'Play' : 'Pause'}
-            </button>
-          </div>
+                );
+              })}
+            </div>
+          </a>
         </div>
       </div>
 

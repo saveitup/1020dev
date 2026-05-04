@@ -7,7 +7,11 @@ export const REFS = [
     domain: 'asamer.cz',
     href: 'https://asamer.cz',
     tag: 'Industrie · CEE',
-    images: [
+    logo: {
+      src: '/refs/logos/asamer.svg',
+      alt: 'Logo asamer.cz — Industriedienstleister und Maschinenhandel für den CEE-Raum',
+    },
+    screenshots: [
       {
         src: '/refs/asamer-1.jpg',
         alt: 'asamer.cz — Industriedienstleister und Maschinenhandel für den CEE-Raum, Hero-Section der Website',
@@ -23,7 +27,11 @@ export const REFS = [
     domain: 'zeilinger-metallbau.at',
     href: 'https://zeilinger-metallbau.at',
     tag: 'Metallbau · Wien',
-    images: [
+    logo: {
+      src: '/refs/logos/zeilinger.png',
+      alt: 'Logo Metallbau Zeilinger — Wiener Metallbau-Betrieb seit 1516',
+    },
+    screenshots: [
       {
         src: '/refs/zeilinger-1.jpg',
         alt: 'zeilinger-metallbau.at — Metallbau-Betrieb in Wien, Hero-Section mit Werkstattaufnahme',
@@ -39,7 +47,11 @@ export const REFS = [
     domain: 'alpenbroker.com',
     href: 'https://alpenbroker.com',
     tag: 'Aktien · AT',
-    images: [
+    logo: {
+      src: '/refs/logos/alpenbroker.svg',
+      alt: 'Logo alpenbroker.com — Aktien- und Börsen-Lernplattform aus Österreich',
+    },
+    screenshots: [
       {
         src: '/refs/alpenbroker-1.jpg',
         alt: 'alpenbroker.com — Aktien- und Börsen-Lernplattform aus Österreich, Hero-Section mit Modulvorschau',
@@ -55,7 +67,11 @@ export const REFS = [
     domain: 'Clausl KI',
     href: null,
     tag: 'Arbeitsrecht · KI',
-    images: [
+    logo: {
+      src: '/refs/logos/clausl.svg',
+      alt: 'Logo Clausl KI — KI-Tool für österreichisches Arbeitsrecht',
+    },
+    screenshots: [
       {
         src: '/refs/clausl-1.png',
         alt: 'Clausl KI — KI-Tool für österreichisches Arbeitsrecht, Dashboard mit Übersicht der Arbeitsverhältnisse',
