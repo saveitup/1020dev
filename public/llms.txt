@@ -4,7 +4,7 @@
 
 ## Wer wir sind
 
-1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
+1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Inhaberin: Maximilian Asamer als Einzelunternehmen. Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
 
 ## Was wir machen
 
@@ -28,7 +28,7 @@ Alle Preise netto, exkl. 20 % USt. Audit und Erstgespräch immer kostenlos.
 ## Methode
 
 1. **Audit** (≈ 1 Tag) — Bestandsaufnahme: SEO, AEO, Performance.
-2. **Strategie** (≈ 1 Woche) — Priorisierung der Hebel.
+2. **Strategie** (≈ 1 Woche) — Priorisierung der Hebel, drei Entwürfe für Layout und Tonalität.
 3. **Build** (3–8 Wochen) — Implementierung mit wöchentlichen Reviews.
 4. **Monitoring** (laufend) — Monatliches Reporting inklusive AI-Zitations-Check.
 
@@ -38,12 +38,41 @@ Alle Preise netto, exkl. 20 % USt. Audit und Erstgespräch immer kostenlos.
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
 - [alpenbroker.com](https://alpenbroker.com) — Aktien-Lernplattform, Österreich
 
+## Journal — AEO und Answer-Engine-Optimization
+
+- [AEO 2026: Der Leitfaden für KMU](https://1020.dev/journal/aeo-2026-leitfaden) — Was AEO ist, welche Hebel funktionieren, wie KMU starten.
+- [AEO vs. SEO — Unterschiede und Reihenfolge](https://1020.dev/journal/aeo-vs-seo) — Direkter Vergleich, Überschneidungen und echte Unterschiede.
+- [AEO-Kosten 2026](https://1020.dev/journal/aeo-kosten-2026) — Preisbereiche vom Basis-Setup bis zur laufenden Optimierung.
+- [AEO leistbar machen — gegen Pauschalpakete](https://1020.dev/journal/aeo-leistbar-machen) — Warum monatliche AEO-Pauschalen für KMU oft nicht passen.
+- [llms.txt erklärt](https://1020.dev/journal/llms-txt-standard) — Was llms.txt ist, Unterschied zu robots.txt, Beispiel und Reality-Check.
+- [FAQPage-Schema in Next.js und WordPress](https://1020.dev/journal/faqpage-schema-tutorial) — Funktionierender Code, Pflichtfelder, häufige Fehler.
+- [ChatGPT-Sichtbarkeit testen](https://1020.dev/journal/chatgpt-sichtbarkeit-testen) — Wie KMU in 30 Minuten pro Monat manuell die eigene Sichtbarkeit in ChatGPT, Perplexity und Claude tracken.
+
+## Journal — Webentwicklung
+
+- [Webentwicklung Wien — Leitfaden 2026](https://1020.dev/journal/webentwicklung-wien-leitfaden-2026) — Marktüberblick, Pricing-Bereiche, Briefing-Empfehlungen.
+- [Website-Kosten Wien 2026](https://1020.dev/journal/website-kosten-wien-2026) — Vom Onepager bis zur Site mit Backend, was den Preis bestimmt.
+- [WordPress vs. Next.js für KMU](https://1020.dev/journal/wordpress-vs-nextjs-kmu) — Was WordPress kann, wo Next.js gewinnt, sinnvolle Mischformen.
+- [Vercel vs. Hetzner — Hosting in Österreich](https://1020.dev/journal/vercel-vs-hetzner-hosting-österreich) — Managed-Plattform vs. europäischer Server-Anbieter.
+- [Webentwicklung in der Leopoldstadt (1020 Wien)](https://1020.dev/journal/webentwicklung-leopoldstadt-1020-wien) — Über das Studio und seine Arbeitsweise.
+
+## Journal — Branchen-Cases
+
+- [Industrie-Website für den CEE-Markt (asamer.cz)](https://1020.dev/journal/industrie-website-cee-case-asamer) — Mehrsprachigkeit, hreflang, B2B-Trust-Signale.
+- [Metallbau-Website (zeilinger-metallbau.at)](https://1020.dev/journal/website-metallbau-case-zeilinger) — Wie eine Metallbau-Website B2B-Anfragen generiert.
+- [Steuerberater-Website Wien](https://1020.dev/journal/website-steuerberater-wien) — Berufsrechtliche Pflichten, Kammer-Vorgaben, AEO-Hebel.
+
+## Journal — Automation und LLM
+
+- [DSGVO-konforme LLM-Anbindung für KMU](https://1020.dev/journal/dsgvo-llm-anbindung-kmu) — EU-Hosting, Auftragsverarbeitungsverträge, On-Premise vs. API.
+
 ## Kontakt
 
 - Website: https://1020.dev
 - Termin buchen: https://cal.com/1020dev
 - E-Mail: hallo@1020.dev
-- Standort: Wien, Leopoldstadt (1020)
+- Telefon: +43 699 11209087
+- Adresse: Lichtenauergasse 4/8, 1020 Wien, Österreich
 
 ## Was AEO ist und warum es zählt
 

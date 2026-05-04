@@ -73,11 +73,11 @@ export const REFS = [
     },
     screenshots: [
       {
-        src: '/refs/clausl-1.png',
+        src: '/refs/clausl-1.jpg',
         alt: 'Clausl KI — KI-Tool für österreichisches Arbeitsrecht, Dashboard mit Übersicht der Arbeitsverhältnisse',
       },
       {
-        src: '/refs/clausl-2.png',
+        src: '/refs/clausl-2.jpg',
         alt: 'Clausl KI — Chat-Interface für arbeitsrechtliche Fragen, Startseite mit Eingabefeld',
       },
     ],
@@ -93,42 +93,63 @@ export const FAQS = [
     plainAnswer:
       'SEO optimiert Ihre Website für Google-Ergebnisseiten und Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und FAQ- und HowTo-Schemas.',
     htmlAnswer:
-      'SEO optimiert Ihre Website für Google-Ergebnisseiten — also für Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und FAQ- und HowTo-Schemas.',
+      'SEO optimiert Ihre Website für Google-Ergebnisseiten — also für Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und FAQ- und HowTo-Schemas. Mehr dazu im <a href="/journal/aeo-vs-seo" style="color: var(--accent); text-decoration: underline;">direkten Vergleich AEO vs. SEO</a>.',
   },
   {
     question: 'Wie lange dauert eine Website mit AEO-Optimierung?',
     plainAnswer:
       'Ein typisches KMU-Projekt mit 5 bis 15 Seiten dauert 4 bis 6 Wochen vom Audit bis zum Live-Gang. AEO-Optimierung wird parallel zur Entwicklung implementiert, nicht nachträglich.',
     htmlAnswer:
-      'Ein typisches KMU-Projekt mit 5–15 Seiten dauert 4–6 Wochen vom Audit bis zum Live-Gang. AEO-Optimierung wird parallel zur Entwicklung implementiert, nicht nachträglich — das spart Zeit und liefert von Tag eins ein optimiertes Ergebnis.',
+      'Ein typisches KMU-Projekt mit 5–15 Seiten dauert 4–6 Wochen vom Audit bis zum Live-Gang. AEO-Optimierung wird parallel zur Entwicklung implementiert, nicht nachträglich — das spart Zeit und liefert von Tag eins ein optimiertes Ergebnis. Details und Briefing-Empfehlungen im <a href="/journal/webentwicklung-wien-leitfaden-2026" style="color: var(--accent); text-decoration: underline;">Leitfaden Webentwicklung Wien 2026</a>.',
   },
   {
     question: 'Was kostet eine Website mit AEO und wann amortisiert sich das?',
     plainAnswer:
       'Ein Onepager mit AEO-Optimierung beginnt bei rund 1.100 Euro (700 Euro Onepager plus 400 Euro AEO). Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000 und 8.000 Euro. Bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
     htmlAnswer:
-      'Ein Onepager mit AEO-Optimierung beginnt bei rund 1.100&nbsp;€ (700&nbsp;€ Onepager + 400&nbsp;€ AEO). Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit.',
+      'Ein Onepager mit AEO-Optimierung beginnt bei rund 1.100&nbsp;€ (700&nbsp;€ Onepager + 400&nbsp;€ AEO). Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Hintergründe in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
   },
   {
     question: 'Funktioniert AEO auch für lokale Wiener Unternehmen?',
     plainAnswer:
       'Besonders. KI-Antwortmaschinen werden zunehmend für lokale Anfragen genutzt. LocalBusiness-Schema, Google Business Profile-Integration und ortsspezifische FAQ-Inhalte sind die Hebel, mit denen wir lokale KMU sichtbar machen.',
     htmlAnswer:
-      'Besonders. KI-Antwortmaschinen werden zunehmend für lokale Anfragen genutzt („Wer macht Webentwicklung in Wien?", „Bester Steuerberater in der Leopoldstadt"). LocalBusiness-Schema, Google Business Profile-Integration und ortsspezifische FAQ-Inhalte sind die Hebel, mit denen wir lokale KMU sichtbar machen.',
+      'Besonders. KI-Antwortmaschinen werden zunehmend für lokale Anfragen genutzt („Wer macht Webentwicklung in Wien?", „Bester Steuerberater in der Leopoldstadt"). LocalBusiness-Schema, Google Business Profile-Integration und ortsspezifische FAQ-Inhalte sind die Hebel, mit denen wir lokale KMU sichtbar machen. Mehr zur Wiener Studio-Perspektive im Artikel <a href="/journal/webentwicklung-leopoldstadt-1020-wien" style="color: var(--accent); text-decoration: underline;">Webentwicklung in der Leopoldstadt</a>.',
   },
   {
     question: 'Kann ich nur SEO und AEO buchen, ohne neue Website?',
     plainAnswer:
       'Ja, wenn Ihre bestehende Website technisch eine ausreichende Basis bietet. Bei WordPress, Webflow oder ähnlichen Stacks ist eine reine AEO-Optimierungsphase ohne Relaunch möglich. Der Audit klärt das in unter einer Stunde.',
     htmlAnswer:
-      'Ja, wenn Ihre bestehende Website technisch eine ausreichende Basis bietet (sauberes HTML, akzeptable Performance, CMS mit Strukturdaten-Support). Bei WordPress, Webflow oder ähnlichen Stacks ist eine reine AEO-Optimierungsphase ohne Relaunch möglich. Der Audit klärt das in unter einer Stunde.',
+      'Ja, wenn Ihre bestehende Website technisch eine ausreichende Basis bietet (sauberes HTML, akzeptable Performance, CMS mit Strukturdaten-Support). Bei WordPress, Webflow oder ähnlichen Stacks ist eine reine AEO-Optimierungsphase ohne Relaunch möglich. Der Audit klärt das in unter einer Stunde. Wann ein Relaunch trotzdem sinnvoll ist, behandelt der Artikel <a href="/journal/wordpress-vs-nextjs-kmu" style="color: var(--accent); text-decoration: underline;">WordPress vs. Next.js für KMU</a>.',
   },
   {
     question: 'Wie messt ihr Erfolg in Antwortmaschinen?',
     plainAnswer:
       'Wir prüfen monatlich systematisch, ob Ihre Marke und Inhalte in ChatGPT, Perplexity, Claude und Google AI Overviews bei branchenrelevanten Anfragen genannt werden — sowohl direkt zitiert als auch als Quelle verlinkt. Plus klassische SEO-Metriken.',
     htmlAnswer:
-      'Wir prüfen monatlich systematisch, ob Ihre Marke und Inhalte in ChatGPT, Perplexity, Claude und Google AI Overviews bei branchenrelevanten Anfragen genannt werden — sowohl direkt zitiert als auch als Quelle verlinkt. Plus klassische SEO-Metriken (Rankings, Impressionen, Klicks). Das Reporting ist transparent und nachvollziehbar.',
+      'Wir prüfen monatlich systematisch, ob Ihre Marke und Inhalte in ChatGPT, Perplexity, Claude und Google AI Overviews bei branchenrelevanten Anfragen genannt werden — sowohl direkt zitiert als auch als Quelle verlinkt. Plus klassische SEO-Metriken (Rankings, Impressionen, Klicks). Das Reporting ist transparent und nachvollziehbar. Eine Anleitung zum Selbst-Tracken finden Sie im Artikel <a href="/journal/chatgpt-sichtbarkeit-testen" style="color: var(--accent); text-decoration: underline;">ChatGPT-Sichtbarkeit testen</a>.',
+  },
+  {
+    question: 'Brauche ich eine llms.txt für meine Website?',
+    plainAnswer:
+      'Nicht zwingend, aber empfehlenswert. Die llms.txt ist ein junger Standard, der KI-Crawlern strukturiert mitteilt, welche Inhalte autoritativ sind und priorisiert gelesen werden sollten. Aufwand: rund 30 Minuten. Wirkung: heute noch indikativ, wird aber von einer wachsenden Zahl an Crawlern berücksichtigt — ein billiger AEO-Hebel mit asymmetrischer Chance auf zukünftige Auswirkung.',
+    htmlAnswer:
+      'Nicht zwingend, aber empfehlenswert. Die <code>llms.txt</code> ist ein junger Standard, der KI-Crawlern strukturiert mitteilt, welche Inhalte autoritativ sind und priorisiert gelesen werden sollten. Aufwand: rund 30 Minuten. Wirkung: heute noch indikativ, wird aber von einer wachsenden Zahl an Crawlern berücksichtigt — ein billiger AEO-Hebel mit asymmetrischer Chance auf zukünftige Auswirkung. Vollständige Anleitung mit Beispiel im Artikel <a href="/journal/llms-txt-standard" style="color: var(--accent); text-decoration: underline;">llms.txt erklärt</a>. Unsere eigene Datei finden Sie unter <a href="/llms.txt" style="color: var(--accent); text-decoration: underline;">1020.dev/llms.txt</a>.',
+  },
+  {
+    question: 'Wie teste ich, ob ChatGPT mein Unternehmen kennt?',
+    plainAnswer:
+      'Manuell und ohne kostenpflichtige Tools in unter 30 Minuten pro Monat. Sie definieren 10 bis 20 branchenrelevante Suchanfragen, stellen sie systematisch in ChatGPT, Perplexity, Claude und Google AI Overviews und tragen die Ergebnisse in eine Tabelle ein: Werden Sie zitiert, als Quelle verlinkt, namentlich genannt oder gar nicht erwähnt. Über die Monate wird daraus ein nachvollziehbarer Sichtbarkeits-Index.',
+    htmlAnswer:
+      'Manuell und ohne kostenpflichtige Tools in unter 30 Minuten pro Monat. Sie definieren 10–20 branchenrelevante Suchanfragen, stellen sie systematisch in ChatGPT, Perplexity, Claude und Google AI Overviews und tragen die Ergebnisse in eine Tabelle ein: Werden Sie zitiert, als Quelle verlinkt, namentlich genannt oder gar nicht erwähnt. Über die Monate wird daraus ein nachvollziehbarer Sichtbarkeits-Index. Vollständige Anleitung inklusive Vorlage im Artikel <a href="/journal/chatgpt-sichtbarkeit-testen" style="color: var(--accent); text-decoration: underline;">ChatGPT-Sichtbarkeit testen</a>.',
+  },
+  {
+    question: 'WordPress oder Next.js — was passt für ein KMU besser?',
+    plainAnswer:
+      'WordPress passt, wenn Inhalte häufig durch nicht-technische Mitarbeitende bearbeitet werden und das CMS-Backend zentral ist. Next.js gewinnt bei Performance, Sicherheit, Wartungsaufwand und AEO-relevanten Optimierungen — insbesondere für Sites, die als Marketing- und Lead-Tool dienen und nicht täglich redaktionell befüllt werden. Mischformen mit Headless-CMS sind oft die beste Lösung.',
+    htmlAnswer:
+      'WordPress passt, wenn Inhalte häufig durch nicht-technische Mitarbeitende bearbeitet werden und das CMS-Backend zentral ist. Next.js gewinnt bei Performance, Sicherheit, Wartungsaufwand und AEO-relevanten Optimierungen — insbesondere für Sites, die als Marketing- und Lead-Tool dienen und nicht täglich redaktionell befüllt werden. Mischformen mit Headless-CMS sind oft die beste Lösung. Direkter Vergleich mit Beispielen im Artikel <a href="/journal/wordpress-vs-nextjs-kmu" style="color: var(--accent); text-decoration: underline;">WordPress vs. Next.js für KMU</a>.',
   },
 ] as const;
 
