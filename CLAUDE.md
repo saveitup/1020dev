@@ -82,7 +82,6 @@ Alle Preise netto, exkl. 20% USt. Audit & Erstgespräch immer kostenlos.
 - [ ] Rate-Limiting für `/api/audit` (Upstash Ratelimit oder Vercel WAF) — vor Go-Live kritisch, sonst können Credits leergelaufen werden
 - [ ] Custom `app/not-found.tsx` und `app/error.tsx` (aktuell Next.js Defaults)
 - [ ] Cal.com-Slug `cal.com/1020dev` muss noch angelegt werden
-- [ ] E-Mail `hallo@1020.dev` muss noch eingerichtet werden (z.B. Cloudflare Email Routing)
 - [ ] Domain `1020.dev` registrieren
 - [ ] Open-Graph-Image (`/og-image.png`, 1200×630) erstellen und in `app/layout.tsx` referenzieren
 
