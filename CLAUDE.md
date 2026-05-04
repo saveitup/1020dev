@@ -79,11 +79,15 @@ Alle Preise netto, exkl. 20% USt. Audit & Erstgespräch immer kostenlos.
 
 ## Bekannte Todos / offene Punkte
 
-- [ ] Rate-Limiting für `/api/audit` (Upstash Ratelimit oder Vercel WAF) — vor Go-Live kritisch, sonst können Credits leergelaufen werden
-- [ ] Custom `app/not-found.tsx` und `app/error.tsx` (aktuell Next.js Defaults)
-- [ ] Cal.com-Slug `cal.com/1020dev` muss noch angelegt werden
-- [ ] Domain `1020.dev` registrieren
-- [ ] Open-Graph-Image (`/og-image.png`, 1200×630) erstellen und in `app/layout.tsx` referenzieren
+- [x] Rate-Limiting für `/api/audit` und `/api/audit/track` — zentrales `lib/ratelimit.ts`. Upstash Redis (sliding-window) wenn `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` gesetzt; sonst best-effort in-memory Fallback.
+- [x] Custom `app/not-found.tsx` und `app/error.tsx`
+- [x] Upstash-Database angelegt (Vars in Vercel hinterlegen, falls noch nicht passiert)
+- [x] Domain `1020.dev` registriert
+- [x] `ANTHROPIC_API_KEY` in Vercel Production gesetzt
+- [ ] Cal.com-Slug `cal.com/1020dev` anlegen
+- [ ] Resend: Domain `1020.dev` per DNS verifizieren, dann `RESEND_FROM=audit@1020.dev` in Vercel setzen
+- [ ] `CRON_SECRET` generieren (`openssl rand -base64 32`) und in Vercel Production setzen
+- [x] Open-Graph-Image — dynamisch über `app/opengraph-image.tsx` (Edge Runtime, 1200×630)
 
 ## Slideshow-Tempo (falls jemand fragt)
 
