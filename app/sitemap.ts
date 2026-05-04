@@ -15,6 +15,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
+      images: [
+        `${SITE.url}/google/1020dev-1200x1200.jpg`,
+        `${SITE.url}/google/1020dev-1200x900.jpg`,
+        `${SITE.url}/google/1020dev-1200x630.jpg`,
+      ],
     },
     {
       url: `${SITE.url}/web`,
