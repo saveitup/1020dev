@@ -28,17 +28,6 @@ export const metadata: Metadata = {
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: [
-    'Webentwicklung Wien',
-    'AEO',
-    'Answer Engine Optimization',
-    'SEO',
-    'Next.js',
-    'KMU Website',
-    'ChatGPT SEO',
-    'Perplexity SEO',
-    'Schema.org',
-  ],
   authors: [{ name: SITE.name }],
   creator: SITE.name,
   openGraph: {
