@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { SITE } from '@/lib/data';
+import { clientIp, createLimiter } from '@/lib/ratelimit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -8,27 +9,7 @@ export const dynamic = 'force-dynamic';
 const RESEND_FROM = process.env.RESEND_FROM || '1020.dev <onboarding@resend.dev>';
 const TRACK_TO = process.env.RESEND_BCC || SITE.email;
 
-const RATE_MAX = 10;
-const RATE_WINDOW_MS = 60_000;
-const RATE_BUCKETS = new Map<string, number[]>();
-
-function clientIp(req: NextRequest): string {
-  const fwd = req.headers.get('x-forwarded-for');
-  if (fwd) return fwd.split(',')[0].trim();
-  return req.headers.get('x-real-ip') || 'unknown';
-}
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const stamps = (RATE_BUCKETS.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (stamps.length >= RATE_MAX) {
-    RATE_BUCKETS.set(ip, stamps);
-    return false;
-  }
-  stamps.push(now);
-  RATE_BUCKETS.set(ip, stamps);
-  return true;
-}
+const limiter = createLimiter({ name: 'audit-track', max: 10, windowSeconds: 60 });
 
 function escapeHtml(s: string): string {
   return s
@@ -40,7 +21,8 @@ function escapeHtml(s: string): string {
 
 export async function POST(req: NextRequest) {
   const ip = clientIp(req);
-  if (!checkRateLimit(ip)) {
+  const limit = await limiter.check(ip);
+  if (!limit.ok) {
     return NextResponse.json({ ok: true });
   }
 
