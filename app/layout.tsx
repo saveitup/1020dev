@@ -6,6 +6,7 @@ import { GoogleTag } from '@/components/GoogleTag';
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
 import { WebsiteSchema } from '@/components/WebsiteSchema';
 import { SITE } from '@/lib/data';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const dmSans = DM_Sans({
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Splash />
         <Nav />
         {children}
+        <Analytics />
       </body>
     </html>
   );
