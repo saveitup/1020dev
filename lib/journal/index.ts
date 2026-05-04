@@ -70,6 +70,22 @@ function fmToArticle(data: Record<string, string | string[] | boolean>): Journal
   };
 }
 
+/**
+ * An article counts as "live" when:
+ *   - draft flag is not true
+ *   - publishedAt is today or earlier
+ *
+ * Future-dated articles stay invisible everywhere — listing, direct URL,
+ * sitemap, generateStaticParams. They flip to live automatically on the
+ * next ISR revalidation after their date passes (see route revalidate
+ * settings + the daily cron in app/api/cron/revalidate).
+ */
+function isLive(fm: { draft?: boolean; publishedAt: string }): boolean {
+  if (fm.draft) return false;
+  if (!fm.publishedAt) return false;
+  return new Date(fm.publishedAt).getTime() <= Date.now();
+}
+
 export async function getAllArticles(): Promise<JournalListItem[]> {
   const files = await readMarkdownFiles();
   const articles = await Promise.all(
@@ -87,7 +103,7 @@ export async function getAllArticles(): Promise<JournalListItem[]> {
   );
 
   return articles
-    .filter((a) => !a.draft)
+    .filter(isLive)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 }
 
@@ -97,6 +113,7 @@ export async function getArticleBySlug(slug: string): Promise<JournalArticle | n
     const raw = await fs.readFile(file, 'utf-8');
     const { data, content } = parseFrontmatter(raw);
     const fm = fmToArticle(data);
+    if (!isLive(fm)) return null;
     return { ...fm, slug, content };
   } catch {
     return null;

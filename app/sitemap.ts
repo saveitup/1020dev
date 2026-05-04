@@ -2,6 +2,10 @@ import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/data';
 import { getAllArticles } from '@/lib/journal';
 
+// Revalidate sitemap hourly so newly-published articles appear for
+// crawlers without manual rebuild.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getAllArticles();
 

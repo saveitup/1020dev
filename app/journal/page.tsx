@@ -4,6 +4,11 @@ import { Footer } from '@/components/Footer';
 import { getAllArticles } from '@/lib/journal';
 import { SITE } from '@/lib/data';
 
+// Revalidate hourly — paired with the daily cron in
+// app/api/cron/revalidate, this is what lets future-dated articles
+// flip live without a fresh build.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Journal · AEO, SEO und Webentwicklung für KMU',
   description:

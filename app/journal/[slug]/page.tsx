@@ -7,6 +7,11 @@ import { getAllSlugs, getArticleBySlug } from '@/lib/journal';
 import { renderMarkdown } from '@/lib/journal/markdown';
 import { SITE } from '@/lib/data';
 
+// ISR: re-render hourly. New articles whose publishedAt-Datum gerade
+// passiert ist, werden bei nächstem Request automatisch SSR'd
+// (dynamicParams ist default true) und danach gecached.
+export const revalidate = 3600;
+
 type Params = { slug: string };
 
 export async function generateStaticParams(): Promise<Params[]> {
