@@ -15,7 +15,7 @@ export function GoogleTag() {
       if (!anchor) return;
       const href = anchor.getAttribute('href');
       if (!href) return;
-      if (!/^https?:\/\/(www\.)?cal\.com\/1020dev/i.test(href)) return;
+      if (!/^https?:\/\/(www\.)?cal\.(com|eu)\/1020dev/i.test(href)) return;
       trackBookingClick();
     };
 

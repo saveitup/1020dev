@@ -19,7 +19,7 @@ export function Footer() {
       <div className="footer-right">
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
         <a href={SITE.bookingUrl} target="_blank" rel="noopener">
-          cal.com/1020dev ↗
+          cal.eu/1020dev ↗
         </a>
         <Link href="/impressum">Impressum</Link>
         <div className="footer-meta">© 2026 · {SITE.location}</div>

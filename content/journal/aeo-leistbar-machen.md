@@ -150,4 +150,4 @@ Agenturen mit hohem Fixkosten-Anteil (Mitarbeiter, Standort, Marketing-Budget) b
 
 AEO leistbar zu machen ist keine Marketing-Phrase, sondern eine Pricing-Entscheidung mit konkreten Konsequenzen: einmalige Setup-Kosten statt vierstelliger Monatspauschalen, transparente Stundensätze statt Black-Box-Pakete, Code-Eigentum statt Plattform-Bindung. Wer als KMU AEO ernsthaft betreiben will, sollte vor jedem Vertragsschluss prüfen, ob das Modell zur tatsächlichen Arbeit passt — oder ob es vor allem zur Cashflow-Logik der Agentur passt.
 
-Wenn Sie konkret ein Vergleichsangebot brauchen — oder ein bestehendes Abo überprüfen wollen: [Audit ist kostenlos](/web#audit), [Erstgespräch per E-Mail](mailto:hallo@1020.dev) oder [Termin direkt buchen](https://cal.com/1020dev).
+Wenn Sie konkret ein Vergleichsangebot brauchen — oder ein bestehendes Abo überprüfen wollen: [Audit ist kostenlos](/web#audit), [Erstgespräch per E-Mail](mailto:hallo@1020.dev) oder [Termin direkt buchen](https://cal.eu/1020dev/erstgespraech).

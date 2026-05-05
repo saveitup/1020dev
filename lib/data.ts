@@ -412,7 +412,7 @@ export const SITE = {
   tagline: 'Sichtbar bleiben, wenn niemand mehr klickt.',
   description:
     'Webentwicklung, SEO und Answer-Engine-Optimierung für KMU in Wien und ganz Österreich. Websites, die in Google ranken und in ChatGPT, Perplexity und Claude zitiert werden.',
-  bookingUrl: 'https://cal.com/1020dev/erstgespraech',
+  bookingUrl: 'https://cal.eu/1020dev/erstgespraech',
   email: 'hallo@1020.dev',
   location: 'Wien · Leopoldstadt',
   // ----- Kontakt & Adresse (für Impressum + LocalBusiness-Schema) -----

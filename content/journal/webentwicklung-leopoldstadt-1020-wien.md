@@ -84,7 +84,7 @@ Schwerpunkt der Auftraggeber liegt in Wien, dazu kommen Projekte aus dem restlic
 
 **U-Bahn:** Praterstern (U1, U2) — 7 Minuten zu Fuß. Vorgartenstraße (U1) — 8 Minuten.
 
-**Erstgespräch:** Bei Ihnen, in der Leopoldstadt, oder remote per Video — Sie wählen. Dauer typisch 30 Minuten, kostenlos. Termin direkt buchbar über [cal.com/1020dev](https://cal.com/1020dev) oder per E-Mail an hallo@1020.dev.
+**Erstgespräch:** Bei Ihnen, in der Leopoldstadt, oder remote per Video — Sie wählen. Dauer typisch 30 Minuten, kostenlos. Termin direkt buchbar über [cal.eu/1020dev](https://cal.eu/1020dev/erstgespraech) oder per E-Mail an hallo@1020.dev.
 
 Im Erstgespräch klären wir: Was wollen Sie erreichen? Was haben Sie bereits? Was wäre realistischer Zeitrahmen und Budget? Am Ende wissen Sie, ob ein Projekt mit 1020.dev für Sie passt — ohne Verpflichtung, ohne Hard-Sell.
 

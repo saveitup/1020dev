@@ -52,7 +52,7 @@ So bekommst du die Werte:
 ## Was im Code passiert
 
 - `<GoogleTag />` lädt `gtag.js` global (nur wenn die Env-Var gesetzt ist).
-- Ein **Click-Listener** auf `<a href="https://cal.com/1020dev*">` firet automatisch die **Booking-Conversion** — egal ob der Link im Hero, Nav, Footer, Pricing oder Audit-Success-Screen klickt wird.
+- Ein **Click-Listener** auf `<a href="https://cal.eu/1020dev*">` (matcht auch `cal.com/1020dev`) firet automatisch die **Booking-Conversion** — egal ob der Link im Hero, Nav, Footer, Pricing oder Audit-Success-Screen klickt wird.
 - Der **AuditWidget** firet die **Audit-Conversion**, sobald die E-Mail erfolgreich gesendet wurde (in `onEmailSubmit`-Success-Branch).
 
 ## Erwartete Werte (Wien, 20 €/Tag)
