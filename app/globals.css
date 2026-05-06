@@ -1944,6 +1944,47 @@ h1 em, .hero-title em {
   letter-spacing: -0.01em;
 }
 
+.pricing-package-row {
+  background: linear-gradient(180deg, rgba(129, 140, 248, 0.07), rgba(129, 140, 248, 0.02));
+  box-shadow: inset 3px 0 0 0 var(--accent), 0 0 24px rgba(129, 140, 248, 0.08);
+}
+.pricing-package-row:hover {
+  background: linear-gradient(180deg, rgba(129, 140, 248, 0.11), rgba(129, 140, 248, 0.04));
+}
+.pricing-package-row .pricing-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.pricing-package-row .pricing-amount {
+  font-size: 1.4rem;
+}
+.pricing-package-includes {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-top: 0.4rem;
+}
+.pricing-strikethrough {
+  color: var(--dim);
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  margin-right: 0.55rem;
+  font-weight: 400;
+}
+.pricing-saves-badge {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg-0);
+  background: var(--accent);
+  padding: 0.25rem 0.55rem;
+  margin-left: 0.6rem;
+  align-self: center;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
 .pricing-cta {
   margin-top: 3.5rem;
   padding-top: 2.4rem;
@@ -1954,15 +1995,26 @@ h1 em, .hero-title em {
   gap: 2rem;
   flex-wrap: wrap;
 }
-.pricing-footnote {
+.pricing-konditionen {
   font-family: var(--font-dm-mono), monospace;
   font-size: 0.74rem;
   letter-spacing: 0.04em;
   color: var(--dim);
   line-height: 1.7;
-  max-width: 40ch;
+  max-width: 56ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
-.pricing-footnote .accent { color: var(--accent); }
+.pricing-konditionen strong {
+  color: var(--text);
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.pricing-konditionen .accent {
+  color: var(--accent);
+  margin-top: 0.45rem;
+}
 
 .pricing-cta-btn {
   background: var(--text);

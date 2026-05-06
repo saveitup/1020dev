@@ -91,9 +91,9 @@ export const FAQS = [
   {
     question: 'Was ist AEO und wie unterscheidet es sich von klassischem SEO?',
     plainAnswer:
-      'SEO optimiert Ihre Website für Google-Ergebnisseiten und Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und FAQ- und HowTo-Schemas.',
+      'SEO optimiert Ihre Website für Google-Ergebnisseiten und Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich Inhaltsstruktur, aus der KI-Antwortmaschinen Antworten ziehen können, plus FAQ- und HowTo-Schemas.',
     htmlAnswer:
-      'SEO optimiert Ihre Website für Google-Ergebnisseiten — also für Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich antwort-orientierte Inhaltsstruktur und FAQ- und HowTo-Schemas. Mehr dazu im <a href="/journal/aeo-vs-seo" style="color: var(--accent); text-decoration: underline;">direkten Vergleich AEO vs. SEO</a>.',
+      'SEO optimiert Ihre Website für Google-Ergebnisseiten — also für Klicks. AEO (Answer Engine Optimization) optimiert sie für KI-Antwortmaschinen wie ChatGPT, Perplexity oder Claude — also dafür, in der Antwort zitiert oder als Quelle empfohlen zu werden, auch ohne Klick. Beides nutzt strukturierte Daten als gemeinsamen Hebel, aber AEO erfordert zusätzlich Inhaltsstruktur, aus der KI-Antwortmaschinen Antworten ziehen können, plus FAQ- und HowTo-Schemas. Mehr dazu im <a href="/journal/aeo-vs-seo" style="color: var(--accent); text-decoration: underline;">direkten Vergleich AEO vs. SEO</a>.',
   },
   {
     question: 'Wie lange dauert eine Website mit AEO-Optimierung?',
@@ -105,9 +105,9 @@ export const FAQS = [
   {
     question: 'Was kostet eine Website mit AEO und wann amortisiert sich das?',
     plainAnswer:
-      'Ein Onepager mit AEO-Optimierung beginnt bei rund 1.100 Euro (700 Euro Onepager plus 400 Euro AEO). Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000 und 8.000 Euro. Bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
+      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100 Euro (700 Euro Website-Basis plus 400 Euro AEO). Das Bundle Sichtbar (Website-Basis + SEO + AEO) kostet 1.350 Euro statt 1.450 Euro einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000 und 8.000 Euro. Bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
     htmlAnswer:
-      'Ein Onepager mit AEO-Optimierung beginnt bei rund 1.100&nbsp;€ (700&nbsp;€ Onepager + 400&nbsp;€ AEO). Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Hintergründe in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
+      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100&nbsp;€ (700&nbsp;€ Website-Basis + 400&nbsp;€ AEO). Das Bundle „Sichtbar" (Website-Basis + SEO + AEO) kostet 1.350&nbsp;€ statt 1.450&nbsp;€ einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Hintergründe in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
   },
   {
     question: 'Funktioniert AEO auch für lokale Wiener Unternehmen?',
@@ -160,7 +160,7 @@ export const SERVICES = [
   {
     num: '01 — Web',
     title: 'Webentwicklung mit Next.js',
-    desc: 'Schnelle, statisch generierte Websites mit modernem Stack. Performance ist nicht verhandelbar — Lighthouse 100 ist der Standard, nicht das Ziel.',
+    desc: 'Schnelle, statisch generierte Websites mit modernem Stack. Performance ist nicht verhandelbar — Core Web Vitals im grünen Bereich, gemessen statt versprochen.',
     items: [
       'Next.js · React · TypeScript',
       'Headless CMS oder Markdown',
@@ -174,7 +174,7 @@ export const SERVICES = [
     desc: 'Klassisches SEO für Google plus Answer-Engine-Optimierung für ChatGPT, Perplexity und Claude. Strukturierte Daten als gemeinsamer Hebel.',
     items: [
       'Schema.org · FAQ · LocalBusiness',
-      'Antwort-orientierte Inhaltsstruktur',
+      'Inhalte, die ChatGPT, Perplexity und Claude als Antwort ziehen können',
       'Hreflang für deutschsprachigen Raum',
       'Monitoring der AI-Zitationen',
     ],
@@ -182,7 +182,7 @@ export const SERVICES = [
   {
     num: '03 — Automation',
     title: 'Prozesse, die ohne Sie laufen',
-    desc: 'Wiederkehrende Aufgaben, Lead-Pipelines und Dokumenten-Workflows mit LLM-Anbindung. Ihre Zeit zurück, ohne Personal aufzustocken.',
+    desc: 'Wiederkehrende Aufgaben automatisiert: Lead-Formulare, die direkt im CRM landen, oder Rechnungen, die aus Mail-Anhängen ausgelesen werden. Ihre Zeit zurück, ohne Personal aufzustocken.',
     items: [
       'API-Integrationen (Microsoft 365, Google, Slack)',
       'LLM-basierte Dokumentenverarbeitung',
@@ -227,16 +227,26 @@ export const METHODE = [
 // Pricing
 // ============================================
 export const PRICING = {
+  pakete: [
+    {
+      name: 'Bundle „Sichtbar"',
+      desc: 'Website-Basis + SEO + AEO. Sichtbar in Google und zitiert in KI-Antworten — alles in einem Auftrag.',
+      includes: ['Website-Basis (1 Seite)', 'SEO-Optimierung', 'AEO-Optimierung'],
+      price: '1.350',
+      strikethrough: '1.450',
+      saves: '100',
+    },
+  ],
   einmalig: [
-    { name: 'Onepager', desc: 'Schlanke One-Page-Site mit Hosting, SSL und Performance-Optimierung. Lighthouse 100 als Standard.', price: '700', prefix: 'ab', isBase: true, plus: false, bundle: true },
-    { name: 'Jede weitere Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', prefix: 'ab', isBase: false, plus: true, bundle: false },
-    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', prefix: 'ab', isBase: false, plus: true, bundle: true },
-    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness, antwort-orientierte Struktur, llms.txt — sichtbar in ChatGPT, Perplexity, Claude.', price: '400', prefix: 'ab', isBase: false, plus: true, bundle: true },
-    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, individuelle Server-Logik, Datenbank-Integration.', price: '2.000', prefix: 'ab', isBase: false, plus: true, bundle: false },
-    { name: 'Automatisierung', desc: 'Workflows, LLM-Anbindung, CRM-Sync, Lead-Pipelines, Dokumenten-Verarbeitung.', price: '3.000', prefix: 'ab', isBase: false, plus: true, bundle: false },
+    { name: 'Website-Basis (1 Seite)', desc: 'Eine fokussierte Seite mit Hosting, SSL und gemessener Performance: LCP < 1,8 s, INP < 200 ms, CLS < 0,1. Weitere Seiten jederzeit ergänzbar.', price: '700', isBase: true, plus: false },
+    { name: 'Zusätzliche Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', isBase: false, plus: true },
+    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', isBase: false, plus: true },
+    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness und llms.txt — Inhalte so strukturiert, dass ChatGPT, Perplexity und Claude sie als Antwort ziehen können.', price: '400', isBase: false, plus: true },
+    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, Datenbank-Integration. z. B. Buchungs-Backend, geschützter Kundenbereich, Headless-CMS mit Redaktionsoberfläche.', price: '2.000', prefix: 'ab', isBase: false, plus: true },
+    { name: 'Automatisierung', desc: 'Workflows mit LLM-Anbindung und CRM-Sync. z. B. Lead-Formular → HubSpot → Slack-Notify, oder Rechnungen aus Mail-Anhängen extrahieren.', price: '3.000', prefix: 'ab', isBase: false, plus: true },
   ],
   laufend: [
-    { name: 'Analytics & Monitoring', desc: 'DSGVO-konformes Tracking (Plausible/Umami) plus monatlicher Sichtbarkeits-Report inklusive AEO-Zitations-Check.', price: '20', period: '/Monat' },
+    { name: 'Monitoring (automatisiert)', desc: 'Automatisierter Monatsreport per E-Mail: DSGVO-konformes Tracking (Plausible/Umami), Sichtbarkeits-Index für Google und KI-Antwortmaschinen, AEO-Zitations-Check. Kein menschliches Review — dafür ehrlicher Preis.', price: '25', period: '/Monat' },
   ],
 } as const;
 
@@ -276,7 +286,7 @@ export const AUTOMATION_SERVICES = [
   {
     num: '01 — Automation',
     title: 'Workflows, die ohne Sie laufen',
-    desc: 'Wiederkehrende Aufgaben, Lead-Pipelines und Dokumenten-Verarbeitung. Ihre Zeit zurück, ohne Personal aufzustocken.',
+    desc: 'Wiederkehrende Aufgaben automatisiert: Lead-Qualifizierung, CRM-Sync, Dokumenten-Workflows mit LLMs. Ihre Zeit zurück, ohne Personal aufzustocken.',
     items: [
       'Lead-Qualifizierung & CRM-Sync',
       'Dokumenten-Workflows (PDF, DOCX, Mail)',
@@ -287,7 +297,7 @@ export const AUTOMATION_SERVICES = [
   {
     num: '02 — Custom Dev',
     title: 'Interne Tools & Dashboards',
-    desc: 'Wenn Standard-SaaS nicht passt: maßgeschneiderte interne Tools, APIs und Dashboards — schlank, schnell, exakt auf Ihre Prozesse zugeschnitten.',
+    desc: 'Wenn Standard-SaaS nicht passt: maßgeschneiderte interne Tools, APIs und Dashboards — fokussiert, schnell, exakt auf Ihre Prozesse zugeschnitten.',
     items: [
       'Interne Web-Apps mit Next.js',
       'REST- & GraphQL-APIs',

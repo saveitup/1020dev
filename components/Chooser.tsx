@@ -36,7 +36,7 @@ export function Chooser() {
           Was brauchen <em>Sie</em>?
         </h1>
         <p className="chooser-lede">
-          Zwei Tracks, beide mit derselben Handschrift: schlank, ehrlich, performant.
+          Zwei Tracks, beide mit derselben Handschrift: fokussiert, ehrlich, performant.
           Wählen Sie den Einstieg — Sie können später jederzeit den anderen dazunehmen.
         </p>
       </header>

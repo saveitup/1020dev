@@ -15,15 +15,16 @@
 
 ## Preise
 
-- Onepager: ab 700 €
-- Jede weitere Seite: ab 250 €
-- SEO-Optimierung: ab 350 €
-- AEO-Optimierung: ab 400 €
+- Bundle „Sichtbar" (Website-Basis + SEO + AEO): 1.350 € (statt 1.450 € einzeln)
+- Website-Basis (1 Seite): 700 €
+- Zusätzliche Seite: 250 €
+- SEO-Optimierung: 350 €
+- AEO-Optimierung: 400 €
 - Backend: ab 2.000 €
 - Automatisierung: ab 3.000 €
-- Analytics & Monitoring: 20 €/Monat
+- Monitoring (automatisiert): 25 €/Monat
 
-Alle Preise netto, exkl. 20 % USt. Audit und Erstgespräch immer kostenlos.
+Alle Preise netto, exkl. 20 % USt. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bugfix nach Launch, Audit und Erstgespräch immer kostenlos.
 
 ## Methode
 

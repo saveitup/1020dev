@@ -65,6 +65,7 @@ function buildOffer(item: PricingItem | RecurringItem, category: string, isRecur
 
 export function LocalBusinessSchema() {
   const offers = [
+    ...PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Webentwicklung & SEO/AEO')),
     ...PRICING.einmalig.map((p) => buildOffer(p, 'Webentwicklung & SEO/AEO')),
     ...PRICING.laufend.map((p) => buildOffer(p, 'Monitoring & Reporting', true)),
     ...AUTOMATION_PRICING.einmalig.map((p) => buildOffer(p, 'Automation & AI-Integration')),
