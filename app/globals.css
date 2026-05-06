@@ -2885,16 +2885,33 @@ html.splash-skip body .hero-stage {
   .hero-signature { margin-top: 3rem; }
 
   .hero-slideshow {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 4 / 3;
   }
   .hero-slideshow::before { display: none; }
-  .slideshow-logo {
-    padding: 21% !important;
-    object-position: center !important;
+
+  .slideshow-card {
+    inset: 1.2rem 1.2rem 4rem 1.2rem;
+    width: auto;
+    border-radius: 14px;
   }
+
+  .slideshow-logo {
+    object-fit: contain;
+    padding: 1.6rem;
+  }
+  .slideshow-card--alpenbroker .slideshow-logo,
+  .slideshow-card--clausl .slideshow-logo {
+    padding: 0.8rem;
+  }
+
   .slideshow-meta {
-    right: 1.1rem;
+    left: 1.2rem;
+    right: 1.2rem;
     bottom: 1rem;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.8rem;
   }
   .slideshow-domain { font-size: 0.95rem; }
   .hero-stage-dots { margin-left: auto; }
