@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SITE } from '@/lib/data';
+import { CookieSettingsLink } from './CookieSettingsLink';
 
 export function Footer() {
   return (
@@ -22,6 +23,9 @@ export function Footer() {
           cal.eu/1020dev ↗
         </a>
         <Link href="/impressum">Impressum</Link>
+        <Link href="/datenschutz">Datenschutz</Link>
+        <Link href="/agb">AGB</Link>
+        <CookieSettingsLink />
         <div className="footer-meta">© 2026 · {SITE.location}</div>
       </div>
     </footer>

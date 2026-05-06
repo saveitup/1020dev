@@ -3,6 +3,7 @@ import { DM_Sans, DM_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
 import { GoogleTag } from '@/components/GoogleTag';
+import { CookieBanner } from '@/components/CookieBanner';
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
 import { WebsiteSchema } from '@/components/WebsiteSchema';
 import { SITE } from '@/lib/data';
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         {children}
         <Analytics />
+        <CookieBanner />
       </body>
     </html>
   );
