@@ -68,6 +68,7 @@ export function LocalBusinessSchema() {
     ...PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Webentwicklung & SEO/AEO')),
     ...PRICING.einmalig.map((p) => buildOffer(p, 'Webentwicklung & SEO/AEO')),
     ...PRICING.laufend.map((p) => buildOffer(p, 'Monitoring & Reporting', true)),
+    ...AUTOMATION_PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Automation & AI')),
     ...AUTOMATION_PRICING.einmalig.map((p) => buildOffer(p, 'Automation & AI-Integration')),
     ...AUTOMATION_PRICING.laufend.map((p) => buildOffer(p, 'Hosting & Monitoring', true)),
   ];

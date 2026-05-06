@@ -61,8 +61,6 @@ export default function AutomationPage() {
             Modular und <em>transparent.</em>
           </>
         }
-        lede="Sie zahlen nur für das, was Sie brauchen. Klare Pakete für Workflows, Integrationen und AI-Anbindungen — keine versteckten Kosten."
-        bundleHint='Bundle „AI-ready" empfohlen'
       />
       <FAQ
         faqs={AUTOMATION_FAQS}

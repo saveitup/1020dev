@@ -44,7 +44,7 @@ Wenn du eine neue Section baust, die nur Daten aus `lib/data.ts` rendert: **Serv
 ### 4. CSS-Konventionen
 
 - Design-Tokens als CSS-Variablen in `:root` von `globals.css`
-- Wichtige Tokens: `--bg-0/1/2`, `--accent` (#818CF8), `--accent-glow`, `--text/muted/dim`, `--line/line-2`
+- Wichtige Tokens: `--bg-0/1/2` (helle Töne, `--bg-0` ist `#ffffff`), `--accent` (`#4F46E5`), `--accent-glow`, `--text/muted/dim`, `--line/line-2`
 - Animationen sind heavy custom — wenn du eine neue Section baust, schau dir die existierenden Patterns an (z.B. `fadeUp`, Slideshow-Keyframes) bevor du was Neues erfindest
 - BEM-ähnliche Naming-Convention: `.section`, `.section-head`, `.section-tag`, `.section-title`, `.section-sub`
 - Keine globalen Resets ändern, keine Reset-Bibliotheken
@@ -53,29 +53,36 @@ Wenn du eine neue Section baust, die nur Daten aus `lib/data.ts` rendert: **Serv
 
 - **Domain**: 1020.dev (Wiener Postleitzahl Leopoldstadt)
 - **Logo**: `1020.dev` mit glühendem Indigo-Punkt zwischen `1020` und `dev`
-- **Akzent**: Electric Indigo `#818CF8` mit violettem Glow
-- **Background**: dunkles blaues Gradient (`#030615` → `#07112e` → `#0e1a44`)
-- **Aesthetic**: Swiss Grid clean / Linear/Vercel dark tech — NICHT editorial, NICHT retro
+- **Akzent**: Indigo `#4F46E5` mit violettem Glow (`--accent-glow: rgba(79,70,229,0.30)`)
+- **Background**: clean white `#ffffff` mit subtilem indigo-Radialgradient unten rechts (`rgba(79,70,229,0.06)`) und Papier-Korn-Overlay (`body::after`, opacity 0.025, `mix-blend-mode: multiply`)
+- **Aesthetic**: editorial Studio · off-black paper feel · viel Whitespace · chapter-based Sections (siehe Header-Kommentar in `globals.css`)
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 
-## Preisstruktur (autoritativ in `lib/data.ts → PRICING`)
+## Preisstruktur (autoritativ in `lib/data.ts → PRICING` und `AUTOMATION_PRICING`)
 
-Einmalig: Onepager ab 700€ · jede weitere Seite ab 250€ · SEO ab 350€ · AEO ab 400€ · Backend ab 2.000€ · Automatisierung ab 3.000€
-Laufend: Analytics & Monitoring 20€/Monat
-Alle Preise netto, exkl. 20% USt. Audit & Erstgespräch immer kostenlos.
+**Web-Track (`PRICING`):**
+- Pakete: Bundle „Sichtbar" (Website-Basis + SEO + AEO) 1.350 € (statt 1.450 € einzeln, spart 100 €)
+- Einmalig: Website-Basis (1 Seite) 700 € · Zusätzliche Seite 250 € · SEO 350 € · AEO 400 € · Backend ab 2.000 € · Automatisierung ab 3.000 €
+- Laufend: Monitoring (automatisiert) 25 €/Monat
 
-## Sections der Home-Page (in Reihenfolge)
+**Automation-Track (`AUTOMATION_PRICING`):**
+- Einmalig: Workflow-Setup ab 800 € · API-Integration ab 1.500 € · LLM-Anbindung ab 2.500 € · Internes Tool/Dashboard ab 3.000 € · RAG & Agentic Workflow ab 5.000 €
+- Laufend: Hosting & Monitoring 60 €/Monat
 
-1. Splash (Logo-Animation, einmalig pro Session)
-2. Nav (sticky)
-3. Hero (zwei Spalten: Content links, Refs-Slideshow rechts)
-4. Audit-Widget (Live-AEO-Analyse via Anthropic API)
-5. Methode (4 Schritte)
-6. Leistungen (3 Cards)
-7. Preise (modular, transparent)
-8. FAQ (single-open Akkordeon)
-9. Footer
+**Konditionen (in `Pricing.tsx` Footer-Block):** Preise netto + 20 % USt · Zahlung 50/50 (Auftrag/Übergabe) · 30 Tage Bugfix · Hosting & SSL bei Website-Basis 12 Monate inklusive · Monitoring monatlich kündbar · Audit & Erstgespräch kostenlos.
+
+Wenn du Preise änderst: `lib/data.ts` ist die Quelle, aber `FAQS[2].htmlAnswer` (Pricing-FAQ) und `public/llms.txt` müssen **manuell synchron gehalten** werden.
+
+## Routing & Sections
+
+Die Site hat **zwei Tracks** und einen Track-Picker als Home:
+
+- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — zwei Cards „Web" und „Software" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
+- **`/web` (Web-Track)** ([app/web/page.tsx](app/web/page.tsx)): Hero → Methode → Services → Projects → `<Pricing />` (mit `PRICING`) → FAQ → Footer.
+- **`/automation` (Automation-Track)** ([app/automation/page.tsx](app/automation/page.tsx)): eigener Hero/Services/Methode/Pricing-Stack mit `AUTOMATION_*`-Daten.
+
+`Splash` und `Nav` sind global (Layout-Level). `FaqStructuredData` und `BreadcrumbSchema` werden pro Track-Seite gerendert.
 
 ## Bekannte Todos / offene Punkte
 

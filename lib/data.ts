@@ -353,12 +353,22 @@ export const AUTOMATION_METHODE = [
 // Automation track — pricing
 // ============================================
 export const AUTOMATION_PRICING = {
+  pakete: [
+    {
+      name: 'Bundle „AI-ready"',
+      desc: 'LLM-Anbindung + RAG & Agentic Workflow. Eigene Wissensbasis und LLM-gestützte Agenten in einem Auftrag — die zwei Hebel, die zusammen am meisten Output bringen.',
+      includes: ['LLM-Anbindung', 'RAG & Agentic Workflow'],
+      price: '6.900',
+      strikethrough: '7.500',
+      saves: '600',
+    },
+  ],
   einmalig: [
-    { name: 'Workflow-Setup', desc: 'Einzelner Workflow mit 2–4 Schritten und Standard-Integrationen (Mail, Sheets, Slack, Notion).', price: '800', prefix: 'ab', isBase: true, plus: false, bundle: false },
-    { name: 'API-Integration', desc: 'Anbindung externer Systeme — REST/GraphQL, Auth, Datenmapping, Error-Handling, Logging.', price: '1.500', prefix: 'ab', isBase: false, plus: true, bundle: false },
-    { name: 'LLM-Anbindung', desc: 'Claude, GPT oder Open-Source-Modelle in Ihren Workflow integriert. Inklusive Prompt-Design und Token-Optimierung.', price: '2.500', prefix: 'ab', isBase: false, plus: true, bundle: true },
-    { name: 'Internes Tool / Dashboard', desc: 'Maßgeschneiderte Web-App mit Auth, Datenbank und UI — exakt auf Ihren Prozess zugeschnitten.', price: '3.000', prefix: 'ab', isBase: false, plus: true, bundle: false },
-    { name: 'RAG & Agentic Workflow', desc: 'Retrieval-Augmented Generation über interne Daten oder Agenten mit Tool-Use für komplexe Aufgaben.', price: '5.000', prefix: 'ab', isBase: false, plus: true, bundle: true },
+    { name: 'Workflow-Setup', desc: 'Einzelner Workflow mit 2–4 Schritten und Standard-Integrationen (Mail, Sheets, Slack, Notion).', price: '800', prefix: 'ab', isBase: true, plus: false },
+    { name: 'API-Integration', desc: 'Anbindung externer Systeme — REST/GraphQL, Auth, Datenmapping, Error-Handling, Logging.', price: '1.500', prefix: 'ab', isBase: false, plus: true },
+    { name: 'LLM-Anbindung', desc: 'Claude, GPT oder Open-Source-Modelle in Ihren Workflow integriert. Inklusive Prompt-Design und Token-Optimierung.', price: '2.500', prefix: 'ab', isBase: false, plus: true },
+    { name: 'Internes Tool / Dashboard', desc: 'Maßgeschneiderte Web-App mit Auth, Datenbank und UI — exakt auf Ihren Prozess zugeschnitten.', price: '3.000', prefix: 'ab', isBase: false, plus: true },
+    { name: 'RAG & Agentic Workflow', desc: 'Retrieval-Augmented Generation über interne Daten oder Agenten mit Tool-Use für komplexe Aufgaben.', price: '5.000', prefix: 'ab', isBase: false, plus: true },
   ],
   laufend: [
     { name: 'Hosting & Monitoring', desc: 'EU-Hosting, Logs, Alerting bei Ausfällen, Token-Tracking, monatlicher Performance-Report.', price: '60', period: '/Monat' },
