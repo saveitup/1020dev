@@ -2936,6 +2936,17 @@ html.splash-skip body .hero-stage {
   .row:hover { padding-left: 0; }
   .row-side { flex-direction: row; gap: 1.2rem; align-items: center; padding-top: 0; }
 
+  .rows-methode .row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 2.4rem 0 2.4rem 1.6rem;
+  }
+  .rows-methode .row:hover { padding-left: 1.6rem; }
+  .rows-methode .row::before { top: 2.6rem; }
+  .rows-methode .row-num { font-size: 2.6rem; }
+  .rows-methode .row-meta { margin-top: 0; }
+  .rows-methode .row-side { padding-top: 0; }
+
   .audit-form { flex-direction: column; }
   .audit-btn { padding: 1.05rem 1.5rem; justify-content: center; }
   .audit-result-head { grid-template-columns: 1fr; gap: 1.6rem; }
