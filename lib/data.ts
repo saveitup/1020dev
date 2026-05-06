@@ -238,7 +238,7 @@ export const PRICING = {
     },
   ],
   einmalig: [
-    { name: 'Website-Basis (1 Seite)', desc: 'Eine fokussierte Seite mit Hosting, SSL und gemessener Performance: LCP < 1,8 s, INP < 200 ms, CLS < 0,1. Weitere Seiten jederzeit ergänzbar.', price: '700', isBase: true, plus: false },
+    { name: 'Website-Basis (1 Seite)', desc: 'Eine fokussierte Seite mit gemessener Performance: LCP < 1,8 s, INP < 200 ms, CLS < 0,1. Hosting & SSL 12 Monate inklusive, Domain stellt der Kunde. Weitere Seiten jederzeit ergänzbar.', price: '700', isBase: true, plus: false },
     { name: 'Zusätzliche Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', isBase: false, plus: true },
     { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', isBase: false, plus: true },
     { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness und llms.txt — Inhalte so strukturiert, dass ChatGPT, Perplexity und Claude sie als Antwort ziehen können.', price: '400', isBase: false, plus: true },

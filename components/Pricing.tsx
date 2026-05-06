@@ -152,8 +152,7 @@ export function Pricing({
             <div><strong>Preise</strong> netto, exkl. 20&nbsp;% USt.</div>
             <div><strong>Zahlung</strong> 50&nbsp;% bei Auftragserteilung, 50&nbsp;% bei Übergabe.</div>
             <div><strong>Bugfix</strong> 30 Tage nach Launch inklusive.</div>
-            <div><strong>Hosting &amp; SSL</strong> bei Website-Basis 12 Monate inklusive; Domain stellt der Kunde.</div>
-            <div><strong>Monitoring</strong> monatlich kündbar.</div>
+            <div><strong>Laufende Posten</strong> monatlich kündbar.</div>
             <div className="accent">Audit &amp; Erstgespräch immer kostenlos.</div>
           </div>
           <a
