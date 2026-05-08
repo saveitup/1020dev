@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { validateEmail } from './_lib/email';
-import { renderAuditEmail, type AuditResult } from './_lib/template';
+import { renderAuditEmail, unsubscribeUrl, type AuditResult } from './_lib/template';
 import { SITE } from '@/lib/data';
 import { clientIp, createLimiter } from '@/lib/ratelimit';
 
@@ -170,7 +170,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { subject, html, text } = renderAuditEmail(parsed);
+  const { subject, html, text } = renderAuditEmail(parsed, emailCheck.email);
+  const unsubUrl = unsubscribeUrl(emailCheck.email);
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -182,6 +183,10 @@ export async function POST(req: NextRequest) {
       subject,
       html,
       text,
+      headers: {
+        'List-Unsubscribe': `<${unsubUrl}>, <mailto:${SITE.email}?subject=Abmelden>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
     });
     if (result.error) {
       console.error('Resend error:', result.error);

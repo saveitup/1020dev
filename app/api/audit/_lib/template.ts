@@ -40,8 +40,16 @@ function escapeHtml(s: string): string {
     .replace(/"/g, '&quot;');
 }
 
-export function renderAuditEmail(result: AuditResult): { subject: string; html: string; text: string } {
+export function unsubscribeUrl(email: string): string {
+  return `${SITE.url}/abmelden?email=${encodeURIComponent(email)}`;
+}
+
+export function renderAuditEmail(
+  result: AuditResult,
+  recipientEmail?: string,
+): { subject: string; html: string; text: string } {
   const subject = `Ihr AEO-Bericht für ${result.domain} — Score ${result.score}/100`;
+  const unsubUrl = recipientEmail ? unsubscribeUrl(recipientEmail) : null;
 
   const checksHtml = (result.checks || [])
     .map((c) => {
@@ -154,6 +162,11 @@ export function renderAuditEmail(result: AuditResult): { subject: string; html: 
                 Dieser Bericht wurde automatisiert auf Basis öffentlich verfügbarer Daten erstellt. Für eine vollständige Analyse mit Wettbewerbsvergleich und Umsetzungsplan empfehlen wir das Erstgespräch.
                 <br /><br />
                 1020.dev · ${SITE.location} · <a href="${SITE.url}" style="color:${MUTED};">${SITE.url.replace('https://', '')}</a>
+                ${
+                  unsubUrl
+                    ? `<br /><br />Sie erhalten diese E-Mail, weil Sie ein AEO-Audit auf ${SITE.url.replace('https://', '')} angefordert haben. <a href="${unsubUrl}" style="color:${MUTED};text-decoration:underline;">Abmelden</a>.`
+                    : ''
+                }
               </td>
             </tr>
           </table>
@@ -179,6 +192,7 @@ export function renderAuditEmail(result: AuditResult): { subject: string; html: 
     `E-Mail: ${SITE.email}`,
     '',
     `1020.dev · ${SITE.location}`,
+    ...(unsubUrl ? ['', `Abmelden: ${unsubUrl}`] : []),
   ].join('\n');
 
   return { subject, html, text };
