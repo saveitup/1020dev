@@ -234,7 +234,6 @@ export const PRICING = {
       includes: ['Website-Basis (1 Seite)', 'SEO-Optimierung', 'AEO-Optimierung'],
       price: '1.350',
       strikethrough: '1.450',
-      saves: '100',
     },
   ],
   einmalig: [
