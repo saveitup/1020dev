@@ -1948,9 +1948,11 @@ h1 em, .hero-title em {
 .pricing-package-row {
   background: linear-gradient(180deg, rgba(129, 140, 248, 0.07), rgba(129, 140, 248, 0.02));
   box-shadow: inset 3px 0 0 0 var(--accent), 0 0 24px rgba(129, 140, 248, 0.08);
+  padding-left: 2rem;
 }
 .pricing-package-row:hover {
   background: linear-gradient(180deg, rgba(129, 140, 248, 0.11), rgba(129, 140, 248, 0.04));
+  padding-left: 2.4rem;
 }
 .pricing-package-row .pricing-name {
   font-size: 1.3rem;
