@@ -2961,6 +2961,8 @@ html.splash-skip body .hero-stage {
 
   .pricing-row { grid-template-columns: 1fr; gap: 0.6rem; }
   .pricing-row:hover { padding-left: 0; }
+  .pricing-package-row,
+  .pricing-package-row:hover { padding-left: 1.6rem; }
 
   .footer { grid-template-columns: 1fr; gap: 2rem; }
   .footer-right { align-items: flex-start; text-align: left; }
