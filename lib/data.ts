@@ -423,6 +423,48 @@ export const AUTOMATION_FAQS = [
 ] as const;
 
 // ============================================
+// Concepts track — 6-phase workflow
+// ============================================
+export const CONCEPTS_METHODE = [
+  {
+    num: '01',
+    title: 'Ideation',
+    duration: 'Tag 1–3',
+    desc: 'Gemeinsam identifizieren wir Potenziale für AI und Automatisierung in Ihren bestehenden Prozessen. Welche Aufgaben kosten Zeit? Wo liegen die größten Hebel? Ergebnis: priorisierte Liste konkreter Anwendungsfälle.',
+  },
+  {
+    num: '02',
+    title: 'Assessment',
+    duration: 'Woche 1',
+    desc: 'Jede Idee wird auf Machbarkeit, Wirtschaftlichkeit und Risiko geprüft. Wir bewerten Datenqualität, vorhandene Schnittstellen und regulatorische Anforderungen. Ergebnis: Go/No-Go-Entscheidung pro Anwendungsfall mit klarer Begründung.',
+  },
+  {
+    num: '03',
+    title: 'Concept Design',
+    duration: 'Woche 2–3',
+    desc: 'Für die freigegebenen Anwendungsfälle entsteht ein technisches Konzept: Architektur, Datenflüsse, Schnittstellen, Technologieauswahl. Kein Foliendeck — ein umsetzbares Dokument mit konkreten Spezifikationen.',
+  },
+  {
+    num: '04',
+    title: 'Validation',
+    duration: 'Woche 3–4',
+    desc: 'Kritische Annahmen werden mit einem schlanken Prototyp oder Proof-of-Concept getestet. Sie sehen vor dem eigentlichen Build, ob die Lösung funktioniert — bevor Budget in die falsche Richtung fließt.',
+  },
+  {
+    num: '05',
+    title: 'Handoff',
+    duration: 'Woche 4–5',
+    desc: 'Das validierte Konzept wird als umsetzungsfertiges Paket übergeben: technische Spezifikation, Architektur-Diagramme, Zeitplan, Kostenrahmen. Ihr Team oder wir setzen um — das Konzept funktioniert in beiden Fällen.',
+  },
+  {
+    num: '06',
+    title: 'Review',
+    duration: 'Nach Umsetzung',
+    desc: 'Nach der Umsetzung prüfen wir gemeinsam die Ergebnisse gegen die ursprünglichen Ziele. Was funktioniert, was muss nachjustiert werden, welche nächsten Schritte ergeben sich? Kein Projekt ohne Bilanz.',
+  },
+] as const;
+
+// ============================================
 // Site config
 // ============================================
 export const SITE = {
