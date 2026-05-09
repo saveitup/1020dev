@@ -18,6 +18,14 @@ const CHOICES = [
     desc: 'Workflows, interne Tools und LLM-Integrationen. Wiederkehrende Aufgaben automatisiert, Standard-Stacks integriert, KI dort wo sie tatsächlich liefert.',
     items: ['Workflow-Automation', 'Custom Dev · APIs', 'Claude · GPT · RAG', 'EU-Hosting · DSGVO'],
   },
+  {
+    href: '/concepts',
+    eyebrow: '03',
+    title: 'Konzepte',
+    sub: 'AI & Automation Concepts',
+    desc: 'Strukturierte Konzeptentwicklung in sechs Phasen. Bevor Sie bauen, validieren wir Machbarkeit, Wirtschaftlichkeit und Wirkung — damit kein Budget in Sackgassen fließt.',
+    items: ['Assessment & Discovery', 'Validation · Prototyp', 'Roadmap & Business Case', 'Umsetzungsfertig'],
+  },
 ] as const;
 
 export function Chooser() {

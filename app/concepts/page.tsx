@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import { Methode } from '@/components/Methode';
 import { Footer } from '@/components/Footer';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
@@ -22,7 +23,7 @@ export default function ConceptsPage() {
       />
 
       {/* ── Hero ── */}
-      <section className="hero hero--automation" id="hero">
+      <section className="hero hero--automation hero--concepts" id="hero">
         <div className="hero-grid">
           <div className="hero-text">
             <div className="hero-eyebrow">
@@ -31,7 +32,9 @@ export default function ConceptsPage() {
             </div>
 
             <h1 className="hero-title">
-              Konzepte, die <em>halten</em>
+              Konzepte, die <em>halten.</em>
+              <br />
+              Entscheidungen, die <em>tragen.</em>
             </h1>
 
             <p className="hero-lede">
@@ -40,6 +43,12 @@ export default function ConceptsPage() {
               KMU — strukturiert in sechs Phasen, validiert vor der Umsetzung,
               messbar nach dem Go-Live.
             </p>
+
+            <ul className="hero-pills" aria-label="Was Sie bekommen">
+              <li><span className="hero-pill-dot" aria-hidden="true"></span>Validiert vor Build</li>
+              <li><span className="hero-pill-dot" aria-hidden="true"></span>Go/No-Go pro Use-Case</li>
+              <li><span className="hero-pill-dot" aria-hidden="true"></span>Umsetzungsfertig</li>
+            </ul>
 
             <div className="hero-ctas">
               <a href={`mailto:${SITE.email}`} className="cta-primary">
@@ -58,6 +67,41 @@ export default function ConceptsPage() {
             <div className="hero-signature">
               <span className="line" aria-hidden="true"></span>
               <span>Studio 1020.dev — Wien, Leopoldstadt</span>
+            </div>
+          </div>
+
+          <div className="hero-stage">
+            <div className="blueprint" role="presentation" aria-label="Sechs-Phasen-Blueprint">
+              <div className="blueprint-bar">
+                <span className="blueprint-tag">
+                  <span className="blueprint-dot" aria-hidden="true"></span>
+                  concept.blueprint
+                </span>
+                <span className="blueprint-meta">6 Phasen · 4–5 Wochen</span>
+              </div>
+
+              <ol className="blueprint-list">
+                {CONCEPTS_METHODE.map((step, i) => (
+                  <li
+                    key={step.num}
+                    className="blueprint-step"
+                    style={{ '--i': i } as CSSProperties}
+                  >
+                    <span className="blueprint-num">{step.num}</span>
+                    <div className="blueprint-detail">
+                      <span className="blueprint-title">{step.title}</span>
+                      <span className="blueprint-dur">{step.duration}</span>
+                    </div>
+                    <span className="blueprint-tick" aria-hidden="true">✓</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="blueprint-foot">
+                <span className="blueprint-arrow" aria-hidden="true">▸</span>
+                <span>Output: umsetzungsfertiges Paket</span>
+                <span className="blueprint-cursor" aria-hidden="true"></span>
+              </div>
             </div>
           </div>
         </div>
