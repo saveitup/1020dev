@@ -3538,8 +3538,25 @@ html.splash-skip body .hero-stage {
    CONCEPTS HERO — Blueprint stage + pills
    ========================================================== */
 
+@media (min-width: 921px) {
+  .hero--concepts .hero-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 4.5rem;
+    align-items: start;
+  }
+  .hero--concepts .hero-stage {
+    position: sticky;
+    top: 7rem;
+  }
+}
+
 .hero--concepts .hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
   line-height: 1.05;
+  max-width: 18ch;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 .hero-pills {
