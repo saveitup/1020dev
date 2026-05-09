@@ -2,6 +2,7 @@
 
 Production Next.js site für 1020.dev — Webentwicklung, SEO und AEO für KMU in Wien.
 
+
 ## Stack
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript**
