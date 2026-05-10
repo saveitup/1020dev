@@ -2584,36 +2584,47 @@ html.splash-skip body .hero-stage {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
 }
 .chooser-card-eyebrow {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
-  font-weight: 500;
-  color: var(--dim);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: var(--accent);
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  line-height: 1;
 }
 .chooser-card-arrow {
   font-family: var(--font-dm-mono), monospace;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 500;
   color: var(--accent);
   transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.24s ease;
 }
 .chooser-card:hover .chooser-card-arrow {
-  transform: translateX(8px);
+  transform: translateX(10px);
 }
 
 .chooser-card-body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 1.4rem;
+  padding-bottom: 0.8rem;
+  position: relative;
+  z-index: 2;
 }
 .chooser-card-title {
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-size: clamp(2.4rem, 4.4vw, 3.6rem);
   font-weight: 700;
-  letter-spacing: -0.032em;
-  line-height: 0.98;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
   margin-bottom: 0.4rem;
 }
 .chooser-card-sub {
@@ -2626,7 +2637,7 @@ html.splash-skip body .hero-stage {
   text-transform: lowercase;
 }
 .chooser-card-desc {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 400;
   line-height: 1.5;
   color: var(--muted);
@@ -2635,16 +2646,18 @@ html.splash-skip body .hero-stage {
 
 .chooser-card-list {
   list-style: none;
-  margin-top: 1.2rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
+  margin-top: 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line-2);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.45rem 1rem;
+  gap: 0.4rem 1rem;
+  position: relative;
+  z-index: 2;
 }
 .chooser-card-list li {
   font-family: var(--font-dm-mono), monospace;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 500;
   color: var(--text);
   opacity: 0.78;
@@ -3904,22 +3917,27 @@ html.splash-skip body .hero-stage {
 .chooser-card:nth-child(2) { animation-delay: 0.28s; }
 .chooser-card:nth-child(3) { animation-delay: 0.38s; }
 
+/* Giant decorative outlined number watermark per card */
 .chooser-card::after {
-  content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--accent) 50%,
-    transparent 100%);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  bottom: -2.4rem;
+  right: -1.4rem;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: clamp(8rem, 14vw, 13rem);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 2px currentColor;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+  opacity: 0.18;
 }
 .chooser-card:hover::after,
 .chooser-card:focus-visible::after {
-  transform: scaleX(1);
+  transform: translate(-12px, -12px) rotate(-2deg);
+  opacity: 0.32;
 }
 
 @keyframes chooserCardIn {
@@ -3936,9 +3954,8 @@ html.splash-skip body .hero-stage {
   border-color: rgba(79, 70, 229, 0.22);
 }
 .chooser-card:nth-child(1)::after {
-  background: linear-gradient(90deg,
-    var(--accent) 0%,
-    #818cf8 100%);
+  content: '01';
+  color: var(--accent);
 }
 
 /* Card 02 — Software · dark editorial card */
@@ -3955,7 +3972,9 @@ html.splash-skip body .hero-stage {
     0 6px 18px -10px rgba(0, 0, 0, 0.5);
 }
 .chooser-card:nth-child(2) .chooser-card-eyebrow {
-  color: rgba(255, 255, 255, 0.45);
+  background: rgba(165, 180, 252, 0.16);
+  color: #a5b4fc;
+  border: 1px solid rgba(165, 180, 252, 0.32);
 }
 .chooser-card:nth-child(2) .chooser-card-arrow {
   color: #a5b4fc;
@@ -3980,11 +3999,11 @@ html.splash-skip body .hero-stage {
   color: #a5b4fc;
 }
 .chooser-card:nth-child(2)::after {
-  background: linear-gradient(90deg,
-    #a5b4fc 0%,
-    var(--accent) 50%,
-    #a5b4fc 100%);
+  content: '02';
+  color: #a5b4fc;
+  opacity: 0.22;
 }
+.chooser-card:nth-child(2):hover::after { opacity: 0.4; }
 
 /* Card 03 — Konzepte · solid indigo, white text */
 .chooser-card:nth-child(3) {
@@ -4001,7 +4020,8 @@ html.splash-skip body .hero-stage {
     0 8px 22px -10px rgba(0, 0, 0, 0.35);
 }
 .chooser-card:nth-child(3) .chooser-card-eyebrow {
-  color: rgba(255, 255, 255, 0.6);
+  background: #ffffff;
+  color: var(--accent);
 }
 .chooser-card:nth-child(3) .chooser-card-arrow {
   color: #ffffff;
@@ -4027,11 +4047,11 @@ html.splash-skip body .hero-stage {
   color: #ffffff;
 }
 .chooser-card:nth-child(3)::after {
-  background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0) 100%);
+  content: '03';
+  color: #ffffff;
+  opacity: 0.22;
 }
+.chooser-card:nth-child(3):hover::after { opacity: 0.4; }
 .chooser-card:nth-child(3)::before {
   background: radial-gradient(ellipse 600px 300px at 80% 0%, rgba(255, 255, 255, 0.18), transparent 60%);
 }
