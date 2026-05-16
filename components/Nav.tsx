@@ -27,6 +27,7 @@ const AUTOMATION_LINKS: NavLink[] = [
 const TRACK_LINKS: NavLink[] = [
   { href: '/web', label: 'Web' },
   { href: '/automation', label: 'Automation' },
+  { href: '/agenten', label: 'Agenten' },
   { href: '/journal', label: 'Journal' },
 ];
 

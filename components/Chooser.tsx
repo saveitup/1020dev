@@ -19,12 +19,12 @@ const CHOICES = [
     items: ['Workflow-Automation', 'Custom Dev · APIs', 'Claude · GPT · RAG', 'EU-Hosting · DSGVO'],
   },
   {
-    href: '/concepts',
+    href: '/agenten',
     eyebrow: '03',
-    title: 'Konzepte',
-    sub: 'AI & Automation Concepts',
-    desc: 'Strukturierte Konzeptentwicklung in sechs Phasen. Bevor Sie bauen, validieren wir Machbarkeit, Wirtschaftlichkeit und Wirkung — damit kein Budget in Sackgassen fließt.',
-    items: ['Assessment & Discovery', 'Validation · Prototyp', 'Roadmap & Business Case', 'Umsetzungsfertig'],
+    title: 'Agenten',
+    sub: 'KI · Branche · KMU',
+    desc: 'Maßgeschneiderte KI-Agenten für österreichische KMU. Marketing, Kundenkommunikation und wiederkehrende Workflows — branchenspezifisch, ohne eigene IT-Abteilung.',
+    items: ['Branchenspezifisch', 'DSGVO von Grund auf', 'Kein IT nötig', 'Skalierbar'],
   },
 ] as const;
 

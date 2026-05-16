@@ -76,11 +76,12 @@ Wenn du Preise änderst: `lib/data.ts` ist die Quelle, aber `FAQS[2].htmlAnswer`
 
 ## Routing & Sections
 
-Die Site hat **zwei Tracks** und einen Track-Picker als Home:
+Die Site hat **drei Tracks** und einen Track-Picker als Home:
 
-- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — zwei Cards „Web" und „Software" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
+- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — drei Cards „Web", „Software" und „Agenten" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
 - **`/web` (Web-Track)** ([app/web/page.tsx](app/web/page.tsx)): Hero → Methode → Services → Projects → `<Pricing />` (mit `PRICING`) → FAQ → Footer.
 - **`/automation` (Automation-Track)** ([app/automation/page.tsx](app/automation/page.tsx)): eigener Hero/Services/Methode/Pricing-Stack mit `AUTOMATION_*`-Daten.
+- **`/agenten` (Agenten-Track)** ([app/agenten/page.tsx](app/agenten/page.tsx)): Hero → `<Industries>` (Branchen-Akkordeon) → `<Methode>` (4 Phasen) → Mehrwert-Section → `<FAQ>` (AEO/GEO-optimiert) → CTA → Footer. Daten in `AGENTEN_METHODE`, `AGENTEN_INDUSTRIES`, `AGENTEN_BENEFITS`, `AGENTEN_FAQS`.
 
 `Splash` und `Nav` sind global (Layout-Level). `FaqStructuredData` und `BreadcrumbSchema` werden pro Track-Seite gerendert.
 

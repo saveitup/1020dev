@@ -423,44 +423,186 @@ export const AUTOMATION_FAQS = [
 ] as const;
 
 // ============================================
-// Concepts track — 6-phase workflow
+// Agenten track — 4-phase workflow
 // ============================================
-export const CONCEPTS_METHODE = [
+export const AGENTEN_METHODE = [
   {
     num: '01',
-    title: 'Ideation',
+    title: 'Bedarfsanalyse',
     duration: 'Tag 1–3',
-    desc: 'Gemeinsam identifizieren wir Potenziale für AI und Automatisierung in Ihren bestehenden Prozessen. Welche Aufgaben kosten Zeit? Wo liegen die größten Hebel? Ergebnis: priorisierte Liste konkreter Anwendungsfälle.',
+    desc: 'Wir analysieren Ihr Geschäftsmodell, Ihre Prozesse und Ihre Ziele. Welche Aufgaben kosten Zeit? Welche Anfragen wiederholen sich täglich? Ergebnis: priorisierte Liste konkreter Aufgaben, die ein Agent übernehmen kann — inklusive grober Aufwandsschätzung.',
+    cta: { label: 'E-Mail schreiben', href: 'mailto:hallo@1020.dev' },
   },
   {
     num: '02',
-    title: 'Assessment',
+    title: 'Agent-Design',
     duration: 'Woche 1',
-    desc: 'Jede Idee wird auf Machbarkeit, Wirtschaftlichkeit und Risiko geprüft. Wir bewerten Datenqualität, vorhandene Schnittstellen und regulatorische Anforderungen. Ergebnis: Go/No-Go-Entscheidung pro Anwendungsfall mit klarer Begründung.',
+    desc: 'Für die priorisierten Aufgaben entwerfen wir die passenden Agenten — abgestimmt auf Ihre Branche, Ihre Sprache und Ihre Tools. Architektur, Datenflüsse und Schnittstellen werden vor dem Build dokumentiert. Keine Black Box.',
   },
   {
     num: '03',
-    title: 'Concept Design',
-    duration: 'Woche 2–3',
-    desc: 'Für die freigegebenen Anwendungsfälle entsteht ein technisches Konzept: Architektur, Datenflüsse, Schnittstellen, Technologieauswahl. Kein Foliendeck — ein umsetzbares Dokument mit konkreten Spezifikationen.',
+    title: 'Umsetzung',
+    duration: 'Woche 2–4',
+    desc: 'Wir konfigurieren, testen und schulen die Agenten an Ihren realen Daten. Inklusive Integration in bestehende Systeme (E-Mail, Kalender, CRM, Buchhaltung) und Live-Tests mit echten Vorgängen, bevor irgendetwas produktiv geht.',
   },
   {
     num: '04',
-    title: 'Validation',
-    duration: 'Woche 3–4',
-    desc: 'Kritische Annahmen werden mit einem schlanken Prototyp oder Proof-of-Concept getestet. Sie sehen vor dem eigentlichen Build, ob die Lösung funktioniert — bevor Budget in die falsche Richtung fließt.',
+    title: 'Übergabe & Betreuung',
+    duration: 'Ab Go-Live',
+    desc: 'Ihre Agenten starten produktiv. Wir bleiben als Ansprechpartner, beobachten Fehlerquoten und Token-Verbrauch und justieren bei Bedarf nach. Monatliches Reporting, monatlich kündbar.',
+  },
+] as const;
+
+// ============================================
+// Agenten track — branchen-spezifische Anwendungsbereiche
+// ============================================
+export const AGENTEN_INDUSTRIES = [
+  {
+    id: 'gastgewerbe',
+    label: 'Gastgewerbe',
+    tag: 'Reservierungs- & Bewertungsmanager',
+    short: 'Automatische Tischreservierung und Antworten auf Google-Bewertungen.',
+    htmlDetail:
+      'Der Agent nimmt Reservierungen per E-Mail, WhatsApp oder Webformular entgegen, prüft die Tischbelegung in Ihrem System (resmio, OpenTable oder Google Reservierungen) und bestätigt automatisch — auf Deutsch, im Tonfall Ihres Hauses. Neue Google- und TripAdvisor-Bewertungen werden in Sekunden gelesen und beantwortet, kritische Reviews zuerst an Sie eskaliert. Stornos und No-Shows werden erkannt, Reminder gehen automatisch raus. Das spart in einem Wiener Restaurant typischerweise 8–12 Stunden Telefonie pro Woche.',
+  },
+  {
+    id: 'handwerk',
+    label: 'Handwerk',
+    tag: 'Auftrags- & Angebotsassistent',
+    short: 'Anfragen erfassen, Angebote erstellen, Termine koordinieren.',
+    htmlDetail:
+      'Eingehende Anfragen — telefonisch, per E-Mail oder über das Webformular — werden vom Agenten erfasst, strukturiert und mit Rückfragen zu fehlenden Details ergänzt. Aus Ihrer Preisliste und vergleichbaren früheren Aufträgen entsteht ein Angebot, das Sie nur noch freigeben. Termine werden mit dem Kalender Ihrer Mitarbeitenden koordiniert, Material- und Fahrzeit eingerechnet. Anbindbar an Holzmann, BMD, RKSV-Kassen oder einfache Excel-Listen — Sie entscheiden, wie tief integriert wird.',
+  },
+  {
+    id: 'handel',
+    label: 'Handel',
+    tag: 'Shop- & Lageroptimierung',
+    short: 'Produktpflege, Bestandsverwaltung und Beantwortung von Kundenanfragen.',
+    htmlDetail:
+      'Der Agent pflegt Ihre Produktdaten in Shopify, WooCommerce oder Shopware, schreibt SEO-konforme Beschreibungen aus Lieferanten-Datenblättern und meldet kritische Bestände automatisch. Kundenanfragen zu Verfügbarkeit, Versand und Retouren werden 24/7 beantwortet — der Agent kennt Ihre Lagerstände und AGB. Bei Sonderfällen übergibt er an Sie, mit vorbereiteter Antwort zum Freigeben. Auch B2B-Preislisten und Mengenstaffeln werden korrekt berücksichtigt.',
+  },
+  {
+    id: 'freie-berufe',
+    label: 'Freie Berufe',
+    tag: 'Klientenmanagement',
+    short: 'Terminplanung, Dokumentenverwaltung und Honorarabrechnung.',
+    htmlDetail:
+      'Für Steuerberatung, Anwaltskanzlei, Therapie oder Beratungspraxis: Der Agent koordiniert Termine über cal.com oder Outlook, verschickt Erinnerungen und Vorbereitungs-Checklisten, sortiert eingehende Klientenunterlagen automatisch in die richtigen Ordner und bereitet Honorarnoten nach Ihrem Tarif vor. Anbindbar an BMD, RA-MICRO oder DATEV — DSGVO-konform mit Verschlüsselung sensibler Daten und klarer Audit-Spur, wer wann was getan hat.',
+  },
+  {
+    id: 'dienstleister',
+    label: 'Dienstleister',
+    tag: 'Marketing-Autopilot',
+    short: 'Social Media, Newsletter und lokales SEO — automatisch betrieben.',
+    htmlDetail:
+      'Der Agent plant und veröffentlicht Beiträge auf Instagram, LinkedIn und Facebook, generiert Newsletter aus Ihren News und Angeboten und beantwortet Direktnachrichten in Ihrem Ton. Lokales SEO und Google Business Profile werden laufend gepflegt — neue Bewertungen, Öffnungszeiten zu Feiertagen, saisonale Angebote. Ergebnisse werden monatlich gegen Ihre Ziele gemessen (Reichweite, Anfragen, Conversion), nicht nur Vanity-Metriken.',
+  },
+] as const;
+
+// ============================================
+// Agenten track — Mehrwert (USPs)
+// ============================================
+export const AGENTEN_BENEFITS = [
+  {
+    num: '01',
+    title: 'Für Österreich gemacht',
+    desc: 'Unsere Agenten verstehen österreichische Geschäftskultur, sprechen Deutsch und kennen die lokalen Anforderungen — von der Gewerbeberechtigung über die Registrierkassenpflicht bis zur korrekten Anrede.',
+  },
+  {
+    num: '02',
+    title: 'Branchenspezifisch',
+    desc: 'Ein Tischlereibetrieb braucht andere Lösungen als eine Steuerberatungskanzlei. Jeder Agent wird auf Ihre Branche und Ihre Prozesse zugeschnitten — kein Standardprodukt von der Stange.',
+  },
+  {
+    num: '03',
+    title: 'Kein IT-Know-how nötig',
+    desc: 'Unsere Agenten arbeiten selbstständig im Hintergrund. Sie brauchen keine eigene IT-Abteilung und keine technischen Vorkenntnisse — wir übernehmen Setup, Wartung und Monitoring.',
+  },
+  {
+    num: '04',
+    title: 'DSGVO von Grund auf',
+    desc: 'Datenschutz ist bei uns kein Nachgedanke, sondern eingebaut. EU-Hosting, Auftragsverarbeitungsverträge, sensible Daten bei Bedarf on-premise. Alle Agenten entsprechen der DSGVO ab Tag eins.',
   },
   {
     num: '05',
-    title: 'Handoff',
-    duration: 'Woche 4–5',
-    desc: 'Das validierte Konzept wird als umsetzungsfertiges Paket übergeben: technische Spezifikation, Architektur-Diagramme, Zeitplan, Kostenrahmen. Ihr Team oder wir setzen um — das Konzept funktioniert in beiden Fällen.',
+    title: 'Skalierbar',
+    desc: 'Starten Sie mit einem einzelnen Agenten und erweitern Sie bei Bedarf — ohne Neuentwicklung. Jeder Agent ist modular und kann jederzeit um neue Aufgaben oder Schnittstellen ergänzt werden.',
+  },
+] as const;
+
+// ============================================
+// Agenten track — FAQs (für AEO / GEO)
+// ============================================
+export const AGENTEN_FAQS = [
+  {
+    question: 'Was ist ein KI-Agent für KMU?',
+    plainAnswer:
+      'Ein KI-Agent ist eine intelligente Software, die wiederkehrende Aufgaben in einem KMU selbstständig übernimmt — von der Bearbeitung eingehender Anfragen über die Erstellung von Angeboten bis zur Pflege von Online-Kanälen. Anders als klassische Skripte versteht ein KI-Agent natürliche Sprache, trifft kontextabhängige Entscheidungen und kann mit bestehenden Systemen wie E-Mail, Kalender oder CRM zusammenarbeiten.',
+    htmlAnswer:
+      'Ein KI-Agent ist eine intelligente Software, die wiederkehrende Aufgaben in einem KMU selbstständig übernimmt — von der Bearbeitung eingehender Anfragen über die Erstellung von Angeboten bis zur Pflege von Online-Kanälen. Anders als klassische Skripte versteht ein KI-Agent natürliche Sprache, trifft kontextabhängige Entscheidungen und kann mit bestehenden Systemen wie E-Mail, Kalender oder CRM zusammenarbeiten. Im Unterschied zu einem Chatbot ist ein Agent <strong>handlungsfähig</strong>: er liest, entscheidet und führt aus.',
   },
   {
-    num: '06',
-    title: 'Review',
-    duration: 'Nach Umsetzung',
-    desc: 'Nach der Umsetzung prüfen wir gemeinsam die Ergebnisse gegen die ursprünglichen Ziele. Was funktioniert, was muss nachjustiert werden, welche nächsten Schritte ergeben sich? Kein Projekt ohne Bilanz.',
+    question: 'Was unterscheidet einen KI-Agenten von einem Chatbot?',
+    plainAnswer:
+      'Ein Chatbot antwortet — ein Agent handelt. Chatbots geben vordefinierte oder generierte Antworten auf Fragen, bleiben aber im Chat-Fenster. Ein KI-Agent kann darüber hinaus konkrete Aktionen ausführen: Termine im Kalender eintragen, Angebote im CRM anlegen, Newsletter versenden, Bestände prüfen. Agenten greifen über Schnittstellen auf Ihre Systeme zu und schließen Vorgänge ab, ohne dass jemand kopieren und einfügen muss.',
+    htmlAnswer:
+      'Ein Chatbot antwortet — ein Agent handelt. Chatbots geben vordefinierte oder generierte Antworten auf Fragen, bleiben aber im Chat-Fenster. Ein KI-Agent kann darüber hinaus konkrete Aktionen ausführen: Termine im Kalender eintragen, Angebote im CRM anlegen, Newsletter versenden, Bestände prüfen. Agenten greifen über Schnittstellen auf Ihre Systeme zu und <strong>schließen Vorgänge ab</strong>, ohne dass jemand kopieren und einfügen muss.',
+  },
+  {
+    question: 'Was kostet ein KI-Agent für ein KMU in Österreich?',
+    plainAnswer:
+      'Ein einfacher Agent für eine klar abgegrenzte Aufgabe startet bei 800 Euro Workflow-Setup. Agenten mit LLM-Anbindung und mehreren Integrationen liegen typischerweise zwischen 2.500 und 5.000 Euro einmalig. Komplexere Setups mit RAG über eigene Daten oder agentic Workflows ab 5.000 Euro. Der laufende Betrieb inklusive Hosting und Monitoring kostet 60 Euro im Monat. Audit und Erstgespräch sind kostenlos.',
+    htmlAnswer:
+      'Ein einfacher Agent für eine klar abgegrenzte Aufgabe startet bei 800&nbsp;€ Workflow-Setup. Agenten mit LLM-Anbindung und mehreren Integrationen liegen typischerweise zwischen 2.500&nbsp;€ und 5.000&nbsp;€ einmalig. Komplexere Setups mit RAG über eigene Daten oder agentic Workflows ab 5.000&nbsp;€. Der laufende Betrieb inklusive Hosting und Monitoring kostet 60&nbsp;€ im Monat. Audit und Erstgespräch sind kostenlos. Detaillierte Pakete im <a href="/automation#preise" style="color: var(--accent); text-decoration: underline;">Automation-Pricing</a>.',
+  },
+  {
+    question: 'Wie lange dauert die Entwicklung eines KI-Agenten?',
+    plainAnswer:
+      'Ein einzelner Agent mit klar definiertem Aufgabenbereich ist in 2 bis 4 Wochen produktiv. Komplexere Setups mit mehreren integrierten Systemen oder eigener Wissensbasis brauchen 4 bis 8 Wochen — abhängig von der Datenqualität und der Anzahl an Schnittstellen. Die erste Woche ist immer Analyse und Design, ab Woche zwei beginnt die Umsetzung mit wöchentlichen Reviews.',
+    htmlAnswer:
+      'Ein einzelner Agent mit klar definiertem Aufgabenbereich ist in 2 bis 4 Wochen produktiv. Komplexere Setups mit mehreren integrierten Systemen oder eigener Wissensbasis brauchen 4 bis 8 Wochen — abhängig von der Datenqualität und der Anzahl an Schnittstellen. Die erste Woche ist immer Analyse und Design, ab Woche zwei beginnt die Umsetzung mit wöchentlichen Reviews.',
+  },
+  {
+    question: 'Ist mein Unternehmen zu klein für einen KI-Agenten?',
+    plainAnswer:
+      'Im Gegenteil. Ein-Personen-Unternehmen und Kleinbetriebe profitieren oft am stärksten, weil ihnen kein Team zur Verfügung steht, das wiederkehrende Aufgaben übernimmt. Faustregel: Wenn eine Aufgabe Sie mehr als zwei Stunden pro Woche kostet oder über fünf Mal am Tag wiederkehrt, lohnt sich ein Agent in der Regel schon nach wenigen Monaten.',
+    htmlAnswer:
+      'Im Gegenteil. Ein-Personen-Unternehmen und Kleinbetriebe profitieren oft am stärksten, weil ihnen kein Team zur Verfügung steht, das wiederkehrende Aufgaben übernimmt. Faustregel: Wenn eine Aufgabe Sie mehr als <strong>zwei Stunden pro Woche</strong> kostet oder über fünf Mal am Tag wiederkehrt, lohnt sich ein Agent in der Regel schon nach wenigen Monaten.',
+  },
+  {
+    question: 'Welche Aufgaben kann ein KI-Agent in einem KMU konkret übernehmen?',
+    plainAnswer:
+      'Typische Einsatzfelder: Beantwortung wiederkehrender Kundenanfragen, Reservierungs- und Terminkoordination, Angebotserstellung aus Anfragen, Pflege von Online-Shops und Produktdaten, automatisches Beantworten von Google-Bewertungen, Newsletter- und Social-Media-Management, Sortierung eingehender E-Mails, Vorbereitung von Rechnungen und Honorarnoten. Welche Aufgaben in Ihrem Betrieb am meisten Wirkung haben, klärt die kostenlose Bedarfsanalyse.',
+    htmlAnswer:
+      'Typische Einsatzfelder: Beantwortung wiederkehrender Kundenanfragen, Reservierungs- und Terminkoordination, Angebotserstellung aus Anfragen, Pflege von Online-Shops und Produktdaten, automatisches Beantworten von Google-Bewertungen, Newsletter- und Social-Media-Management, Sortierung eingehender E-Mails, Vorbereitung von Rechnungen und Honorarnoten. Welche Aufgaben in Ihrem Betrieb am meisten Wirkung haben, klärt die <a href="mailto:hallo@1020.dev" style="color: var(--accent); text-decoration: underline;">kostenlose Bedarfsanalyse</a>.',
+  },
+  {
+    question: 'Brauche ich eine eigene IT-Abteilung für den Betrieb?',
+    plainAnswer:
+      'Nein. Unsere Agenten laufen selbstständig im Hintergrund — wir kümmern uns um Hosting, Wartung und Monitoring. Sie bekommen einen einfachen Zugang, um Eingaben oder Regeln anzupassen, plus ein monatliches Reporting. Bei Fragen oder Fehlern sind wir innerhalb eines Werktags erreichbar. Kein Vendor-Lock-in: Sie bekommen Quellcode und Dokumentation, falls Sie später intern übernehmen wollen.',
+    htmlAnswer:
+      'Nein. Unsere Agenten laufen selbstständig im Hintergrund — wir kümmern uns um Hosting, Wartung und Monitoring. Sie bekommen einen einfachen Zugang, um Eingaben oder Regeln anzupassen, plus ein monatliches Reporting. Bei Fragen oder Fehlern sind wir innerhalb eines Werktags erreichbar. <strong>Kein Vendor-Lock-in</strong>: Sie bekommen Quellcode und Dokumentation, falls Sie später intern übernehmen wollen.',
+  },
+  {
+    question: 'Sind KI-Agenten DSGVO-konform und wo liegen die Daten?',
+    plainAnswer:
+      'Ja. Wir nutzen EU-Hosting bei Anthropic und OpenAI, schließen Auftragsverarbeitungsverträge ab und setzen — wo nötig — Open-Source-Modelle auf europäischen Servern ein. Sensible Daten werden vor dem Versand an externe APIs anonymisiert oder verbleiben on-premise. Jeder Agent dokumentiert seine Aktionen nachvollziehbar, damit Sie Auskunfts- und Löschungsersuchen sauber bedienen können.',
+    htmlAnswer:
+      'Ja. Wir nutzen EU-Hosting bei Anthropic und OpenAI, schließen Auftragsverarbeitungsverträge ab und setzen — wo nötig — Open-Source-Modelle (Llama, Mistral) auf europäischen Servern ein. Sensible Daten werden vor dem Versand an externe APIs anonymisiert oder verbleiben on-premise. Jeder Agent dokumentiert seine Aktionen nachvollziehbar, damit Sie Auskunfts- und Löschungsersuchen sauber bedienen können.',
+  },
+  {
+    question: 'Welche Systeme kann ein Agent integrieren?',
+    plainAnswer:
+      'Alle gängigen Plattformen mit API: Microsoft 365 (Outlook, Teams, SharePoint), Google Workspace, Slack, Notion, HubSpot, Salesforce, Pipedrive, Stripe, Shopify, WooCommerce, plus österreichische Branchenlösungen wie BMD oder RA-MICRO. Bei älteren Systemen ohne API arbeiten wir mit strukturierter E-Mail-Verarbeitung oder schlanken RPA-Lösungen.',
+    htmlAnswer:
+      'Alle gängigen Plattformen mit API: Microsoft 365 (Outlook, Teams, SharePoint), Google Workspace, Slack, Notion, HubSpot, Salesforce, Pipedrive, Stripe, Shopify, WooCommerce, plus österreichische Branchenlösungen wie BMD oder RA-MICRO. Bei älteren Systemen ohne API arbeiten wir mit strukturierter E-Mail-Verarbeitung oder schlanken RPA-Lösungen.',
+  },
+  {
+    question: 'Was passiert, wenn der Agent einen Fehler macht?',
+    plainAnswer:
+      'Jeder Agent hat strukturiertes Logging, Error-Handling und definierte Eskalationsregeln. Unsichere Vorgänge werden nicht selbstständig ausgeführt, sondern Ihnen mit fertiger Empfehlung zum Freigeben vorgelegt. Bei Ausfällen erhalten Sie automatisch Benachrichtigungen mit dem konkreten Fehlerkontext. Kritische Schritte sind idempotent gebaut — sie können sicher wiederholt werden, ohne Doppel-Aktionen wie zweimal verschickte Rechnungen.',
+    htmlAnswer:
+      'Jeder Agent hat strukturiertes Logging, Error-Handling und definierte Eskalationsregeln. Unsichere Vorgänge werden nicht selbstständig ausgeführt, sondern Ihnen mit fertiger Empfehlung zum Freigeben vorgelegt. Bei Ausfällen erhalten Sie automatisch Benachrichtigungen mit dem konkreten Fehlerkontext. Kritische Schritte sind <strong>idempotent</strong> gebaut — sie können sicher wiederholt werden, ohne Doppel-Aktionen wie zweimal verschickte Rechnungen.',
   },
 ] as const;
 

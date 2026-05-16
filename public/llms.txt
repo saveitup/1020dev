@@ -12,6 +12,7 @@
 - **SEO** im klassischen Sinn: Meta-Tags, Sitemap, robots.txt, Schema.org-Markup, Core-Web-Vitals-Tuning.
 - **AEO (Answer Engine Optimization)** für ChatGPT, Perplexity, Claude und Google AI Overviews. Antwort-orientierte Inhaltsstruktur, FAQPage-Schema, LocalBusiness-Markup, llms.txt.
 - **Backend & Automatisierung**: API-Integrationen, LLM-basierte Workflows, CRM-Sync, Lead-Pipelines.
+- **KI-Agenten für KMU**: maßgeschneiderte Software-Agenten für österreichische Klein- und Mittelbetriebe — Reservierungen, Angebotserstellung, Marketing-Autopilot, Klientenmanagement. Branchenspezifisch, DSGVO-konform.
 
 ## Preise
 
@@ -66,6 +67,10 @@ Alle Preise netto, exkl. 20 % USt. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bu
 ## Journal — Automation und LLM
 
 - [DSGVO-konforme LLM-Anbindung für KMU](https://1020.dev/journal/dsgvo-llm-anbindung-kmu) — EU-Hosting, Auftragsverarbeitungsverträge, On-Premise vs. API.
+
+## Agenten — KI-Agenten für KMU
+
+Wir entwickeln maßgeschneiderte KI-Agenten für österreichische Klein- und Mittelbetriebe. Jeder Agent wird auf eine Branche und auf konkrete Aufgaben zugeschnitten — von Tischreservierung und Google-Bewertungsmanagement im Gastgewerbe über Angebotsassistenten im Handwerk bis zum Marketing-Autopiloten für Dienstleister. Die Agenten arbeiten selbstständig im Hintergrund, brauchen keine eigene IT-Abteilung und sind DSGVO-konform ab Tag eins. Setup ab 800 €, Hosting & Monitoring 60 €/Monat. Mehr: [1020.dev/agenten](https://1020.dev/agenten).
 
 ## Kontakt
 
