@@ -72,6 +72,51 @@ export default function AgentenPage() {
               <span>Studio 1020.dev — Wien, Leopoldstadt</span>
             </div>
           </div>
+
+          <div className="hero-stage">
+            <div
+              className="agent-sketch"
+              role="presentation"
+              aria-label="Agent-Loop-Skizze"
+            >
+              <div className="agent-sketch-bar">
+                <span className="agent-sketch-tag">
+                  <span className="agent-sketch-dot" aria-hidden="true"></span>
+                  claude.agent
+                </span>
+                <span className="agent-sketch-meta">loop · iter 03</span>
+              </div>
+
+              <div className="agent-sketch-body">
+                <div className="agent-sketch-edge">
+                  <span className="agent-sketch-edge-label">Kunden-Anfrage</span>
+                  <span className="agent-sketch-arrow" aria-hidden="true">↓</span>
+                </div>
+
+                <div className="agent-sketch-brain">
+                  <span className="agent-sketch-brain-name">Sonnet 4.6</span>
+                  <span className="agent-sketch-brain-sub">plant · ruft · verifiziert</span>
+                </div>
+
+                <div className="agent-sketch-fan" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <div className="agent-sketch-tools">
+                  <span className="agent-sketch-tool">search()</span>
+                  <span className="agent-sketch-tool">fetch()</span>
+                  <span className="agent-sketch-tool">notify()</span>
+                </div>
+
+                <div className="agent-sketch-edge">
+                  <span className="agent-sketch-arrow" aria-hidden="true">↓</span>
+                  <span className="agent-sketch-edge-label">Antwort · auto-zugestellt</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
