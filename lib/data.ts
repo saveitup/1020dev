@@ -105,9 +105,9 @@ export const FAQS = [
   {
     question: 'Was kostet eine Website mit AEO und wann amortisiert sich das?',
     plainAnswer:
-      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100 Euro (700 Euro Website-Basis plus 400 Euro AEO). Das Bundle Sichtbar (Website-Basis + SEO + AEO) kostet 1.350 Euro statt 1.450 Euro einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000 und 8.000 Euro. Bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
+      'Wir arbeiten ohne starre Preisliste. Der Preis setzt sich aus einem angemessenen Honorar zusammen — fair kalkuliert nach tatsächlichem Aufwand und unter Berücksichtigung der Unterstützung durch KI im Entwicklungsprozess. Audit und Erstgespräch sind kostenlos und liefern ein konkretes Angebot. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
     htmlAnswer:
-      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100&nbsp;€ (700&nbsp;€ Website-Basis + 400&nbsp;€ AEO). Das Bundle „Sichtbar" (Website-Basis + SEO + AEO) kostet 1.350&nbsp;€ statt 1.450&nbsp;€ einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Hintergründe in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
+      'Wir arbeiten ohne starre Preisliste. Der Preis setzt sich aus einem <strong>angemessenen Honorar</strong> zusammen — fair kalkuliert nach tatsächlichem Aufwand und unter Berücksichtigung der Unterstützung durch KI im Entwicklungsprozess. Audit und Erstgespräch sind kostenlos und liefern ein konkretes Angebot. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit.',
   },
   {
     question: 'Funktioniert AEO auch für lokale Wiener Unternehmen?',
@@ -551,9 +551,9 @@ export const AGENTEN_FAQS = [
   {
     question: 'Was kostet ein KI-Agent für ein KMU in Österreich?',
     plainAnswer:
-      'Ein einfacher Agent für eine klar abgegrenzte Aufgabe startet bei 800 Euro Workflow-Setup. Agenten mit LLM-Anbindung und mehreren Integrationen liegen typischerweise zwischen 2.500 und 5.000 Euro einmalig. Komplexere Setups mit RAG über eigene Daten oder agentic Workflows ab 5.000 Euro. Der laufende Betrieb inklusive Hosting und Monitoring kostet 60 Euro im Monat. Audit und Erstgespräch sind kostenlos.',
+      'Wir arbeiten ohne starre Preisliste. Der Preis setzt sich aus einem angemessenen Honorar zusammen — fair kalkuliert nach tatsächlichem Aufwand und unter Berücksichtigung der Unterstützung durch KI im Entwicklungsprozess. Audit und Erstgespräch sind kostenlos und liefern eine konkrete Aufwandsschätzung für Ihren Anwendungsfall, inklusive laufender Betriebskosten.',
     htmlAnswer:
-      'Ein einfacher Agent für eine klar abgegrenzte Aufgabe startet bei 800&nbsp;€ Workflow-Setup. Agenten mit LLM-Anbindung und mehreren Integrationen liegen typischerweise zwischen 2.500&nbsp;€ und 5.000&nbsp;€ einmalig. Komplexere Setups mit RAG über eigene Daten oder agentic Workflows ab 5.000&nbsp;€. Der laufende Betrieb inklusive Hosting und Monitoring kostet 60&nbsp;€ im Monat. Audit und Erstgespräch sind kostenlos. Detaillierte Pakete im <a href="/automation#preise" style="color: var(--accent); text-decoration: underline;">Automation-Pricing</a>.',
+      'Wir arbeiten ohne starre Preisliste. Der Preis setzt sich aus einem <strong>angemessenen Honorar</strong> zusammen — fair kalkuliert nach tatsächlichem Aufwand und unter Berücksichtigung der Unterstützung durch KI im Entwicklungsprozess. Audit und Erstgespräch sind kostenlos und liefern eine konkrete Aufwandsschätzung für Ihren Anwendungsfall, inklusive laufender Betriebskosten.',
   },
   {
     question: 'Wie lange dauert die Entwicklung eines KI-Agenten?',

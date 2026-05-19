@@ -1,77 +1,41 @@
-import { SITE, PRICING, AUTOMATION_PRICING } from '@/lib/data';
+import { SITE } from '@/lib/data';
 
 /**
- * LocalBusiness + ProfessionalService Schema mit eingebettetem OfferCatalog.
+ * LocalBusiness + ProfessionalService Schema.
  *
  * Wird in `app/layout.tsx` einmal gerendert und gilt für die ganze Site.
  * Liefert AEO-Crawlern (ChatGPT, Perplexity, Claude, Google AI Overviews)
  * strukturierte Antworten auf:
  * - "Wer ist 1020.dev?" → Organization + founder
  * - "Wo sitzt 1020.dev?" → address + geo + areaServed
- * - "Was kostet eine Website / SEO / AEO bei 1020.dev?" → hasOfferCatalog
  * - "Wie erreicht man 1020.dev?" → telephone + email + url
  *
- * Die Services kommen aus `lib/data.ts` (PRICING + AUTOMATION_PRICING) — Single
- * Source of Truth. Preisänderungen propagieren automatisch ins Schema.
+ * Honorar nach Aufwand — keine starre Preisliste, daher kein OfferCatalog mit
+ * konkreten Preisen. Angemessenes Honorar unter Berücksichtigung der KI-Hilfe
+ * im Entwicklungsprozess.
  */
 
-type PricingItem = {
-  readonly name: string;
-  readonly desc: string;
-  readonly price: string;
-  readonly prefix?: string;
-};
-
-type RecurringItem = {
-  readonly name: string;
-  readonly desc: string;
-  readonly price: string;
-  readonly period?: string;
-};
-
-function priceAsNumber(price: string): number {
-  // PRICING-Strings haben deutsche Tausender-Punkte: "2.000" → 2000
-  return Number(price.replace(/\./g, ''));
-}
-
-function buildOffer(item: PricingItem | RecurringItem, category: string, isRecurring = false) {
-  return {
-    '@type': 'Offer',
-    name: item.name,
-    description: item.desc,
-    category,
-    priceSpecification: {
-      '@type': isRecurring ? 'UnitPriceSpecification' : 'PriceSpecification',
-      price: priceAsNumber(item.price),
-      priceCurrency: 'EUR',
-      valueAddedTaxIncluded: false,
-      ...(isRecurring && 'period' in item && item.period
-        ? { unitCode: 'MON', unitText: 'monatlich' }
-        : {}),
-    },
-    itemOffered: {
-      '@type': 'Service',
-      name: item.name,
-      description: item.desc,
-      serviceType: category,
-      provider: { '@id': `${SITE.url}#business` },
-      areaServed: [
-        { '@type': 'City', name: SITE.address.city },
-        { '@type': 'Country', name: SITE.address.countryName },
-      ],
-    },
-  };
-}
+const SERVICE_AREAS = [
+  'Webentwicklung mit Next.js',
+  'SEO-Optimierung',
+  'Answer Engine Optimization (AEO)',
+  'Workflow-Automation',
+  'LLM-Integration & RAG',
+  'KI-Agenten für KMU',
+  'Interne Tools & Dashboards',
+  'Hosting & Monitoring',
+] as const;
 
 export function LocalBusinessSchema() {
-  const offers = [
-    ...PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Webentwicklung & SEO/AEO')),
-    ...PRICING.einmalig.map((p) => buildOffer(p, 'Webentwicklung & SEO/AEO')),
-    ...PRICING.laufend.map((p) => buildOffer(p, 'Monitoring & Reporting', true)),
-    ...AUTOMATION_PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Automation & AI')),
-    ...AUTOMATION_PRICING.einmalig.map((p) => buildOffer(p, 'Automation & AI-Integration')),
-    ...AUTOMATION_PRICING.laufend.map((p) => buildOffer(p, 'Hosting & Monitoring', true)),
-  ];
+  const services = SERVICE_AREAS.map((name) => ({
+    '@type': 'Service',
+    name,
+    provider: { '@id': `${SITE.url}#business` },
+    areaServed: [
+      { '@type': 'City', name: SITE.address.city },
+      { '@type': 'Country', name: SITE.address.countryName },
+    ],
+  }));
 
   const schema = {
     '@context': 'https://schema.org',
@@ -96,7 +60,6 @@ export function LocalBusinessSchema() {
       height: 1200,
       caption: '1020.dev — Studio für Webentwicklung, SEO und AEO in Wien',
     },
-    priceRange: '€€',
     currenciesAccepted: 'EUR',
     paymentAccepted: 'Banküberweisung, SEPA',
     address: {
@@ -145,11 +108,7 @@ export function LocalBusinessSchema() {
       areaServed: 'AT',
       availableLanguage: ['de', 'en'],
     },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Leistungen 1020.dev',
-      itemListElement: offers,
-    },
+    makesOffer: services,
   };
 
   return (

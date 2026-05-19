@@ -10,7 +10,6 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import {
   AUTOMATION_FAQS,
   AUTOMATION_METHODE,
-  AUTOMATION_PRICING,
   AUTOMATION_SERVICES,
   SITE,
 } from '@/lib/data';
@@ -54,11 +53,10 @@ export default function AutomationPage() {
         lede="Was wir tatsächlich für Sie bauen — von einzelnen Workflows bis zu vollwertigen internen Tools mit AI-Integration."
       />
       <Pricing
-        data={AUTOMATION_PRICING}
         marker="03"
         title={
           <>
-            Modular und <em>transparent.</em>
+            Honorar statt <em>Preisliste.</em>
           </>
         }
       />

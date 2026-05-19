@@ -11,7 +11,7 @@ const WEB_LINKS: NavLink[] = [
   { href: '#audit', label: 'Audit' },
   { href: '#methode', label: 'Methode' },
   { href: '#leistungen', label: 'Leistungen' },
-  { href: '#preise', label: 'Preise' },
+  { href: '#preise', label: 'Honorar' },
   { href: '#faq', label: 'FAQ' },
   { href: '/journal', label: 'Journal' },
 ];
@@ -19,7 +19,7 @@ const WEB_LINKS: NavLink[] = [
 const AUTOMATION_LINKS: NavLink[] = [
   { href: '#methode', label: 'Methode' },
   { href: '#leistungen', label: 'Leistungen' },
-  { href: '#preise', label: 'Preise' },
+  { href: '#preise', label: 'Honorar' },
   { href: '#faq', label: 'FAQ' },
   { href: '/journal', label: 'Journal' },
 ];
