@@ -250,7 +250,7 @@ export default function DatenschutzPage() {
         <p>
           Für die Terminbuchung verlinken wir auf den externen Dienst{' '}
           <a href={SITE.bookingUrl} target="_blank" rel="noopener">
-            cal.eu/1020dev
+            cal.com/1020dev
           </a>{' '}
           der Cal.com, Inc. Mit dem Klick auf den Buchungslink verlassen Sie diese Website;
           die Datenverarbeitung erfolgt sodann eigenverantwortlich durch Cal.com nach deren

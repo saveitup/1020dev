@@ -92,7 +92,7 @@ Die Site hat **drei Tracks** und einen Track-Picker als Home:
 - [x] Upstash-Database angelegt (Vars in Vercel hinterlegen, falls noch nicht passiert)
 - [x] Domain `1020.dev` registriert
 - [x] `ANTHROPIC_API_KEY` in Vercel Production gesetzt
-- [ ] Cal.com-Slug `cal.com/1020dev` anlegen
+- [x] Cal.com-Slug `cal.com/1020dev` anlegen (Event `30min` → `cal.com/1020dev/30min`)
 - [ ] Resend: Domain `1020.dev` per DNS verifizieren, dann `RESEND_FROM=audit@1020.dev` in Vercel setzen
 - [ ] `CRON_SECRET` generieren (`openssl rand -base64 32`) und in Vercel Production setzen
 - [x] Open-Graph-Image — dynamisch über `app/opengraph-image.tsx` (Edge Runtime, 1200×630)
