@@ -1,0 +1,74 @@
+# Production-Deploy auf Vercel.
+#
+# Inaktiv, solange die drei Repository-Secrets fehlen — dann übernimmt
+# weiterhin Vercels eigene Git-Integration. Wer diesen Workflow nutzen will,
+# hinterlegt unter Settings → Secrets and variables → Actions:
+#   VERCEL_TOKEN       (Vercel → Account Settings → Tokens)
+#   VERCEL_ORG_ID      (aus `vercel link`, Datei .vercel/project.json)
+#   VERCEL_PROJECT_ID  (ebenda)
+#
+# Danach deployt jeder Push auf main automatisch, und über „Run workflow"
+# lässt sich ein Deploy jederzeit manuell auslösen.
+
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Production deploy
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Konfiguration prüfen
+        id: guard
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Vercel-Secrets fehlen — Deploy übersprungen. Das ist der erwartete Zustand, wenn Vercels eigene Git-Integration deployt."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.guard.outputs.configured == 'true'
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        if: steps.guard.outputs.configured == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Vercel CLI installieren
+        if: steps.guard.outputs.configured == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Vercel-Environment laden
+        if: steps.guard.outputs.configured == 'true'
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build
+        if: steps.guard.outputs.configured == 'true'
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - name: Deploy
+        if: steps.guard.outputs.configured == 'true'
+        run: |
+          url=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
+          echo "Deployed: $url"
+          {
+            echo "### Production-Deploy"
+            echo ""
+            echo "$url"
+          } >> "$GITHUB_STEP_SUMMARY"
