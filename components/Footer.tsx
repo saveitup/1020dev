@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { SITE } from '@/lib/data';
 import { CookieSettingsLink } from './CookieSettingsLink';
 
+const TRACKS = [
+  { href: '/web', label: 'Web' },
+  { href: '/automation', label: 'Software' },
+  { href: '/apps', label: 'Apps' },
+  { href: '/journal', label: 'Journal' },
+] as const;
+
 export function Footer() {
   return (
     <footer className="footer">
@@ -16,6 +23,13 @@ export function Footer() {
           <br />
           Studio · Wien · gebaut für KMU in ganz Österreich.
         </div>
+        <nav className="footer-nav" aria-label="Tracks">
+          {TRACKS.map((t) => (
+            <Link key={t.href} href={t.href}>
+              {t.label}
+            </Link>
+          ))}
+        </nav>
       </div>
       <div className="footer-right">
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>

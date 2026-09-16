@@ -105,9 +105,9 @@ export const FAQS = [
   {
     question: 'Was kostet eine Website mit AEO und wann amortisiert sich das?',
     plainAnswer:
-      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100 Euro (700 Euro Website-Basis plus 400 Euro AEO). Das Bundle Sichtbar (Website-Basis + SEO + AEO) kostet 1.350 Euro statt 1.450 Euro einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000 und 8.000 Euro. Bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit zur Amortisation.',
+'Der Preis hängt vom Umfang ab: Seitenzahl, ob SEO und AEO dazukommen, ob ein Backend nötig ist. Wir veröffentlichen keine Preisliste, sondern legen nach dem kostenlosen Audit ein Fixpreis-Angebot vor — Sie wissen vor Vertragsschluss, was das Projekt kostet, und der Preis wächst im Projekt nicht nach. Amortisation hängt stark vom Geschäftsmodell ab: bei B2B-KMU mit höheren Auftragswerten reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit.',
     htmlAnswer:
-      'Eine Website-Basis mit AEO-Optimierung beginnt bei 1.100&nbsp;€ (700&nbsp;€ Website-Basis + 400&nbsp;€ AEO). Das Bundle „Sichtbar" (Website-Basis + SEO + AEO) kostet 1.350&nbsp;€ statt 1.450&nbsp;€ einzeln. Mehrseitige Sites mit Backend liegen typischerweise zwischen 3.000&nbsp;€ und 8.000&nbsp;€. Die vollständige Preisliste finden Sie in der <a href="#preise" style="color: var(--accent); text-decoration: underline;">Preise-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Hintergründe in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
+'Der Preis hängt vom Umfang ab: Seitenzahl, ob SEO und AEO dazukommen, ob ein Backend nötig ist. Wir veröffentlichen keine Preisliste — stattdessen legen wir nach dem <strong>kostenlosen Audit ein Fixpreis-Angebot</strong> vor. Sie wissen vor Vertragsschluss, was das Projekt kostet, und der Preis wächst im Projekt nicht nach. Was im Umfang enthalten ist, sehen Sie in der <a href="#angebot" style="color: var(--accent); text-decoration: underline;">Angebots-Section oberhalb</a>. Amortisation hängt stark vom Geschäftsmodell ab — bei B2B-KMU mit höheren Auftragswerten (Metallbau, Industriedienstleister, Beratung) reicht oft ein zusätzlicher Auftrag pro Quartal über die AEO-Sichtbarkeit. Marktübliche Bereiche in den Artikeln <a href="/journal/website-kosten-wien-2026" style="color: var(--accent); text-decoration: underline;">Website-Kosten Wien 2026</a> und <a href="/journal/aeo-kosten-2026" style="color: var(--accent); text-decoration: underline;">AEO-Kosten 2026</a>.',
   },
   {
     question: 'Funktioniert AEO auch für lokale Wiener Unternehmen?',
@@ -189,6 +189,7 @@ export const SERVICES = [
       'Lead-Qualifizierung und CRM-Sync',
       'Interne Tools mit Claude- oder GPT-Anbindung',
     ],
+    cta: { label: 'Zum Software-Track', href: '/automation' },
   },
 ] as const;
 
@@ -224,28 +225,26 @@ export const METHODE = [
 ] as const;
 
 // ============================================
-// Pricing
+// Leistungsumfang — Web-Track (keine Preise auf der Site)
 // ============================================
-export const PRICING = {
+export const SCOPE = {
   pakete: [
     {
       name: 'Bundle „Sichtbar"',
-      desc: 'Website-Basis + SEO + AEO. Sichtbar in Google und zitiert in KI-Antworten — alles in einem Auftrag.',
+      desc: 'Website-Basis + SEO + AEO in einem Auftrag. Günstiger als die Einzelbuchung und schneller umgesetzt, weil alles in einem Durchgang entsteht.',
       includes: ['Website-Basis (1 Seite)', 'SEO-Optimierung', 'AEO-Optimierung'],
-      price: '1.350',
-      strikethrough: '1.450',
     },
   ],
   einmalig: [
-    { name: 'Website-Basis (1 Seite)', desc: 'Eine fokussierte Seite mit gemessener Performance: LCP < 1,8 s, INP < 200 ms, CLS < 0,1. Hosting & SSL 12 Monate inklusive, Domain stellt der Kunde. Weitere Seiten jederzeit ergänzbar.', price: '700', isBase: true, plus: false },
-    { name: 'Zusätzliche Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', price: '250', isBase: false, plus: true },
-    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', price: '350', isBase: false, plus: true },
-    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness und llms.txt — Inhalte so strukturiert, dass ChatGPT, Perplexity und Claude sie als Antwort ziehen können.', price: '400', isBase: false, plus: true },
-    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, Datenbank-Integration. z. B. Buchungs-Backend, geschützter Kundenbereich, Headless-CMS mit Redaktionsoberfläche.', price: '2.000', prefix: 'ab', isBase: false, plus: true },
-    { name: 'Automatisierung', desc: 'Workflows mit LLM-Anbindung und CRM-Sync. z. B. Lead-Formular → HubSpot → Slack-Notify, oder Rechnungen aus Mail-Anhängen extrahieren.', price: '3.000', prefix: 'ab', isBase: false, plus: true },
+    { name: 'Website-Basis (1 Seite)', desc: 'Eine fokussierte Seite mit gemessener Performance: LCP < 1,8 s, INP < 200 ms, CLS < 0,1. Hosting & SSL 12 Monate inklusive, Domain stellt der Kunde. Weitere Seiten jederzeit ergänzbar.', isBase: true, plus: false },
+    { name: 'Zusätzliche Seite', desc: 'Über uns, Leistungen, Kontakt, Blog, Impressum — beliebig viele Unterseiten.', isBase: false, plus: true },
+    { name: 'SEO-Optimierung', desc: 'Meta-Tags, sitemap.xml, robots.txt, Schema-Basics, Core-Web-Vitals-Tuning.', isBase: false, plus: true },
+    { name: 'AEO-Optimierung', desc: 'FAQ-Schema, LocalBusiness und llms.txt — Inhalte so strukturiert, dass ChatGPT, Perplexity und Claude sie als Antwort ziehen können.', isBase: false, plus: true },
+    { name: 'Backend', desc: 'CMS-Anbindung, API-Routen, Datenbank-Integration. z. B. Buchungs-Backend, geschützter Kundenbereich, Headless-CMS mit Redaktionsoberfläche.', isBase: false, plus: true },
+    { name: 'Automatisierung', desc: 'Workflows mit LLM-Anbindung und CRM-Sync. z. B. Lead-Formular → HubSpot → Slack-Notify, oder Rechnungen aus Mail-Anhängen extrahieren.', isBase: false, plus: true },
   ],
   laufend: [
-    { name: 'Monitoring (automatisiert)', desc: 'Automatisierter Monatsreport per E-Mail: DSGVO-konformes Tracking (Plausible/Umami), Sichtbarkeits-Index für Google und KI-Antwortmaschinen, AEO-Zitations-Check. Kein menschliches Review — dafür ehrlicher Preis.', price: '25', period: '/Monat' },
+    { name: 'Monitoring (automatisiert)', desc: 'Automatisierter Monatsreport per E-Mail: DSGVO-konformes Tracking (Plausible/Umami), Sichtbarkeits-Index für Google und KI-Antwortmaschinen, AEO-Zitations-Check. Kein menschliches Review — dafür vollautomatisiert und schlank.' },
   ],
 } as const;
 
@@ -349,28 +348,25 @@ export const AUTOMATION_METHODE = [
 ] as const;
 
 // ============================================
-// Automation track — pricing
+// Automation track — Leistungsumfang
 // ============================================
-export const AUTOMATION_PRICING = {
+export const AUTOMATION_SCOPE = {
   pakete: [
     {
       name: 'Bundle „AI-ready"',
-      desc: 'LLM-Anbindung + RAG & Agentic Workflow. Eigene Wissensbasis und LLM-gestützte Agenten in einem Auftrag — die zwei Hebel, die zusammen am meisten Output bringen.',
+      desc: 'LLM-Anbindung + RAG & Agentic Workflow in einem Auftrag. Eigene Wissensbasis und LLM-gestützte Agenten — die zwei Hebel, die zusammen am meisten Output bringen, günstiger als einzeln.',
       includes: ['LLM-Anbindung', 'RAG & Agentic Workflow'],
-      price: '6.900',
-      strikethrough: '7.500',
-      saves: '600',
     },
   ],
   einmalig: [
-    { name: 'Workflow-Setup', desc: 'Einzelner Workflow mit 2–4 Schritten und Standard-Integrationen (Mail, Sheets, Slack, Notion).', price: '800', prefix: 'ab', isBase: true, plus: false },
-    { name: 'API-Integration', desc: 'Anbindung externer Systeme — REST/GraphQL, Auth, Datenmapping, Error-Handling, Logging.', price: '1.500', prefix: 'ab', isBase: false, plus: true },
-    { name: 'LLM-Anbindung', desc: 'Claude, GPT oder Open-Source-Modelle in Ihren Workflow integriert. Inklusive Prompt-Design und Token-Optimierung.', price: '2.500', prefix: 'ab', isBase: false, plus: true },
-    { name: 'Internes Tool / Dashboard', desc: 'Maßgeschneiderte Web-App mit Auth, Datenbank und UI — exakt auf Ihren Prozess zugeschnitten.', price: '3.000', prefix: 'ab', isBase: false, plus: true },
-    { name: 'RAG & Agentic Workflow', desc: 'Retrieval-Augmented Generation über interne Daten oder Agenten mit Tool-Use für komplexe Aufgaben.', price: '5.000', prefix: 'ab', isBase: false, plus: true },
+    { name: 'Workflow-Setup', desc: 'Einzelner Workflow mit 2–4 Schritten und Standard-Integrationen (Mail, Sheets, Slack, Notion).', isBase: true, plus: false },
+    { name: 'API-Integration', desc: 'Anbindung externer Systeme — REST/GraphQL, Auth, Datenmapping, Error-Handling, Logging.', isBase: false, plus: true },
+    { name: 'LLM-Anbindung', desc: 'Claude, GPT oder Open-Source-Modelle in Ihren Workflow integriert. Inklusive Prompt-Design und Token-Optimierung.', isBase: false, plus: true },
+    { name: 'Internes Tool / Dashboard', desc: 'Maßgeschneiderte Web-App mit Auth, Datenbank und UI — exakt auf Ihren Prozess zugeschnitten.', isBase: false, plus: true },
+    { name: 'RAG & Agentic Workflow', desc: 'Retrieval-Augmented Generation über interne Daten oder Agenten mit Tool-Use für komplexe Aufgaben.', isBase: false, plus: true },
   ],
   laufend: [
-    { name: 'Hosting & Monitoring', desc: 'EU-Hosting, Logs, Alerting bei Ausfällen, Token-Tracking, monatlicher Performance-Report.', price: '60', period: '/Monat' },
+    { name: 'Hosting & Monitoring', desc: 'EU-Hosting, Logs, Alerting bei Ausfällen, Token-Tracking, monatlicher Performance-Report.' },
   ],
 } as const;
 
@@ -465,6 +461,215 @@ export const CONCEPTS_METHODE = [
 ] as const;
 
 // ============================================
+// Apps track — showcase (own products)
+// ============================================
+// `screenshot` ist optional: sobald ein echter Screenshot unter
+// public/refs/ liegt, hier eintragen — die Hero-Stage rendert dann das
+// Bild statt des CSS-Mockups in `screen`.
+type AppScreenshot = { readonly src: string; readonly alt: string } | null;
+
+export const APPS_SHOWCASE = [
+  {
+    id: 'spin',
+    name: 'Spin your song',
+    wordmark: 'spin.',
+    domain: 'spin.1020.dev',
+    href: 'https://spin.1020.dev',
+    tag: 'Eigenes Produkt · Mobile App',
+    status: 'Live',
+    tagline: 'Ein Song pro Tag. Geteilt mit Freunden.',
+    desc: 'Jeden Tag ein Song: Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji — und hören ihn mit einem Tap direkt in Spotify. Dazu ein Bonus-Spin mit Countdown, wenn der erste Song des Tages schon gesetzt ist. Konzipiert, gestaltet, entwickelt und betrieben komplett im Studio.',
+    features: [
+      'Täglicher Song mit Countdown & Bonus-Spin',
+      'Freundes-Feed mit Herz, Kommentar und Emoji-Reaktionen',
+      'Spotify-Anbindung — ein Tap vom Feed in den Player',
+      'Push-Benachrichtigungen, Suche und Profil',
+    ],
+    facts: [
+      { label: 'Rolle', value: 'Konzept · Design · Entwicklung · Betrieb' },
+      { label: 'Kern', value: 'Täglicher Song · Feed · Spotify' },
+      { label: 'Status', value: 'Live unter spin.1020.dev' },
+    ],
+    screenshot: null as AppScreenshot,
+    // Illustrativer In-App-Screen für das Phone-Mockup. Bildet den echten
+    // Feed nach (Wortmarke, Datum, Bonus-Spin, Song-Karten, Tab-Bar).
+    // Namen und Tracks sind bewusst fiktiv.
+    screen: {
+      date: 'Samstag · 12. Sep.',
+      bonus: 'Bonus-Spin noch 1:58',
+      posts: [
+        {
+          user: 'mara',
+          ago: 'vor 10 Min.',
+          track: 'Nachtbus',
+          artist: 'Leo Winter',
+          likes: '2',
+          comments: '1',
+        },
+        {
+          user: 'jon',
+          ago: 'vor 24 Min.',
+          track: 'Goldene Stunde',
+          artist: 'Ava Kern',
+          likes: '4',
+          comments: '3',
+        },
+        {
+          user: 'nik',
+          ago: 'vor 1 Std.',
+          track: 'Weitwinkel',
+          artist: 'Hale & Voss',
+          likes: '6',
+          comments: '2',
+        },
+      ],
+    },
+  },
+] as const;
+
+// ============================================
+// Apps track — services
+// ============================================
+export const APPS_SERVICES = [
+  {
+    num: '01 — Cross-Platform',
+    title: 'Eine Codebasis, iOS und Android',
+    desc: 'Native Apps für beide Plattformen aus einem Projekt mit React Native und Expo. Nativer Look, echte Gesten, Push, Kamera und Offline-Modus — ohne zwei Teams und ohne doppelten Aufwand.',
+    items: [
+      'React Native · Expo · TypeScript',
+      'iOS & Android aus einer Codebasis',
+      'Push, Kamera, Offline, Deep Links',
+      'Native Performance, kein WebView',
+    ],
+  },
+  {
+    num: '02 — Web & PWA',
+    title: 'Die App auch im Browser',
+    desc: 'Nicht jede App braucht den Store. Progressive Web Apps laufen im Browser, lassen sich am Homescreen installieren und teilen den Code mit der Store-Version — sofort live, ohne Review.',
+    items: [
+      'Progressive Web App (installierbar)',
+      'Gemeinsamer Code mit der Mobile-App',
+      'Next.js für Landing-Page & Web-Version',
+      'Kein Store-Review, Updates sofort live',
+    ],
+  },
+  {
+    num: '03 — Backend & Release',
+    title: 'Von der Beta bis in den Store',
+    desc: 'Auth, Datenbank, API und Push-Infrastruktur inklusive. Wir begleiten TestFlight und Beta-Tests, übernehmen die Einreichung in App Store und Play Store und liefern kleine Updates over-the-air.',
+    items: [
+      'Supabase · Postgres · REST-APIs',
+      'Auth, Rollen, In-App-Käufe',
+      'TestFlight · Play Console · Review',
+      'OTA-Updates & Crash-Monitoring',
+    ],
+  },
+] as const;
+
+// ============================================
+// Apps track — methode
+// ============================================
+export const APPS_METHODE = [
+  {
+    num: '01',
+    title: 'Anfrage & Scope',
+    duration: 'Tag 1',
+    desc: 'Sie schildern die App-Idee, Zielgruppe und Must-haves. Wir prüfen, ob Cross-Platform, PWA oder beides passt, und legen ein Angebot mit klar abgegrenztem Funktionsumfang vor.',
+    cta: { label: 'E-Mail schreiben', href: 'mailto:hallo@1020.dev' },
+  },
+  {
+    num: '02',
+    title: 'Prototyp',
+    duration: 'Erste Woche',
+    desc: 'Klickbarer Prototyp der Kern-Screens direkt am Handy — Navigation, Flows, Look & Feel. Sie testen am eigenen Gerät, bevor eine Zeile Produktionscode entsteht.',
+  },
+  {
+    num: '03',
+    title: 'Build & Beta',
+    duration: 'Folgende Wochen',
+    desc: 'Implementierung in wöchentlichen Releases über TestFlight und Play-Beta. Sie und Ihre Testnutzer haben jede Version am Handy — Feedback fließt direkt in den nächsten Build.',
+  },
+  {
+    num: '04',
+    title: 'Release & Updates',
+    duration: 'Ab Launch',
+    desc: 'Store-Einreichung mit Screenshots, Store-Texten und Datenschutz-Angaben, Begleitung durch den Review. Danach Crash-Monitoring, Analytics und Updates — over-the-air für kleine Fixes, über den Store für große Releases.',
+  },
+] as const;
+
+// ============================================
+// Apps track — Leistungsumfang
+// ============================================
+export const APPS_SCOPE = {
+  pakete: [
+    {
+      name: 'Bundle „Launch"',
+      desc: 'MVP-App + Backend & API + Store-Release in einem Auftrag. Alles, was eine App braucht, um in beiden Stores zu stehen — günstiger als die Einzelbuchung.',
+      includes: ['MVP-App (iOS + Android)', 'Backend & API', 'Store-Release'],
+    },
+  ],
+  einmalig: [
+    { name: 'MVP-App (iOS + Android)', desc: 'Cross-Platform-App mit 3–5 Kern-Screens, Navigation, Design-System und Auth-Screens. TestFlight und Play-Beta inklusive.', isBase: true, plus: false },
+    { name: 'Zusätzlicher Screen / Feature', desc: 'Weitere Screens oder Funktionen — Profil, Einstellungen, Listen, Detailansichten, Kamera-Flows.', isBase: false, plus: true },
+    { name: 'Backend & API', desc: 'Datenbank, Auth, REST-API und Storage — Supabase oder Postgres auf EU-Servern, inklusive Rollen und Berechtigungen.', isBase: false, plus: true },
+    { name: 'Push & Benachrichtigungen', desc: 'Push-Infrastruktur für iOS und Android, Segmentierung, geplante und ereignisbasierte Nachrichten.', isBase: false, plus: true },
+    { name: 'Web-Version / PWA', desc: 'Installierbare Web-Version der App mit gemeinsamer Codebasis, plus Landing-Page mit Next.js.', isBase: false, plus: true },
+    { name: 'Store-Release', desc: 'App-Store- und Play-Store-Einreichung: Zertifikate, Screenshots, Store-Texte, Datenschutz-Angaben, Review-Begleitung.', isBase: false, plus: true },
+  ],
+  laufend: [
+    { name: 'Betrieb & Updates', desc: 'EU-Hosting des Backends, OTA-Updates, Crash-Monitoring und Kompatibilität bei neuen iOS- und Android-Versionen.' },
+  ],
+} as const;
+
+// ============================================
+// Apps track — FAQs
+// ============================================
+export const APPS_FAQS = [
+  {
+    question: 'Native, Cross-Platform oder PWA — was passt für mein Vorhaben?',
+    plainAnswer:
+      'Für die meisten KMU-Apps ist Cross-Platform mit React Native und Expo die beste Wahl: eine Codebasis, native Performance auf iOS und Android, Zugriff auf Kamera, Push und Offline-Speicher. Eine PWA reicht, wenn die App vor allem Inhalte zeigt, keine Store-Präsenz braucht und sofort ohne Review live sein soll. Rein native Entwicklung in Swift oder Kotlin lohnt sich nur bei sehr hardwarenahen Anforderungen. Wir empfehlen im Erstgespräch ehrlich, was passt.',
+    htmlAnswer:
+      'Für die meisten KMU-Apps ist Cross-Platform mit <strong>React Native und Expo</strong> die beste Wahl: eine Codebasis, native Performance auf iOS und Android, Zugriff auf Kamera, Push und Offline-Speicher. Eine <strong>PWA</strong> reicht, wenn die App vor allem Inhalte zeigt, keine Store-Präsenz braucht und sofort ohne Review live sein soll. Rein native Entwicklung in Swift oder Kotlin lohnt sich nur bei sehr hardwarenahen Anforderungen. Wir empfehlen im Erstgespräch ehrlich, was passt.',
+  },
+  {
+    question: 'Wie lange dauert die Entwicklung einer App?',
+    plainAnswer:
+      'Ein MVP mit 3 bis 5 Kern-Screens ist in 4 bis 6 Wochen in der Beta, inklusive Prototyp und wöchentlichen Test-Releases. Mit Backend, Push und Store-Einreichung rechnen Sie mit 6 bis 10 Wochen bis zum Launch. Der Store-Review bei Apple dauert typischerweise 1 bis 3 Tage, bei Google wenige Stunden bis Tage.',
+    htmlAnswer:
+      'Ein MVP mit 3–5 Kern-Screens ist in 4–6 Wochen in der Beta, inklusive Prototyp und wöchentlichen Test-Releases. Mit Backend, Push und Store-Einreichung rechnen Sie mit 6–10 Wochen bis zum Launch. Der Store-Review bei Apple dauert typischerweise 1–3 Tage, bei Google wenige Stunden bis Tage.',
+  },
+  {
+    question: 'Was kostet eine App?',
+    plainAnswer:
+'Das hängt vom Funktionsumfang ab: Anzahl der Screens, ob ein eigenes Backend nötig ist, ob Push, Web-Version und Store-Release dazukommen. Wir veröffentlichen keine Preisliste, sondern legen nach dem kostenlosen Erstgespräch ein Fixpreis-Angebot mit klar abgegrenztem Funktionsumfang vor. Laufender Betrieb mit Hosting, Updates und Monitoring wird monatlich abgerechnet und ist monatlich kündbar.',
+    htmlAnswer:
+'Das hängt vom Funktionsumfang ab: Anzahl der Screens, ob ein eigenes Backend nötig ist, ob Push, Web-Version und Store-Release dazukommen. Wir veröffentlichen keine Preisliste — nach dem kostenlosen Erstgespräch bekommen Sie ein <strong>Fixpreis-Angebot mit klar abgegrenztem Funktionsumfang</strong>. Was dabei alles im Umfang liegt, sehen Sie in der <a href="#angebot" style="color: var(--accent); text-decoration: underline;">Angebots-Section oberhalb</a>. Laufender Betrieb mit Hosting, Updates und Monitoring wird monatlich abgerechnet und ist monatlich kündbar.',
+  },
+  {
+    question: 'Wie läuft die Veröffentlichung im App Store und Play Store?',
+    plainAnswer:
+      'Sie legen einen Apple-Developer-Account (jährliche Gebühr) und einen Google-Play-Console-Account (einmalige Gebühr) auf Ihren Namen an, wir übernehmen den Rest: Zertifikate, Signierung, Screenshots, Store-Texte, Datenschutz-Angaben und die Kommunikation im Review. Die App wird unter Ihrem Namen veröffentlicht, nicht unter unserem.',
+    htmlAnswer:
+      'Sie legen einen Apple-Developer-Account (jährliche Gebühr) und einen Google-Play-Console-Account (einmalige Gebühr) auf Ihren Namen an, wir übernehmen den Rest: Zertifikate, Signierung, Screenshots, Store-Texte, Datenschutz-Angaben und die Kommunikation im Review. Die App wird <strong>unter Ihrem Namen</strong> veröffentlicht, nicht unter unserem.',
+  },
+  {
+    question: 'Wem gehören Code und Store-Accounts?',
+    plainAnswer:
+      'Ihnen. Der Quellcode liegt in einem Repository, auf das Sie vollen Zugriff haben, die Store-Accounts laufen auf Ihren Namen, und das Backend ist auf Standard-Technologien wie Postgres und Supabase gebaut. Sie können jederzeit mit einem anderen Team weiterarbeiten. Kein Vendor-Lock-in.',
+    htmlAnswer:
+      'Ihnen. Der Quellcode liegt in einem Repository, auf das Sie vollen Zugriff haben, die Store-Accounts laufen auf Ihren Namen, und das Backend ist auf Standard-Technologien wie Postgres und Supabase gebaut. Sie können jederzeit mit einem anderen Team weiterarbeiten. Kein Vendor-Lock-in.',
+  },
+  {
+    question: 'Was ist Spin your song?',
+    plainAnswer:
+      'Spin your song ist die eigene Mobile-App von 1020.dev, erreichbar unter spin.1020.dev. Das Prinzip: ein Song pro Tag. Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji und hören ihn mit einem Tap direkt in Spotify. Dazu gibt es einen Bonus-Spin mit Countdown. Wir haben die App konzipiert, gestaltet, entwickelt und betreiben sie laufend — sie zeigt, wie wir Apps bauen und veröffentlichen.',
+    htmlAnswer:
+      'Spin your song ist die eigene Mobile-App von 1020.dev, erreichbar unter <a href="https://spin.1020.dev" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">spin.1020.dev</a>. Das Prinzip: <strong>ein Song pro Tag</strong>. Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji und hören ihn mit einem Tap direkt in Spotify. Dazu ein Bonus-Spin mit Countdown. Wir haben die App konzipiert, gestaltet, entwickelt und betreiben sie laufend — sie zeigt, wie wir Apps bauen und veröffentlichen.',
+  },
+] as const;
+
+// ============================================
 // Site config
 // ============================================
 export const SITE = {
@@ -472,6 +677,9 @@ export const SITE = {
   url: 'https://1020.dev',
   tagline: 'Sichtbar bleiben, wenn niemand mehr klickt.',
   description:
+    'Studio in Wien für Webentwicklung mit SEO und AEO, Software-Automation mit KI und Mobile Apps — für KMU in ganz Österreich. Sichtbar in Google, zitiert in ChatGPT, Perplexity und Claude.',
+  // Web-Track-spezifische Beschreibung (Meta-Description von /web)
+  webDescription:
     'Webentwicklung, SEO und Answer-Engine-Optimierung für KMU in Wien und ganz Österreich. Websites, die in Google ranken und in ChatGPT, Perplexity und Claude zitiert werden.',
   bookingUrl: 'https://cal.eu/1020dev/erstgespraech',
   email: 'hallo@1020.dev',

@@ -12,7 +12,7 @@ keywords:
 draft: false
 ---
 
-Die ehrliche Antwort: zwischen 700 € und 15.000 €. Diese Spanne ist nicht hilfreich, deshalb folgt unten die strukturierte Auflösung — drei realistische Preisklassen mit konkreten Beispielen, was den Preis im einzelnen bestimmt, und welche Kosten die meisten Wiener KMU vor dem ersten Brief unterschätzen. Wir kalkulieren bei 1020.dev transparent — nicht „auf Anfrage", sondern mit veröffentlichten Bereichen.
+Die ehrliche Antwort: zwischen 700 € und 15.000 €. Diese Spanne ist nicht hilfreich, deshalb folgt unten die strukturierte Auflösung — drei realistische Preisklassen mit konkreten Beispielen, was den Preis im einzelnen bestimmt, und welche Kosten die meisten Wiener KMU vor dem ersten Brief unterschätzen. Bei 1020.dev bekommen Sie nach dem kostenlosen Audit ein verbindliches Fixpreis-Angebot — keine Schätzung, die im Projekt nachwächst.
 
 ## Die ehrliche Antwort vorweg — drei Preisklassen
 
@@ -30,7 +30,7 @@ Eine schlanke One-Page-Site mit klarer Botschaft, Kontaktformular, Hosting-Setup
 
 **Wann sinnvoll:** KMU mit klar gegliedertem Leistungsspektrum, Beratungsunternehmen, regionale Dienstleister, Agenturen, Anwaltskanzleien.
 
-Im Bereich 3.000–4.000 € liegen die meisten 1020.dev-Projekte für KMU mit 5–10 Mitarbeitenden. Das ist der Preisbereich, in dem ein Onepager nicht mehr reicht und eine vollwertige Backend-Anbindung noch nicht nötig ist.
+Im Bereich 3.000–4.000 € liegen die meisten KMU-Projekte mit 5–10 Mitarbeitenden. Das ist der Preisbereich, in dem ein Onepager nicht mehr reicht und eine vollwertige Backend-Anbindung noch nicht nötig ist.
 
 ### Komplexe Site mit Backend: 5.000–15.000 €
 
@@ -44,7 +44,7 @@ Sites mit Datenbank, Auth, Stripe-Integration, internem Tool, mehrsprachigem Con
 
 ### Anzahl der Seiten
 
-Bei 1020.dev: ab 700 € Onepager, jede weitere Seite ab 250 €. Der Pro-Seite-Preis sinkt mit dem Volumen — 10 Seiten kosten nicht 2.500 € (10 × 250), sondern eher 1.500–2.000 € zusätzlich, weil die zugrundeliegende Architektur einmal gebaut ist.
+Der Pro-Seite-Preis sinkt dabei mit dem Volumen: zehn Seiten kosten nicht das Zehnfache einer einzelnen, weil die zugrundeliegende Architektur nur einmal gebaut wird.
 
 ### Custom-Design vs. Template
 
@@ -56,7 +56,7 @@ Ein „Editor" für nicht-technische Mitarbeitende kostet zusätzlich. Konkret: 
 
 ### SEO und AEO als Add-ons
 
-Klassisches SEO ist bei jeder seriösen Site Teil der Basis (Meta-Tags, Sitemap, robots.txt, Schema-Basics) — nicht zusätzlich verrechenbar. Was zusätzlich kostet: tiefe AEO-Optimierung mit Schema-Erweiterung, FAQPage- und LocalBusiness-Implementierung, llms.txt, antwort-orientierte Inhaltsanpassung. Bei uns ab 400 €. Mehr zu den Hebeln im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden).
+Klassisches SEO ist bei jeder seriösen Site Teil der Basis (Meta-Tags, Sitemap, robots.txt, Schema-Basics) — nicht zusätzlich verrechenbar. Was zusätzlich kostet: tiefe AEO-Optimierung mit Schema-Erweiterung, FAQPage- und LocalBusiness-Implementierung, llms.txt, antwort-orientierte Inhaltsanpassung. Mehr zu den Hebeln im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden).
 
 ### Hosting und laufende Kosten
 
@@ -106,7 +106,7 @@ Wir veröffentlichen unsere Preise — anders als der Wiener Marktstandard. Aktu
 | Automatisierung / Workflow | ab 3.000 € |
 | Analytics & Monitoring | 20 €/Monat |
 
-Die [vollständige Preisliste mit Beschreibungen finden Sie hier](/web#preise). Audit und Erstgespräch sind kostenlos.
+Den [vollständigen Leistungsumfang mit Beschreibungen finden Sie hier](/web#angebot) — das Angebot dazu kommt nach dem Audit. Audit und Erstgespräch sind kostenlos.
 
 ## Was Sie heute tun können
 
@@ -122,7 +122,7 @@ Eine professionelle Custom-Onepager-Lösung beginnt bei 700 €. Darunter (zum B
 
 ### Was kostet die Wartung pro Jahr?
 
-Bei einer statisch generierten Next.js-Site (1020.dev-Standard): typisch 200–500 € pro Jahr für punktuelle Inhaltsupdates und Sicherheits-Patches. Bei WordPress-Sites: 600–1.500 € pro Jahr — höher wegen Plugin-Updates, Security-Reviews und periodischen größeren Upgrades.
+Bei einer statisch generierten Next.js-Site: typisch 200–500 € pro Jahr für punktuelle Inhaltsupdates und Sicherheits-Patches. Bei WordPress-Sites: 600–1.500 € pro Jahr — höher wegen Plugin-Updates, Security-Reviews und periodischen größeren Upgrades.
 
 ### Gehört die Website mir nach dem Projekt?
 

@@ -103,7 +103,7 @@ Realistische Bereiche für eine Steuerberater-Website 2026:
 - **Performance-fokussierte Site (Next.js):** 5.000–8.500 € einmalig, 200–500 €/Jahr Wartung
 - **AEO-Optimierungs-Phase auf bestehender Site:** 800–2.000 € einmalig
 
-Vollständige Pricing-Logik im [Pricing-Artikel](/journal/website-kosten-wien-2026) und auf der [1020.dev-Service-Seite](/web#preise).
+Vollständige Pricing-Logik im [Pricing-Artikel](/journal/website-kosten-wien-2026), den Leistungsumfang auf der [1020.dev-Service-Seite](/web#angebot).
 
 ## FAQ
 

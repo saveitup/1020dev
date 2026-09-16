@@ -14,10 +14,10 @@ Production-Site für **1020.dev**: Webentwicklung, SEO und Answer-Engine-Optimiz
 
 ### 1. Single Source of Truth: `lib/data.ts`
 
-Alle Inhalte (FAQs, Refs, Services, Methode, Preise, Site-Config) leben in `lib/data.ts` als `const … as const`. Werden von mehreren Components verwendet:
+Alle Inhalte (FAQs, Refs, Services, Methode, Leistungsumfang, Site-Config) leben in `lib/data.ts` als `const … as const`. Werden von mehreren Components verwendet:
 
 - `FAQS` → `FAQ` Component (UI) + `FaqStructuredData` (JSON-LD für AEO)
-- `PRICING` → `Pricing` Component + Antwort in `FAQS[2].htmlAnswer`
+- `SCOPE` / `AUTOMATION_SCOPE` / `APPS_SCOPE` → `Scope` Component (Leistungsumfang, **ohne Beträge**) + LocalBusiness-OfferCatalog
 - `REFS` → `Hero` Slideshow
 - `SITE` → überall (Booking-URL, E-Mail, Tagline, Standort)
 
@@ -29,7 +29,9 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 
 | Component | Type | Warum |
 |---|---|---|
-| `Nav`, `Methode`, `Services`, `Pricing`, `Footer`, `FaqStructuredData` | Server | Pure Render |
+| `Methode`, `Services`, `Scope`, `Footer`, `FaqStructuredData` | Server | Pure Render |
+| `AppsHero`, `PhoneMock`, `AppShowcase`, `AppSchema` | Server | Pure Render aus `APPS_*` |
+| `Nav` | Client | usePathname, Scroll-State, mobiles Menü (`is-open`) |
 | `Splash` | Client | sessionStorage + Timer |
 | `Hero` | Client | Slideshow-Klick-Nav |
 | `AuditWidget` | Client | Form-State + Fetch |
@@ -59,30 +61,37 @@ Wenn du eine neue Section baust, die nur Daten aus `lib/data.ts` rendert: **Serv
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 
-## Preisstruktur (autoritativ in `lib/data.ts → PRICING` und `AUTOMATION_PRICING`)
+## Preise — bewusst NICHT auf der Site
 
-**Web-Track (`PRICING`):**
-- Pakete: Bundle „Sichtbar" (Website-Basis + SEO + AEO) 1.350 € (statt 1.450 € einzeln, spart 100 €)
-- Einmalig: Website-Basis (1 Seite) 700 € · Zusätzliche Seite 250 € · SEO 350 € · AEO 400 € · Backend ab 2.000 € · Automatisierung ab 3.000 €
-- Laufend: Monitoring (automatisiert) 25 €/Monat
+**Die Site veröffentlicht keine Beträge.** Kein Preis in Components, Daten, JSON-LD, llms.txt oder Journal-Artikeln über eigene Leistungen. Der Preis entsteht nach dem kostenlosen Audit als Fixpreis-Angebot.
 
-**Automation-Track (`AUTOMATION_PRICING`):**
-- Einmalig: Workflow-Setup ab 800 € · API-Integration ab 1.500 € · LLM-Anbindung ab 2.500 € · Internes Tool/Dashboard ab 3.000 € · RAG & Agentic Workflow ab 5.000 €
-- Laufend: Hosting & Monitoring 60 €/Monat
+Was stattdessen auf der Site steht, ist der **Leistungsumfang** (`lib/data.ts → SCOPE`, `AUTOMATION_SCOPE`, `APPS_SCOPE`), gerendert von `components/Scope.tsx` in der Section `#angebot` (früher `#preise`). Die Einträge haben nur `name` und `desc`, keine `price`/`prefix`/`period`-Felder.
 
-**Konditionen (in `Pricing.tsx` Footer-Block):** Preise netto + 20 % USt · Zahlung 50/50 (Auftrag/Übergabe) · 30 Tage Bugfix · Hosting & SSL bei Website-Basis 12 Monate inklusive · Monitoring monatlich kündbar · Audit & Erstgespräch kostenlos.
+**Web-Track (`SCOPE`):** Bundle „Sichtbar" (Website-Basis + SEO + AEO) · Website-Basis (1 Seite) · zusätzliche Seite · SEO · AEO · Backend · Automatisierung · Monitoring (laufend).
 
-Wenn du Preise änderst: `lib/data.ts` ist die Quelle, aber `FAQS[2].htmlAnswer` (Pricing-FAQ) und `public/llms.txt` müssen **manuell synchron gehalten** werden.
+**Automation-Track (`AUTOMATION_SCOPE`):** Bundle „AI-ready" · Workflow-Setup · API-Integration · LLM-Anbindung · internes Tool/Dashboard · RAG & Agentic Workflow · Hosting & Monitoring (laufend).
+
+**Apps-Track (`APPS_SCOPE`):** Bundle „Launch" · MVP-App (iOS + Android) · zusätzlicher Screen/Feature · Backend & API · Push · Web-Version/PWA · Store-Release · Betrieb & Updates (laufend).
+
+**Konditionen (in `Scope.tsx` Footer-Block):** Fixpreis-Angebot nach dem Audit · Preise netto zzgl. 20 % USt · Zahlung 50/50 (Auftrag/Übergabe) · 30 Tage Bugfix · laufende Posten monatlich kündbar · Audit & Erstgespräch kostenlos.
+
+**Wenn wieder Preise auf die Site sollen:** `lib/data.ts` ist die Quelle, aber `FAQS[2].htmlAnswer` (Preis-FAQ Web), `APPS_FAQS[2]` (Preis-FAQ Apps), `components/LocalBusinessSchema.tsx` (OfferCatalog, aktuell ohne `priceSpecification` und ohne `priceRange`), `app/agb/page.tsx` und `public/llms.txt` müssen **manuell synchron gehalten** werden.
+
+**Marktzahlen im Journal bleiben:** Artikel wie „Website-Kosten Wien 2026" oder „AEO-Kosten 2026" nennen weiterhin marktübliche Bereiche anderer Anbieter-Kategorien — das ist ihr Gegenstand. Eigene Preise („bei 1020.dev ab X €") gehören dort nicht hinein.
 
 ## Routing & Sections
 
-Die Site hat **zwei Tracks** und einen Track-Picker als Home:
+Die Site hat **drei Tracks** und einen Track-Picker als Home:
 
-- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — zwei Cards „Web" und „Software" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
-- **`/web` (Web-Track)** ([app/web/page.tsx](app/web/page.tsx)): Hero → Methode → Services → Projects → `<Pricing />` (mit `PRICING`) → FAQ → Footer.
-- **`/automation` (Automation-Track)** ([app/automation/page.tsx](app/automation/page.tsx)): eigener Hero/Services/Methode/Pricing-Stack mit `AUTOMATION_*`-Daten.
+- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — drei Cards „Web", „Software" und „Apps" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
+- **`/web` (Web-Track)** ([app/web/page.tsx](app/web/page.tsx)): Hero → Methode → Services → Projects → `<Scope />` (mit `SCOPE`) → FAQ → Footer.
+- **`/automation` (Automation-Track)** ([app/automation/page.tsx](app/automation/page.tsx)): eigener Hero/Services/Methode/Scope-Stack mit `AUTOMATION_*`-Daten.
+- **`/apps` (Apps-Track)** ([app/apps/page.tsx](app/apps/page.tsx)): `AppsHero` (Phone-Mockup) → Methode → Services → `AppShowcase` (Referenz: eigene App **Spin your song**, live unter [spin.1020.dev](https://spin.1020.dev)) → Scope → FAQ → Footer, alles aus `APPS_*`-Daten. `APPS_SHOWCASE[0].screenshot` ist `null` — sobald ein echter Screenshot in `public/refs/` liegt, dort eintragen, dann rendert `PhoneMock` das Bild statt des CSS-Mockups. Das Mockup bildet den echten spin.-Feed nach (Wortmarke, Datum, Bonus-Spin, Song-Karten, Tab-Bar) und nutzt eigene App-Markenfarben (`--spin-*` in `globals.css`), nicht die 1020.dev-Tokens. Namen und Tracks darin sind bewusst fiktiv.
+- **`/concepts`** (Konzepte) existiert weiterhin als Seite, ist aber nicht mehr im Chooser verlinkt.
 
-`Splash` und `Nav` sind global (Layout-Level). `FaqStructuredData` und `BreadcrumbSchema` werden pro Track-Seite gerendert.
+`Splash` und `Nav` sind global (Layout-Level). `Nav` zeigt pro Track die Section-Links, auf Mobile ein Toggle-Menü mit Section-Links plus weiteren Tracks; der `Footer` verlinkt alle Tracks. `FaqStructuredData` und `BreadcrumbSchema` werden pro Track-Seite gerendert.
+
+**Journal-Slugs nur ASCII** (kein ä/ö/ü im Dateinamen unter `content/journal/`): Next.js findet vorgerenderte Seiten mit Umlaut-Slug unter der URL-kodierten Adresse nicht (404).
 
 ## Bekannte Todos / offene Punkte
 

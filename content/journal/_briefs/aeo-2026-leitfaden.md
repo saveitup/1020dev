@@ -203,7 +203,7 @@ für lokale Unternehmen. Verlinke zu kommendem Tutorial-Artikel.
 
 Aus diesem Artikel hinaus:
 - → `/web` (Service-Page) — 2× im Text
-- → `/web#preise` — 1× am Ende des Abschnitts „Was kostet AEO"
+- → `/web#angebot` — 1× am Ende des Abschnitts „Was kostet AEO"
 - → `/web#audit` (Audit-Widget) — 1× nach Hebel-Abschnitt
 - → `/journal/aeo-vs-seo` — beim Vergleichsabsatz
 - → `/journal/faqpage-schema-tutorial` — bei Hebel 1

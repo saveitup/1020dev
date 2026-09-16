@@ -99,7 +99,7 @@ Worauf positiv achten:
 | Mittlere Agentur Standard-Site | 15.000–40.000 € | 1.500–3.500 € |
 | Großagentur Brand-Relaunch | 50.000–250.000 € | 5.000–20.000 € |
 
-Mehr Detail im [Pricing-Artikel](/journal/website-kosten-wien-2026). 1020.dev liegt in der Custom-Onepager- bis Custom-Site-Kategorie. Konkrete Preise auf der [Service-Seite](/web#preise).
+Mehr Detail im [Pricing-Artikel](/journal/website-kosten-wien-2026). 1020.dev liegt in der Custom-Onepager- bis Custom-Site-Kategorie. Leistungsumfang auf der [Service-Seite](/web#angebot) — das Angebot dazu kommt nach dem kostenlosen Audit.
 
 ## Wann lokal, wann remote
 

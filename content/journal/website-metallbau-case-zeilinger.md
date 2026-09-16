@@ -102,7 +102,7 @@ In Spotchecks bei ChatGPT und Perplexity zu Fragen wie „Wer macht Stahlkonstru
 
 ### Was kostet eine Metallbau-Website wie diese?
 
-Im Bereich 3.500–6.000 € einmalig — abhängig von Anzahl der Leistungs-Seiten, Umfang der Referenzgalerie und Custom-Design-Tiefe. Plus laufende Wartung von 200–500 € pro Jahr. Vollständige Preisbereiche im [Pricing-Artikel](/journal/website-kosten-wien-2026).
+Das hängt an der Anzahl der Leistungs-Seiten, am Umfang der Referenzgalerie und an der Custom-Design-Tiefe, dazu kommt eine überschaubare laufende Wartung. Marktübliche Bereiche stehen im [Pricing-Artikel](/journal/website-kosten-wien-2026) — das konkrete Angebot für Ihr Projekt gibt es nach dem kostenlosen Audit.
 
 ### Wie viele Referenz-Fotos brauche ich?
 

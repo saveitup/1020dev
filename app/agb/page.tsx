@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: `AGB · ${SITE.name}`,
-  description: `Allgemeine Geschäftsbedingungen für die Leistungen von ${SITE.name} — Webentwicklung, SEO, AEO, Automatisierung.`,
+  title: 'AGB',
+  description: `Allgemeine Geschäftsbedingungen für die Leistungen von ${SITE.name} — Webentwicklung, SEO, AEO, Automatisierung und Mobile Apps.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: `${SITE.url}/agb` },
 };
 
 export default function AgbPage() {
@@ -165,8 +166,8 @@ export default function AgbPage() {
           werden. Die Domain wird vom Auftraggeber selbst registriert und gehalten.
         </p>
         <p>
-          Das Web-Monitoring wird zum Pauschalpreis von 25 € netto pro Monat angeboten,
-          das Automation-Hosting &amp; Monitoring zum Pauschalpreis von 60 € netto pro Monat.
+          Laufende Leistungen wie Monitoring sowie Hosting &amp; Monitoring werden zu
+          dem im Angebot vereinbarten monatlichen Pauschalpreis abgerechnet.
           Beide werden monatlich im Voraus abgerechnet und können vom Auftraggeber
           ordentlich jeweils zum Monatsende gekündigt werden (Textform, z. B. E-Mail,
           genügt).

@@ -10,7 +10,7 @@
 
 - **Primary:** Lead-Magnet für Pricing-Seekers — der Artikel beantwortet die einzelne Frage, die fast jeder potenzielle Kunde stellt
 - **Secondary:** Brand-Authority via Transparenz — anders als die meisten Wiener Studios (die nur „auf Anfrage" sagen) liefern wir konkrete Zahlen
-- **Tertiary:** Verlinkung auf `/web#preise` als direkter Conversion-Path
+- **Tertiary:** Verlinkung auf `/web#angebot` als direkter Conversion-Path
 
 ## Target Keywords
 
@@ -49,7 +49,7 @@ H2: Was Wiener KMU oft nicht eingerechnet bekommen
    H3: Was Sie selbst beisteuern müssen
 
 H2: Wie 1020.dev kalkuliert
-   [Verweis auf /web#preise mit kompakter Tabelle]
+   [Verweis auf /web#angebot mit kompakter Tabelle]
 
 H2: Was Sie heute tun können
 
@@ -59,7 +59,7 @@ H2: FAQ
 
 ## Internal Links
 
-- → `/web#preise` (3×)
+- → `/web#angebot` (3×)
 - → `/web#audit` (2×)
 - → `/journal/aeo-2026-leitfaden` (1×)
 - → `/journal/aeo-vs-seo` (Cluster, 1×)

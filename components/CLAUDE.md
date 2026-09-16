@@ -34,15 +34,15 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 ## Existing Components
 
 - `Splash.tsx` (client) — sessionStorage skip + 2.2s timer + ESC/click dismiss
-- `Nav.tsx` (server) — Sticky Top-Nav mit Wordmark, Links, Termin-CTA
+- `Nav.tsx` (client) — Sticky Top-Nav mit Wordmark, Section-Links pro Track, Termin-CTA; auf Mobile Toggle-Menü (`nav-toggle` / `nav-menu`) mit Section-Links plus weiteren Tracks
 - `Hero.tsx` (client) — Two-Column-Hero, rechte Seite Slideshow mit Klick-Nav auf Dots
 - `AuditWidget.tsx` (client) — Form → POST `/api/audit` → Score-Circle + Checks + Empfehlungen
 - `Methode.tsx` (server) — 4-Step Grid
 - `Services.tsx` (server) — 3-Card Triptychon
-- `Pricing.tsx` (server) — Glass-Card Preisliste
+- `Scope.tsx` (server) — Leistungsumfang in der Section `#angebot`, **ohne Beträge** (die Site veröffentlicht keine Preise)
 - `FAQ.tsx` (client) — Single-Open Akkordeon mit `htmlAnswer` via `dangerouslySetInnerHTML`
 - `FaqStructuredData.tsx` (server) — JSON-LD `FAQPage` Schema in `<head>`
-- `Footer.tsx` (server) — One-Liner Tag
+- `Footer.tsx` (server) — Wordmark, Tagline, Track-Links (`footer-nav`), Kontakt- und Rechtslinks
 
 ## ⚠️ FAQ-Content-Sicherheit
 

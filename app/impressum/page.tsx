@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: `Impressum · ${SITE.name}`,
+  title: 'Impressum',
   description: `Impressum und Offenlegung gemäß § 5 ECG, § 24 MedienG für ${SITE.name}.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: `${SITE.url}/impressum` },
 };
 
 export default function ImpressumPage() {

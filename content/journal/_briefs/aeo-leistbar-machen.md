@@ -65,7 +65,7 @@ H2: FAQ
 - → AEO 2026 Leitfaden (Pillar, 2×)
 - → AEO-Kosten 2026 (direkt benachbart)
 - → Website-Kosten Wien
-- → /web#preise
+- → /web#angebot
 - → /web#audit
 
 ## Brand Checks

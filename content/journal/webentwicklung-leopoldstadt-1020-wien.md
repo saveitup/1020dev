@@ -46,7 +46,7 @@ Drei Service-Bereiche:
 - **SEO und AEO** — Klassisches SEO und Answer Engine Optimization für Sichtbarkeit in Google plus ChatGPT, Perplexity, Claude und Google AI Overviews. Mehr im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden).
 - **Backend und Automation** — API-Integrationen, LLM-basierte Workflows, interne Tools, Lead-Pipelines. Details auf der [Service-Seite Automation](/automation).
 
-Pricing transparent: [Preisliste auf der Service-Seite](/web#preise). Audit und Erstgespräch immer kostenlos.
+Angebot transparent: [Leistungsumfang auf der Service-Seite](/web#angebot), Fixpreis nach dem Audit. Audit und Erstgespräch immer kostenlos.
 
 ## Was uns von Wiener Großagenturen unterscheidet
 

@@ -44,7 +44,7 @@ Mehr zur konkreten Mechanik im [AEO-Leitfaden 2026](/journal/aeo-2026-leitfaden)
 | **Komplex-AEO** für Branchen-Anker | Spezialisierte Site mit mehreren Branchen-Pages | 2.500–4.000 € | 25–40 Stunden |
 | **Full-Stack** Setup + Monitoring 6 Monate | Vollständige Optimierung mit Begleit-Monitoring | 3.500–5.500 € | 30–50 Stunden + 6 Monate |
 
-Bei 1020.dev: AEO-Optimierung beginnt bei 400 €. Komplette Preisübersicht auf der [Service-Seite](/web#preise).
+Bei 1020.dev gibt es keine Preisliste: Was im Umfang steckt, steht auf der [Service-Seite](/web#angebot) — den Preis dafür bekommen Sie nach dem kostenlosen Audit als verbindliches Fixpreis-Angebot.
 
 ### Setup 1: Basis-AEO (400–700 €)
 

@@ -6,11 +6,8 @@ Diese Datei ist die **autoritative Quelle für alle Inhalte** der Site. Alle Com
 
 ## Wenn du Inhalte änderst
 
-### Preise
-Ändere `PRICING` in `data.ts`. Wirkt sich automatisch auf:
-- `components/Pricing.tsx` (UI)
-- Die Antwort in `FAQS[2].htmlAnswer` (Pricing-FAQ) — **diese musst du manuell synchron halten!**
-- `public/llms.txt` (für AEO) — **muss manuell aktualisiert werden!**
+### Leistungsumfang (keine Preise!)
+`SCOPE`, `AUTOMATION_SCOPE` und `APPS_SCOPE` enthalten **nur `name` und `desc`** — die Site veröffentlicht bewusst keine Beträge, der Preis kommt nach dem Audit als Fixpreis-Angebot. Füge keine `price`-Felder hinzu, ohne das mit dem Inhaber abzuklären. Betroffen wären dann auch: `components/Scope.tsx` (UI), `FAQS[2]`/`APPS_FAQS[2]` (Preis-FAQs), `components/LocalBusinessSchema.tsx` (OfferCatalog), `app/agb/page.tsx` und `public/llms.txt` — alle **manuell synchron halten**.
 
 ### FAQs
 Ändere `FAQS` in `data.ts`. Jeder Eintrag braucht beide Felder:

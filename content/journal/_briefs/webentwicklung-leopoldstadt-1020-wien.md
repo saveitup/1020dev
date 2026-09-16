@@ -59,7 +59,7 @@ H2: Anfahrt und Erstgespräch
 
 - → `/web` (mehrfach)
 - → `/automation` (1×)
-- → `/web#preise` (1×)
+- → `/web#angebot` (1×)
 - → `/journal/aeo-2026-leitfaden` (1×)
 - → `/impressum` (1×, für Trust)
 

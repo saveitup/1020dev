@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { SERVICES } from '@/lib/data';
 
 type Service = {
@@ -5,6 +6,7 @@ type Service = {
   title: string;
   desc: string;
   items: readonly string[];
+  cta?: { label: string; href: string };
 };
 
 type ServicesProps = {
@@ -52,6 +54,11 @@ export function Services({
                   </li>
                 ))}
               </ul>
+              {service.cta && (
+                <Link href={service.cta.href} className="row-cta">
+                  {service.cta.label} <span className="arrow">→</span>
+                </Link>
+              )}
             </div>
           </article>
         ))}

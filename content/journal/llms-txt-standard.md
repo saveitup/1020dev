@@ -81,7 +81,7 @@ So sieht die `llms.txt` von 1020.dev aus, leicht gekürzt zur Illustration:
 
 ## Pricing
 
-- [Preisliste](https://1020.dev/web#preise): Onepager ab 700 €, AEO-Optimierung ab 400 €
+- [Angebot](https://1020.dev/web#angebot): Leistungsumfang modular, Fixpreis-Angebot nach kostenlosem Audit
 
 ## Wichtige Artikel
 

@@ -37,10 +37,10 @@ Minimaler FAQPage-Block in JSON-LD:
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Was kostet eine Website in Wien?",
+      "name": "Wie lange dauert eine Website mit AEO?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Eine Onepager-Website beginnt bei rund 700 Euro. Mehrseitige Sites zwischen 2.500 und 5.000 Euro."
+        "text": "Ein typisches KMU-Projekt mit 5 bis 15 Seiten dauert 4 bis 6 Wochen vom Audit bis zum Live-Gang."
       }
     },
     {
@@ -105,8 +105,8 @@ In der Page selbst:
 export default function Page() {
   const faqs = [
     {
-      question: "Was kostet AEO?",
-      answer: "Reine AEO-Optimierung beginnt bei rund 400 Euro einmalig.",
+      question: "Wie lange dauert eine AEO-Optimierung?",
+      answer: "Eine Basis-Optimierung ist in wenigen Tagen umgesetzt.",
     },
     // ...
   ];
@@ -143,7 +143,7 @@ add_action('wp_head', function() {
     if (!is_page('haeufige-fragen')) return;
 
     $faqs = [
-        ['q' => 'Was kostet AEO?', 'a' => 'Ab 400 Euro einmalig.'],
+        ['q' => 'Wie lange dauert AEO?', 'a' => 'Basis-Setup in wenigen Tagen.'],
         // ...
     ];
 

@@ -1,10 +1,10 @@
 # 1020.dev
 
-> Webentwicklung, SEO und Answer-Engine-Optimization für KMU in Wien und Österreich. Wir bauen Websites, die in Google ranken UND in ChatGPT, Perplexity und Claude zitiert werden.
+> Webentwicklung, SEO und Answer-Engine-Optimization, Software-Automation mit KI und Mobile Apps für KMU in Wien und Österreich. Wir bauen Websites, die in Google ranken UND in ChatGPT, Perplexity und Claude zitiert werden — plus Workflows, interne Tools und Apps.
 
 ## Wer wir sind
 
-1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Inhaberin: Maximilian Asamer als Einzelunternehmen. Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
+1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Inhaber: Maximilian Asamer, Einzelunternehmen. Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
 
 ## Was wir machen
 
@@ -12,19 +12,21 @@
 - **SEO** im klassischen Sinn: Meta-Tags, Sitemap, robots.txt, Schema.org-Markup, Core-Web-Vitals-Tuning.
 - **AEO (Answer Engine Optimization)** für ChatGPT, Perplexity, Claude und Google AI Overviews. Antwort-orientierte Inhaltsstruktur, FAQPage-Schema, LocalBusiness-Markup, llms.txt.
 - **Backend & Automatisierung**: API-Integrationen, LLM-basierte Workflows, CRM-Sync, Lead-Pipelines.
+- **Mobile Apps** mit React Native und Expo: iOS und Android aus einer Codebasis, Web-Version als PWA, Backend, Store-Release und laufende Updates. Eigenes Produkt: Spin your song (https://spin.1020.dev).
 
 ## Preise
 
-- Bundle „Sichtbar" (Website-Basis + SEO + AEO): 1.350 € (statt 1.450 € einzeln)
-- Website-Basis (1 Seite): 700 €
-- Zusätzliche Seite: 250 €
-- SEO-Optimierung: 350 €
-- AEO-Optimierung: 400 €
-- Backend: ab 2.000 €
-- Automatisierung: ab 3.000 €
-- Monitoring (automatisiert): 25 €/Monat
+1020.dev veröffentlicht keine Preisliste. Der Preis entsteht nach dem kostenlosen Audit beziehungsweise Erstgespräch als verbindliches Fixpreis-Angebot mit klar abgegrenztem Leistungsumfang — kein offener Stundensatz, keine Nachforderung im Projekt.
 
-Alle Preise netto, exkl. 20 % USt. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bugfix nach Launch, Audit und Erstgespräch immer kostenlos.
+Konditionen: alle Angebote netto zzgl. 20 % USt. Zahlung 50/50 (Auftragserteilung/Übergabe), 30 Tage Bugfix nach Launch, laufende Posten monatlich kündbar, Audit und Erstgespräch immer kostenlos.
+
+## Leistungsumfang
+
+**Web:** Bundle „Sichtbar" (Website-Basis + SEO + AEO) · Website-Basis (1 Seite) · zusätzliche Seiten · SEO-Optimierung · AEO-Optimierung · Backend · Automatisierung · laufendes Monitoring.
+
+**Software & Automation:** Bundle „AI-ready" (LLM-Anbindung + RAG & Agentic Workflow) · Workflow-Setup · API-Integration · LLM-Anbindung · internes Tool/Dashboard · RAG & Agentic Workflow · Hosting & Monitoring.
+
+**Mobile Apps:** Bundle „Launch" (MVP-App + Backend & API + Store-Release) · MVP-App für iOS und Android · zusätzliche Screens und Features · Backend & API · Push & Benachrichtigungen · Web-Version/PWA · Store-Release · Betrieb & Updates.
 
 ## Methode
 
@@ -38,6 +40,7 @@ Alle Preise netto, exkl. 20 % USt. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bu
 - [asamer.cz](https://asamer.cz) — Industrie- und Maschinenhandel, CEE
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
 - [alpenbroker.com](https://alpenbroker.com) — Aktien-Lernplattform, Österreich
+- [Spin your song](https://spin.1020.dev) — eigene Mobile-App des Studios: ein Song pro Tag, geteilt mit Freunden. Song-Feed mit Herz-, Kommentar- und Emoji-Reaktionen, Bonus-Spin mit Countdown, Spotify-Anbindung zum Direkt-Hören. Konzipiert, gestaltet, entwickelt und betrieben von 1020.dev.
 
 ## Journal — AEO und Answer-Engine-Optimization
 
@@ -54,7 +57,7 @@ Alle Preise netto, exkl. 20 % USt. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bu
 - [Webentwicklung Wien — Leitfaden 2026](https://1020.dev/journal/webentwicklung-wien-leitfaden-2026) — Marktüberblick, Pricing-Bereiche, Briefing-Empfehlungen.
 - [Website-Kosten Wien 2026](https://1020.dev/journal/website-kosten-wien-2026) — Vom Onepager bis zur Site mit Backend, was den Preis bestimmt.
 - [WordPress vs. Next.js für KMU](https://1020.dev/journal/wordpress-vs-nextjs-kmu) — Was WordPress kann, wo Next.js gewinnt, sinnvolle Mischformen.
-- [Vercel vs. Hetzner — Hosting in Österreich](https://1020.dev/journal/vercel-vs-hetzner-hosting-österreich) — Managed-Plattform vs. europäischer Server-Anbieter.
+- [Vercel vs. Hetzner — Hosting in Österreich](https://1020.dev/journal/vercel-vs-hetzner-hosting-oesterreich) — Managed-Plattform vs. europäischer Server-Anbieter.
 - [Webentwicklung in der Leopoldstadt (1020 Wien)](https://1020.dev/journal/webentwicklung-leopoldstadt-1020-wien) — Über das Studio und seine Arbeitsweise.
 
 ## Journal — Branchen-Cases

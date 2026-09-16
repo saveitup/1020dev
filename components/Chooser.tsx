@@ -19,12 +19,12 @@ const CHOICES = [
     items: ['Workflow-Automation', 'Custom Dev · APIs', 'Claude · GPT · RAG', 'EU-Hosting · DSGVO'],
   },
   {
-    href: '/concepts',
+    href: '/apps',
     eyebrow: '03',
-    title: 'Konzepte',
-    sub: 'AI & Automation Concepts',
-    desc: 'Strukturierte Konzeptentwicklung in sechs Phasen. Bevor Sie bauen, validieren wir Machbarkeit, Wirtschaftlichkeit und Wirkung — damit kein Budget in Sackgassen fließt.',
-    items: ['Assessment & Discovery', 'Validation · Prototyp', 'Roadmap & Business Case', 'Umsetzungsfertig'],
+    title: 'Apps',
+    sub: 'Mobile · iOS · Android',
+    desc: 'Mobile Apps für iOS und Android aus einer Codebasis, plus Web-Version. Von der Idee bis in den Store — gezeigt an unserer eigenen App Spin your song.',
+    items: ['React Native · Expo', 'iOS · Android · PWA', 'Store-Release & Updates', 'Case: Spin your song'],
   },
 ] as const;
 

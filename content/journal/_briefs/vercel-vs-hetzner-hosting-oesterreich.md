@@ -1,6 +1,6 @@
 # Brief: Vercel vs. Hetzner Hosting
 
-**Slug:** `vercel-vs-hetzner-hosting-österreich`
+**Slug:** `vercel-vs-hetzner-hosting-oesterreich`
 **Pillar:** Webentwicklung Wien (2)
 **Length:** 1.300–1.500 Wörter
 **Publish:** 9. August 2026

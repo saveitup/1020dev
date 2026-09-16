@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: `Abgemeldet · ${SITE.name}`,
+  title: 'Abgemeldet',
   description: 'Sie wurden erfolgreich von weiteren E-Mails abgemeldet.',
   robots: { index: false, follow: false },
+  alternates: { canonical: `${SITE.url}/abmelden` },
 };
 
 interface PageProps {

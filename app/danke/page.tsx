@@ -4,9 +4,10 @@ import { SITE } from '@/lib/data';
 import { BookingConfirmedTrigger } from '@/components/BookingConfirmedTrigger';
 
 export const metadata: Metadata = {
-  title: `Termin bestätigt · ${SITE.name}`,
+  title: 'Termin bestätigt',
   description: 'Ihr Erstgespräch ist gebucht. Sie erhalten in Kürze eine Bestätigung per E-Mail.',
   robots: { index: false, follow: false },
+  alternates: { canonical: `${SITE.url}/danke` },
 };
 
 export default function DankePage() {

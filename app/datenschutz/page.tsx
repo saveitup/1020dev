@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: `Datenschutz · ${SITE.name}`,
+  title: 'Datenschutz',
   description: `Datenschutzerklärung gemäß DSGVO und österreichischem DSG für ${SITE.name}.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: `${SITE.url}/datenschutz` },
 };
 
 export default function DatenschutzPage() {

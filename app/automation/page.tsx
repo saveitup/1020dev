@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { AutomationHero } from '@/components/AutomationHero';
 import { Methode } from '@/components/Methode';
 import { Services } from '@/components/Services';
-import { Pricing } from '@/components/Pricing';
+import { Scope } from '@/components/Scope';
 import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { FaqStructuredData } from '@/components/FaqStructuredData';
@@ -10,7 +10,7 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import {
   AUTOMATION_FAQS,
   AUTOMATION_METHODE,
-  AUTOMATION_PRICING,
+  AUTOMATION_SCOPE,
   AUTOMATION_SERVICES,
   SITE,
 } from '@/lib/data';
@@ -29,7 +29,7 @@ export default function AutomationPage() {
       <BreadcrumbSchema
         trail={[
           { name: 'Start', path: '/' },
-          { name: 'Automation', path: '/automation' },
+          { name: 'Software', path: '/automation' },
         ]}
       />
       <AutomationHero />
@@ -53,12 +53,12 @@ export default function AutomationPage() {
         }
         lede="Was wir tatsächlich für Sie bauen — von einzelnen Workflows bis zu vollwertigen internen Tools mit AI-Integration."
       />
-      <Pricing
-        data={AUTOMATION_PRICING}
+      <Scope
+        data={AUTOMATION_SCOPE}
         marker="03"
         title={
           <>
-            Modular und <em>transparent.</em>
+            Modular und <em>klar.</em>
           </>
         }
       />

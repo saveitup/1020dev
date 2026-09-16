@@ -1,4 +1,4 @@
-import { SITE, PRICING, AUTOMATION_PRICING } from '@/lib/data';
+import { SITE, SCOPE, AUTOMATION_SCOPE, APPS_SCOPE } from '@/lib/data';
 
 /**
  * LocalBusiness + ProfessionalService Schema mit eingebettetem OfferCatalog.
@@ -8,47 +8,30 @@ import { SITE, PRICING, AUTOMATION_PRICING } from '@/lib/data';
  * strukturierte Antworten auf:
  * - "Wer ist 1020.dev?" → Organization + founder
  * - "Wo sitzt 1020.dev?" → address + geo + areaServed
- * - "Was kostet eine Website / SEO / AEO bei 1020.dev?" → hasOfferCatalog
+ * - "Was bietet 1020.dev an?" → hasOfferCatalog (Leistungen, ohne Preise)
  * - "Wie erreicht man 1020.dev?" → telephone + email + url
  *
- * Die Services kommen aus `lib/data.ts` (PRICING + AUTOMATION_PRICING) — Single
- * Source of Truth. Preisänderungen propagieren automatisch ins Schema.
+ * Die Services kommen aus `lib/data.ts` (SCOPE + AUTOMATION_SCOPE +
+ * APPS_SCOPE) — Single Source of Truth. Bewusst OHNE Preisangaben: die Site
+ * veröffentlicht keine Beträge, also enthält auch das Schema keine.
  */
 
-type PricingItem = {
+type ScopeItem = {
   readonly name: string;
   readonly desc: string;
-  readonly price: string;
-  readonly prefix?: string;
 };
 
-type RecurringItem = {
-  readonly name: string;
-  readonly desc: string;
-  readonly price: string;
-  readonly period?: string;
-};
-
-function priceAsNumber(price: string): number {
-  // PRICING-Strings haben deutsche Tausender-Punkte: "2.000" → 2000
-  return Number(price.replace(/\./g, ''));
-}
-
-function buildOffer(item: PricingItem | RecurringItem, category: string, isRecurring = false) {
+/**
+ * Ein Offer ohne `priceSpecification`: die Site veröffentlicht keine
+ * Beträge, also nennt auch das Schema keine. Angebot kommt nach dem Audit.
+ */
+function buildOffer(item: ScopeItem, category: string) {
   return {
     '@type': 'Offer',
     name: item.name,
     description: item.desc,
     category,
-    priceSpecification: {
-      '@type': isRecurring ? 'UnitPriceSpecification' : 'PriceSpecification',
-      price: priceAsNumber(item.price),
-      priceCurrency: 'EUR',
-      valueAddedTaxIncluded: false,
-      ...(isRecurring && 'period' in item && item.period
-        ? { unitCode: 'MON', unitText: 'monatlich' }
-        : {}),
-    },
+    availability: 'https://schema.org/InStock',
     itemOffered: {
       '@type': 'Service',
       name: item.name,
@@ -65,12 +48,15 @@ function buildOffer(item: PricingItem | RecurringItem, category: string, isRecur
 
 export function LocalBusinessSchema() {
   const offers = [
-    ...PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Webentwicklung & SEO/AEO')),
-    ...PRICING.einmalig.map((p) => buildOffer(p, 'Webentwicklung & SEO/AEO')),
-    ...PRICING.laufend.map((p) => buildOffer(p, 'Monitoring & Reporting', true)),
-    ...AUTOMATION_PRICING.pakete.map((p) => buildOffer(p, 'Bundle — Automation & AI')),
-    ...AUTOMATION_PRICING.einmalig.map((p) => buildOffer(p, 'Automation & AI-Integration')),
-    ...AUTOMATION_PRICING.laufend.map((p) => buildOffer(p, 'Hosting & Monitoring', true)),
+    ...SCOPE.pakete.map((p) => buildOffer(p, 'Bundle — Webentwicklung & SEO/AEO')),
+    ...SCOPE.einmalig.map((p) => buildOffer(p, 'Webentwicklung & SEO/AEO')),
+    ...SCOPE.laufend.map((p) => buildOffer(p, 'Monitoring & Reporting')),
+    ...AUTOMATION_SCOPE.pakete.map((p) => buildOffer(p, 'Bundle — Automation & AI')),
+    ...AUTOMATION_SCOPE.einmalig.map((p) => buildOffer(p, 'Automation & AI-Integration')),
+    ...AUTOMATION_SCOPE.laufend.map((p) => buildOffer(p, 'Hosting & Monitoring')),
+    ...APPS_SCOPE.pakete.map((p) => buildOffer(p, 'Bundle — Mobile Apps')),
+    ...APPS_SCOPE.einmalig.map((p) => buildOffer(p, 'Mobile Apps (iOS, Android, PWA)')),
+    ...APPS_SCOPE.laufend.map((p) => buildOffer(p, 'App-Betrieb & Updates')),
   ];
 
   const schema = {
@@ -96,7 +82,6 @@ export function LocalBusinessSchema() {
       height: 1200,
       caption: '1020.dev — Studio für Webentwicklung, SEO und AEO in Wien',
     },
-    priceRange: '€€',
     currenciesAccepted: 'EUR',
     paymentAccepted: 'Banküberweisung, SEPA',
     address: {
@@ -134,6 +119,9 @@ export function LocalBusinessSchema() {
       'Schema.org',
       'Workflow-Automation',
       'LLM-Integration',
+      'Mobile Apps',
+      'React Native',
+      'Expo',
       'Anthropic Claude',
       'OpenAI GPT',
     ],

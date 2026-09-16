@@ -12,7 +12,7 @@ keywords:
 draft: false
 ---
 
-Die typische Anfrage einer DACH-AEO-/SEO-Agentur an ein KMU sieht so aus: 1.500–2.500 € Setup, dann 1.000–2.500 € pro Monat, bei zwölf Monaten Mindestlaufzeit. Macht im ersten Jahr 14.000–32.000 € — bei oft schwer spezifizierbarer monatlicher Leistung. Bei 1020.dev arbeiten wir bewusst anders: einmalige Setup-Kosten, optionales Monitoring im niedrigen zweistelligen Monatsbereich, Folgeprojekte einzeln statt gebündelt. Hier die ehrliche Diagnose, warum das Abo-Modell für die meisten KMU strukturell nicht passt — und wann es trotzdem Sinn ergibt.
+Die typische Anfrage einer DACH-AEO-/SEO-Agentur an ein KMU sieht so aus: 1.500–2.500 € Setup, dann 1.000–2.500 € pro Monat, bei zwölf Monaten Mindestlaufzeit. Macht im ersten Jahr 14.000–32.000 € — bei oft schwer spezifizierbarer monatlicher Leistung. Bei 1020.dev arbeiten wir bewusst anders: einmalige Setup-Kosten, optionales Monitoring als kleiner monatlicher Posten, Folgeprojekte einzeln statt gebündelt. Hier die ehrliche Diagnose, warum das Abo-Modell für die meisten KMU strukturell nicht passt — und wann es trotzdem Sinn ergibt.
 
 ## Die Standard-Logik der AEO-/SEO-Agenturen
 
@@ -68,7 +68,7 @@ Bei 1020.dev arbeiten wir mit transparenten, einmaligen Komponenten:
 | Komplex-AEO | 2.500–4.000 € | Mehrere Branchen-Pages, HowTo-Schema, Person-Schema, Cluster-Vernetzung |
 | Monitoring | 20–60 €/Monat | Monatliche Spotchecks, Reporting, optional kündbar |
 
-Ein KMU, das bei einer Standard-Agentur 24.000 € im ersten Jahr zahlen würde, kommt bei uns mit ~3.000 € Setup plus 480–720 € Monitoring (12 Monate) auf rund 3.500–3.700 € im ersten Jahr. Das ist kein Marketing-Trick — es ist die ehrliche Kalkulation für den tatsächlichen Aufwand. Vollständige Pricing-Logik im [AEO-Kosten-Artikel](/journal/aeo-kosten-2026).
+Ein KMU, das bei einer Standard-Agentur 24.000 € im ersten Jahr zahlen würde, liegt mit einmaligem Setup plus optionalem Monitoring bei einem Bruchteil davon — weil der Großteil der Arbeit einmal anfällt und nicht zwölfmal verrechnet wird. Das ist kein Marketing-Trick, sondern die Kalkulation für den tatsächlichen Aufwand. Hintergründe im [AEO-Kosten-Artikel](/journal/aeo-kosten-2026).
 
 ### Folgeprojekte einzeln, nicht gebündelt
 
@@ -116,7 +116,7 @@ Ab welcher messbaren Schwelle gilt das Engagement als erfolgreich? Citation-Freq
 
 Drei Punkte, die unsere Pricing-Logik definieren:
 
-1. **Einmalige Setup-Kosten, transparent kalkuliert.** Ein Onepager kostet ab 700 €, AEO-Optimierung ab 400 €, eine vollständige Mehrseiten-Site mit AEO ab rund 2.500 €. Vollständige Liste auf der [Service-Seite](/web#preise). Sie wissen vor Vertragsschluss, was Sie zahlen.
+1. **Einmalige Setup-Kosten, vorab fixiert.** Der Leistungsumfang steht modular auf der [Service-Seite](/web#angebot) — den Preis dafür bekommen Sie nach dem kostenlosen Audit als Fixpreis-Angebot. Sie wissen vor Vertragsschluss, was Sie zahlen.
 
 2. **Monitoring optional und niedrig.** Wenn Sie laufendes Monitoring wollen, kostet das 20–60 € pro Monat — abhängig vom Umfang. Kündbar mit einem Monat Frist. Keine Mindestlaufzeit.
 
