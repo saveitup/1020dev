@@ -19,12 +19,13 @@ const CHOICES = [
     items: ['Workflow-Automation', 'Custom Dev · APIs', 'Claude · GPT · RAG', 'EU-Hosting · DSGVO'],
   },
   {
-    href: '/agenten',
+    href: '/apps',
     eyebrow: '03',
-    title: 'Agenten',
-    sub: 'KI · Branche · KMU',
-    desc: 'Maßgeschneiderte KI-Agenten für österreichische KMU. Marketing, Kundenkommunikation und wiederkehrende Workflows — branchenspezifisch, ohne eigene IT-Abteilung.',
-    items: ['Branchenspezifisch', 'DSGVO von Grund auf', 'Kein IT nötig', 'Skalierbar'],
+    title: 'Apps',
+    sub: 'iOS · Android · Web',
+    desc: 'Mobile Apps für iOS und Android aus einer Codebasis, plus Web-Version — von der Idee bis in den Store. Gezeigt an unserer eigenen App Spin your song.',
+    items: ['React Native · Expo', 'iOS & Android', 'Web & PWA', 'Store-Release'],
+    accent: 'spin',
   },
 ] as const;
 
@@ -51,7 +52,14 @@ export function Chooser() {
 
       <div className="chooser-grid">
         {CHOICES.map((c) => (
-          <Link key={c.href} href={c.href} className="chooser-card">
+          <Link
+            key={c.href}
+            href={c.href}
+            className={
+              'chooser-card' +
+              ('accent' in c && c.accent === 'spin' ? ' chooser-card--spin' : '')
+            }
+          >
             <div className="chooser-card-top">
               <span className="chooser-card-eyebrow">{c.eyebrow}</span>
               <span className="chooser-card-arrow" aria-hidden="true">→</span>
