@@ -35,7 +35,7 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 - `Splash.tsx` (client) — sessionStorage skip + 2.2s timer + ESC/click dismiss
 - `Announcement.tsx` (server) — grüne Leiste über der Nav (`ANNOUNCEMENT`)
 - `Nav.tsx` (server) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts
-- `Hero.tsx` (client) — Gleichungs-Headline (`HERO.equation`); alle Tropfen starten am selben Ursprung unter der Ziffer (Web Animations API, imperativ in `.glass-drops`), bis 100 als zusammenhängender SVG-Strahl, der den Pegel (`--pour`) direkt mitsteuert, der Pegel steigt je Stufe (`HERO.ideas[].fill`), am Ende `= 1020.dev`; wartet auf `body.ready`
+- `Hero.tsx` (client) — Gleichungs-Headline (`HERO.equation`); alle Tropfen fallen vom selben Punkt oben mittig (Web Animations API, imperativ in `.glass-drops`), jeder Aufprall zählt, der Pegel steigt je Stufe (`HERO.ideas[].fill`), am Ende `= 1020.dev`; wartet auf `body.ready`
 - `Studio.tsx` (server) — Titel links, zwei Textspalten rechts (`STUDIO`)
 - `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`)
 - `References.tsx` (server) — 2-Spalten-Grid, Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)

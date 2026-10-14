@@ -405,8 +405,7 @@ html.splash-skip .splash { display: none !important; }
   left: 0;
   right: 0;
   bottom: 0;
-  /* --pour wird nur während des Gießens per JS gesetzt */
-  height: calc(max(var(--fill, 0), var(--pour, 0)) * 100%);
+  height: calc(var(--fill, 0) * 100%);
   /* Deckende Töne: halbtransparente Flächen würden an der Oberfläche
      überlappen und eine dunkle Kante zeichnen */
   background: linear-gradient(180deg, #DCEADF 0%, #C6D8CC 100%);
@@ -422,10 +421,8 @@ html.splash-skip .splash { display: none !important; }
     );
   }
 }
-/* Der letzte Anstieg (Regen) läuft weich aus, ohne Überschwingen */
-.glass-liquid.is-final { transition-timing-function: cubic-bezier(0.25, 0.6, 0.3, 1); }
-/* Während des Gießens folgt der Pegel Frame für Frame dem Strahl */
-.glass-liquid.is-pouring { transition: none; }
+/* Tropfenfolge bis 100: Pegel steigt gleichmäßig (JS rechnet mit derselben Kurve) */
+.glass-liquid.is-linear { transition-timing-function: linear; }
 
 /* Oberfläche: Wellen + Überlappung nach unten, damit beim Kippen
    (Schwappen per Web Animations) keine Lücke zum Wasser entsteht */
@@ -469,46 +466,17 @@ html.splash-skip .splash { display: none !important; }
 }
 
 /* Tropfen, Ringe und Spritzer (per Web Animations positioniert) */
-/* Liegt über der Headline: Tropfen und Strahl fließen davor. Untertitel
-   und Buttons bleiben obenauf, damit der Strahl nichts verdeckt. */
-.hero-lede,
-.hero-actions { position: relative; z-index: 3; }
 .glass-drops {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  overflow: hidden;
   pointer-events: none;
 }
 .drop,
 .ripple,
-.splash,
-.stream,
-.stream-foam {
+.splash {
   position: absolute;
   left: 0;
   top: 0;
-}
-/* Zusammenhängender Strahl (Form wird pro Frame per JS gezeichnet) */
-.stream { overflow: visible; opacity: 0.92; }
-.stream-body { filter: drop-shadow(0 0 4px rgba(0, 61, 38, 0.22)); }
-.stream-flow {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.6);
-  stroke-linecap: round;
-  stroke-dasharray: 7 19;
-}
-.stream-flow--thin {
-  stroke: rgba(255, 255, 255, 0.45);
-  stroke-dasharray: 4 13;
-}
-/* Schaum am Aufprallpunkt */
-.stream-foam {
-  width: 90px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0) 72%);
-  opacity: 0;
 }
 .drop {
   width: 8px;
