@@ -3,18 +3,18 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { HERO, SITE } from '@/lib/data';
 import { ArrowIcon } from './Icons';
+import { Wordmark } from './Wordmark';
 
 // Geschützte Bindestriche, damit "iOS-" nicht allein am Zeilenende steht
 const nbHyphen = (text: string) => text.replace(/(KI|iOS)-/g, '$1‑');
 
-// Titel zerlegen: "[Ist] ein leerer Raum und [eine Idee] noch ein leerer Raum?"
-const FIRST = HERO.ideas[0];
-const [TITLE_MID, TITLE_END] = HERO.title.slice(FIRST.verb.length).split(FIRST.label);
+const EQ = HERO.equation;
+const LAST = HERO.ideas.length - 1;
 
 // Wann (ms nach Start) die Stufen beginnen; die Tropfen fallen ab hier
-const STEP_AT = [700, 3400, 5800, 8200];
+const STEP_AT = [900, 3400, 5600, 7800];
 // Dauer, bis der Pegel nach dem ersten Aufprall seine Stufe erreicht
-const RISE_MS = [1400, 1400, 1400, 3000];
+const RISE_MS = [1400, 1400, 1400, 3200];
 
 // Wellenoberfläche: vier gleiche Perioden auf 2400 Einheiten, damit eine
 // Verschiebung um die halbe Breite nahtlos in sich übergeht.
@@ -43,14 +43,19 @@ const BUBBLES = [
 const ease = (t: number) => 1 - Math.pow(1 - Math.min(Math.max(t, 0), 1), 3);
 
 /**
- * Hero als Frage: "Ist ein leerer Raum und eine Idee noch ein leerer Raum?"
- * Jede Idee fällt als Tropfen aus dem grünen Zählwort ins "Glas", der Pegel
- * steigt und schwappt. Bei "hundert Ideen" regnet es, bis das Glas voll ist.
+ * Hero als Gleichung: "leerer Raum = leerer Raum". Jede Idee fällt als
+ * Tropfen aus dem Term "+ n Ideen" ins "Glas" — nach der ersten wird aus
+ * "=" ein "≠", der Pegel steigt. Bei 100 regnet es, der Zähler läuft mit
+ * jedem Aufprall hoch, und am Ende steht "leerer Raum + 100 Ideen = 1020.dev".
  * Startet leer und erst, wenn der Splash weg ist (`body.ready`).
  */
 export function Hero() {
-  // Stufe, deren Wort gerade steht (-1 = Ausgangszustand mit ideas[0])
-  const [step, setStep] = useState(-1);
+  // Ideen im Term (0 = Term noch nicht da)
+  const [count, setCount] = useState(0);
+  // Erste Idee ist gelandet → "≠"
+  const [unequal, setUnequal] = useState(false);
+  // Hundert erreicht → "= 1020.dev"
+  const [done, setDone] = useState(false);
   // Stufe, deren Füllstand erreicht ist (-1 = leer)
   const [level, setLevel] = useState(-1);
   const heroRef = useRef<HTMLElement>(null);
@@ -84,10 +89,10 @@ export function Hero() {
     };
 
     const ripple = (x: number, y: number, big: boolean) => {
-      const count = big ? 2 : 1;
-      for (let r = 0; r < count; r++) {
+      const rings = big ? 2 : 1;
+      for (let r = 0; r < rings; r++) {
         const el = add('ripple');
-        const w = big ? 120 : 70;
+        el.style.setProperty('--rw', `${big ? 120 : 70}px`);
         el.animate(
           [
             { transform: `translate(${x}px, ${y}px) translate(-50%, -50%) scale(0.1)`, opacity: 0.9 },
@@ -95,7 +100,6 @@ export function Hero() {
           ],
           { duration: 1100 + r * 300, delay: r * 180, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'both' },
         ).onfinish = () => el.remove();
-        el.style.setProperty('--rw', `${w}px`);
       }
     };
 
@@ -115,28 +119,26 @@ export function Hero() {
     };
 
     // Ein Tropfen fällt von (x0, y0) und landet auf der Oberfläche
-    const drop = (x0: number, y0: number, delay: number, dx: number, big: boolean, onLand?: () => void) => {
+    const drop = (x0: number, y0: number, delay: number, dx: number, big: boolean, onLand: () => void) => {
       const H = hero.clientHeight;
       const startAt = performance.now() + delay;
-      // Fallzeit grob nach Strecke schätzen, Landepunkt mit Pegel zur Landezeit
       const guess = H * (1 - surfaceAt(startAt + 700));
       const fall = Math.max(guess - y0, 40);
       const duration = Math.min(Math.max(Math.sqrt(fall) * 42, 420), 1100);
       const yLand = H * (1 - surfaceAt(startAt + duration)) - 4;
       const el = add(big ? 'drop drop--big' : 'drop');
-      const anim = el.animate(
+      el.animate(
         [
           { transform: `translate(${x0}px, ${y0}px) scale(0.2, 0.2)`, opacity: 0 },
           { transform: `translate(${x0}px, ${y0 + 4}px) scale(1, 1.1)`, opacity: 1, offset: 0.18 },
           { transform: `translate(${x0 + dx}px, ${yLand}px) scale(0.8, 1.45)`, opacity: 1 },
         ],
         { duration, delay, easing: 'cubic-bezier(.45,0,.9,.55)', fill: 'both' },
-      );
-      anim.onfinish = () => {
+      ).onfinish = () => {
         el.remove();
         ripple(x0 + dx, yLand + 4, big);
         if (big) splash(x0 + dx, yLand);
-        onLand?.();
+        onLand();
       };
     };
 
@@ -149,42 +151,50 @@ export function Hero() {
     };
 
     const runStep = (i: number) => {
-      setStep(i);
+      const target = HERO.ideas[i].count;
+      const prev = i > 0 ? HERO.ideas[i - 1].count : 0;
+
       if (reduce) {
+        setCount(target);
+        setUnequal(true);
         setLevel(i);
+        if (i === LAST) setDone(true);
         return;
       }
-      // Nach dem Rendern des neuen Worts messen, von wo die Tropfen fallen
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => {
-          const heroBox = hero.getBoundingClientRect();
-          const word = hero.querySelector<HTMLElement>('.idea-count');
-          const box = word?.getBoundingClientRect();
-          const W = hero.clientWidth;
-          const fresh = HERO.ideas[i].count - (i > 0 ? HERO.ideas[i - 1].count : 0);
 
-          if (i < HERO.ideas.length - 1 && box) {
-            // Einzelne Ideen tropfen aus dem Zählwort
-            const x = box.left - heroBox.left + box.width * (0.35 + 0.3 * Math.random());
+      if (i < LAST) {
+        // Einzelne Ideen: Zahl erscheint, ein Tropfen fällt aus dem Term
+        setCount(target);
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            const heroBox = hero.getBoundingClientRect();
+            const box = hero.querySelector('.idea-count')?.getBoundingClientRect();
+            if (!box) return;
+            const x = box.left - heroBox.left + box.width * (0.3 + 0.4 * Math.random());
             const y = box.bottom - heroBox.top - 6;
-            drop(x, y, 120, (Math.random() - 0.5) * 16, true, () => raiseTo(i));
-            return;
-          }
-
-          // Hundert Ideen: es regnet über die ganze Breite
-          let landed = false;
-          for (let k = 0; k < fresh; k++) {
-            const x = 12 + Math.random() * (W - 24);
-            const delay = Math.pow(Math.random(), 0.8) * 2200;
-            drop(x, -20 - Math.random() * 60, delay, (Math.random() - 0.5) * 24, false, () => {
-              if (!landed) {
-                landed = true;
-                raiseTo(i);
-              }
+            drop(x, y, 140, (Math.random() - 0.5) * 16, true, () => {
+              setUnequal(true);
+              raiseTo(i);
             });
-          }
-        }),
-      );
+          }),
+        );
+        return;
+      }
+
+      // Hundert: es regnet über die ganze Breite, jeder Aufprall zählt mit
+      const W = hero.clientWidth;
+      const fresh = target - prev;
+      let landed = 0;
+      for (let k = 0; k < fresh; k++) {
+        const x = 12 + Math.random() * (W - 24);
+        const delay = Math.pow(Math.random(), 0.8) * 2400;
+        drop(x, -20 - Math.random() * 60, delay, (Math.random() - 0.5) * 24, false, () => {
+          landed += 1;
+          if (landed === 1) raiseTo(i);
+          setCount(prev + landed);
+          if (landed === fresh) later(() => setDone(true), 350);
+        });
+      }
     };
 
     const start = () => STEP_AT.forEach((at, i) => later(() => runStep(i), at));
@@ -208,9 +218,10 @@ export function Hero() {
     };
   }, []);
 
-  const shown = HERO.ideas[Math.max(step, 0)];
   const fill = level < 0 ? 0 : HERO.ideas[level].fill;
   const riseMs = level < 0 ? RISE_MS[0] : RISE_MS[level];
+  // Für die ersten Stufen neu einblenden, beim Hochzählen im Regen nicht
+  const termKey = count <= HERO.ideas[LAST - 1].count ? `n${count}` : 'rain';
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title" ref={heroRef}>
@@ -248,15 +259,30 @@ export function Hero() {
 
       <div className="hero-content">
         <p className="hero-eyebrow">{HERO.eyebrow}</p>
-        <h1 id="hero-title" className="hero-title">
-          <span key={shown.verb} className={`idea-verb${step > 0 ? ' is-new' : ''}`}>
-            {shown.verb}
+        <h1 id="hero-title" className="hero-title hero-eq" aria-label={EQ.ariaLabel}>
+          <span className="eq-line" aria-hidden="true">
+            <span>{EQ.term}</span>
+            {count > 0 && (
+              <span key={termKey} className={`eq-term${termKey === 'rain' ? '' : ' is-new'}`}>
+                <span className="eq-op">+</span>
+                <span className="idea-count">
+                  <span className="eq-num">{count}</span> {count === 1 ? EQ.one : EQ.many}
+                </span>
+              </span>
+            )}
           </span>
-          {TITLE_MID}
-          <span key={step} className={`idea-count${step > 0 ? ' is-new' : ''}`}>
-            {shown.label}
+          <span className="eq-line" aria-hidden="true">
+            <span className={`eq-op eq-rel${unequal && !done ? ' is-unequal' : ''}`}>
+              =<span className="eq-slash" />
+            </span>
+            {done ? (
+              <span key="result" className="eq-result is-new">
+                <Wordmark />
+              </span>
+            ) : (
+              <span key="term">{EQ.term}</span>
+            )}
           </span>
-          {TITLE_END}
         </h1>
         <p className="hero-lede">{nbHyphen(HERO.lede)}</p>
         <div className="hero-actions">

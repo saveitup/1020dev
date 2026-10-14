@@ -56,7 +56,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - **Domain**: 1020.dev (Wiener Postleitzahl Leopoldstadt)
 - **Vorbild**: Legora (legora.com) — warmes Off-White, eine Grotesk in Regular, Tannengrün als einziger Akzent, Pill-Buttons, ruhige Flächen
 - **Logo**: `1020.dev` als Wordmark, Punkt in Grün (auf dunklem Grund in Sand `--glow`), `dev` gedimmt
-- **Hero**: Frage „Ist ein leerer Raum und eine Idee noch ein leerer Raum?“ — Verb und Zählwort steigen (`HERO.ideas`: Ist eine → Sind zwei → drei → hundert Ideen). Jede Idee fällt als Tropfen aus dem grünen Wort ins „Glas“ (Ringe, Spritzer), der Pegel steigt und schwappt; bei hundert regnet es, bis das Glas voll ist (Wellen, Bläschen, Lichtreflexe). Startet leer, erst nach dem Splash; bei „Bewegung reduzieren“ ohne Tropfen
+- **Hero**: Gleichung (`HERO.equation`): `leerer Raum = leerer Raum` → `+ 1 Idee ≠ leerer Raum` → 2 → 3 → `+ 100 Ideen = 1020.dev`. Jede Idee fällt als Tropfen aus dem Term ins „Glas“ (Ringe, Spritzer), der Pegel steigt und schwappt; bei 100 regnet es, der Zähler läuft mit jedem Aufprall hoch (Wellen, Bläschen, Lichtreflexe). Rechenzeichen in Mono/Grün, h1 mit `aria-label` als ganzer Satz. Startet leer, erst nach dem Splash; bei „Bewegung reduzieren“ ohne Tropfen
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 
