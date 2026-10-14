@@ -622,6 +622,10 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   margin-top: 16px;
   list-style: none;
 }
+.focus-link {
+  margin-top: 16px;
+  font-size: 14px;
+}
 .focus-points li {
   padding: 4px 10px;
   border-radius: 999px;

@@ -37,7 +37,7 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 - `Nav.tsx` (server) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts
 - `Hero.tsx` (client) — Gleichungs-Headline (`HERO.equation`); alle Tropfen fallen vom selben Punkt oben mittig (Web Animations API, imperativ in `.glass-drops`), jeder Aufprall zählt, der Pegel steigt je Stufe (`HERO.ideas[].fill`), am Ende `= 1020.dev`; wartet auf `body.ready`
 - `Studio.tsx` (server) — Titel links, zwei Textspalten rechts (`STUDIO`)
-- `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`)
+- `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`); optionaler `link` je Schwerpunkt verweist auf das eigene Produkt (Clausl KI, Spin)
 - `References.tsx` (server) — 2-Spalten-Grid, Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)
 - `ContactCard.tsx` (server) — grüne Karte mit dekorativem Swift-Snippet (`CONTACT`)
 - `AppShowcase.tsx` (server) — `/apps`: Intro + Phone-Mockup, Features, Eckdaten (`APPS_SHOWCASE`, `APPS_PAGE`)

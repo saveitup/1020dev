@@ -11,7 +11,7 @@
 ## Referenzen
 
 - [Spin your song](https://1020.dev/apps) — eigene App: ein Song pro Tag, geteilt mit Freunden ([spin.1020.dev](https://spin.1020.dev))
-- Clausl KI — Legal AI für österreichisches Arbeitsrecht
+- [Clausl KI](https://clausl.1020.dev) — Legal AI für österreichisches Arbeitsrecht: löst Fälle nach Prüfschema, mit sichtbarem Prüfweg und Fundstellen
 - [asamer.cz](https://asamer.cz) — Industrie, CEE
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
 - [alpenbroker.com](https://alpenbroker.com) — Finanzbildung, Österreich

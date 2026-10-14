@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FOCUS, FOCUS_HEAD } from '@/lib/data';
 import { PlusIcon } from './Icons';
@@ -73,6 +74,17 @@ export function Focus() {
                         <li key={p}>{p}</li>
                       ))}
                     </ul>
+                    {/* Beleg: das eigene Produkt zum Schwerpunkt */}
+                    {f.link &&
+                      (f.link.href.startsWith('http') ? (
+                        <a href={f.link.href} target="_blank" rel="noopener" className="hook-link hook-link--light focus-link">
+                          {f.link.label} ↗
+                        </a>
+                      ) : (
+                        <Link href={f.link.href} className="hook-link hook-link--light focus-link">
+                          {f.link.label}
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </div>

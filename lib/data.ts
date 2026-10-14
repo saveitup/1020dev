@@ -51,18 +51,21 @@ export const FOCUS = [
     label: 'Legal AI',
     text: 'Sprachmodelle verändern, wie Recht recherchiert, geprüft und geschrieben wird. Wir verfolgen neue Modelle, Werkzeuge und Regulierung und berichten, was davon in der Praxis trägt.',
     points: ['Modelle & Werkzeuge', 'Recherche & Vertragsprüfung', 'EU AI Act & DSGVO'],
+    link: { label: 'Clausl KI ansehen', href: 'https://clausl.1020.dev' },
   },
   {
     id: 'ios',
     label: 'iOS-Apps',
     text: 'Swift, SwiftUI und Apple Intelligence entwickeln sich jedes Jahr weiter. Wir testen Neuerungen früh, berichten darüber und bauen Apps, die sie sinnvoll nutzen.',
     points: ['Swift & SwiftUI', 'On-Device-Modelle', 'App Store & TestFlight'],
+    link: { label: 'Spin your song ansehen', href: '/apps' },
   },
   {
     id: 'konzepte',
     label: 'Konzepte',
     text: 'Aus Beobachtung wird ein Prototyp. Wir setzen Konzepte um, von der ersten Skizze bis zur laufenden Anwendung.',
     points: ['Skizze', 'Prototyp', 'Produkt'],
+    link: null,
   },
 ] as const;
 
@@ -82,8 +85,8 @@ export const REFS_HEAD = {
 export const REFS = [
   {
     id: 'clausl',
-    domain: 'Clausl KI',
-    href: null,
+    domain: 'clausl.1020.dev',
+    href: 'https://clausl.1020.dev',
     tag: 'Legal AI · Arbeitsrecht',
     screenshots: [
       {
