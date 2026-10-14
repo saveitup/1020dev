@@ -320,13 +320,70 @@ html.splash-skip .splash { display: none !important; }
   margin-top: 32px;
 }
 
+/* Headline: Wörter steigen einzeln aus einer Maske auf */
+.hw {
+  display: inline-block;
+  overflow: hidden;
+  /* Platz für Unterlängen (g, p), ohne die Zeilenhöhe zu verändern */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+  vertical-align: top;
+}
+.hw-in {
+  display: inline-block;
+  animation: wordUp 0.95s var(--ease) both;
+  animation-delay: calc(0.1s + var(--i, 0) * 70ms);
+}
+/* Akzentwort: Tannengrün mit langsam wanderndem Schimmer */
+.hw-accent {
+  background: linear-gradient(
+    100deg,
+    var(--green) 0%,
+    var(--green) 35%,
+    #3E9B67 47%,
+    #9CCB86 50%,
+    #3E9B67 53%,
+    var(--green) 65%,
+    var(--green) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  /* Verlaufsfläche reicht bis unter die Unterlängen, sonst fehlt das "g" */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    wordUp 0.95s var(--ease) both,
+    shimmer 6s ease-in-out infinite;
+  animation-delay: calc(0.1s + var(--i, 0) * 70ms), 1.4s;
+}
+/* Blinkender Cursor nach dem letzten Wort */
+.hero-caret {
+  display: inline-block;
+  width: 0.07em;
+  height: 0.78em;
+  margin-left: 0.08em;
+  vertical-align: -0.02em;
+  border-radius: 0.02em;
+  background: var(--green);
+  animation:
+    caretIn 0.3s 0.75s both,
+    blink 1.1s steps(1, end) 1.05s infinite;
+}
+
 /* Entrance — paused until the splash is gone */
 .hero-content > * { animation: rise 1s var(--ease) both; }
-.hero-content > :nth-child(2) { animation-delay: 0.08s; }
-.hero-content > :nth-child(3) { animation-delay: 0.16s; }
-.hero-content > :nth-child(4) { animation-delay: 0.24s; }
-body:not(.ready) .hero-content > * { animation-play-state: paused; }
-html.splash-skip body .hero-content > * { animation-play-state: running; }
+.hero-content > .hero-title { animation: none; }
+.hero-content > .hero-lede { animation-delay: 0.45s; }
+.hero-content > .hero-actions { animation-delay: 0.55s; }
+body:not(.ready) .hero-content > *,
+body:not(.ready) .hw-in,
+body:not(.ready) .hero-caret { animation-play-state: paused; }
+html.splash-skip body .hero-content > *,
+html.splash-skip body .hw-in,
+html.splash-skip body .hero-caret { animation-play-state: running; }
 
 /* ============== STUDIO ============== */
 .studio {
@@ -1153,6 +1210,22 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
 }
+@keyframes wordUp {
+  from { opacity: 0; transform: translateY(105%); filter: blur(8px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50%      { background-position: 0% 0; }
+}
+@keyframes caretIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+}
 @keyframes focusOpen {
   from { opacity: 0.4; transform: translateY(4px); }
   to   { opacity: 1;   transform: none; }
@@ -1206,6 +1279,7 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
