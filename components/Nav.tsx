@@ -1,8 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { SITE } from '@/lib/data';
 import { ArrowIcon } from './Icons';
 import { Wordmark } from './Wordmark';
@@ -14,25 +10,8 @@ const LINKS = [
 ] as const;
 
 export function Nav() {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
-  // On the home route the nav floats transparently over the dark hero and
-  // turns solid as soon as the page scrolls.
-  const [overHero, setOverHero] = useState(isHome);
-
-  useEffect(() => {
-    if (!isHome) {
-      setOverHero(false);
-      return;
-    }
-    const onScroll = () => setOverHero(window.scrollY < 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
-
   return (
-    <nav className={`nav${overHero ? ' nav--over' : ''}`}>
+    <nav className="nav">
       <div className="nav-inner">
         <ul className="nav-links">
           {LINKS.map((l) => (

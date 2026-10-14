@@ -32,8 +32,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 
 | Component | Type | Warum |
 |---|---|---|
-| `Announcement`, `Hero`, `Studio`, `References`, `ContactCard`, `Footer`, Schemas | Server | Pure Render |
-| `Nav` | Client | Transparent über dem Hero, solide ab Scroll |
+| `Announcement`, `Nav`, `Hero`, `Studio`, `References`, `ContactCard`, `Footer`, Schemas | Server | Pure Render |
 | `Focus` | Client | Pill-Akkordeon mit Auto-Advance |
 | `Splash` | Client | sessionStorage + Timer |
 | `CookieBanner`, `CookieSettingsLink`, `GoogleTag` | Client | Consent-State |
@@ -55,7 +54,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - **Domain**: 1020.dev (Wiener Postleitzahl Leopoldstadt)
 - **Vorbild**: Legora (legora.com) — warmes Off-White, eine Grotesk in Regular, Tannengrün als einziger Akzent, Pill-Buttons, ruhige Flächen
 - **Logo**: `1020.dev` als Wordmark, Punkt in Grün (auf dunklem Grund in Sand `--glow`), `dev` gedimmt
-- **Hero**: dunkler Horizont-Verlauf in Grüntönen mit warmem Lichtstreif, Headline unten zentriert — ersetzt ein Foto
+- **Hero**: hell und ruhig — Off-White mit weichem, warmem Schimmer hinter der Headline, dunkle Schrift, zentriert
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 

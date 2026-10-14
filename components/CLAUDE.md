@@ -34,8 +34,8 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 
 - `Splash.tsx` (client) — sessionStorage skip + 2.2s timer + ESC/click dismiss
 - `Announcement.tsx` (server) — grüne Leiste über der Nav (`ANNOUNCEMENT`)
-- `Nav.tsx` (client) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts; auf `/` transparent über dem Hero bis zum ersten Scroll
-- `Hero.tsx` (server) — Vollflächiger Horizont-Hero, Headline unten zentriert (`HERO`)
+- `Nav.tsx` (server) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts
+- `Hero.tsx` (server) — Heller, zentrierter Hero mit Headline, Lede und CTA (`HERO`)
 - `Studio.tsx` (server) — Titel links, zwei Textspalten rechts (`STUDIO`)
 - `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`)
 - `References.tsx` (server) — 2-Spalten-Grid, Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)
