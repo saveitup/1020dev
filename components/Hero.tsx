@@ -20,8 +20,8 @@ const GAP_AFTER_LAND = [850, 560, 460];
 const HANG = [460, 320, 240];
 // Wartezeit, bis die neue Zahl eingeblendet ist und gemessen werden kann
 const TEXT_SETTLE = [420, 240, 220];
-// Regen: Dauer des Schauers und Steigzeit des Pegels
-const RAIN_MS = 2600;
+// Strahl: so lange gießen die hundert Ideen aus dem Ursprung
+const POUR_MS = 2600;
 const RISE_MS = [1500, 1300, 1200, 3400];
 // Schwerkraft in px/s² — bestimmt die Fallzeit aus der Höhe
 const GRAVITY = 1900;
@@ -54,10 +54,12 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(Math.max(v, lo), h
 const easeOut = (t: number) => 1 - Math.pow(1 - clamp(t, 0, 1), 3);
 
 /**
- * Hero als Gleichung: "leerer Raum = leerer Raum". Jede Idee bildet sich als
- * Tropfen unter ihrer Ziffer, fällt ins "Glas" und macht aus "=" ein "≠";
- * der Pegel federt hoch, die Oberfläche schwappt. Bei 100 regnet es, der
- * Zähler läuft mit jedem Aufprall, und am Ende fällt der Punkt der Wortmarke:
+ * Hero als Gleichung: "leerer Raum = leerer Raum". Alle Tropfen haben
+ * denselben Ursprung — unter der Zahl, die dank der Ausrichtung am
+ * Rechenzeichen nie wandert. Die ersten Ideen bilden sich dort einzeln und
+ * machen aus "=" ein "≠"; der Pegel federt hoch, die Oberfläche schwappt.
+ * Bis 100 gießt es als Strahl aus demselben Punkt, der Zähler läuft mit
+ * jedem Aufprall, und am Ende fällt der Punkt der Wortmarke:
  * "leerer Raum + 100 Ideen = 1020.dev". Startet erst nach dem Splash.
  */
 export function Hero() {
@@ -161,10 +163,34 @@ export function Hero() {
       fleck(x, y, 0, 38, 640, 120);
     };
 
-    const rainImpact = (x: number, y: number) => {
-      ripple(x, y, 44, 0, 800);
-      if (Math.random() < 0.25) fleck(x, y, (Math.random() - 0.5) * 14, 10, 380);
+    // Strahl: nicht jeder Tropfen bekommt einen Ring, sonst verschwimmt es
+    const streamImpact = (x: number, y: number, k: number) => {
+      if (k % 2 === 0) ripple(x, y, 64 + Math.random() * 30, 0, 900);
+      if (Math.random() < 0.22) fleck(x, y, (Math.random() - 0.5) * 22, 8 + Math.random() * 10, 420);
     };
+
+    // ---- Ursprung ---------------------------------------------------------
+    // Ein Punkt für alle Tropfen: unter der ersten Ziffer der Zahl. Die Zahl
+    // steht durch die Ausrichtung am Rechenzeichen fest; gemessen wird
+    // einmal und erst nach einer Größenänderung erneut.
+    let origin: { x: number; y: number } | null = null;
+    const getOrigin = () => {
+      if (origin) return origin;
+      const heroBox = hero.getBoundingClientRect();
+      const num = hero.querySelector<HTMLElement>('.eq-num');
+      if (!num) return null;
+      const box = num.getBoundingClientRect();
+      const digits = Math.max(num.textContent?.trim().length ?? 1, 1);
+      origin = {
+        x: box.left - heroBox.left + box.width / digits / 2,
+        y: box.bottom - heroBox.top - 6,
+      };
+      return origin;
+    };
+    const onResize = () => {
+      origin = null;
+    };
+    window.addEventListener('resize', onResize);
 
     // ---- Tropfen ----------------------------------------------------------
     // Fällt von (x, y) beschleunigt bis zur Oberfläche, die zur Landezeit gilt
@@ -172,7 +198,15 @@ export function Hero() {
       el: HTMLElement,
       x: number,
       y: number,
-      opts: { delay?: number; dx?: number; from: string; to: string; onLand: (x: number, y: number) => void },
+      opts: {
+        delay?: number;
+        dx?: number;
+        from: string;
+        to: string;
+        // Tropfen taucht am Ursprung erst auf (statt fertig dazuhängen)
+        appear?: boolean;
+        onLand: (x: number, y: number) => void;
+      },
     ) => {
       const delay = opts.delay ?? 0;
       const dx = opts.dx ?? 0;
@@ -181,11 +215,18 @@ export function Hero() {
       let ms = msFor(surfaceY(startAt + 600) - y);
       ms = msFor(surfaceY(startAt + ms) - y);
       const yLand = surfaceY(startAt + ms) - 3;
+      const keyframes: Keyframe[] = opts.appear
+        ? [
+            { transform: `translate(${x}px, ${y}px) scale(0.2)`, opacity: 0 },
+            { transform: `translate(${x + dx * 0.05}px, ${y + 4}px) ${opts.from}`, opacity: 1, offset: 0.1 },
+            { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
+          ]
+        : [
+            { transform: `translate(${x}px, ${y}px) ${opts.from}`, opacity: 1 },
+            { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
+          ];
       el.animate(
-        [
-          { transform: `translate(${x}px, ${y}px) ${opts.from}`, opacity: 1 },
-          { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
-        ],
+        keyframes,
         // Ease-in (≈ t²): wird schneller wie unter Schwerkraft
         { duration: ms, delay, easing: 'cubic-bezier(.32,0,.67,0)', fill: 'both' },
       ).onfinish = () => {
@@ -229,23 +270,26 @@ export function Hero() {
       }, 650);
     };
 
-    const rain = () => {
+    // Die restlichen Ideen gießen als Strahl aus dem Ursprung
+    const pour = () => {
       const i = LAST;
       const prev = HERO.ideas[i - 1].count;
       const fresh = HERO.ideas[i].count - prev;
-      const W = hero.clientWidth;
+      const o = getOrigin();
+      if (!o) return;
       let landed = 0;
       for (let k = 0; k < fresh; k++) {
-        // Dreiecksverteilung: der Schauer wird dichter und läuft wieder aus
-        const delay = ((Math.random() + Math.random()) / 2) * RAIN_MS;
-        const el = add('drop drop--rain');
-        fall(el, 10 + Math.random() * (W - 20), -30 - Math.random() * 50, {
+        // Dreiecksverteilung: der Strahl schwillt an und läuft wieder aus
+        const delay = ((Math.random() + Math.random()) / 2) * POUR_MS;
+        const el = add('drop');
+        fall(el, o.x + (Math.random() - 0.5) * 2, o.y + 6, {
           delay,
-          dx: (Math.random() - 0.5) * 18,
-          from: 'scale(1, 1)',
-          to: 'scale(1, 1.2)',
+          dx: (Math.random() - 0.5) * 12,
+          from: 'scale(0.75, 1.15)',
+          to: 'scale(0.6, 1.7)',
+          appear: true,
           onLand: (x, y) => {
-            rainImpact(x, y);
+            streamImpact(x, y, k);
             landed += 1;
             if (landed === 1) raiseTo(i);
             setCount(prev + landed);
@@ -257,17 +301,14 @@ export function Hero() {
 
     const step = (i: number) => {
       if (i === LAST) {
-        rain();
+        pour();
         return;
       }
       setCount(HERO.ideas[i].count);
       later(() => {
-        const heroBox = hero.getBoundingClientRect();
-        const num = hero.querySelector('.eq-num')?.getBoundingClientRect();
-        if (!num) return;
-        const x = num.left - heroBox.left + num.width / 2;
-        const y = num.bottom - heroBox.top - 6;
-        drip(x, y, HANG[i], () => {
+        const o = getOrigin();
+        if (!o) return;
+        drip(o.x, o.y, HANG[i], () => {
           setUnequal(true);
           raiseTo(i);
           slosh(i === 0 ? 1 : 0.75);
@@ -293,6 +334,7 @@ export function Hero() {
     return () => {
       timers.forEach((t) => window.clearTimeout(t));
       observer?.disconnect();
+      window.removeEventListener('resize', onResize);
       layer.replaceChildren();
     };
   }, []);
@@ -340,35 +382,37 @@ export function Hero() {
 
       <div className="hero-content">
         <p className="hero-eyebrow">{HERO.eyebrow}</p>
+        {/* Am Rechenzeichen ausgerichtet: "+" und "=" stehen in einer Spalte,
+            dadurch wandert die Zahl nie — der Ursprung der Tropfen bleibt */}
         <h1 id="hero-title" className="hero-title hero-eq" aria-label={EQ.ariaLabel}>
-          <span className="eq-line" aria-hidden="true">
-            <span>{EQ.term}</span>
-            {count > 0 && (
-              <span className="eq-term is-new">
-                <span className="eq-op">+</span>
-                <span className="idea-count">
-                  <span key={numKey} className={`eq-num${numKey === 'rain' || count === 1 ? '' : ' is-new'}`}>
-                    {count}
-                  </span>{' '}
-                  {count === 1 ? EQ.one : EQ.many}
-                </span>
-              </span>
-            )}
+          <span className="eq-l1" aria-hidden="true">
+            {EQ.term}
           </span>
-          <span className="eq-line" aria-hidden="true">
-            <span className={`eq-op eq-rel${unequal && !done ? ' is-unequal' : ''}`}>
-              =<span className="eq-slash" />
+          {count > 0 && (
+            <>
+              <span className="eq-op eq-o1 is-new" aria-hidden="true">
+                +
+              </span>
+              <span className="eq-r1 idea-count is-new" aria-hidden="true">
+                <span key={numKey} className={`eq-num${numKey === 'rain' || count === 1 ? '' : ' is-new'}`}>
+                  {count}
+                </span>{' '}
+                {count === 1 ? EQ.one : EQ.many}
+              </span>
+            </>
+          )}
+          <span className={`eq-op eq-o2${unequal && !done ? ' is-unequal' : ''}`} aria-hidden="true">
+            =<span className="eq-slash" />
+          </span>
+          {done ? (
+            <span key="result" className="eq-r2 eq-result is-new" aria-hidden="true">
+              <Wordmark />
             </span>
-            {done ? (
-              <span key="result" className="eq-result is-new">
-                <Wordmark />
-              </span>
-            ) : (
-              <span key="term" className="eq-right">
-                {EQ.term}
-              </span>
-            )}
-          </span>
+          ) : (
+            <span key="term" className="eq-r2" aria-hidden="true">
+              {EQ.term}
+            </span>
+          )}
         </h1>
         <p className="hero-lede">{nbHyphen(HERO.lede)}</p>
         <div className="hero-actions">
