@@ -13,8 +13,6 @@ export const ANNOUNCEMENT = {
 export const HERO = {
   eyebrow: 'Studio · Wien',
   title: 'Ein Studio von KI-begeisterten Codern.',
-  // Wort in `title`, das in der Headline grün schimmert
-  accent: 'KI-begeisterten',
   lede: 'Wir berichten über die neuesten Updates in Legal AI und iOS-Apps — und setzen Konzepte um.',
 } as const;
 
