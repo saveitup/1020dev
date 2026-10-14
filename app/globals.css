@@ -279,6 +279,9 @@ html.splash-skip .splash { display: none !important; }
   justify-content: center;
   min-height: clamp(560px, calc(88svh - var(--announce-h) - var(--nav-h)), 860px);
   padding: clamp(72px, 10vh, 120px) var(--gutter);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background:
     radial-gradient(ellipse 70% 60% at 50% 60%, rgba(230, 227, 220, 0.7) 0%, rgba(230, 227, 220, 0) 70%),
     var(--paper);
@@ -296,7 +299,7 @@ html.splash-skip .splash { display: none !important; }
 }
 .hero-title {
   margin-top: 18px;
-  font-size: clamp(44px, 6.6vw, 96px);
+  font-size: clamp(40px, 5.8vw, 84px);
   font-weight: 400;
   font-stretch: 90%;
   line-height: 0.98;
@@ -318,6 +321,64 @@ html.splash-skip .splash { display: none !important; }
   justify-content: center;
   gap: 14px 24px;
   margin-top: 32px;
+}
+
+/* Zählwort in der Headline: wechselt mit kurzem Aufsteigen */
+.idea-count {
+  display: inline-block;
+  color: var(--green);
+}
+.idea-count.is-new { animation: countIn 0.55s var(--ease) both; }
+
+/* Glas: der Hero füllt sich von unten mit jeder Stufe weiter */
+.glass {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.glass-liquid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--fill, 0) * 100%);
+  /* Deckende Töne: halbtransparente Flächen würden an der Oberfläche
+     überlappen und eine dunkle Kante zeichnen */
+  background: linear-gradient(180deg, #DCEADF 0%, #C6D8CC 100%);
+  transition: height 2s cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+/* Wellen sitzen auf der Oberfläche und laufen endlos seitwärts */
+.glass-wave {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% - 1px);
+  width: 200%;
+  height: 26px;
+}
+.glass-wave path { fill: #DCEADF; }
+.glass-wave--front { animation: wave 9s linear infinite; }
+.glass-wave--back {
+  height: 34px;
+  opacity: 0.55;
+  animation: wave 14s linear infinite reverse;
+}
+.glass-body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.bubble {
+  position: absolute;
+  bottom: -14px;
+  left: var(--bx);
+  width: var(--bs);
+  height: var(--bs);
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 61, 38, 0.28);
+  background: rgba(255, 255, 255, 0.35);
+  animation: bubble var(--bt) var(--bd) ease-in infinite;
 }
 
 /* Entrance — paused until the splash is gone */
@@ -1152,6 +1213,20 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
+}
+@keyframes countIn {
+  from { opacity: 0; translate: 0 0.3em; filter: blur(6px); }
+  to   { opacity: 1; translate: 0 0; filter: blur(0); }
+}
+@keyframes wave {
+  from { translate: 0 0; }
+  to   { translate: -50% 0; }
+}
+@keyframes bubble {
+  0%   { translate: 0 0; opacity: 0; }
+  12%  { opacity: 1; }
+  50%  { translate: 6px -420px; }
+  100% { translate: -4px -880px; opacity: 0.4; }
 }
 @keyframes focusOpen {
   from { opacity: 0.4; transform: translateY(4px); }

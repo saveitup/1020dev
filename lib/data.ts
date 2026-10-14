@@ -12,7 +12,15 @@ export const ANNOUNCEMENT = {
 // ============================================
 export const HERO = {
   eyebrow: 'Studio · Wien',
-  title: 'Ein Studio von KI-begeisterten Codern.',
+  // Die Headline zählt `ideas` durch: `ideas[0]` steht im Titel und wird
+  // nacheinander ersetzt. `fill` = Füllstand des Hero wie bei einem Glas (0–1).
+  title: 'Ist ein leerer Raum und eine Idee noch ein leerer Raum?',
+  ideas: [
+    { label: 'eine Idee', fill: 0.12 },
+    { label: 'zwei Ideen', fill: 0.26 },
+    { label: 'drei Ideen', fill: 0.4 },
+    { label: 'hundert Ideen', fill: 0.94 },
+  ],
   lede: 'Wir berichten über die neuesten Updates in Legal AI und iOS-Apps — und setzen Konzepte um.',
 } as const;
 
