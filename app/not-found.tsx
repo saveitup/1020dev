@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Footer } from '@/components/Footer';
+import { ArrowIcon } from '@/components/Icons';
 import { SITE } from '@/lib/data';
 
 export const metadata: Metadata = {
@@ -21,11 +22,17 @@ export default function NotFound() {
             oder ein Inhalt, den wir entfernt haben.
           </p>
           <div className="status-page-actions">
-            <Link href="/" className="cta-primary">
-              Zur Startseite <span className="arrow">→</span>
+            <Link href="/" className="btn">
+              Zur Startseite
+              <span className="btn-icon">
+                <ArrowIcon />
+              </span>
             </Link>
-            <Link href="/journal" className="cta-primary cta-primary--accent">
-              Zum Journal <span className="arrow">→</span>
+            <Link href="/journal" className="btn btn--ghost">
+              Zum Journal
+              <span className="btn-icon">
+                <ArrowIcon />
+              </span>
             </Link>
           </div>
         </div>

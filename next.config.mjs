@@ -13,6 +13,15 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  // Die früheren Track-Seiten gibt es nicht mehr — Links und Rankings landen
+  // auf der neuen Startseite.
+  async redirects() {
+    return ['/web', '/automation', '/agenten', '/concepts'].map((source) => ({
+      source,
+      destination: '/',
+      permanent: true,
+    }));
+  },
   async headers() {
     return [
       {

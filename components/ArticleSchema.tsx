@@ -30,7 +30,7 @@ export function ArticleSchema({ article, url }: Props) {
       name: SITE.legal.owner,
       url: `${SITE.url}/impressum`,
     },
-    publisher: { '@id': `${SITE.url}#business` },
+    publisher: { '@id': `${SITE.url}#organization` },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': url,

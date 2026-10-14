@@ -1,76 +1,26 @@
 # 1020.dev
 
-> Webentwicklung, SEO und Answer-Engine-Optimization für KMU in Wien und Österreich. Wir bauen Websites, die in Google ranken UND in ChatGPT, Perplexity und Claude zitiert werden.
+> Ein Studio von KI-begeisterten Codern aus Wien. Wir berichten über die neuesten Updates in Legal AI und iOS-Apps und setzen Konzepte um.
 
-## Wer wir sind
+## Schwerpunkte
 
-1020.dev ist ein Wiener Studio für Webentwicklung mit Fokus auf KMU im DACH-Raum. Standort: Leopoldstadt (1020 Wien). Inhaberin: Maximilian Asamer als Einzelunternehmen. Wir kombinieren klassische Webentwicklung mit Answer-Engine-Optimization (AEO) — also Sichtbarkeit in KI-Antwortmaschinen, nicht nur in klassischen Suchergebnissen.
-
-## Was wir machen
-
-- **Webentwicklung** mit Next.js, React, TypeScript. Statisch generiert oder Hybrid. EU-Hosting (Vercel oder Hetzner).
-- **SEO** im klassischen Sinn: Meta-Tags, Sitemap, robots.txt, Schema.org-Markup, Core-Web-Vitals-Tuning.
-- **AEO (Answer Engine Optimization)** für ChatGPT, Perplexity, Claude und Google AI Overviews. Antwort-orientierte Inhaltsstruktur, FAQPage-Schema, LocalBusiness-Markup, llms.txt.
-- **Backend & Automatisierung**: API-Integrationen, LLM-basierte Workflows, CRM-Sync, Lead-Pipelines.
-- **KI-Agenten für KMU**: maßgeschneiderte Software-Agenten für österreichische Klein- und Mittelbetriebe — Reservierungen, Angebotserstellung, Marketing-Autopilot, Klientenmanagement. Branchenspezifisch, DSGVO-konform.
-
-## Honorar
-
-Wir arbeiten ohne starre Preisliste. Der Preis setzt sich aus einem angemessenen Honorar zusammen — fair kalkuliert nach tatsächlichem Aufwand und unter Berücksichtigung der Unterstützung durch KI im Entwicklungsprozess. Audit und Erstgespräch sind immer kostenlos und liefern ein konkretes Angebot für Ihren Anwendungsfall. Zahlung 50/50 (Auftrag/Übergabe), 30 Tage Bugfix nach Launch.
-
-## Methode
-
-1. **Audit** (≈ 1 Tag) — Bestandsaufnahme: SEO, AEO, Performance.
-2. **Strategie** (≈ 1 Woche) — Priorisierung der Hebel, drei Entwürfe für Layout und Tonalität.
-3. **Build** (3–8 Wochen) — Implementierung mit wöchentlichen Reviews.
-4. **Monitoring** (laufend) — Monatliches Reporting inklusive AI-Zitations-Check.
+- **Legal AI** — Sprachmodelle in Recherche, Vertragsprüfung und Rechtspraxis. Wir verfolgen neue Modelle, Werkzeuge und Regulierung (EU AI Act, DSGVO) und berichten, was davon in der Praxis trägt.
+- **iOS-Apps** — Swift, SwiftUI und Apple Intelligence. Wir testen Neuerungen früh, berichten darüber und bauen Apps, die sie sinnvoll nutzen.
+- **Konzepte** — Von der Skizze über den Prototyp bis zum laufenden Produkt.
 
 ## Referenzen
 
-- [asamer.cz](https://asamer.cz) — Industrie- und Maschinenhandel, CEE
+- Clausl KI — Legal AI für österreichisches Arbeitsrecht
+- [asamer.cz](https://asamer.cz) — Industrie, CEE
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
-- [alpenbroker.com](https://alpenbroker.com) — Aktien-Lernplattform, Österreich
+- [alpenbroker.com](https://alpenbroker.com) — Finanzbildung, Österreich
 
-## Journal — AEO und Answer-Engine-Optimization
+## Journal
 
-- [AEO 2026: Der Leitfaden für KMU](https://1020.dev/journal/aeo-2026-leitfaden) — Was AEO ist, welche Hebel funktionieren, wie KMU starten.
-- [AEO vs. SEO — Unterschiede und Reihenfolge](https://1020.dev/journal/aeo-vs-seo) — Direkter Vergleich, Überschneidungen und echte Unterschiede.
-- [AEO-Kosten 2026](https://1020.dev/journal/aeo-kosten-2026) — Preisbereiche vom Basis-Setup bis zur laufenden Optimierung.
-- [AEO leistbar machen — gegen Pauschalpakete](https://1020.dev/journal/aeo-leistbar-machen) — Warum monatliche AEO-Pauschalen für KMU oft nicht passen.
-- [llms.txt erklärt](https://1020.dev/journal/llms-txt-standard) — Was llms.txt ist, Unterschied zu robots.txt, Beispiel und Reality-Check.
-- [FAQPage-Schema in Next.js und WordPress](https://1020.dev/journal/faqpage-schema-tutorial) — Funktionierender Code, Pflichtfelder, häufige Fehler.
-- [ChatGPT-Sichtbarkeit testen](https://1020.dev/journal/chatgpt-sichtbarkeit-testen) — Wie KMU in 30 Minuten pro Monat manuell die eigene Sichtbarkeit in ChatGPT, Perplexity und Claude tracken.
-
-## Journal — Webentwicklung
-
-- [Webentwicklung Wien — Leitfaden 2026](https://1020.dev/journal/webentwicklung-wien-leitfaden-2026) — Marktüberblick, Pricing-Bereiche, Briefing-Empfehlungen.
-- [Website-Kosten Wien 2026](https://1020.dev/journal/website-kosten-wien-2026) — Vom Onepager bis zur Site mit Backend, was den Preis bestimmt.
-- [WordPress vs. Next.js für KMU](https://1020.dev/journal/wordpress-vs-nextjs-kmu) — Was WordPress kann, wo Next.js gewinnt, sinnvolle Mischformen.
-- [Vercel vs. Hetzner — Hosting in Österreich](https://1020.dev/journal/vercel-vs-hetzner-hosting-österreich) — Managed-Plattform vs. europäischer Server-Anbieter.
-- [Webentwicklung in der Leopoldstadt (1020 Wien)](https://1020.dev/journal/webentwicklung-leopoldstadt-1020-wien) — Über das Studio und seine Arbeitsweise.
-
-## Journal — Branchen-Cases
-
-- [Industrie-Website für den CEE-Markt (asamer.cz)](https://1020.dev/journal/industrie-website-cee-case-asamer) — Mehrsprachigkeit, hreflang, B2B-Trust-Signale.
-- [Metallbau-Website (zeilinger-metallbau.at)](https://1020.dev/journal/website-metallbau-case-zeilinger) — Wie eine Metallbau-Website B2B-Anfragen generiert.
-- [Steuerberater-Website Wien](https://1020.dev/journal/website-steuerberater-wien) — Berufsrechtliche Pflichten, Kammer-Vorgaben, AEO-Hebel.
-
-## Journal — Automation und LLM
-
-- [DSGVO-konforme LLM-Anbindung für KMU](https://1020.dev/journal/dsgvo-llm-anbindung-kmu) — EU-Hosting, Auftragsverarbeitungsverträge, On-Premise vs. API.
-
-## Agenten — KI-Agenten für KMU
-
-Wir entwickeln maßgeschneiderte KI-Agenten für österreichische Klein- und Mittelbetriebe. Jeder Agent wird auf eine Branche und auf konkrete Aufgaben zugeschnitten — von Tischreservierung und Google-Bewertungsmanagement im Gastgewerbe über Angebotsassistenten im Handwerk bis zum Marketing-Autopiloten für Dienstleister. Die Agenten arbeiten selbstständig im Hintergrund, brauchen keine eigene IT-Abteilung und sind DSGVO-konform ab Tag eins. Honorar nach Aufwand — Audit und Erstgespräch kostenlos. Mehr: [1020.dev/agenten](https://1020.dev/agenten).
+- [Journal](https://1020.dev/journal) — Notizen aus dem Studio.
 
 ## Kontakt
 
 - Website: https://1020.dev
-- Termin buchen: https://cal.eu/1020dev/erstgespraech
 - E-Mail: hallo@1020.dev
-- Telefon: +43 699 11209087
-- Adresse: Lichtenauergasse 4/8, 1020 Wien, Österreich
-
-## Was AEO ist und warum es zählt
-
-AEO (Answer Engine Optimization) ist die Optimierung von Webinhalten für KI-Antwortmaschinen wie ChatGPT, Perplexity und Claude. Anders als klassisches SEO, das auf Klicks von Suchergebnisseiten zielt, fokussiert AEO darauf, in KI-generierten Antworten zitiert oder als Quelle empfohlen zu werden — auch wenn der Nutzer nie auf einen Link klickt. Hebel: strukturierte Daten (Schema.org), antwort-orientierte Inhaltsstruktur (FAQ, HowTo), klare Quellenangaben, llms.txt, semantisches HTML, lokale Signale.
+- Gespräch buchen: https://cal.eu/1020dev/erstgespraech

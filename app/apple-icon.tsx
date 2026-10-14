@@ -15,21 +15,20 @@ export default function AppleIcon() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(180deg, #030615 0%, #07112e 55%, #0e1a44 100%)',
-          fontFamily: 'system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif',
+          background: '#003D26',
+          fontFamily: 'system-ui, -apple-system, Helvetica, Arial, sans-serif',
           letterSpacing: '-3px',
-          color: '#FFFFFF',
+          color: '#FAFAF9',
         }}
       >
-        <div style={{ display: 'flex', fontSize: 56, fontWeight: 600, lineHeight: 1 }}>1020</div>
+        <div style={{ display: 'flex', fontSize: 56, fontWeight: 500, lineHeight: 1 }}>1020</div>
         <div
           style={{
             display: 'flex',
             width: 12,
             height: 12,
             borderRadius: 9999,
-            background: '#818CF8',
-            boxShadow: '0 0 18px 4px rgba(129,140,248,0.85)',
+            background: '#D9CCA8',
             margin: '14px 0',
           }}
         />
@@ -40,7 +39,7 @@ export default function AppleIcon() {
             fontWeight: 400,
             lineHeight: 1,
             letterSpacing: '-1.5px',
-            color: 'rgba(255,255,255,0.62)',
+            color: 'rgba(250,250,249,0.6)',
           }}
         >
           dev

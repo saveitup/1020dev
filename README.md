@@ -1,15 +1,15 @@
 # 1020.dev
 
-Production Next.js site für 1020.dev — Webentwicklung, SEO und AEO für KMU in Wien.
+Production Next.js site für 1020.dev — ein Studio von KI-begeisterten Codern aus Wien (Legal AI, iOS-Apps, Konzepte).
 
 
 ## Stack
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **Custom CSS** in `app/globals.css` (Design-Tokens via CSS-Variablen, ~1500 Zeilen)
-- **next/font/google** für DM Sans und DM Mono
-- **next/image** für optimierte Reference-Screenshots
-- **Anthropic API** (server-side über `/api/audit`) für das Live-Audit-Widget
+- **Custom CSS** in `app/globals.css` (Design-Tokens via CSS-Variablen, Look angelehnt an legora.com)
+- **next/font/google** für Instrument Sans und Fragment Mono
+- **next/image** für optimierte Referenz-Screenshots
+- **Anthropic API** (server-side über `/api/audit`) — Altlast, nicht mehr auf der Site eingebunden
 
 ## Setup
 
@@ -59,52 +59,33 @@ Setze einen Reverse Proxy (Nginx/Caddy) davor und Environment-Variablen via syst
 
 ```
 app/
-├── layout.tsx              Root-Layout mit Metadata, Fonts, JSON-LD
-├── page.tsx                Home-Page (komponiert Sections)
+├── layout.tsx              Root-Layout: Metadata, Fonts, Splash, Announcement, Nav, JSON-LD
+├── page.tsx                Startseite (Hero → Studio → Schwerpunkte → Referenzen → Kontakt)
 ├── globals.css             Alle Styles (Custom CSS)
-├── sitemap.ts              Auto-generated /sitemap.xml
-├── robots.ts               Auto-generated /robots.txt
-└── api/audit/route.ts      Server-side Anthropic-Call
+├── journal/                Journal-Index + Artikel aus content/journal/*.md
+├── impressum, datenschutz, agb, danke, abmelden
+├── icon.tsx, apple-icon.tsx, opengraph-image.tsx   generierte Icons/Share-Bild
+├── sitemap.ts, robots.ts
+└── api/                    audit (Altlast), cron/revalidate
 
-components/
-├── Splash.tsx              Initial-Animation mit sessionStorage-Skip
-├── Nav.tsx                 Top-Nav (Server Component)
-├── Hero.tsx                Two-Column-Hero mit Slideshow (Client)
-├── AuditWidget.tsx         Live-Audit-Form (Client)
-├── Methode.tsx             4-Schritt-Prozess (Server)
-├── Services.tsx            3-Card-Triptychon (Server)
-├── Pricing.tsx             Preisliste (Server)
-├── FAQ.tsx                 Single-Open-Akkordeon (Client)
-├── FaqStructuredData.tsx   JSON-LD FAQPage-Schema (Server)
-└── Footer.tsx              (Server)
-
-lib/
-└── data.ts                 Single source of truth: REFS, FAQS, SERVICES,
-                            METHODE, PRICING, SITE — alle Inhalte zentral
-
-public/
-├── refs/                   6 optimierte Reference-Screenshots (JPEGs, ~600 KB total)
-└── llms.txt                AEO-Hint für LLM-Crawler
+components/                 siehe components/CLAUDE.md
+lib/data.ts                 Single source of truth für alle Inhalte
+public/refs/                Referenz-Screenshots
+public/llms.txt             Kurzprofil für LLM-Crawler
 ```
 
 ## Was wo geändert wird
 
-- **Preise ändern**: `lib/data.ts` → `PRICING` — wird automatisch in Pricing-Section
-  und FAQ-Antwort verwendet.
-- **FAQ-Eintrag ändern**: `lib/data.ts` → `FAQS` — `plainAnswer` ist für
-  JSON-LD/AEO, `htmlAnswer` für die UI (HTML erlaubt).
-- **Referenzen ändern**: `lib/data.ts` → `REFS` plus neue Bilder in `public/refs/`.
-- **Slideshow-Tempo**: `app/globals.css` → `@keyframes refSlideshow` (12s Total)
-  und `@keyframes refFadeA/B` (4s pro Bild).
-- **Anthropic-Modell**: `.env.local` → `ANTHROPIC_MODEL=claude-opus-4-7` für
-  höhere Audit-Qualität, oder belasse `claude-sonnet-4-6` (Default).
+- **Texte der Startseite**: `lib/data.ts` → `HERO`, `STUDIO`, `FOCUS`, `CONTACT`, `ANNOUNCEMENT`.
+- **Referenzen**: `lib/data.ts` → `REFS` plus Bilder in `public/refs/`.
+- **Design-Tokens**: `app/globals.css` → `:root`.
 
 ## SEO & AEO
 
 Out of the box konfiguriert:
 
 - ✅ OpenGraph + Twitter Cards (`app/layout.tsx`)
-- ✅ JSON-LD `FAQPage` Schema (`components/FaqStructuredData.tsx`)
+- ✅ JSON-LD `Organization`, `WebSite` und `Article` Schema
 - ✅ `/sitemap.xml` (`app/sitemap.ts`)
 - ✅ `/robots.txt` mit Sitemap-Verweis (`app/robots.ts`)
 - ✅ `/llms.txt` für ChatGPT/Perplexity/Claude (`public/llms.txt`)

@@ -4,82 +4,57 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SITE } from '@/lib/data';
+import { ArrowIcon } from './Icons';
+import { Wordmark } from './Wordmark';
 
-type NavLink = { href: string; label: string };
-
-const WEB_LINKS: NavLink[] = [
-  { href: '#audit', label: 'Audit' },
-  { href: '#methode', label: 'Methode' },
-  { href: '#leistungen', label: 'Leistungen' },
-  { href: '#preise', label: 'Honorar' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '/journal', label: 'Journal' },
-];
-
-const AUTOMATION_LINKS: NavLink[] = [
-  { href: '#methode', label: 'Methode' },
-  { href: '#leistungen', label: 'Leistungen' },
-  { href: '#preise', label: 'Honorar' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '/journal', label: 'Journal' },
-];
-
-const TRACK_LINKS: NavLink[] = [
-  { href: '/web', label: 'Web' },
-  { href: '/automation', label: 'Automation' },
-  { href: '/agenten', label: 'Agenten' },
-  { href: '/journal', label: 'Journal' },
-];
+const LINKS = [
+  { href: '/#studio', label: 'Studio' },
+  { href: '/#schwerpunkte', label: 'Schwerpunkte' },
+  { href: '/#referenzen', label: 'Referenzen' },
+] as const;
 
 export function Nav() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === '/';
+  // On the home route the nav floats transparently over the dark hero and
+  // turns solid as soon as the page scrolls.
+  const [overHero, setOverHero] = useState(isHome);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    if (!isHome) {
+      setOverHero(false);
+      return;
+    }
+    const onScroll = () => setOverHero(window.scrollY < 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const isChooser = pathname === '/';
-  const isWeb = pathname === '/web';
-  const isAutomation = pathname === '/automation';
-
-  // The chooser landing renders its own prominent logo and footer CTAs, so
-  // the sticky nav is suppressed entirely there.
-  if (isChooser) return null;
-
-  let links: NavLink[] = [];
-  if (isWeb) links = WEB_LINKS;
-  else if (isAutomation) links = AUTOMATION_LINKS;
-  else links = TRACK_LINKS;
+  }, [isHome]);
 
   return (
-    <nav className={scrolled ? 'is-scrolled' : ''}>
+    <nav className={`nav${overHero ? ' nav--over' : ''}`}>
       <div className="nav-inner">
-        <Link href="/" className="wordmark" aria-label={SITE.name}>
-          <span className="num">1020</span>
-          <span className="dot">.</span>
-          <span className="tld">dev</span>
+        <ul className="nav-links">
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <Link href={l.href}>{l.label}</Link>
+            </li>
+          ))}
+        </ul>
+        <Link href="/" className="wordmark" aria-label={`${SITE.name} — Startseite`}>
+          <Wordmark />
         </Link>
-        {links.length > 0 && (
-          <ul className="nav-links">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href}>{l.label}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
-        <Link
-          href={SITE.bookingUrl}
-          target="_blank"
-          rel="noopener"
-          className="nav-cta"
-        >
-          Termin buchen <span className="arrow">→</span>
-        </Link>
+        <div className="nav-end">
+          <a href={`mailto:${SITE.email}`} className="nav-mail">
+            Kontakt
+          </a>
+          <a href={SITE.bookingUrl} target="_blank" rel="noopener" className="btn btn--sm">
+            Gespräch buchen
+            <span className="btn-icon">
+              <ArrowIcon />
+            </span>
+          </a>
+        </div>
       </div>
     </nav>
   );

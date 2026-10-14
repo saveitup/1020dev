@@ -1,27 +1,30 @@
 # 1020.dev — Context für Claude Code
 
-Production-Site für **1020.dev**: Webentwicklung, SEO und Answer-Engine-Optimization (AEO) für KMU in Wien und Österreich. Tagline: "Sichtbar bleiben, wenn niemand mehr klickt."
+Production-Site für **1020.dev**: ein Studio von KI-begeisterten Codern aus Wien. Berichtet über die neuesten Updates in **Legal AI** und **iOS-Apps** und setzt Konzepte um. Tagline: "Ein Studio von KI-begeisterten Codern."
+
+Die Site ist bewusst knapp: keine Preise, keine Methoden-/FAQ-Sections, kein Telefon und keine Adresse außerhalb des Impressums.
 
 ## Stack
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript strict**
-- **Custom CSS** in `app/globals.css` (~1500 Zeilen, kein Tailwind)
-- **next/font/google** (DM Sans + DM Mono via CSS-Variablen `--font-dm-sans`, `--font-dm-mono`)
-- **next/image** für Reference-Screenshots
-- **Anthropic API** server-side über `/api/audit` (Audit-Widget)
+- **Custom CSS** in `app/globals.css` (kein Tailwind)
+- **next/font/google**: Instrument Sans (variabel, inkl. Breitenachse) + Fragment Mono via CSS-Variablen `--font-sans`, `--font-mono`
+- **next/image** für Referenz-Screenshots
+- **Anthropic API** server-side über `/api/audit` (Altlast: das Audit-Widget ist nicht mehr auf der Site, Route und Mail-Tracking bestehen weiter)
 
 ## Architektur-Prinzipien
 
 ### 1. Single Source of Truth: `lib/data.ts`
 
-Alle Inhalte (FAQs, Refs, Services, Methode, Preise, Site-Config) leben in `lib/data.ts` als `const … as const`. Werden von mehreren Components verwendet:
+Alle Inhalte leben in `lib/data.ts` als `const … as const`:
 
-- `FAQS` → `FAQ` Component (UI) + `FaqStructuredData` (JSON-LD für AEO)
-- `PRICING` → `Pricing` Component + Antwort in `FAQS[2].htmlAnswer`
-- `REFS` → `Hero` Slideshow
-- `SITE` → überall (Booking-URL, E-Mail, Tagline, Standort)
+- `ANNOUNCEMENT` → grüne Leiste über der Nav (`Announcement`)
+- `HERO`, `STUDIO`, `FOCUS_HEAD`/`FOCUS`, `REFS_HEAD`/`REFS`, `CONTACT` → Sections der Startseite
+- `FOCUS` → zusätzlich `OrganizationSchema` (`knowsAbout`) und OG-Image
+- `CONTACT` → Kontakt-Karte auf der Home und CTA unter Journal-Artikeln
+- `SITE` → überall (Booking-URL, E-Mail, Tagline, Impressumsdaten)
 
-**Wenn du Inhalte änderst: immer in `lib/data.ts`.** Niemals direkt in Components hardcoden — sonst läuft das JSON-LD-Schema asynchron zur UI und AEO-Crawler bekommen falsche Infos.
+**Wenn du Inhalte änderst: immer in `lib/data.ts`.** `public/llms.txt` muss manuell synchron gehalten werden.
 
 ### 2. Server vs. Client Components
 
@@ -29,13 +32,11 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 
 | Component | Type | Warum |
 |---|---|---|
-| `Nav`, `Methode`, `Services`, `Pricing`, `Footer`, `FaqStructuredData` | Server | Pure Render |
+| `Announcement`, `Hero`, `Studio`, `References`, `ContactCard`, `Footer`, Schemas | Server | Pure Render |
+| `Nav` | Client | Transparent über dem Hero, solide ab Scroll |
+| `Focus` | Client | Pill-Akkordeon mit Auto-Advance |
 | `Splash` | Client | sessionStorage + Timer |
-| `Hero` | Client | Slideshow-Klick-Nav |
-| `AuditWidget` | Client | Form-State + Fetch |
-| `FAQ` | Client | useState für openIndex |
-
-Wenn du eine neue Section baust, die nur Daten aus `lib/data.ts` rendert: **Server Component**. Spart JS-Bundle.
+| `CookieBanner`, `CookieSettingsLink`, `GoogleTag` | Client | Consent-State |
 
 ### 3. API-Key-Sicherheit
 
@@ -44,46 +45,28 @@ Wenn du eine neue Section baust, die nur Daten aus `lib/data.ts` rendert: **Serv
 ### 4. CSS-Konventionen
 
 - Design-Tokens als CSS-Variablen in `:root` von `globals.css`
-- Wichtige Tokens: `--bg-0/1/2` (helle Töne, `--bg-0` ist `#ffffff`), `--accent` (`#4F46E5`), `--accent-glow`, `--text/muted/dim`, `--line/line-2`
-- Animationen sind heavy custom — wenn du eine neue Section baust, schau dir die existierenden Patterns an (z.B. `fadeUp`, Slideshow-Keyframes) bevor du was Neues erfindest
-- BEM-ähnliche Naming-Convention: `.section`, `.section-head`, `.section-tag`, `.section-title`, `.section-sub`
+- Wichtige Tokens: `--paper` (`#FAFAF9`), `--sand`, `--ink` (`#0D1016`), `--muted` (`#68655E`), `--green` (`#003D26`), `--line/line-2`, `--radius/-lg`, `--section-y`
+- Bausteine: `.btn` (Pill mit Kreis-Icon, Varianten `--light`, `--ghost`, `--sm`), `.hook-link` (↳-Link), `.section`, `.section-head(--center|--split)`, `.section-title`, `.section-sub`
+- Eine Schrift in Regular (400) auch für große Headlines, leicht verengt (`font-stretch: 90–92%`), negatives Tracking
 - Keine globalen Resets ändern, keine Reset-Bibliotheken
 
 ## Branding
 
 - **Domain**: 1020.dev (Wiener Postleitzahl Leopoldstadt)
-- **Logo**: `1020.dev` mit glühendem Indigo-Punkt zwischen `1020` und `dev`
-- **Akzent**: Indigo `#4F46E5` mit violettem Glow (`--accent-glow: rgba(79,70,229,0.30)`)
-- **Background**: clean white `#ffffff` mit subtilem indigo-Radialgradient unten rechts (`rgba(79,70,229,0.06)`) und Papier-Korn-Overlay (`body::after`, opacity 0.025, `mix-blend-mode: multiply`)
-- **Aesthetic**: editorial Studio · off-black paper feel · viel Whitespace · chapter-based Sections (siehe Header-Kommentar in `globals.css`)
+- **Vorbild**: Legora (legora.com) — warmes Off-White, eine Grotesk in Regular, Tannengrün als einziger Akzent, Pill-Buttons, ruhige Flächen
+- **Logo**: `1020.dev` als Wordmark, Punkt in Grün (auf dunklem Grund in Sand `--glow`), `dev` gedimmt
+- **Hero**: dunkler Horizont-Verlauf in Grüntönen mit warmem Lichtstreif, Headline unten zentriert — ersetzt ein Foto
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 
-## Preisstruktur (autoritativ in `lib/data.ts → PRICING` und `AUTOMATION_PRICING`)
-
-**Web-Track (`PRICING`):**
-- Pakete: Bundle „Sichtbar" (Website-Basis + SEO + AEO) 1.350 € (statt 1.450 € einzeln, spart 100 €)
-- Einmalig: Website-Basis (1 Seite) 700 € · Zusätzliche Seite 250 € · SEO 350 € · AEO 400 € · Backend ab 2.000 € · Automatisierung ab 3.000 €
-- Laufend: Monitoring (automatisiert) 25 €/Monat
-
-**Automation-Track (`AUTOMATION_PRICING`):**
-- Einmalig: Workflow-Setup ab 800 € · API-Integration ab 1.500 € · LLM-Anbindung ab 2.500 € · Internes Tool/Dashboard ab 3.000 € · RAG & Agentic Workflow ab 5.000 €
-- Laufend: Hosting & Monitoring 60 €/Monat
-
-**Konditionen (in `Pricing.tsx` Footer-Block):** Preise netto + 20 % USt · Zahlung 50/50 (Auftrag/Übergabe) · 30 Tage Bugfix · Hosting & SSL bei Website-Basis 12 Monate inklusive · Monitoring monatlich kündbar · Audit & Erstgespräch kostenlos.
-
-Wenn du Preise änderst: `lib/data.ts` ist die Quelle, aber `FAQS[2].htmlAnswer` (Pricing-FAQ) und `public/llms.txt` müssen **manuell synchron gehalten** werden.
-
 ## Routing & Sections
 
-Die Site hat **drei Tracks** und einen Track-Picker als Home:
+- **`/` (Home)** ([app/page.tsx](app/page.tsx)): `Hero` → `Studio` → `Focus` (Schwerpunkte) → `References` → `ContactCard` → `Footer`.
+- **`/journal`**, **`/journal/[slug]`**: Artikel aus `content/journal/*.md`.
+- **`/impressum`**, **`/datenschutz`**, **`/agb`**, **`/danke`**, **`/abmelden`**: Rechtliches und Bestätigungsseiten (`.legal`-Layout).
+- Die früheren Track-Seiten `/web`, `/automation`, `/agenten` (und `/concepts`) leiten per 308 auf `/` um (`next.config.mjs → redirects`).
 
-- **`/` (Home)** rendert nur den `Chooser` ([app/page.tsx](app/page.tsx)) — drei Cards „Web", „Software" und „Agenten" zur Auswahl. Kein Hero, kein Audit-Widget direkt auf der Home.
-- **`/web` (Web-Track)** ([app/web/page.tsx](app/web/page.tsx)): Hero → Methode → Services → Projects → `<Pricing />` (mit `PRICING`) → FAQ → Footer.
-- **`/automation` (Automation-Track)** ([app/automation/page.tsx](app/automation/page.tsx)): eigener Hero/Services/Methode/Pricing-Stack mit `AUTOMATION_*`-Daten.
-- **`/agenten` (Agenten-Track)** ([app/agenten/page.tsx](app/agenten/page.tsx)): Hero → `<Industries>` (Branchen-Akkordeon) → `<Methode>` (4 Phasen) → Mehrwert-Section → `<FAQ>` (AEO/GEO-optimiert) → CTA → Footer. Daten in `AGENTEN_METHODE`, `AGENTEN_INDUSTRIES`, `AGENTEN_BENEFITS`, `AGENTEN_FAQS`.
-
-`Splash` und `Nav` sind global (Layout-Level). `FaqStructuredData` und `BreadcrumbSchema` werden pro Track-Seite gerendert.
+`Splash`, `Announcement` und `Nav` sind global (Layout-Level), ebenso `OrganizationSchema` und `WebsiteSchema`.
 
 ## Bekannte Todos / offene Punkte
 
@@ -97,20 +80,13 @@ Die Site hat **drei Tracks** und einen Track-Picker als Home:
 - [ ] `CRON_SECRET` generieren (`openssl rand -base64 32`) und in Vercel Production setzen
 - [x] Open-Graph-Image — dynamisch über `app/opengraph-image.tsx` (Edge Runtime, 1200×630)
 
-## Slideshow-Tempo (falls jemand fragt)
-
-- Total-Cycle: 44 Sekunden (11 Projekte × 4 Sekunden)
-- Pro Projekt: 2 Bilder × 2 Sekunden mit Crossfade (refFadeA/B bleibt 4s, passt N× rein)
-- Synchronisation: `@keyframes refSlideshow` (44s) ineinander mit `@keyframes refFadeA/B` (4s)
-- Refs ohne Live-URL/Screenshot: `href: null` + `images: []` → Hero rendert `<div class="ref-static">` mit Domain-Text-Placeholder
-- Klick auf Dot → manueller Modus, 3 Sekunden nach mouseleave → Auto-Resume
-
 ## Was du NICHT tun sollst
 
-- ❌ Nicht zu Tailwind migrieren (Custom-CSS ist gewollt, ~1500 Zeilen wären sinnlose Migration)
+- ❌ Nicht zu Tailwind migrieren (Custom-CSS ist gewollt)
 - ❌ Nicht den Anthropic-Call in den Browser verlegen
 - ❌ Nicht Inhalte direkt in Components hardcoden — immer über `lib/data.ts`
 - ❌ Nicht CSS-Variablen-Namen ändern (sonst bricht globals.css an mehreren Stellen)
+- ❌ Keine Preise, Telefonnummer oder Adresse auf Marketing-Seiten — nur im Impressum
 - ❌ Nicht den Splash entfernen ohne explizite Aufforderung — er ist Brand-Element, nicht nur Deko
 - ❌ Keine Emojis in UI-Texten (auch nicht in Buttons), Status-Icons (✓, ↗, →) sind ok
 - ❌ Keine externen Component-Bibliotheken (shadcn, MUI, Chakra etc.) — Custom CSS bleibt

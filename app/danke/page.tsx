@@ -31,16 +31,13 @@ export default function DankePage() {
       <section className="legal-section">
         <h2 className="legal-h2">Was passiert jetzt?</h2>
         <p>
-          Vor dem Termin schaue ich mir Ihre aktuelle Website kurz an —
-          Performance, SEO-Basics und wie sichtbar Sie für Antwort-Maschinen
-          (ChatGPT, Perplexity, Google AI Overviews) bereits sind. So können
-          wir im Gespräch direkt konkret werden, statt bei Null zu starten.
+          Vor dem Termin sehen wir uns Ihr Anliegen kurz an, damit wir im
+          Gespräch direkt konkret werden können.
         </p>
         <p>
-          Bringen Sie gern mit, was Sie haben: aktuelle Zahlen, frühere Audits,
-          konkrete Fragen oder einfach eine grobe Idee, wo Sie hinwollen. Falls
-          sich vorab noch etwas ändert oder Sie verschieben müssen, antworten
-          Sie einfach auf die Bestätigungsmail.
+          Bringen Sie gern mit, was Sie haben: eine Idee, eine Skizze oder
+          konkrete Fragen. Falls Sie verschieben müssen, antworten Sie einfach
+          auf die Bestätigungsmail.
         </p>
       </section>
 
@@ -50,10 +47,6 @@ export default function DankePage() {
           <dt>E-Mail</dt>
           <dd>
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-          </dd>
-          <dt>Telefon</dt>
-          <dd>
-            <a href={`tel:${SITE.contact.phone}`}>{SITE.contact.phoneDisplay}</a>
           </dd>
         </dl>
       </section>

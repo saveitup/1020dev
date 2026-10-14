@@ -9,7 +9,7 @@ export function WebsiteSchema() {
     name: SITE.name,
     description: SITE.description,
     inLanguage: 'de-AT',
-    publisher: { '@id': `${SITE.url}#business` },
+    publisher: { '@id': `${SITE.url}#organization` },
   };
 
   return (

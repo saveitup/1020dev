@@ -5,7 +5,8 @@ import { Footer } from '@/components/Footer';
 import { ArticleSchema } from '@/components/ArticleSchema';
 import { getAllSlugs, getArticleBySlug } from '@/lib/journal';
 import { renderMarkdown } from '@/lib/journal/markdown';
-import { SITE } from '@/lib/data';
+import { CONTACT, SITE } from '@/lib/data';
+import { ArrowIcon } from '@/components/Icons';
 
 // ISR: re-render hourly. New articles whose publishedAt-Datum gerade
 // passiert ist, werden bei nächstem Request automatisch SSR'd
@@ -102,22 +103,22 @@ export default async function JournalArticlePage({
         <article className="article-body">{renderMarkdown(article.content)}</article>
 
         <aside className="article-cta">
-          <h3 className="article-cta-title">Audit für Ihre Site?</h3>
-          <p>
-            Wir prüfen Ihre Website auf AEO-Readiness — kostenlos, unter einer Stunde.
-            Ergebnis als PDF mit konkreten Handlungsempfehlungen.
-          </p>
+          <h3 className="article-cta-title">{CONTACT.title}</h3>
+          <p>{CONTACT.text}</p>
           <div className="article-cta-row">
-            <a href={`mailto:${SITE.email}`} className="cta-primary">
-              E-Mail schreiben <span className="arrow">→</span>
+            <a href={`mailto:${SITE.email}`} className="btn btn--light">
+              E-Mail schreiben
+              <span className="btn-icon">
+                <ArrowIcon />
+              </span>
             </a>
             <a
               href={SITE.bookingUrl}
               target="_blank"
               rel="noopener"
-              className="cta-primary cta-primary--accent"
+              className="hook-link hook-link--light"
             >
-              Termin vereinbaren <span className="arrow">→</span>
+              Gespräch buchen
             </a>
           </div>
         </aside>

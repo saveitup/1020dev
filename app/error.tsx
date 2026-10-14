@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { SITE } from '@/lib/data';
+import { ArrowIcon } from '@/components/Icons';
 
 export default function Error({
   error,
@@ -30,11 +31,17 @@ export default function Error({
           </p>
         )}
         <div className="status-page-actions">
-          <button type="button" onClick={reset} className="cta-primary">
-            Erneut versuchen <span className="arrow">→</span>
+          <button type="button" onClick={reset} className="btn">
+            Erneut versuchen
+            <span className="btn-icon">
+              <ArrowIcon />
+            </span>
           </button>
-          <Link href="/" className="cta-primary cta-primary--accent">
-            Zur Startseite <span className="arrow">→</span>
+          <Link href="/" className="btn btn--ghost">
+            Zur Startseite
+            <span className="btn-icon">
+              <ArrowIcon />
+            </span>
           </Link>
         </div>
         <p className="status-page-fallback">

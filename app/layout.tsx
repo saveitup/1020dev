@@ -1,27 +1,30 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, DM_Mono } from 'next/font/google';
+import { Instrument_Sans, Fragment_Mono } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
 import { GoogleTag } from '@/components/GoogleTag';
 import { CookieBanner } from '@/components/CookieBanner';
-import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
+import { Announcement } from '@/components/Announcement';
+import { OrganizationSchema } from '@/components/OrganizationSchema';
 import { WebsiteSchema } from '@/components/WebsiteSchema';
 import { SITE } from '@/lib/data';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
-const dmSans = DM_Sans({
+// Instrument Sans (variabel, inkl. Breitenachse) als freie Annäherung an
+// Legoras Hausschrift; Fragment Mono für Code und kleine Labels.
+const sans = Instrument_Sans({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-sans',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  axes: ['wdth'],
 });
 
-const dmMono = DM_Mono({
+const mono = Fragment_Mono({
   subsets: ['latin'],
-  variable: '--font-dm-mono',
+  variable: '--font-mono',
   display: 'swap',
-  weight: ['400', '500'],
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#030615',
+  themeColor: '#003D26',
   width: 'device-width',
   initialScale: 1,
 };
@@ -80,15 +83,16 @@ try {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de-AT" className={`${dmSans.variable} ${dmMono.variable}`} suppressHydrationWarning>
+    <html lang="de-AT" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
       </head>
       <body>
         <GoogleTag />
-        <LocalBusinessSchema />
+        <OrganizationSchema />
         <WebsiteSchema />
         <Splash />
+        <Announcement />
         <Nav />
         {children}
         <Analytics />
