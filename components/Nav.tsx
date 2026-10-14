@@ -7,6 +7,7 @@ const LINKS = [
   { href: '/#studio', label: 'Studio' },
   { href: '/#schwerpunkte', label: 'Schwerpunkte' },
   { href: '/#referenzen', label: 'Referenzen' },
+  { href: '/apps', label: 'Apps' },
 ] as const;
 
 export function Nav() {

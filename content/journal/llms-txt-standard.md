@@ -91,7 +91,7 @@ So sieht die `llms.txt` von 1020.dev aus, leicht gekürzt zur Illustration:
 
 ## Kontakt
 
-- [Termin vereinbaren](https://cal.eu/1020dev/erstgespraech)
+- [Termin vereinbaren](https://cal.com/1020dev/30min)
 - [Impressum und Anschrift](https://1020.dev/impressum)
 ```
 

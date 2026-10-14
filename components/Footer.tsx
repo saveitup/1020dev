@@ -20,6 +20,7 @@ export function Footer() {
             <Link href="/#studio">Über uns</Link>
             <Link href="/#schwerpunkte">Schwerpunkte</Link>
             <Link href="/#referenzen">Referenzen</Link>
+            <Link href="/apps">Apps</Link>
             <Link href="/journal">Journal</Link>
           </div>
           <div className="footer-col">

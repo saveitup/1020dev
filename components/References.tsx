@@ -1,8 +1,12 @@
 import Image from 'next/image';
-import { REFS, REFS_HEAD } from '@/lib/data';
-import { ArrowUpRightIcon } from './Icons';
+import Link from 'next/link';
+import { APPS_SHOWCASE, REFS, REFS_HEAD } from '@/lib/data';
+import { ArrowIcon, ArrowUpRightIcon } from './Icons';
+import { PhoneMock } from './PhoneMock';
 
 export function References() {
+  const app = APPS_SHOWCASE[0];
+
   return (
     <section className="section refs" id="referenzen" aria-labelledby="refs-title">
       <header className="section-head section-head--split">
@@ -13,6 +17,21 @@ export function References() {
       </header>
 
       <ul className="refs-grid" role="list">
+        {/* Eigene App als breite Karte vorneweg — führt auf /apps */}
+        <li className="ref ref--feature">
+          <Link href="/apps" className="ref-card">
+            <div className="ref-frame ref-frame--app">
+              <PhoneMock app={app} />
+            </div>
+            <div className="ref-meta">
+              <span className="ref-name">
+                {app.name}
+                <ArrowIcon />
+              </span>
+              <span className="ref-tag">{app.tag}</span>
+            </div>
+          </Link>
+        </li>
         {REFS.map((ref) => {
           const inner = (
             <>

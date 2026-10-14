@@ -132,6 +132,77 @@ export const REFS = [
 ] as const;
 
 // ============================================
+// Eigene App — Spin your song (Referenz auf der Home + /apps)
+// ============================================
+type AppScreenshot = { readonly src: string; readonly alt: string } | null;
+
+export const APPS_SHOWCASE = [
+  {
+    id: 'spin',
+    name: 'Spin your song',
+    wordmark: 'spin.',
+    domain: 'spin.1020.dev',
+    href: 'https://spin.1020.dev',
+    tag: 'Eigenes Produkt · Mobile App',
+    status: 'Live',
+    tagline: 'Ein Song pro Tag. Geteilt mit Freunden.',
+    desc: 'Jeden Tag ein Song: Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji — und hören ihn mit einem Tap direkt in Spotify. Dazu ein Bonus-Spin mit Countdown, wenn der erste Song des Tages schon gesetzt ist. Konzipiert, gestaltet, entwickelt und betrieben komplett im Studio.',
+    features: [
+      'Täglicher Song mit Countdown & Bonus-Spin',
+      'Freundes-Feed mit Herz, Kommentar und Emoji-Reaktionen',
+      'Spotify-Anbindung — ein Tap vom Feed in den Player',
+      'Push-Benachrichtigungen, Suche und Profil',
+    ],
+    facts: [
+      { label: 'Rolle', value: 'Konzept · Design · Entwicklung · Betrieb' },
+      { label: 'Kern', value: 'Täglicher Song · Feed · Spotify' },
+      { label: 'Status', value: 'Live unter spin.1020.dev' },
+    ],
+    screenshot: null as AppScreenshot,
+    // Illustrativer In-App-Screen für das Phone-Mockup. Bildet den echten
+    // Feed nach (Wortmarke, Datum, Bonus-Spin, Song-Karten, Tab-Bar).
+    // Namen und Tracks sind bewusst fiktiv.
+    screen: {
+      date: 'Samstag · 12. Sep.',
+      bonus: 'Bonus-Spin noch 1:58',
+      posts: [
+        {
+          user: 'mara',
+          ago: 'vor 10 Min.',
+          track: 'Nachtbus',
+          artist: 'Leo Winter',
+          likes: '2',
+          comments: '1',
+        },
+        {
+          user: 'jon',
+          ago: 'vor 24 Min.',
+          track: 'Goldene Stunde',
+          artist: 'Ava Kern',
+          likes: '4',
+          comments: '3',
+        },
+        {
+          user: 'nik',
+          ago: 'vor 1 Std.',
+          track: 'Weitwinkel',
+          artist: 'Hale & Voss',
+          likes: '6',
+          comments: '2',
+        },
+      ],
+    },
+  },
+] as const;
+
+// Texte rund um den Showcase auf /apps
+export const APPS_PAGE = {
+  eyebrow: 'Eigenes Produkt · App',
+  cta: 'App öffnen',
+  featuresTitle: 'Was die App kann.',
+} as const;
+
+// ============================================
 // Kontakt-Karte (Home + Journal-Artikel)
 // ============================================
 export const CONTACT = {
@@ -148,7 +219,7 @@ export const SITE = {
   tagline: 'Ein Studio von KI-begeisterten Codern.',
   description:
     '1020.dev ist ein Studio von KI-begeisterten Codern aus Wien. Wir berichten über die neuesten Updates in Legal AI und iOS-Apps und setzen Konzepte um.',
-  bookingUrl: 'https://cal.eu/1020dev/erstgespraech',
+  bookingUrl: 'https://cal.com/1020dev/30min',
   email: 'hallo@1020.dev',
   location: 'Wien · Leopoldstadt',
   // ----- Kontakt & Adresse (nur für Impressum — nicht im Marketing zeigen) -----

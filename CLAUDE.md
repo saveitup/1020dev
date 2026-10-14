@@ -21,7 +21,8 @@ Alle Inhalte leben in `lib/data.ts` als `const … as const`:
 - `ANNOUNCEMENT` → grüne Leiste über der Nav (`Announcement`)
 - `HERO`, `STUDIO`, `FOCUS_HEAD`/`FOCUS`, `REFS_HEAD`/`REFS`, `CONTACT` → Sections der Startseite
 - `FOCUS` → zusätzlich `OrganizationSchema` (`knowsAbout`) und OG-Image
-- `CONTACT` → Kontakt-Karte auf der Home und CTA unter Journal-Artikeln
+- `CONTACT` → Kontakt-Karte auf der Home, auf `/apps` und CTA unter Journal-Artikeln
+- `APPS_SHOWCASE`, `APPS_PAGE` → eigene App „Spin your song“: breite Karte in den Referenzen, `/apps`-Showcase, `PhoneMock`, `AppSchema`
 - `SITE` → überall (Booking-URL, E-Mail, Tagline, Impressumsdaten)
 
 **Wenn du Inhalte änderst: immer in `lib/data.ts`.** `public/llms.txt` muss manuell synchron gehalten werden.
@@ -32,7 +33,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 
 | Component | Type | Warum |
 |---|---|---|
-| `Announcement`, `Nav`, `Hero`, `Studio`, `References`, `ContactCard`, `Footer`, Schemas | Server | Pure Render |
+| `Announcement`, `Nav`, `Hero`, `Studio`, `References`, `ContactCard`, `AppShowcase`, `PhoneMock`, `Footer`, Schemas | Server | Pure Render |
 | `Focus` | Client | Pill-Akkordeon mit Auto-Advance |
 | `Splash` | Client | sessionStorage + Timer |
 | `CookieBanner`, `CookieSettingsLink`, `GoogleTag` | Client | Consent-State |
@@ -61,6 +62,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 ## Routing & Sections
 
 - **`/` (Home)** ([app/page.tsx](app/page.tsx)): `Hero` → `Studio` → `Focus` (Schwerpunkte) → `References` → `ContactCard` → `Footer`.
+- **`/apps`** ([app/apps/page.tsx](app/apps/page.tsx)): schlanker Showcase der eigenen App „Spin your song“ (`AppShowcase` mit `PhoneMock`) → `ContactCard` → `Footer`. Bewusst ohne Methode, Pakete oder FAQ.
 - **`/journal`**, **`/journal/[slug]`**: Artikel aus `content/journal/*.md`.
 - **`/impressum`**, **`/datenschutz`**, **`/agb`**, **`/danke`**, **`/abmelden`**: Rechtliches und Bestätigungsseiten (`.legal`-Layout).
 - Die früheren Track-Seiten `/web`, `/automation`, `/agenten` (und `/concepts`) leiten per 308 auf `/` um (`next.config.mjs → redirects`).
@@ -74,7 +76,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - [x] Upstash-Database angelegt (Vars in Vercel hinterlegen, falls noch nicht passiert)
 - [x] Domain `1020.dev` registriert
 - [x] `ANTHROPIC_API_KEY` in Vercel Production gesetzt
-- [ ] Cal.com-Slug `cal.com/1020dev` anlegen
+- [x] Cal.com-Slug `cal.com/1020dev` anlegen (Event `30min` → `cal.com/1020dev/30min`)
 - [ ] Resend: Domain `1020.dev` per DNS verifizieren, dann `RESEND_FROM=audit@1020.dev` in Vercel setzen
 - [ ] `CRON_SECRET` generieren (`openssl rand -base64 32`) und in Vercel Production setzen
 - [x] Open-Graph-Image — dynamisch über `app/opengraph-image.tsx` (Edge Runtime, 1200×630)

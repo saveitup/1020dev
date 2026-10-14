@@ -10,6 +10,7 @@
 
 ## Referenzen
 
+- [Spin your song](https://1020.dev/apps) — eigene App: ein Song pro Tag, geteilt mit Freunden ([spin.1020.dev](https://spin.1020.dev))
 - Clausl KI — Legal AI für österreichisches Arbeitsrecht
 - [asamer.cz](https://asamer.cz) — Industrie, CEE
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
@@ -23,4 +24,4 @@
 
 - Website: https://1020.dev
 - E-Mail: hallo@1020.dev
-- Gespräch buchen: https://cal.eu/1020dev/erstgespraech
+- Gespräch buchen: https://cal.com/1020dev/30min
