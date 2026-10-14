@@ -23,9 +23,9 @@ export const HERO = {
     ariaLabel: 'Ein leerer Raum plus hundert Ideen ist kein leerer Raum mehr, sondern 1020.dev.',
   },
   ideas: [
-    { count: 1, fill: 0.12 },
-    { count: 2, fill: 0.26 },
-    { count: 3, fill: 0.4 },
+    { count: 1, fill: 0.07 },
+    { count: 2, fill: 0.13 },
+    { count: 3, fill: 0.19 },
     { count: 100, fill: 0.94 },
   ],
   lede: 'Wir berichten über die neuesten Updates in Legal AI und iOS-Apps — und setzen Konzepte um.',
