@@ -30,7 +30,11 @@ export function AppShowcase() {
           </div>
         </div>
         <div className="app-stage">
-          <PhoneMock app={app} />
+          <div className="phones">
+            {app.screenshots.map((shot) => (
+              <PhoneMock key={shot.src} shot={shot} />
+            ))}
+          </div>
         </div>
       </section>
 

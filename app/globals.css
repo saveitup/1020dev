@@ -549,24 +549,13 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 }
 
 /* ============== APPS — Spin your song ============== */
-/* Markenfarben der eigenen App (spin.) — bewusst getrennt von den
-   1020.dev-Tokens, damit das Mockup die echte App zeigt. */
-:root {
-  --spin-bg:     #f2efe6;
-  --spin-card:   #fcfbf7;
-  --spin-green:  #1a5632;
-  --spin-play:   #22c55e;
-  --spin-ink:    #16161a;
-  --spin-muted:  #8c8c86;
-  --spin-line:   rgba(22, 22, 26, 0.09);
-}
-
-/* ---------- Device frame ---------- */
+/* ---------- Device frame um echte Screenshots ---------- */
 .phone {
   position: relative;
+  flex-shrink: 0;
   width: min(300px, 78vw);
-  aspect-ratio: 9 / 19;
-  padding: 10px;
+  aspect-ratio: 9 / 19.2;
+  padding: 9px;
   border-radius: 46px;
   background: linear-gradient(180deg, #1b1d1f 0%, #0d0f10 100%);
   box-shadow:
@@ -576,329 +565,24 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
     inset 0 0 0 1px rgba(0, 0, 0, 0.6);
   transition: transform 0.6s var(--ease);
 }
-/* Dynamic Island */
-.phone::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  z-index: 3;
-  width: 32%;
-  height: 20px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: #050609;
-}
-/* Home-Indicator */
-.phone::after {
-  content: '';
-  position: absolute;
-  bottom: 17px;
-  left: 50%;
-  z-index: 3;
-  width: 34%;
-  height: 4px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: rgba(22, 22, 26, 0.3);
-}
 .phone-screen {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 37px;
-  background: var(--spin-bg);
-  container-type: inline-size;
+  border-radius: 38px;
+  background: #F2EFE6;
 }
+.phone-img { object-fit: cover; object-position: top center; }
 
-/* ---------- spin. feed mockup ---------- */
-.spin-ui {
-  position: absolute;
-  inset: 0;
+/* Zwei Screens nebeneinander, der zweite leicht versetzt */
+.phones {
   display: flex;
-  flex-direction: column;
-  padding: 3.5% 4.5% 0;
-  font-family: var(--font-sans), sans-serif;
-  font-size: clamp(9px, 4.1cqw, 13px);
-  color: var(--spin-ink);
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(14px, 2.5vw, 36px);
 }
-
-/* Shared glyph sizing — icons are inline SVG, stroked in the ink colour */
-.spin-glyph {
-  width: 1.35em;
-  height: 1.35em;
-  flex-shrink: 0;
-  fill: none;
-  stroke: currentColor;
-  vector-effect: non-scaling-stroke;
-}
-.spin-glyph--filled {
-  fill: currentColor;
-  stroke: none;
-}
-
-.spin-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 1.8em;
-  padding: 0 0.5em;
-  font-size: 0.92em;
-  font-weight: 600;
-}
-.spin-status-icons {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 2px;
-}
-.spin-status-icons i {
-  display: block;
-  width: 2px;
-  border-radius: 1px;
-  background: var(--spin-ink);
-}
-.spin-status-icons i:nth-child(1) { height: 4px; }
-.spin-status-icons i:nth-child(2) { height: 6px; }
-.spin-status-icons i:nth-child(3) { height: 8px; }
-
-.spin-head {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  margin-top: 1em;
-  color: var(--spin-ink);
-}
-.spin-wordmark {
-  font-size: 2.1em;
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  color: var(--spin-green);
-  text-align: center;
-}
-.spin-icon {
-  display: inline-flex;
-  font-size: 1.05em;
-}
-.spin-icon--end { justify-self: end; }
-
-.spin-date {
-  margin-top: 0.4em;
-  text-align: center;
-  font-size: 1em;
-  color: var(--spin-muted);
-}
-.spin-bonus {
-  align-self: center;
-  margin-top: 0.8em;
-  padding: 0.55em 1.1em;
-  border-radius: 999px;
-  background: var(--spin-green);
-  color: #ffffff;
-  font-size: 0.92em;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-.spin-feed {
-  flex: 1;
-  min-height: 0;
-  margin-top: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85em;
-  overflow: hidden;
-}
-
-.spin-post {
-  flex: 0 0 auto;
-  background: var(--spin-card);
-  border-radius: 1.4em;
-  padding: 1em 0.95em;
-  box-shadow: 0 1px 2px rgba(22, 22, 26, 0.04);
-}
-.spin-post-head {
-  display: flex;
-  align-items: center;
-  gap: 0.65em;
-}
-.spin-avatar {
-  width: 2.6em;
-  height: 2.6em;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background: linear-gradient(140deg, #cfd6c4 0%, #7d9068 100%);
-}
-.spin-post:nth-child(2) .spin-avatar {
-  background: linear-gradient(140deg, #e8d3c6 0%, #a3766a 100%);
-}
-.spin-post:nth-child(3) .spin-avatar {
-  background: linear-gradient(140deg, #c8d2e0 0%, #6f7d94 100%);
-}
-.spin-post-meta {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-  min-width: 0;
-}
-.spin-post-user {
-  font-size: 1.1em;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.spin-post-ago {
-  font-size: 0.92em;
-  color: var(--spin-muted);
-}
-.spin-post-more {
-  margin-left: auto;
-  display: inline-flex;
-  color: var(--spin-muted);
-  opacity: 0.7;
-}
-
-.spin-post-track {
-  display: flex;
-  align-items: center;
-  gap: 0.85em;
-  padding: 0.85em 0;
-}
-.spin-cover {
-  width: 4.6em;
-  height: 4.6em;
-  flex-shrink: 0;
-  border-radius: 0.45em;
-  background:
-    radial-gradient(circle at 72% 22%, rgba(255, 255, 255, 0.32), transparent 55%),
-    linear-gradient(150deg, #2c2f3a 0%, #0f1014 100%);
-}
-.spin-post:nth-child(2) .spin-cover {
-  background:
-    radial-gradient(circle at 28% 72%, rgba(255, 255, 255, 0.28), transparent 55%),
-    linear-gradient(150deg, #7b4a6d 0%, #241428 100%);
-}
-.spin-post:nth-child(3) .spin-cover {
-  background:
-    radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.3), transparent 55%),
-    linear-gradient(150deg, #3f6b57 0%, #10201a 100%);
-}
-.spin-track-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
-  min-width: 0;
-}
-.spin-track-title {
-  font-size: 1.3em;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.spin-track-artist {
-  font-size: 1.05em;
-  color: var(--spin-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.spin-post-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.8em;
-  padding-top: 0.75em;
-  border-top: 1px solid var(--spin-line);
-  font-size: 0.92em;
-  font-weight: 500;
-  color: var(--spin-muted);
-}
-.spin-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
-  color: var(--spin-ink);
-}
-/* First post has a liked heart, second one an untouched outline */
-.spin-post:nth-child(1) .spin-action:first-child { color: #e2384d; }
-.spin-post:nth-child(2) .spin-action:first-child .spin-glyph,
-.spin-post:nth-child(3) .spin-action:first-child .spin-glyph {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  color: var(--spin-muted);
-}
-.spin-react {
-  width: 1.75em;
-  height: 1.75em;
-  border: 1.4px solid var(--spin-line);
-  border-radius: 999px;
-}
-.spin-listen {
-  margin-left: auto;
-  padding: 0.5em 1em;
-  border-radius: 999px;
-  background: var(--spin-play);
-  color: #ffffff;
-  font-size: 0.98em;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-/* ---------- Tab bar ---------- */
-.spin-tabbar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4.2em;
-  margin: 0 -4.5%;
-  padding: 0 11% 0.5em;
-  border-top: 1px solid var(--spin-line);
-  background: var(--spin-bg);
-  color: var(--spin-ink);
-}
-.spin-tab {
-  display: inline-flex;
-  font-size: 1.15em;
-  opacity: 0.85;
-}
-.spin-tab--active { position: relative; }
-.spin-tab--active::after {
-  content: '';
-  position: absolute;
-  bottom: -0.45em;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--spin-green);
-}
-.spin-tab-plus {
-  position: relative;
-  width: 3.4em;
-  height: 3.4em;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--spin-green);
-  box-shadow: 0 6px 16px -6px rgba(26, 86, 50, 0.7);
-  transform: translateY(-0.4em);
-}
-.spin-tab-plus::before,
-.spin-tab-plus::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #ffffff;
-  border-radius: 999px;
-  transform: translate(-50%, -50%);
-}
-.spin-tab-plus::before { width: 38%; height: 2px; }
-.spin-tab-plus::after  { width: 2px; height: 38%; }
+.phones .phone:nth-child(2) { translate: 0 9%; }
 
 /* ---------- /apps Showcase ---------- */
 .app-hero {
@@ -950,7 +634,9 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   border-radius: var(--radius-lg);
   background: #D9E1D6;
 }
-.app-stage .phone { animation: rise 0.9s 0.1s var(--ease) both; }
+.app-stage { padding-bottom: clamp(56px, 7vw, 96px); }
+.app-stage .phone { width: min(250px, 36vw); animation: rise 0.9s 0.1s var(--ease) both; }
+.app-stage .phone:nth-child(2) { animation-delay: 0.2s; }
 .app-details {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -980,9 +666,10 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   aspect-ratio: 21 / 9;
   background: #D9E1D6;
 }
+.ref-frame--app { container-type: size; }
 .ref-frame--app .phone {
   width: auto;
-  height: clamp(300px, 34vw, 480px);
+  height: 80cqh;
 }
 .ref-card:hover .ref-frame--app .phone { transform: translateY(-6px); }
 .ref-name svg { flex-shrink: 0; }
@@ -1503,7 +1190,7 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   .section-head--split { flex-direction: column; align-items: flex-start; gap: 10px; }
   .refs-grid { grid-template-columns: 1fr; }
   .ref-frame--app { aspect-ratio: 4 / 5; }
-  .ref-frame--app .phone { height: min(400px, 112vw); }
+  .ref-frame--app .phone { height: 70cqh; }
   .app-facts { grid-template-columns: 1fr; gap: 14px; }
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 6px; margin-top: 48px; }

@@ -10,7 +10,7 @@ Diese Datei ist die **autoritative Quelle für alle Inhalte** der Site. Alle Com
 `HERO`, `STUDIO`, `FOCUS_HEAD`, `FOCUS`, `REFS_HEAD`, `CONTACT`, `ANNOUNCEMENT`. Bewusst knapp halten — die Site soll wenig preisgeben (keine Preise, kein Telefon, keine Adresse außerhalb des Impressums).
 
 ### Eigene App
-`APPS_SHOWCASE[0]` (Spin your song) speist die breite Karte in den Referenzen, die `/apps`-Seite, `PhoneMock` und `AppSchema`. Sobald ein echter Screenshot existiert, `screenshot` setzen — dann ersetzt er das Mockup.
+`APPS_SHOWCASE[0]` (Spin your song) speist die breite Karte in den Referenzen, die `/apps`-Seite und `AppSchema`. `screenshots` zeigt echte iPhone-Screens aus `public/apps/` (1179×2556, als JPEG). Namen und Avatare anderer Nutzer vor dem Einchecken weichzeichnen.
 
 ### Referenzen
 Ändere `REFS` und lege Bilder in `public/refs/` ab. Konvention:

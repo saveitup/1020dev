@@ -134,8 +134,6 @@ export const REFS = [
 // ============================================
 // Eigene App — Spin your song (Referenz auf der Home + /apps)
 // ============================================
-type AppScreenshot = { readonly src: string; readonly alt: string } | null;
-
 export const APPS_SHOWCASE = [
   {
     id: 'spin',
@@ -146,11 +144,12 @@ export const APPS_SHOWCASE = [
     tag: 'Eigenes Produkt · Mobile App',
     status: 'Live',
     tagline: 'Ein Song pro Tag. Geteilt mit Freunden.',
-    desc: 'Jeden Tag ein Song: Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji — und hören ihn mit einem Tap direkt in Spotify. Dazu ein Bonus-Spin mit Countdown, wenn der erste Song des Tages schon gesetzt ist. Konzipiert, gestaltet, entwickelt und betrieben komplett im Studio.',
+    desc: 'Jeden Tag ein Song: Sie posten einen Track, Ihre Freunde sehen ihn im Feed, reagieren mit Herz, Kommentar oder Emoji — und hören ihn mit einem Tap direkt in Spotify. Ist der Song des Tages gesetzt, gibt es eine Zugabe. Konzipiert, gestaltet, entwickelt und betrieben komplett im Studio.',
     features: [
-      'Täglicher Song mit Countdown & Bonus-Spin',
+      'Täglicher Song mit Countdown & Zugabe',
       'Freundes-Feed mit Herz, Kommentar und Emoji-Reaktionen',
       'Spotify-Anbindung — ein Tap vom Feed in den Player',
+      'Musik-DNA: Tagessongs, Top-Künstler und Jahrzehnt auf einen Blick',
       'Push-Benachrichtigungen, Suche und Profil',
     ],
     facts: [
@@ -158,40 +157,18 @@ export const APPS_SHOWCASE = [
       { label: 'Kern', value: 'Täglicher Song · Feed · Spotify' },
       { label: 'Status', value: 'Live unter spin.1020.dev' },
     ],
-    screenshot: null as AppScreenshot,
-    // Illustrativer In-App-Screen für das Phone-Mockup. Bildet den echten
-    // Feed nach (Wortmarke, Datum, Bonus-Spin, Song-Karten, Tab-Bar).
-    // Namen und Tracks sind bewusst fiktiv.
-    screen: {
-      date: 'Samstag · 12. Sep.',
-      bonus: 'Bonus-Spin noch 1:58',
-      posts: [
-        {
-          user: 'mara',
-          ago: 'vor 10 Min.',
-          track: 'Nachtbus',
-          artist: 'Leo Winter',
-          likes: '2',
-          comments: '1',
-        },
-        {
-          user: 'jon',
-          ago: 'vor 24 Min.',
-          track: 'Goldene Stunde',
-          artist: 'Ava Kern',
-          likes: '4',
-          comments: '3',
-        },
-        {
-          user: 'nik',
-          ago: 'vor 1 Std.',
-          track: 'Weitwinkel',
-          artist: 'Hale & Voss',
-          likes: '6',
-          comments: '2',
-        },
-      ],
-    },
+    // Echte Screenshots (iPhone, 1179×2556). Im Feed sind Namen und Avatare
+    // anderer Nutzer weichgezeichnet — vor dem Austausch ebenso verfahren.
+    screenshots: [
+      {
+        src: '/apps/spin-feed.jpg',
+        alt: 'Spin your song — Feed mit dem Song des Tages, Reaktionen und Spotify-Button',
+      },
+      {
+        src: '/apps/spin-dna.jpg',
+        alt: 'Spin your song — Musik-DNA mit Tagessongs, Künstlern und Likes als Helix',
+      },
+    ],
   },
 ] as const;
 

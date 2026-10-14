@@ -41,7 +41,7 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 - `References.tsx` (server) — 2-Spalten-Grid, Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)
 - `ContactCard.tsx` (server) — grüne Karte mit dekorativem Swift-Snippet (`CONTACT`)
 - `AppShowcase.tsx` (server) — `/apps`: Intro + Phone-Mockup, Features, Eckdaten (`APPS_SHOWCASE`, `APPS_PAGE`)
-- `PhoneMock.tsx` (server) — CSS-Smartphone mit nachgebautem spin.-Feed (eigene `--spin-*`-Farben)
+- `PhoneMock.tsx` (server) — CSS-Smartphone-Rahmen um einen echten App-Screenshot
 - `Footer.tsx` (server) — Wordmark + drei Link-Spalten
 - `Icons.tsx`, `Wordmark.tsx` — kleine geteilte Bausteine
 - `OrganizationSchema.tsx`, `WebsiteSchema.tsx`, `ArticleSchema.tsx`, `AppSchema.tsx` (server) — JSON-LD

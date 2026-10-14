@@ -17,6 +17,7 @@ export function AppSchema() {
       applicationCategory: 'MusicApplication',
       description: app.desc,
       featureList: [...app.features],
+      screenshot: app.screenshots.map((s) => `${SITE.url}${s.src}`),
       author: { '@id': `${SITE.url}#organization` },
       publisher: { '@id': `${SITE.url}#organization` },
     })),

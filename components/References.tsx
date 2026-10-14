@@ -21,7 +21,11 @@ export function References() {
         <li className="ref ref--feature">
           <Link href="/apps" className="ref-card">
             <div className="ref-frame ref-frame--app">
-              <PhoneMock app={app} />
+              <div className="phones">
+                {app.screenshots.map((shot) => (
+                  <PhoneMock key={shot.src} shot={shot} />
+                ))}
+              </div>
             </div>
             <div className="ref-meta">
               <span className="ref-name">
