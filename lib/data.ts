@@ -12,14 +12,15 @@ export const ANNOUNCEMENT = {
 // ============================================
 export const HERO = {
   eyebrow: 'Studio · Wien',
-  // Die Headline zählt `ideas` durch: `ideas[0]` steht im Titel und wird
-  // nacheinander ersetzt. `fill` = Füllstand des Hero wie bei einem Glas (0–1).
+  // Die Headline zählt `ideas` durch: `ideas[0]` (Verb + Label) steht im
+  // Titel und wird nacheinander ersetzt. Jede Idee fällt als Tropfen ins
+  // "Glas"; `fill` = Füllstand des Hero danach (0–1).
   title: 'Ist ein leerer Raum und eine Idee noch ein leerer Raum?',
   ideas: [
-    { label: 'eine Idee', fill: 0.12 },
-    { label: 'zwei Ideen', fill: 0.26 },
-    { label: 'drei Ideen', fill: 0.4 },
-    { label: 'hundert Ideen', fill: 0.94 },
+    { verb: 'Ist', label: 'eine Idee', count: 1, fill: 0.12 },
+    { verb: 'Sind', label: 'zwei Ideen', count: 2, fill: 0.26 },
+    { verb: 'Sind', label: 'drei Ideen', count: 3, fill: 0.4 },
+    { verb: 'Sind', label: 'hundert Ideen', count: 100, fill: 0.94 },
   ],
   lede: 'Wir berichten über die neuesten Updates in Legal AI und iOS-Apps — und setzen Konzepte um.',
 } as const;

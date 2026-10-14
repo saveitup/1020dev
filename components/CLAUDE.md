@@ -35,7 +35,7 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 - `Splash.tsx` (client) — sessionStorage skip + 2.2s timer + ESC/click dismiss
 - `Announcement.tsx` (server) — grüne Leiste über der Nav (`ANNOUNCEMENT`)
 - `Nav.tsx` (server) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts
-- `Hero.tsx` (client) — Frage-Headline mit hochzählendem Ideen-Wort; der Hintergrund füllt sich je Stufe wie ein Glas (`HERO.ideas[].fill`), wartet auf `body.ready`
+- `Hero.tsx` (client) — Frage-Headline mit hochzählendem Verb/Ideen-Wort; jede Idee fällt als Tropfen (Web Animations API, imperativ in `.glass-drops`) ins „Glas“, der Pegel steigt je Stufe (`HERO.ideas[].fill`); wartet auf `body.ready`
 - `Studio.tsx` (server) — Titel links, zwei Textspalten rechts (`STUDIO`)
 - `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`)
 - `References.tsx` (server) — 2-Spalten-Grid, Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)

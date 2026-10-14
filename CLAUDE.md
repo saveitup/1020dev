@@ -34,7 +34,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 | Component | Type | Warum |
 |---|---|---|
 | `Announcement`, `Nav`, `Studio`, `References`, `ContactCard`, `AppShowcase`, `PhoneMock`, `Footer`, Schemas | Server | Pure Render |
-| `Hero` | Client | Zählt die Ideen-Stufen hoch und füllt das „Glas“ |
+| `Hero` | Client | Zählt die Ideen-Stufen hoch, Tropfen per Web Animations API, füllt das „Glas“ |
 | `Focus` | Client | Pill-Akkordeon mit Auto-Advance |
 | `Splash` | Client | sessionStorage + Timer |
 | `CookieBanner`, `CookieSettingsLink`, `GoogleTag` | Client | Consent-State |
@@ -56,7 +56,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - **Domain**: 1020.dev (Wiener Postleitzahl Leopoldstadt)
 - **Vorbild**: Legora (legora.com) — warmes Off-White, eine Grotesk in Regular, Tannengrün als einziger Akzent, Pill-Buttons, ruhige Flächen
 - **Logo**: `1020.dev` als Wordmark, Punkt in Grün (auf dunklem Grund in Sand `--glow`), `dev` gedimmt
-- **Hero**: Frage „Ist ein leerer Raum und eine Idee noch ein leerer Raum?“ — das Zählwort steigt (`HERO.ideas`: eine → zwei → drei → hundert Ideen), und der Hero füllt sich dabei wie ein Glas mit hellgrüner Flüssigkeit (Wellen, Bläschen). Startet leer, erst nach dem Splash
+- **Hero**: Frage „Ist ein leerer Raum und eine Idee noch ein leerer Raum?“ — Verb und Zählwort steigen (`HERO.ideas`: Ist eine → Sind zwei → drei → hundert Ideen). Jede Idee fällt als Tropfen aus dem grünen Wort ins „Glas“ (Ringe, Spritzer), der Pegel steigt und schwappt; bei hundert regnet es, bis das Glas voll ist (Wellen, Bläschen, Lichtreflexe). Startet leer, erst nach dem Splash; bei „Bewegung reduzieren“ ohne Tropfen
 - **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 

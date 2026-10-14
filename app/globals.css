@@ -329,6 +329,9 @@ html.splash-skip .splash { display: none !important; }
   color: var(--green);
 }
 .idea-count.is-new { animation: countIn 0.55s var(--ease) both; }
+/* "Ist" wird zu "Sind", sobald es mehrere Ideen sind */
+.idea-verb { display: inline-block; }
+.idea-verb.is-new { animation: countIn 0.55s var(--ease) both; }
 
 /* Glas: der Hero füllt sich von unten mit jeder Stufe weiter */
 .glass {
@@ -347,7 +350,8 @@ html.splash-skip .splash { display: none !important; }
   /* Deckende Töne: halbtransparente Flächen würden an der Oberfläche
      überlappen und eine dunkle Kante zeichnen */
   background: linear-gradient(180deg, #DCEADF 0%, #C6D8CC 100%);
-  transition: height 2s cubic-bezier(0.22, 0.8, 0.24, 1);
+  /* leichtes Überschwappen beim Steigen */
+  transition: height var(--rise, 1.4s) cubic-bezier(0.3, 1.25, 0.5, 1);
 }
 /* Wellen sitzen auf der Oberfläche und laufen endlos seitwärts */
 .glass-wave {
@@ -363,6 +367,66 @@ html.splash-skip .splash { display: none !important; }
   height: 34px;
   opacity: 0.55;
   animation: wave 14s linear infinite reverse;
+}
+/* Nach jedem Aufprall schwappt die Oberfläche höher */
+.glass-wave {
+  transform-origin: 50% 100%;
+  transition: scale 0.9s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.glass.is-sloshing .glass-wave--front { scale: 1 2.1; }
+.glass.is-sloshing .glass-wave--back { scale: 1 1.7; }
+
+/* Lichtreflexe im Wasser, die langsam wandern */
+.glass-caustics {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse 120px 14px at 30% 40%, rgba(255, 255, 255, 0.6), transparent 70%),
+    radial-gradient(ellipse 80px 10px at 70% 60%, rgba(255, 255, 255, 0.5), transparent 70%),
+    radial-gradient(ellipse 150px 18px at 50% 20%, rgba(255, 255, 255, 0.4), transparent 70%);
+  background-size: 420px 300px, 360px 240px, 560px 380px;
+  animation: caustics 22s linear infinite;
+}
+
+/* Tropfen, Ringe und Spritzer (per Web Animations positioniert) */
+.glass-drops {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.drop,
+.ripple,
+.splash {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.drop {
+  width: 8px;
+  height: 11px;
+  margin: -5px 0 0 -4px;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: radial-gradient(circle at 38% 34%, #6DB98E 0%, #2E8A58 45%, var(--green) 100%);
+}
+.drop--big {
+  width: 13px;
+  height: 18px;
+  margin: -9px 0 0 -6px;
+}
+.ripple {
+  width: var(--rw, 80px);
+  height: calc(var(--rw, 80px) * 0.26);
+  border: 1.5px solid rgba(0, 61, 38, 0.38);
+  border-radius: 50%;
+}
+.splash {
+  width: 5px;
+  height: 5px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background: #2E8A58;
 }
 .glass-body {
   position: absolute;
@@ -1221,6 +1285,10 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 @keyframes wave {
   from { translate: 0 0; }
   to   { translate: -50% 0; }
+}
+@keyframes caustics {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to   { background-position: 420px 300px, -360px 240px, 560px -380px; }
 }
 @keyframes bubble {
   0%   { translate: 0 0; opacity: 0; }
