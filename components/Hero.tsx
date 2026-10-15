@@ -59,11 +59,11 @@ const easeOut = (t: number) => 1 - Math.pow(1 - clamp(t, 0, 1), 3);
 const linear = (t: number) => clamp(t, 0, 1);
 
 /**
- * Hero als Gleichung: "leerer Raum = leerer Raum". Alle Tropfen fallen vom
- * selben Punkt am oberen Rand, mittig über der Gleichung. Jeder Aufprall
- * zählt: der erste macht "+ 1 Idee ≠ leerer Raum", dann 2 und 3. Danach
- * tropft es immer schneller bis 100, das Glas läuft voll, und am Ende fällt
- * der Punkt der Wortmarke: "leerer Raum + 100 Ideen = 1020.dev".
+ * Hero als Gleichung: "leerer Raum = leerer Raum". Alle Tropfen fallen von
+ * oben, verteilt über die ganze Breite. Jeder Aufprall zählt: der erste
+ * macht "+ 1 Idee ≠ leerer Raum", dann 2 und 3. Danach regnet es immer
+ * dichter bis 100, das Glas läuft voll, und am Ende fällt der Punkt der
+ * Wortmarke: "leerer Raum + 100 Ideen = 1020.dev".
  * Startet erst, wenn der Splash weg ist (`body.ready`).
  */
 export function Hero() {
@@ -173,8 +173,14 @@ export function Hero() {
     };
 
     // ---- Tropfen ----------------------------------------------------------
-    // Ursprung: ein Punkt am oberen Rand, mittig über der Gleichung
-    const origin = () => ({ x: hero.clientWidth / 2, y: 3 });
+    // Startpunkte am oberen Rand: die ersten drei bewusst verteilt
+    // (links, rechts, Mitte — leicht variiert), der Regen danach zufällig
+    const FIRST_X = [0.27, 0.73, 0.48];
+    const topPoint = (i?: number) => {
+      const W = hero.clientWidth;
+      const frac = i === undefined ? 0.04 + Math.random() * 0.92 : FIRST_X[i] + (Math.random() - 0.5) * 0.08;
+      return { x: W * frac, y: 3 };
+    };
     const fallMs = (h: number) => clamp(Math.sqrt((2 * Math.max(h, 12)) / GRAVITY) * 1000, 240, 1300);
 
     // Fällt von (x, y) beschleunigt bis zur Oberfläche, die zur Landezeit gilt
@@ -187,8 +193,6 @@ export function Hero() {
         dx?: number;
         from: string;
         to: string;
-        // Tropfen löst sich erst am Ursprung (statt fertig zu hängen)
-        appear?: boolean;
         onLand: (x: number, y: number) => void;
       },
     ) => {
@@ -198,16 +202,10 @@ export function Hero() {
       let ms = fallMs(surfaceY(startAt + 700) - y);
       ms = fallMs(surfaceY(startAt + ms) - y);
       const yLand = surfaceY(startAt + ms) - 3;
-      const keyframes: Keyframe[] = opts.appear
-        ? [
-            { transform: `translate(${x}px, ${y}px) scale(0.2)`, opacity: 0 },
-            { transform: `translate(${x}px, ${y + 6}px) ${opts.from}`, opacity: 1, offset: 0.12 },
-            { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
-          ]
-        : [
-            { transform: `translate(${x}px, ${y}px) ${opts.from}`, opacity: 1 },
-            { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
-          ];
+      const keyframes: Keyframe[] = [
+        { transform: `translate(${x}px, ${y}px) ${opts.from}`, opacity: 1 },
+        { transform: `translate(${x + dx}px, ${yLand}px) ${opts.to}`, opacity: 1 },
+      ];
       el.animate(keyframes, {
         duration: ms,
         delay,
@@ -220,9 +218,10 @@ export function Hero() {
       };
     };
 
-    // Ein Tropfen bildet sich am Ursprung, hängt kurz und fällt dann
-    const drip = (hang: number, onLand: () => void) => {
-      const { x, y } = origin();
+    // Ein Tropfen bildet sich am oberen Rand, hängt kurz und fällt dann
+    const drip = (i: number, onLand: () => void) => {
+      const hang = HANG[i];
+      const { x, y } = topPoint(i);
       const el = add('drop drop--big');
       el.animate(
         [
@@ -257,11 +256,12 @@ export function Hero() {
       }, 650);
     };
 
-    // Die restlichen Ideen tropfen immer schneller vom selben Punkt
+    // Die restlichen Ideen regnen von oben, immer dichter, am Ende auslaufend
     const sequence = () => {
       const prev = HERO.ideas[LAST - 1].count;
       const fresh = HERO.ideas[LAST].count - prev;
-      const { x, y } = origin();
+      // Regentropfen kommen knapp oberhalb des Hero ins Bild
+      const y = -18;
 
       // Abstände: schneller werdend, am Ende wieder langsamer
       const gaps: number[] = [];
@@ -296,12 +296,11 @@ export function Hero() {
       let landed = 0;
       emits.forEach((emit, k) => {
         const el = add('drop');
-        fall(el, x, y, {
+        fall(el, topPoint().x, y, {
           delay: emit,
-          dx: (Math.random() - 0.5) * 4,
-          from: 'scale(0.8, 1.15)',
+          dx: (Math.random() - 0.5) * 6,
+          from: 'scale(0.75, 1.3)',
           to: 'scale(0.66, 1.7)',
-          appear: true,
           onLand: (lx, ly) => {
             smallImpact(lx, ly, k);
             landed += 1;
@@ -317,7 +316,7 @@ export function Hero() {
         sequence();
         return;
       }
-      drip(HANG[i], () => {
+      drip(i, () => {
         setCount(HERO.ideas[i].count);
         setUnequal(true);
         raise(fillOf(i), RISE_MS[i]);
