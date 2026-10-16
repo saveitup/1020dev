@@ -3,10 +3,17 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { HERO, SITE } from '@/lib/data';
 import { ArrowIcon } from './Icons';
-import { Wordmark } from './Wordmark';
 
 // Geschützte Bindestriche, damit "iOS-" nicht allein am Zeilenende steht
 const nbHyphen = (text: string) => text.replace(/(KI|iOS)-/g, '$1‑');
+
+// Text in einzelne Zeichen zerlegen, damit sie gestaffelt animieren können
+const chars = (text: string, offset = 0) =>
+  [...text].map((c, i) => (
+    <span key={i} className="ch" style={{ '--i': i + offset } as CSSProperties}>
+      {c === ' ' ? '\u00a0' : c}
+    </span>
+  ));
 
 const EQ = HERO.equation;
 const LAST = HERO.ideas.length - 1;
@@ -409,13 +416,18 @@ export function Hero() {
           <span className={`eq-op eq-o2${unequal && !done ? ' is-unequal' : ''}`} aria-hidden="true">
             =<span className="eq-slash" />
           </span>
-          {done ? (
-            <span key="result" className="eq-r2 eq-result is-new" aria-hidden="true">
-              <Wordmark />
-            </span>
-          ) : (
-            <span key="term" className="eq-r2" aria-hidden="true">
-              {EQ.term}
+          {/* Finale als Überblendung in derselben Zelle: "leerer Raum" löst sich
+              Buchstabe für Buchstabe auf, "1020.dev" steigt an seiner Stelle auf.
+              Das alte Wort bleibt unsichtbar stehen und hält die Spaltenbreite,
+              damit die Gleichung nicht zur Seite springt. */}
+          <span className={`eq-r2 eq-chars${done ? ' is-leaving' : ''}`} aria-hidden="true">
+            {chars(EQ.term)}
+          </span>
+          {done && (
+            <span className="eq-r2 eq-result" aria-hidden="true">
+              <span className="num">{chars('1020')}</span>
+              <span className="dot">.</span>
+              <span className="tld">{chars('dev', 4)}</span>
             </span>
           )}
         </h1>

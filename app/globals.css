@@ -380,17 +380,24 @@ html.splash-skip .splash { display: none !important; }
   transition: scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .eq-o2.is-unequal .eq-slash { scale: 1 1; }
-.eq-result { display: inline-block; }
-.eq-result .dot { color: var(--green); }
+.eq-chars,
+.eq-result { display: inline-block; white-space: nowrap; }
+.eq-chars .ch,
+.eq-result .ch { display: inline-block; }
+.eq-result .dot { display: inline-block; color: var(--green); }
 .eq-result .tld { color: var(--faint); }
-/* Finale: "1020" und "dev" steigen auf, der Punkt fällt als letzter Tropfen */
-.eq-result.is-new .num,
-.eq-result.is-new .tld { display: inline-block; animation: countIn 0.6s var(--ease) both; }
-.eq-result.is-new .tld { animation-delay: 0.08s; }
-.eq-result.is-new .dot {
-  display: inline-block;
-  animation: dotDrop 0.75s 0.18s both;
+/* Finale: "leerer Raum" verdunstet Buchstabe für Buchstabe … */
+.eq-chars.is-leaving .ch {
+  animation: chOut 0.55s var(--ease) both;
+  animation-delay: calc(0.12s + var(--i) * 26ms);
 }
+/* … und an derselben Stelle steigen "1020", dann "dev" auf … */
+.eq-result .ch {
+  animation: chIn 0.7s var(--ease) both;
+  animation-delay: calc(0.3s + var(--i) * 55ms);
+}
+/* … zuletzt fällt der Punkt als letzter Tropfen */
+.eq-result .dot { animation: dotDrop 0.8s 0.78s both; }
 
 /* Glas: der Hero füllt sich von unten mit jeder Stufe weiter */
 .glass {
@@ -1364,6 +1371,14 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 }
 @keyframes numIn {
   from { opacity: 0; translate: 0 0.55em; filter: blur(5px); }
+  to   { opacity: 1; translate: 0 0; filter: blur(0); }
+}
+@keyframes chOut {
+  from { opacity: 1; translate: 0 0; filter: blur(0); }
+  to   { opacity: 0; translate: 0 -0.22em; filter: blur(7px); }
+}
+@keyframes chIn {
+  from { opacity: 0; translate: 0 0.32em; filter: blur(7px); }
   to   { opacity: 1; translate: 0 0; filter: blur(0); }
 }
 @keyframes dotDrop {
