@@ -7,10 +7,13 @@ Diese Datei ist die **autoritative Quelle für alle Inhalte** der Site. Alle Com
 ## Wenn du Inhalte änderst
 
 ### Texte der Startseite
-`HERO`, `STUDIO`, `FOCUS_HEAD`, `FOCUS`, `REFS_HEAD`, `CONTACT`, `ANNOUNCEMENT`. Bewusst knapp halten — die Site soll wenig preisgeben (keine Preise, kein Telefon, keine Adresse außerhalb des Impressums).
+`HERO`, `PRODUCTS_HEAD`, `STUDIO`, `FOCUS_HEAD`, `FOCUS`, `REFS_HEAD`, `CONTACT`, `ANNOUNCEMENT`. Bewusst knapp halten — die Site soll wenig preisgeben (keine Preise, kein Telefon, keine Adresse außerhalb des Impressums).
+
+### Eigene Produkte
+`PRODUCTS` (Spin, Clausl) speist die Produktkarten direkt unter dem Hero. Die Texte stammen 1:1 von spin.1020.dev und clausl.1020.dev — bei Änderungen dort hier nachziehen (Spin bleibt beim "du" seiner Landingpage). `PRODUCTS.clausl.screen` ist der nachgebaute Antwort-Screen im Handy.
 
 ### Eigene App
-`APPS_SHOWCASE[0]` (Spin your song) speist die breite Karte in den Referenzen, die `/apps`-Seite und `AppSchema`. `screenshots` zeigt echte iPhone-Screens aus `public/apps/` (1179×2556, als JPEG). Namen und Avatare anderer Nutzer vor dem Einchecken weichzeichnen.
+`APPS_SHOWCASE[0]` (Spin your song) speist die `/apps`-Seite und `AppSchema`. `screenshots` zeigt echte iPhone-Screens aus `public/apps/` (1179×2556, als JPEG). Namen und Avatare anderer Nutzer vor dem Einchecken weichzeichnen.
 
 ### Referenzen
 Ändere `REFS` und lege Bilder in `public/refs/` ab. Konvention:

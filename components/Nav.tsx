@@ -4,10 +4,10 @@ import { ArrowIcon } from './Icons';
 import { Wordmark } from './Wordmark';
 
 const LINKS = [
+  { href: '/#produkte', label: 'Produkte' },
   { href: '/#studio', label: 'Studio' },
   { href: '/#schwerpunkte', label: 'Schwerpunkte' },
   { href: '/#referenzen', label: 'Referenzen' },
-  { href: '/apps', label: 'Apps' },
 ] as const;
 
 export function Nav() {

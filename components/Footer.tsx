@@ -17,6 +17,7 @@ export function Footer() {
         <nav className="footer-cols" aria-label="Footer">
           <div className="footer-col">
             <p className="footer-col-title">Studio</p>
+            <Link href="/#produkte">Produkte</Link>
             <Link href="/#studio">Über uns</Link>
             <Link href="/#schwerpunkte">Schwerpunkte</Link>
             <Link href="/#referenzen">Referenzen</Link>

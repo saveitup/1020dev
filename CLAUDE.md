@@ -19,10 +19,11 @@ Die Site ist bewusst knapp: keine Preise, keine Methoden-/FAQ-Sections, kein Tel
 Alle Inhalte leben in `lib/data.ts` als `const … as const`:
 
 - `ANNOUNCEMENT` → grüne Leiste über der Nav (`Announcement`)
-- `HERO`, `STUDIO`, `FOCUS_HEAD`/`FOCUS`, `REFS_HEAD`/`REFS`, `CONTACT` → Sections der Startseite
+- `HERO`, `PRODUCTS_HEAD`/`PRODUCTS`, `STUDIO`, `FOCUS_HEAD`/`FOCUS`, `REFS_HEAD`/`REFS`, `CONTACT` → Sections der Startseite
 - `FOCUS` → zusätzlich `OrganizationSchema` (`knowsAbout`) und OG-Image
 - `CONTACT` → Kontakt-Karte auf der Home, auf `/apps` und CTA unter Journal-Artikeln
-- `APPS_SHOWCASE`, `APPS_PAGE` → eigene App „Spin your song“: breite Karte in den Referenzen, `/apps`-Showcase, `PhoneMock`, `AppSchema`
+- `PRODUCTS` → die zwei Produktkarten direkt unter dem Hero (Spin, Clausl KI), Copy von deren Landingpages
+- `APPS_SHOWCASE`, `APPS_PAGE` → eigene App „Spin your song“: `/apps`-Showcase, `PhoneMock`, `AppSchema`
 - `SITE` → überall (Booking-URL, E-Mail, Tagline, Impressumsdaten)
 
 **Wenn du Inhalte änderst: immer in `lib/data.ts`.** `public/llms.txt` muss manuell synchron gehalten werden.
@@ -33,9 +34,10 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 
 | Component | Type | Warum |
 |---|---|---|
-| `Announcement`, `Nav`, `Studio`, `References`, `ContactCard`, `AppShowcase`, `PhoneMock`, `Footer`, Schemas | Server | Pure Render |
+| `Announcement`, `Nav`, `Products`, `Studio`, `References`, `ContactCard`, `AppShowcase`, `PhoneMock`, `Footer`, Schemas | Server | Pure Render |
 | `Hero` | Client | Zählt die Ideen-Stufen hoch, Tropfen per Web Animations API, füllt das „Glas“ |
 | `Focus` | Client | Pill-Akkordeon mit Auto-Advance |
+| `InView` | Client | IntersectionObserver, spielt den Auftritt der Produktkarten ab |
 | `Splash` | Client | sessionStorage + Timer |
 | `CookieBanner`, `CookieSettingsLink`, `GoogleTag` | Client | Consent-State |
 
@@ -57,12 +59,13 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - **Vorbild**: Legora (legora.com) — warmes Off-White, eine Grotesk in Regular, Tannengrün als einziger Akzent, Pill-Buttons, ruhige Flächen
 - **Logo**: `1020.dev` als Wordmark, Punkt in Grün (auf dunklem Grund in Sand `--glow`), `dev` gedimmt
 - **Hero**: Gleichung (`HERO.equation`), am Rechenzeichen ausgerichtet (CSS-Grid, `+` über `=`): `leerer Raum = leerer Raum` → `+ 1 Idee ≠ leerer Raum` → 2 → 3 → `+ 100 Ideen = 1020.dev`. Alle Tropfen fallen von oben, verteilt über die Breite (hinter dem Text); jeder Aufprall zählt. Die ersten drei bilden sich an drei Stellen am oberen Rand (links, rechts, Mitte) einzeln und fallen mit Schwerkraft-Kurve (Ringe, Kronen-Spritzer, Rückstoß-Tropfen), der Pegel federt hoch und die Oberfläche schwappt. Danach regnet es über die ganze Breite immer dichter bis 100 (am Ende auslaufend), der Pegel steigt linear bis randvoll; am Ende verdunstet „leerer Raum“ Buchstabe für Buchstabe, „1020“ und „dev“ steigen in derselben Grid-Zelle auf (das alte Wort hält unsichtbar die Spaltenbreite, kein Sprung) und der Punkt fällt als letzter Tropfen. Timing-Konstanten oben in `Hero.tsx`. Startet leer, erst nach dem Splash; bei „Bewegung reduzieren“ direkt der Endzustand
-- **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du")
+- **Produktkarten** (`Products`, `#produkte`): Spin und Clausl KI erscheinen im Look ihrer eigenen Websites, nicht im 1020-Look — Inter (+ JetBrains Mono für Tags) über `--font-inter`/`--font-jbmono`, Weiß, Verlaufsschrift, Pill, runde Knöpfe, gekipptes Handy, fünfteiliger Farbstreifen. Spin grün (`#17571e`), Clausl orange (`#c4461a`). Alle Markenwerte nur im Scope `.pc` in `globals.css`; bei Änderungen an spin.1020.dev oder clausl.1020.dev hier nachziehen
+- **Sprache**: alle UI-Texte auf **Deutsch (Österreich)**, formell ("Sie", nicht "Du"). Ausnahme: die Produktkarten zitieren die Copy der Produkte — Spin spricht seine Nutzer mit "du" an
 - **Tone**: ehrlich, präzise, wenig Marketing-Sprech, nie Buzzwords ohne Substanz
 
 ## Routing & Sections
 
-- **`/` (Home)** ([app/page.tsx](app/page.tsx)): `Hero` → `Studio` → `Focus` (Schwerpunkte) → `References` → `ContactCard` → `Footer`.
+- **`/` (Home)** ([app/page.tsx](app/page.tsx)): `Hero` → `Products` (Spin & Clausl KI) → `Studio` → `Focus` (Schwerpunkte) → `References` → `ContactCard` → `Footer`.
 - **`/apps`** ([app/apps/page.tsx](app/apps/page.tsx)): schlanker Showcase der eigenen App „Spin your song“ (`AppShowcase` mit `PhoneMock`) → `ContactCard` → `Footer`. Bewusst ohne Methode, Pakete oder FAQ.
 - **`/journal`**, **`/journal/[slug]`**: Artikel aus `content/journal/*.md`.
 - **`/impressum`**, **`/datenschutz`**, **`/agb`**, **`/danke`**, **`/abmelden`**: Rechtliches und Bestätigungsseiten (`.legal`-Layout).
@@ -92,7 +95,7 @@ Default ist **Server Component**. `'use client'` nur wenn echtes State/Effects/B
 - ❌ Nicht den Splash entfernen ohne explizite Aufforderung — er ist Brand-Element, nicht nur Deko
 - ❌ Keine Emojis in UI-Texten (auch nicht in Buttons), Status-Icons (✓, ↗, →) sind ok
 - ❌ Keine externen Component-Bibliotheken (shadcn, MUI, Chakra etc.) — Custom CSS bleibt
-- ❌ Nicht "Du" verwenden — formelles "Sie" ist Standard für die KMU-Zielgruppe
+- ❌ Nicht "Du" verwenden — formelles "Sie" ist Standard für die KMU-Zielgruppe (einzige Ausnahme: zitierte Spin-Copy in den Produktkarten)
 
 ## Setup für Dev
 

@@ -75,6 +75,61 @@ export const FOCUS_HEAD = {
 } as const;
 
 // ============================================
+// Eigene Produkte — direkt unter dem Hero, jedes im Look seiner Website
+// (Farben, Schrift, Copy von spin.1020.dev bzw. clausl.1020.dev).
+// Die Copy ist bewusst die der Produkte — Spin spricht seine Nutzer mit
+// "du" an, Clausl mit "Sie".
+// ============================================
+export const PRODUCTS_HEAD = {
+  eyebrow: 'Eigene Produkte',
+  title: 'Gebaut bei 1020.dev.',
+  sub: 'Was wir beobachten, bauen wir selbst: eine App fürs iPhone und eine KI fürs Arbeitsrecht.',
+} as const;
+
+export const PRODUCTS = {
+  spin: {
+    name: 'Spin',
+    wordmark: { src: '/brands/spin-wordmark.svg', alt: 'spin.' },
+    badge: 'Gratis',
+    badgeText: 'Fürs iPhone — jetzt laden',
+    titleStart: 'Ein Song pro',
+    titleAccent: 'Tag.',
+    lede: 'Jeden Tag um 17:30 öffnet sich das Fenster. Du teilst einen Song, erst dann siehst du, was deine Freunde hören.',
+    primary: { label: 'Im App Store laden', href: 'https://spin.1020.dev/go/landing?from=1020dev' },
+    secondary: { label: 'spin.1020.dev', href: 'https://spin.1020.dev' },
+    note: 'Kostenlos · iPhone · iOS 17 oder neuer',
+    // Echter Feed-Screenshot (andere Nutzer weichgezeichnet), im Handy-Rahmen der Landingpage
+    screenshot: '/apps/spin-feed.jpg',
+  },
+  clausl: {
+    name: 'Clausl',
+    mark: { src: '/brands/clausl-mark.svg', alt: '' },
+    badge: 'Beta',
+    badgeText: 'Offene Beta — jetzt kostenlos testen',
+    titleStart: 'Prüft wie ein',
+    titleAccent: 'Mensch.',
+    lede: 'Der KI-Assistent für österreichisches Arbeitsrecht. Er löst jeden Fall nach Prüfschema, Merkmal für Merkmal, und belegt jede Fundstelle.',
+    primary: { label: 'Jetzt testen', href: 'https://clausl.1020.dev/login.html#registrieren' },
+    secondary: { label: 'clausl.1020.dev', href: 'https://clausl.1020.dev' },
+    note: null,
+    // Nachbau des Handy-Screens von clausl.1020.dev (Texte 1:1 von dort)
+    screen: {
+      question: 'Wir kündigen eine Angestellte im Handel nach einem Jahr. Welche Frist gilt?',
+      caption: 'Merkmal für Merkmal · Fundstellen belegt',
+      scheme: 'Kündigungsfrist · AngG',
+      checks: [
+        { label: 'Angestellte', ref: '§ 1 AngG' },
+        { label: 'Kündigung durch Arbeitgeberin', ref: '§ 20 AngG' },
+        { label: 'Ein Dienstjahr', ref: 'unter zwei Jahren' },
+        { label: 'KV Handel', ref: 'verweist aufs AngG' },
+      ],
+      result: { label: 'Ergebnis', value: '6 Wochen' },
+      proof: '✓ § 20 Abs. 2 AngG · RIS belegt',
+    },
+  },
+} as const;
+
+// ============================================
 // References
 // ============================================
 export const REFS_HEAD = {
@@ -83,22 +138,6 @@ export const REFS_HEAD = {
 } as const;
 
 export const REFS = [
-  {
-    id: 'clausl',
-    domain: 'clausl.1020.dev',
-    href: 'https://clausl.1020.dev',
-    tag: 'Legal AI · Arbeitsrecht',
-    screenshots: [
-      {
-        src: '/refs/clausl-1.jpg',
-        alt: 'Clausl KI — KI-Tool für österreichisches Arbeitsrecht, Dashboard mit Übersicht der Arbeitsverhältnisse',
-      },
-      {
-        src: '/refs/clausl-2.jpg',
-        alt: 'Clausl KI — Chat-Interface für arbeitsrechtliche Fragen, Startseite mit Eingabefeld',
-      },
-    ],
-  },
   {
     id: 'asamer',
     domain: 'asamer.cz',
@@ -150,7 +189,7 @@ export const REFS = [
 ] as const;
 
 // ============================================
-// Eigene App — Spin your song (Referenz auf der Home + /apps)
+// Eigene App — Spin your song (/apps; auf der Home als Produktkarte, siehe PRODUCTS)
 // ============================================
 export const APPS_SHOWCASE = [
   {

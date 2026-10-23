@@ -8,10 +8,13 @@
 - **iOS-Apps** — Swift, SwiftUI und Apple Intelligence. Wir testen Neuerungen früh, berichten darüber und bauen Apps, die sie sinnvoll nutzen.
 - **Konzepte** — Von der Skizze über den Prototyp bis zum laufenden Produkt.
 
+## Eigene Produkte
+
+- [Spin](https://spin.1020.dev) — iPhone-App, gratis: ein Song pro Tag. Jeden Tag um 17:30 öffnet sich das Fenster, man teilt einen Song und sieht erst dann, was die Freunde hören. Details: https://1020.dev/apps
+- [Clausl KI](https://clausl.1020.dev) — KI-Assistent für österreichisches Arbeitsrecht (offene Beta): löst jeden Fall nach Prüfschema, Merkmal für Merkmal, und belegt jede Fundstelle
+
 ## Referenzen
 
-- [Spin your song](https://1020.dev/apps) — eigene App: ein Song pro Tag, geteilt mit Freunden ([spin.1020.dev](https://spin.1020.dev))
-- [Clausl KI](https://clausl.1020.dev) — Legal AI für österreichisches Arbeitsrecht: löst Fälle nach Prüfschema, mit sichtbarem Prüfweg und Fundstellen
 - [asamer.cz](https://asamer.cz) — Industrie, CEE
 - [zeilinger-metallbau.at](https://zeilinger-metallbau.at) — Metallbau, Wien
 - [alpenbroker.com](https://alpenbroker.com) — Finanzbildung, Österreich
