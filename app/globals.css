@@ -870,10 +870,10 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   width: 400px;
   height: 820px;
   margin-left: -200px;
-  padding: 11px;
-  border-radius: 64px;
+  padding: 4px;
+  border-radius: 60px;
   background: #1d1d1f;
-  box-shadow: 0 70px 120px rgba(0, 0, 0, .16), 0 18px 40px rgba(0, 0, 0, .08), inset 0 0 0 2px #3a3a3c;
+  box-shadow: 0 70px 120px rgba(0, 0, 0, .16), 0 18px 40px rgba(0, 0, 0, .08), inset 0 0 0 1px #4a4a4d;
   transform: rotateX(6deg) rotateY(-6deg) scale(var(--pc-s, .8));
   transform-origin: 50% 0;
   transition: transform 1.6s var(--pc-kurve);
@@ -882,7 +882,7 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   position: relative;
   height: 100%;
   overflow: hidden;
-  border-radius: 54px;
+  border-radius: 56px;
   background: #f7f4ea;
   text-align: left;
 }
@@ -1060,14 +1060,13 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   flex-shrink: 0;
   width: min(300px, 78vw);
   aspect-ratio: 9 / 19.2;
-  padding: 9px;
-  border-radius: 46px;
+  padding: 3px;
+  border-radius: 44px;
   background: linear-gradient(180deg, #1b1d1f 0%, #0d0f10 100%);
   box-shadow:
     0 40px 80px -36px rgba(13, 16, 22, 0.55),
     0 16px 32px -20px rgba(13, 16, 22, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
   transition: transform 0.6s var(--ease);
 }
 .phone-screen {
@@ -1075,7 +1074,7 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 38px;
+  border-radius: 41px;
   background: #F2EFE6;
 }
 .phone-img { object-fit: cover; object-position: top center; }
