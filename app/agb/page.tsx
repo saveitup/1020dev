@@ -366,12 +366,7 @@ export default function AgbPage() {
           wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.
         </p>
         <p>
-          Verbraucher können Beschwerden zudem an die Online-Streitbeilegungs-Plattform
-          der EU richten:{' '}
-          <a href="https://ec.europa.eu/odr" target="_blank" rel="noopener">
-            ec.europa.eu/odr
-          </a>
-          . Der Auftragnehmer ist nicht verpflichtet und nicht bereit, an einem
+          Der Auftragnehmer ist nicht verpflichtet und nicht bereit, an einem
           Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </section>

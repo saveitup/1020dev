@@ -74,8 +74,6 @@ export default function ImpressumPage() {
           </dd>
           <dt>Aufsichts- bzw. Gewerbebehörde</dt>
           <dd>Magistratisches Bezirksamt für den 2. Bezirk, Wien</dd>
-          <dt>UID-Nummer</dt>
-          <dd>[falls vorhanden — sonst „nicht USt-pflichtig (Kleinunternehmer § 6 Abs. 1 Z 27 UStG)"]</dd>
         </dl>
       </section>
 
@@ -112,12 +110,7 @@ export default function ImpressumPage() {
       <section className="legal-section">
         <h2 className="legal-h2">Streitbeilegung</h2>
         <p>
-          Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungs-Plattform
-          der EU zu richten:{' '}
-          <a href="https://ec.europa.eu/odr" target="_blank" rel="noopener">
-            ec.europa.eu/odr
-          </a>
-          . Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor
+          Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor
           einer Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </section>
