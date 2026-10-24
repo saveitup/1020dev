@@ -697,11 +697,92 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 .v-label { fill: var(--muted); font-family: var(--font-mono), monospace; font-size: 12px; }
 .v-float { filter: drop-shadow(0 14px 22px rgba(13, 16, 22, 0.18)); }
 
-/* ============== PRODUKTE — Spin & Clausl ============== */
-/* Jede Karte im Look ihrer Landingpage (spin.1020.dev, clausl.1020.dev):
-   Weiß, Inter, Tinte, eine Markenfarbe, Verlaufsschrift, Pill, runde Knöpfe,
-   gekipptes Handy, Farbstreifen. Werte 1:1 aus deren Stylesheets — nur hier
-   im Scope von .pc, damit sie die 1020-Tokens nicht überschreiben. */
+/* ============== PRODUKTE — Clausl, Spin, AlpenBroker ============== */
+/* Überleitung vom Hero: das hellgrüne Wasser am Hero-Boden läuft in die
+   Section aus, dann füllen sich drei Felder (Legal AI, iOS, FinanceEd) in
+   den Markenfarben. Darunter die drei Websites nebeneinander in einer
+   gemeinsamen Karte, jede im Look ihrer Landingpage (clausl.1020.dev,
+   spin.1020.dev, alpenbroker.com). Markenwerte 1:1 aus deren Stylesheets —
+   nur im Scope von .fld / .pc, damit sie die 1020-Tokens nicht überschreiben. */
+.products-flow {
+  /* #C6D8CC = Boden der Hero-Flüssigkeit (.glass-liquid) */
+  background: linear-gradient(180deg, #C6D8CC 0, #DCEADF clamp(40px, 5vw, 72px), rgba(250, 250, 249, 0) clamp(220px, 26vw, 380px));
+}
+.products-flow .section { padding-top: clamp(96px, 11vw, 160px); }
+
+/* Drei Felder, über die beim Scrollen die Markenfarbe wischt (--f aus
+   ProductFields). Schräge Kante wie die Farbstreifen, heller Block vorneweg. */
+.fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 24px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+.fld {
+  --f: 1;
+  --slant: clamp(28px, 14cqi, 80px);
+  container-type: inline-size;
+  position: relative;
+  display: block;
+  height: clamp(132px, 15vw, 220px);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  background: var(--fld-soft);
+  box-shadow: inset 0 0 0 1px var(--fld-line);
+  color: var(--fld-ink);
+  text-decoration: none;
+}
+.fld--clausl { --fld-soft: #fdf1ea; --fld-line: #f6d2c0; --fld-ink: #b53f12; --fld-lead: #f2b544; --fld-top: #eb5e28; --fld-bottom: #c4461a; }
+.fld--spin { --fld-soft: #edf6e9; --fld-line: #cfe6c5; --fld-ink: #1f6e1f; --fld-lead: #8be04a; --fld-top: #2e8b2b; --fld-bottom: #17571e; }
+.fld--alpenbroker { --fld-soft: #fef2f2; --fld-line: #fecaca; --fld-ink: #b91c1c; --fld-lead: #fca5a5; --fld-top: #ef4444; --fld-bottom: #dc2626; }
+.fld-text {
+  position: absolute;
+  left: clamp(10px, 7cqi, 30px);
+  right: clamp(10px, 7cqi, 30px);
+  bottom: clamp(12px, 6cqi, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 2cqi, 10px);
+}
+.fld-label {
+  font-size: clamp(16px, 15cqi, 64px);
+  font-weight: 600;
+  font-stretch: 88%;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+.fld-product { font-size: clamp(11px, 3.8cqi, 16px); font-weight: 500; opacity: 0.85; }
+.fld-arrow {
+  position: absolute;
+  top: clamp(10px, 5cqi, 22px);
+  right: clamp(10px, 6cqi, 26px);
+  font-size: clamp(15px, 5cqi, 24px);
+  font-weight: 600;
+  transition: translate 0.25s var(--ease);
+}
+.fld:hover .fld-arrow { translate: 0 4px; }
+/* Wisch von links: obere Ecke der Kante läuft um --slant voraus („/“) */
+.fld-lead,
+.fld-wet {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    0 0,
+    calc(var(--x) * (100% + var(--slant))) 0,
+    calc(var(--x) * (100% + var(--slant)) - var(--slant)) 100%,
+    0 100%
+  );
+}
+.fld-lead { --x: min(1, calc(var(--f) * 1.14)); z-index: 1; background: var(--fld-lead); }
+.fld-wet {
+  --x: var(--f);
+  z-index: 2;
+  background: linear-gradient(120deg, var(--fld-top), var(--fld-bottom));
+  color: #fff;
+}
+.fld:focus-visible { outline: 2px solid var(--fld-bottom); outline-offset: 3px; }
 .products-eyebrow {
   margin-bottom: 14px;
   font-size: 14px;
@@ -710,8 +791,8 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 .products .section-title { text-wrap: balance; }
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 24px);
 }
 .pc {
   --pc-ink: #111110;
@@ -749,7 +830,24 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   --pc-text: #b53f12;
   --pc-glow: rgba(196, 70, 26, 0.25);
 }
+.pc--alpenbroker {
+  --g0: #fca5a5; --g1: #f87171; --g2: #ef4444; --g3: #dc2626; --g4: #991b1b;
+  --pc-ink: #0f172a;
+  --pc-ink-2: #334155;
+  --pc-muted: #64748b;
+  --pc-soft-2: #f1f5f9;
+  --pc-line: #e2e8f0;
+  --pc-line-2: #cbd5e1;
+  --pc-ok: #16a34a;
+  --pc-fill: #dc2626;
+  --pc-fill-d: #b91c1c;
+  --pc-text: #dc2626;
+  --pc-glow: rgba(220, 38, 38, 0.25);
+  font-family: var(--font-dmsans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-feature-settings: normal;
+}
 .pc--spin ::selection { background: #d6efc5; }
+.pc--alpenbroker ::selection { background: #fecaca; }
 .pc--clausl ::selection { background: #fbdccc; }
 .pc article {
   display: flex;
@@ -850,17 +948,17 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 .pc-kn:hover .pc-pf { transform: translateX(3px); }
 .pc-klein { margin-top: 14px; font-size: 14.5px; color: var(--pc-muted); }
 
-/* Bühne mit gekipptem Handy, unten vom Streifen angeschnitten */
+/* Bühne mit gekipptem Handy, unten vom Streifen angeschnitten. Sie wächst
+   mit, wenn eine Nachbarkarte mehr Text hat — dann zeigt das Handy mehr. */
 .pc-stage {
   position: relative;
-  height: clamp(460px, 100cqi, 660px);
-  margin-top: auto;
-  padding-top: clamp(40px, 8cqi, 64px);
+  flex: 1 0 auto;
+  min-height: clamp(460px, 100cqi, 660px);
   overflow: hidden;
 }
 .pc-skala {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  inset: clamp(40px, 8cqi, 64px) 0 0;
   perspective: 2200px;
 }
 .pc-handy {
@@ -950,7 +1048,111 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   font-weight: 600;
 }
 
-/* Farbstreifen: fünf schräg geschnittene Blöcke, das Leitmotiv beider Marken */
+/* AlpenBroker: DM Sans, Rot ohne Verlauf, Pill mit Rand, eckigere Knöpfe,
+   Hinweis-Box zur Anlageberatung (wie im Hero von alpenbroker.com) */
+.pc--alpenbroker .pc-name { letter-spacing: -0.02em; }
+.pc--alpenbroker .pc-name span { color: var(--pc-fill); }
+.pc--alpenbroker .pc-pill {
+  padding: 6px 16px;
+  gap: 6px;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--pc-fill);
+  font-size: 13px;
+}
+.pc--alpenbroker .pc-pill:hover { background: rgba(220, 38, 38, 0.15); }
+.pc--alpenbroker .pc-title { font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; }
+.pc--alpenbroker .pc-grad {
+  background-image: none;
+  color: var(--pc-fill);
+  -webkit-text-fill-color: currentColor;
+}
+.pc--alpenbroker .pc-kn { padding: 12px 28px; border-radius: 10px; font-size: 16px; font-weight: 500; }
+.pc--alpenbroker .pc-kn--voll:hover { transform: none; box-shadow: none; }
+.pc--alpenbroker .pc-kn--leer {
+  padding-inline: 28px;
+  border: 1px solid var(--pc-line);
+  background: #fff;
+  color: var(--pc-ink);
+}
+.pc--alpenbroker .pc-kn--leer:hover { background: var(--pc-soft-2); text-decoration: none; }
+.pc--alpenbroker .pc-klein {
+  display: inline-block;
+  max-width: 42ch;
+  margin-top: 22px;
+  padding: 8px 12px;
+  border: 1px solid var(--pc-line);
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  text-align: left;
+}
+.pc--alpenbroker .pc-klein b { color: var(--pc-ink); font-weight: 600; }
+
+/* AlpenBroker-Screen: mobile Ansicht mit Kursleiste, ATX-Chart und Werten */
+.pc-schirm--alpen { padding: 60px 16px 0; background: #fafafa; color: #0f172a; font-size: 15px; line-height: 1.35; }
+.pc-schirm--alpen .pc-insel { background: #0f172a; }
+.ab-kopf { display: flex; align-items: center; gap: 8px; }
+.ab-kopf .pc-name { font-size: 18px; }
+.ab-menu { position: relative; width: 20px; height: 14px; margin-left: auto; border-block: 2px solid #0f172a; }
+.ab-menu::after { content: ''; position: absolute; left: 0; right: 0; top: 4px; border-top: 2px solid #0f172a; }
+.ab-ticker { margin: 14px -16px 0; padding: 7px 0; overflow: hidden; background: #0f172a; color: #fff; font-size: 12px; white-space: nowrap; }
+.ab-band { display: flex; width: max-content; animation: ab-ticker 26s linear infinite; }
+.ab-tick { margin-right: 18px; }
+.ab-tick b { font-weight: 600; }
+.ab-ticker .ab-up { color: #4ade80; }
+.ab-ticker .ab-down { color: #f87171; }
+.ab-up { color: var(--pc-ok); }
+.ab-down { color: #dc2626; }
+.ab-karte { margin-top: 16px; padding: 14px 14px 10px; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; }
+.ab-zeile { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.ab-zeile small { display: block; font-size: 12px; color: #64748b; }
+.ab-zeile strong { display: block; margin-top: 2px; font-size: 28px; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+.ab-chg { color: var(--pc-ok); font-size: 14px; font-weight: 600; text-align: right; }
+.ab-chg small { display: block; font-size: 12px; }
+.ab-chart { display: block; width: 100%; height: auto; margin-top: 12px; overflow: visible; }
+.ab-line {
+  fill: none;
+  stroke: #dc2626;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.8s cubic-bezier(.65, 0, .35, 1) .5s;
+}
+.ab-area { transition: opacity .8s ease 1.6s; }
+.ab-cap { margin-top: 6px; font-size: 11px; color: #64748b; text-align: center; }
+.ab-liste { margin-top: 16px; }
+.ab-liste-titel { margin-bottom: 4px; font-size: 15px; font-weight: 700; }
+.ab-row {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid #f1f5f9;
+  transition: opacity .6s var(--pc-kurve) var(--t), transform .6s var(--pc-kurve) var(--t);
+}
+.ab-sym {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.ab-name b,
+.ab-px b { display: block; font-size: 14.5px; font-weight: 600; }
+.ab-name small { font-size: 12px; color: #64748b; }
+.ab-px { text-align: right; }
+.ab-px small { font-size: 12px; font-weight: 600; }
+@keyframes ab-ticker { to { transform: translateX(-50%); } }
+
+/* Farbstreifen: fünf schräg geschnittene Blöcke, das gemeinsame Leitmotiv */
 .pc-streifen {
   position: relative;
   z-index: 1;
@@ -977,23 +1179,31 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 .is-armed .cl-weg i::after { transform: scaleX(0); }
 .is-armed .cl-hk::after { transform: scale(0); }
 .is-armed .cl-erg { opacity: 0; transform: translateY(10px); }
+.is-armed .ab-line { stroke-dashoffset: 1; }
+.is-armed .ab-area { opacity: 0; }
+.is-armed .ab-row { opacity: 0; transform: translateY(8px); }
 .is-armed.is-in .p-auf { opacity: 1; filter: none; transform: none; }
 .is-armed.is-in .pc-handy { transform: rotateX(6deg) rotateY(-6deg) scale(var(--pc-s, .8)); }
 .is-armed.is-in .cl-weg i::after,
 .is-armed.is-in .cl-hk::after { transform: none; }
 .is-armed.is-in .cl-erg { opacity: 1; transform: none; }
+.is-armed.is-in .ab-line { stroke-dashoffset: 0; }
+.is-armed.is-in .ab-area { opacity: 1; }
+.is-armed.is-in .ab-row { opacity: 1; transform: none; }
 
-@container (max-width: 520px) {
-  .pc-handy { --pc-s: .74; }
-}
 @container (max-width: 400px) {
   .pc-handy { --pc-s: .68; }
+}
+/* Schmale Karte: AlpenBroker-Knöpfe untereinander, gleich breit (wie mobil auf alpenbroker.com) */
+@container (max-width: 520px) {
+  .pc--alpenbroker .pc-btns { flex-direction: column; align-items: stretch; max-width: 300px; margin-inline: auto; }
+  .pc--alpenbroker .pc-kn { justify-content: center; }
 }
 
 /* ============== REFERENCES ============== */
 .refs-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(28px, 3vw, 40px) clamp(16px, 2vw, 24px);
   list-style: none;
 }
@@ -1012,7 +1222,6 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
 }
 .ref:nth-child(1) .ref-frame { background: #DFE1E1; }
 .ref:nth-child(2) .ref-frame { background: #E3DFD6; }
-.ref:nth-child(3) .ref-frame { background: #DCE3DC; }
 .ref-shot {
   position: relative;
   width: 84%;
@@ -1702,8 +1911,10 @@ html.splash-skip body .hero-content > * { animation-play-state: running; }
   .footer-top { grid-template-columns: 1fr; }
   .app-hero,
   .app-details { grid-template-columns: 1fr; }
-  .products-grid { grid-template-columns: 1fr; }
-  .refs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1100px) {
+  .products-grid { grid-template-columns: minmax(0, 680px); justify-content: center; gap: clamp(16px, 3vw, 24px); }
 }
 
 @media (max-width: 900px) {

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Instrument_Sans, Fragment_Mono, Inter, JetBrains_Mono } from 'next/font/google';
+import { Instrument_Sans, Fragment_Mono, Inter, JetBrains_Mono, DM_Sans } from 'next/font/google';
 import { Splash } from '@/components/Splash';
 import { Nav } from '@/components/Nav';
 import { GoogleTag } from '@/components/GoogleTag';
@@ -27,7 +27,8 @@ const mono = Fragment_Mono({
   weight: '400',
 });
 
-// Hausschriften von Spin und Clausl — nur für die Produktkarten unter dem Hero.
+// Hausschriften von Spin/Clausl (Inter, JetBrains Mono) und AlpenBroker (DM Sans)
+// — nur für die Produktkarten unter dem Hero.
 // Ohne Preload, damit sie den Hero nicht ausbremsen.
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -41,6 +42,13 @@ const jbmono = JetBrains_Mono({
   variable: '--font-jbmono',
   display: 'swap',
   weight: '600',
+  preload: false,
+});
+
+const dmsans = DM_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-dmsans',
+  display: 'swap',
   preload: false,
 });
 
@@ -100,7 +108,7 @@ try {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de-AT" className={`${sans.variable} ${mono.variable} ${inter.variable} ${jbmono.variable}`} suppressHydrationWarning>
+    <html lang="de-AT" className={`${sans.variable} ${mono.variable} ${inter.variable} ${jbmono.variable} ${dmsans.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: splashSkipScript }} />
       </head>

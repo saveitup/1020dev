@@ -36,11 +36,12 @@ Dann in `app/page.tsx` einfügen und Nav-Link in `components/Nav.tsx` ergänzen.
 - `Announcement.tsx` (server) — grüne Leiste über der Nav (`ANNOUNCEMENT`)
 - `Nav.tsx` (server) — Links links, Wordmark mittig, Kontakt + Pill-CTA rechts
 - `Hero.tsx` (client) — Gleichungs-Headline (`HERO.equation`); alle Tropfen fallen von oben, verteilt über die Breite (Web Animations API, imperativ in `.glass-drops`), jeder Aufprall zählt, der Pegel steigt je Stufe (`HERO.ideas[].fill`), am Ende `= 1020.dev`; wartet auf `body.ready`
-- `Products.tsx` (server) — zwei Produktkarten unter dem Hero (`PRODUCTS`), jede im Look ihrer Landingpage: Spin mit echtem Feed-Screenshot, Clausl mit nachgebautem Antwort-Screen; Styles im Scope `.pc`
+- `Products.tsx` (server) — Produkt-Section unter dem Hero (`PRODUCTS`): `ProductFields` plus drei Karten nebeneinander (unter 1100px untereinander), jede im Look ihrer Landingpage: Clausl mit nachgebautem Antwort-Screen, Spin mit echtem Feed-Screenshot, AlpenBroker mit nachgebauter Mobilansicht (Kursleiste, ATX-Chart, Werte); Styles im Scope `.pc`
+- `ProductFields.tsx` (client) — drei Felder Legal AI / iOS / FinanceEd; die Markenfarbe wischt scroll-gekoppelt darüber (`--f` je Feld), Felder verlinken auf `#produkt-<id>`
 - `InView.tsx` (client) — setzt `is-armed`/`is-in`, damit Inhalte beim Hineinscrollen auftauchen; ohne JS oder bei reduzierter Bewegung sofort im Endzustand
 - `Studio.tsx` (server) — Titel links, zwei Textspalten rechts (`STUDIO`)
 - `Focus.tsx` (client) — Pill-Akkordeon mit SVG-Illustrationen und Auto-Advance (`FOCUS`); optionaler `link` je Schwerpunkt verweist auf das eigene Produkt (Clausl KI, Spin)
-- `References.tsx` (server) — 3-Spalten-Grid (2 ab 960px, 1 ab 760px), Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)
+- `References.tsx` (server) — 2-Spalten-Grid (1 ab 760px), Screenshot im Passepartout, zweites Bild beim Hover (`REFS`)
 - `ContactCard.tsx` (server) — grüne Karte mit dekorativem Swift-Snippet (`CONTACT`)
 - `AppShowcase.tsx` (server) — `/apps`: Intro + Phone-Mockup, Features, Eckdaten (`APPS_SHOWCASE`, `APPS_PAGE`)
 - `PhoneMock.tsx` (server) — CSS-Smartphone-Rahmen um einen echten App-Screenshot

@@ -10,7 +10,7 @@ Diese Datei ist die **autoritative Quelle für alle Inhalte** der Site. Alle Com
 `HERO`, `PRODUCTS_HEAD`, `STUDIO`, `FOCUS_HEAD`, `FOCUS`, `REFS_HEAD`, `CONTACT`, `ANNOUNCEMENT`. Bewusst knapp halten — die Site soll wenig preisgeben (keine Preise, kein Telefon, keine Adresse außerhalb des Impressums).
 
 ### Eigene Produkte
-`PRODUCTS` (Spin, Clausl) speist die Produktkarten direkt unter dem Hero. Die Texte stammen 1:1 von spin.1020.dev und clausl.1020.dev — bei Änderungen dort hier nachziehen (Spin bleibt beim "du" seiner Landingpage). `PRODUCTS.clausl.screen` ist der nachgebaute Antwort-Screen im Handy.
+`PRODUCTS` (Clausl, Spin, AlpenBroker) speist die Produkt-Section direkt unter dem Hero: `field`/`fieldProduct` beschriften die drei Felder, der Rest die Karten. Die Texte stammen 1:1 von clausl.1020.dev, spin.1020.dev und alpenbroker.com — bei Änderungen dort hier nachziehen (Spin und AlpenBroker bleiben beim "du" ihrer Seiten). `screen` ist jeweils der nachgebaute Handy-Inhalt (Clausl: Antwort; AlpenBroker: Kursleiste, ATX-Chart, Werte als feste Momentaufnahme).
 
 ### Eigene App
 `APPS_SHOWCASE[0]` (Spin your song) speist die `/apps`-Seite und `AppSchema`. `screenshots` zeigt echte iPhone-Screens aus `public/apps/` (1179×2556, als JPEG). Namen und Avatare anderer Nutzer vor dem Einchecken weichzeichnen.

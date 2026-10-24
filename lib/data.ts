@@ -75,20 +75,25 @@ export const FOCUS_HEAD = {
 } as const;
 
 // ============================================
-// Eigene Produkte — direkt unter dem Hero, jedes im Look seiner Website
-// (Farben, Schrift, Copy von spin.1020.dev bzw. clausl.1020.dev).
-// Die Copy ist bewusst die der Produkte — Spin spricht seine Nutzer mit
-// "du" an, Clausl mit "Sie".
+// Eigene Produkte — direkt unter dem Hero: drei Felder (Legal AI, iOS,
+// FinanceEd) füllen sich beim Scrollen in den Markenfarben, darunter die
+// drei Websites nebeneinander, jede im Look ihrer Landingpage (Farben,
+// Schrift, Copy von clausl.1020.dev, spin.1020.dev, alpenbroker.com).
+// Die Copy ist bewusst die der Produkte — Spin und AlpenBroker sprechen
+// ihre Nutzer mit "du" an.
+// Reihenfolge wie die Felder: Clausl (orange), Spin (grün), AlpenBroker (rot).
 // ============================================
 export const PRODUCTS_HEAD = {
   eyebrow: 'Eigene Produkte',
   title: 'Gebaut bei 1020.dev.',
-  sub: 'Was wir beobachten, bauen wir selbst: eine App fürs iPhone und eine KI fürs Arbeitsrecht.',
+  sub: 'Drei Felder, drei eigene Produkte.',
 } as const;
 
 export const PRODUCTS = {
   spin: {
+    id: 'spin',
     name: 'Spin',
+    field: 'iOS',
     wordmark: { src: '/brands/spin-wordmark.svg', alt: 'spin.' },
     badge: 'Gratis',
     badgeText: 'Fürs iPhone — jetzt laden',
@@ -97,12 +102,16 @@ export const PRODUCTS = {
     lede: 'Jeden Tag um 17:30 öffnet sich das Fenster. Du teilst einen Song, erst dann siehst du, was deine Freunde hören.',
     primary: { label: 'Im App Store laden', href: 'https://spin.1020.dev/go/landing?from=1020dev' },
     secondary: { label: 'spin.1020.dev', href: 'https://spin.1020.dev' },
+    fieldProduct: 'Spin',
     note: 'Kostenlos · iPhone · iOS 17 oder neuer',
     // Echter Feed-Screenshot (andere Nutzer weichgezeichnet), im Handy-Rahmen der Landingpage
     screenshot: '/apps/spin-feed.jpg',
   },
   clausl: {
+    id: 'clausl',
     name: 'Clausl',
+    field: 'Legal AI',
+    fieldProduct: 'Clausl KI',
     mark: { src: '/brands/clausl-mark.svg', alt: '' },
     badge: 'Beta',
     badgeText: 'Offene Beta — jetzt kostenlos testen',
@@ -125,6 +134,55 @@ export const PRODUCTS = {
       ],
       result: { label: 'Ergebnis', value: '6 Wochen' },
       proof: '✓ § 20 Abs. 2 AngG · RIS belegt',
+    },
+  },
+  alpenbroker: {
+    id: 'alpenbroker',
+    name: 'AlpenBroker',
+    nameAccent: 'Alpen',
+    field: 'FinanceEd',
+    fieldProduct: 'AlpenBroker',
+    mark: { src: '/brands/alpenbroker-mark.svg', alt: '' },
+    badge: null,
+    badgeText: 'Lerne. Verstehe. Investiere in Österreich.',
+    titleStart: 'Heimische Wirtschaft',
+    titleAccent: 'stärken.',
+    lede: 'AlpenBroker hilft dir, den österreichischen Aktienmarkt zu verstehen. Lerne die 20 wichtigsten ATX-Unternehmen kennen, simuliere dein erstes Portfolio und entdecke, warum Investieren in Österreich zählt.',
+    primary: { label: 'Kostenlos starten', href: 'https://alpenbroker.com/register' },
+    secondary: { label: 'alpenbroker.com', href: 'https://alpenbroker.com' },
+    noteLabel: 'Hinweis:',
+    note: 'AlpenBroker ist eine Lern- und Simulationsplattform. Die Inhalte stellen keine Anlageberatung dar.',
+    // Nachbau der mobilen Ansicht von alpenbroker.com: Kursleiste, ATX-Chart,
+    // Werteliste. Kurse sind eine feste Momentaufnahme (Deko, keine Live-Daten).
+    screen: {
+      ticker: [
+        { symbol: 'ATS', price: '€139.00', change: '-1.00%', up: false },
+        { symbol: 'BG', price: '€155.40', change: '+0.87%', up: true },
+        { symbol: 'CAI', price: '€21.80', change: '+0.47%', up: true },
+        { symbol: 'DOC', price: '€196.00', change: '-0.81%', up: false },
+        { symbol: 'EBS', price: '€104.10', change: '-0.57%', up: false },
+        { symbol: 'EVN', price: '€29.50', change: '+0.51%', up: true },
+        { symbol: 'LNZ', price: '€10.42', change: '-1.70%', up: false },
+      ],
+      index: 'ATX Index',
+      value: '6 270,26',
+      change: '+6.31',
+      changePct: '(+0.10%)',
+      // Verlauf 0–1, grob wie der Chart auf der Website
+      chart: [
+        0.3, 0.24, 0.2, 0.34, 0.42, 0.47, 0.44, 0.52, 0.56, 0.53, 0.58, 0.62, 0.57, 0.6,
+        0.55, 0.5, 0.58, 0.63, 0.6, 0.66, 0.62, 0.68, 0.64, 0.7, 0.66, 0.74, 0.69, 0.78,
+        0.72, 0.86, 0.8, 0.66, 0.7, 0.58, 0.62, 0.5, 0.54, 0.4, 0.36, 0.12,
+      ],
+      caption: 'Wiener Börse · ATX · 3 Monate',
+      listTitle: 'ATX-Werte',
+      market: 'Wiener Börse',
+      stocks: [
+        { name: 'Erste Group', symbol: 'EBS', price: '€104.10', change: '-0.57%', up: false },
+        { name: 'BAWAG', symbol: 'BG', price: '€155.40', change: '+0.87%', up: true },
+        { name: 'DO & CO', symbol: 'DOC', price: '€196.00', change: '-0.81%', up: false },
+        { name: 'EVN', symbol: 'EVN', price: '€29.50', change: '+0.51%', up: true },
+      ],
     },
   },
 } as const;
@@ -167,22 +225,6 @@ export const REFS = [
       {
         src: '/refs/zeilinger-2.jpg',
         alt: 'zeilinger-metallbau.at — Referenzprojekte aus dem Wiener Metallbau, Galerie-Section',
-      },
-    ],
-  },
-  {
-    id: 'alpenbroker',
-    domain: 'alpenbroker.com',
-    href: 'https://alpenbroker.com',
-    tag: 'Finanzbildung · AT',
-    screenshots: [
-      {
-        src: '/refs/alpenbroker-1.jpg',
-        alt: 'alpenbroker.com — Aktien- und Börsen-Lernplattform aus Österreich, Hero-Section mit Modulvorschau',
-      },
-      {
-        src: '/refs/alpenbroker-2.jpg',
-        alt: 'alpenbroker.com — Lernmodule für Aktien- und Investment-Wissen, deutschsprachige Übersicht',
       },
     ],
   },
